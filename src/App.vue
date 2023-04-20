@@ -1,47 +1,41 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <TheHeader />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+  <body>
+    <HomeView />
+    <AboutView />
+    <CareerView />
+    <ProjectsView />
+    <ContactView />
+  </body>
 
-  <main>
-    <TheWelcome />
-  </main>
+  <TheFooter />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup>
+import TheHeader from './components/TheHeader.vue';
+import TheFooter from './components/TheFooter.vue';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+import HomeView from './components/views/HomeView.vue';
+import AboutView from './components/views/AboutView.vue';
+import CareerView from './components/views/CareerView.vue';
+import ProjectsView from './components/views/ProjectsView.vue';
+import ContactView from './components/views/ContactView.vue';
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+</script>
+
+<style lang="scss" scoped>
+  body {
+    background-color: var(--default-background);
+    color: var(--text-default);
+
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
   }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
+
