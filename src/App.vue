@@ -28,7 +28,7 @@ import ContactView from './components/views/ContactView.vue';
 
 <style lang="scss" scoped>
   body {
-    width: 100vw;
+    width: 100%;
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -37,6 +37,7 @@ import ContactView from './components/views/ContactView.vue';
     line-height: 1.5;
     background-color: var(--default-background);
     color: var(--text-default);
+    scroll-behavior: smooth;
 
     .container {
       max-width: 1200px;

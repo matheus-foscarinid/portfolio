@@ -15,3 +15,14 @@
   font-weight: normal;
 }
 
+/* Style scrollbar */
+
+::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-hover);
+  border-radius: 15px;
+}
+
