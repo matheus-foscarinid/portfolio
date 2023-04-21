@@ -1,7 +1,7 @@
 <template>
-  <div class="contact">
+  <section id="contact">
     <div>Contact</div>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -9,7 +9,7 @@
 </script>
 
 <style>
-  .contact {
+  #contact {
     height: 100vh;
     display: flex;
     justify-content: center;

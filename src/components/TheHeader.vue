@@ -5,10 +5,10 @@
     </div>
 
     <ul class="menu">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Career</a></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </header>
 </template>
@@ -47,7 +47,7 @@
         color: var(--text-default);
 
         &:hover {
-          color: var(--text-hover);
+          color: var(--secondary-text);
         }
       }
     }

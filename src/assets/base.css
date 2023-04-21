@@ -3,7 +3,7 @@
  --secondary-background: #F8F9FA;
 
  --default-text: #212529;
- --text-hover: #495057;
+ --secondary-text: #495057;
 }
 
 *,
@@ -22,7 +22,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--text-hover);
+  background: var(--secondary-text);
   border-radius: 15px;
 }
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
+  <section id="about">
     <span>About</span>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -9,7 +9,7 @@
 </script>
 
 <style>
-  .about {
+  #about {
     height: 100vh;
     display: flex;
     justify-content: center;

@@ -1,7 +1,7 @@
 <template>
-  <div class="career">
+  <section id="career">
     <div>Career</div>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -9,7 +9,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .career {
+  #career {
     height: 100vh;
     display: flex;
     justify-content: center;
