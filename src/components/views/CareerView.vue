@@ -1,5 +1,6 @@
 <template>
   <div class="career">
+    <div>Career</div>
   </div>
 </template>
 
@@ -7,6 +8,11 @@
 
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .career {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 </style>
