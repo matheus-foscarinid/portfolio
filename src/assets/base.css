@@ -1,10 +1,15 @@
 :root {
  --default-background: #E9ECEF;
  --secondary-background: #F8F9FA;
+ --details-background: #FFFFFF;
 
  --default-text: #212529;
  --secondary-text: #495057;
+
+ --default-border: #CED4DA;
 }
+
+html{scroll-behavior:smooth}
 
 *,
 *::before,
@@ -15,8 +20,7 @@
   font-weight: normal;
 }
 
-/* Style scrollbar */
-
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 0.4rem;
 }
@@ -24,5 +28,11 @@
 ::-webkit-scrollbar-thumb {
   background: var(--secondary-text);
   border-radius: 15px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 

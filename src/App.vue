@@ -2,13 +2,11 @@
   <TheHeader />
 
   <body>
-    <div class="container">
-      <HomeView />
-      <AboutView />
-      <CareerView />
-      <ProjectsView />
-      <ContactView />
-    </div>
+    <HomeView />
+    <AboutView />
+    <CareerView />
+    <ProjectsView />
+    <ContactView />
   </body>
 
   <TheFooter />
@@ -38,13 +36,6 @@ import ContactView from './components/views/ContactView.vue';
     background-color: var(--default-background);
     color: var(--text-default);
     scroll-behavior: smooth;
-
-    .container {
-      max-width: 1200px;
-      min-height: 100vh;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
   }
 </style>
 
