@@ -1,6 +1,6 @@
 <template>
   <section id="career">
-    <div>
+    <div class="container">
       <h1>Career</h1>
 
       <div class="places-container">
