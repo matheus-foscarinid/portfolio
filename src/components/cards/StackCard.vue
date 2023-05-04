@@ -27,5 +27,10 @@
       width: 100%;
       height: 100%;
     }
+
+    &:hover {
+      transform: translateY(-0.15rem) scale(1.05);
+      box-shadow: 0 0.75rem 1.2rem rgba(0, 0, 0, 0.15);
+    }
   }
 </style>
