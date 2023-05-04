@@ -42,9 +42,14 @@
               {{ currentPlace.period }}
             </div>
 
-            <div class="description">
-              {{ currentPlace.description }}
-            </div>
+            <ul class="description">
+              <li 
+                v-for="(paragraph, index) in currentPlace.paragraphs"
+                :key="index"
+              >
+                {{ paragraph }}
+              </li>
+            </ul>
           </div>
         </Transition>
       </div>
@@ -61,28 +66,44 @@
   const placesTimeline = [
     { 
       name: 'CIMOL', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nunc magna, porta id cursus quis, molestie in leo. Nam condimentum, velit non dapibus molestie, libero nisl imperdiet ipsum, eget interdum est ligula at enim. Proin ac tristique metus, nec porttitor justo. Cras scelerisque risus turpis, sed aliquet risus aliquam vitae. Etiam ac dictum ex. Sed mattis pharetra malesuada. Cras bibendum dolor id consectetur facilisis. Quisque feugiat est a facilisis maximus. Duis vel venenatis quam, in auctor nisl. Phasellus sit amet nunc id lorem molestie bibendum. Donec sit amet eleifend metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas dictum dui, sit amet accumsan leo elementum quis. Aenean consectetur ultricies aliquam. Pellentesque eget maximus lorem, sit amet sollicitudin dui. Nullam tempor sem vitae nibh malesuada, id pellentesque eros iaculis.',
+      paragraphs: [
+        'The CIMOL is a technical school that offers a variety of courses in areas like informatics, design and electronics.',
+        'In the technical course integrated with high school, I was presented to a variety of subjects, including programming, web development, graphic design, and hardware. Through this comprehensive curriculum, I acquired a solid foundation in the field of information technology.',
+        'By the end of the course, I was well-equipped with the knowledge and skills necessary to enter the job market with confidence. Thanks to the practical training and real-world experience provided by the program, I was able to seamlessly transition into my professional career and continue to build upon the strong foundation I had established during my time in the course.'
+      ],
       role: 'Student',
       period: 'from 2018 to 2020',
       link: 'https://www.cimol.g12.br/',
    },
     { 
       name: 'Unisinos', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nunc magna, porta id cursus quis, molestie in leo. Nam condimentum, velit non dapibus molestie, libero nisl imperdiet ipsum, eget interdum est ligula at enim. Proin ac tristique metus, nec porttitor justo. Cras scelerisque risus turpis, sed aliquet risus aliquam vitae. Etiam ac dictum ex. Sed mattis pharetra malesuada. Cras bibendum dolor id consectetur facilisis. Quisque feugiat est a facilisis maximus. Duis vel venenatis quam, in auctor nisl. Phasellus sit amet nunc id lorem molestie bibendum. Donec sit amet eleifend metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas dictum dui, sit amet accumsan leo elementum quis. Aenean consectetur ultricies aliquam. Pellentesque eget maximus lorem, sit amet sollicitudin dui. Nullam tempor sem vitae nibh malesuada, id pellentesque eros iaculis.',
+      paragraphs: [
+        'At Internet Systems college, we gain a deep understanding of the foundational concepts behind internet technologies and systems. In addition to the technical knowledge we acquire, we also learn about the broader internet ecosystem and how it functions as a whole. This well-rounded education prepares us to excel in the ever-evolving field of web development.',
+        'With a focus on practical skills and hands-on experience, I expect to graduate from this program in 2025 with a thorough understanding of how to build effective and efficient digital solutions.'
+      ],
       role: 'Student',
       period: 'from 2021 until now',
       link: 'https://www.unisinos.br/',
     },
     { 
       name: 'Scopi', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nunc magna, porta id cursus quis, molestie in leo. Nam condimentum, velit non dapibus molestie, libero nisl imperdiet ipsum, eget interdum est ligula at enim. Proin ac tristique metus, nec porttitor justo. Cras scelerisque risus turpis, sed aliquet risus aliquam vitae. Etiam ac dictum ex. Sed mattis pharetra malesuada. Cras bibendum dolor id consectetur facilisis. Quisque feugiat est a facilisis maximus. Duis vel venenatis quam, in auctor nisl. Phasellus sit amet nunc id lorem molestie bibendum. Donec sit amet eleifend metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas dictum dui, sit amet accumsan leo elementum quis. Aenean consectetur ultricies aliquam. Pellentesque eget maximus lorem, sit amet sollicitudin dui. Nullam tempor sem vitae nibh malesuada, id pellentesque eros iaculis.',
+      paragraphs: [
+        'Scopi is a software company that offers a variety of solutions for strategic planning, project management, and performance monitoring. As a trainee, I was responsible for developing new features and maintaining existing ones for the company’s flagship product, Scopi.',
+        'During my time at Scopi, I was able to gain valuable experience working with a variety of technologies, including Angular, Ruby and SQL. I also learned how to work effectively as part of a team using SCRUM, and how to communicate and collaborate with my colleagues to achieve our shared goals.',
+        'I am grateful for the opportunity to have worked at Scopi, and I am confident that the skills and experience I gained there will serve me well in my future endeavors.'
+      ],
       role: 'Trainee',
       period: 'from January 2021 to October 2021',
       link: 'https://www.scopi.com.br/',
     },
     { 
       name: 'Minha visita', 
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nunc magna, porta id cursus quis, molestie in leo. Nam condimentum, velit non dapibus molestie, libero nisl imperdiet ipsum, eget interdum est ligula at enim. Proin ac tristique metus, nec porttitor justo. Cras scelerisque risus turpis, sed aliquet risus aliquam vitae. Etiam ac dictum ex. Sed mattis pharetra malesuada. Cras bibendum dolor id consectetur facilisis. Quisque feugiat est a facilisis maximus. Duis vel venenatis quam, in auctor nisl. Phasellus sit amet nunc id lorem molestie bibendum. Donec sit amet eleifend metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent egestas dictum dui, sit amet accumsan leo elementum quis. Aenean consectetur ultricies aliquam. Pellentesque eget maximus lorem, sit amet sollicitudin dui. Nullam tempor sem vitae nibh malesuada, id pellentesque eros iaculis.',
+      paragraphs: [
+        'Minha Visita is a startup that offers the simplest and most efficient way to manage commercial visits to customers. As a fullstack developer, I am responsible for developing new features and maintaining existing ones for the company’s flagship product, Minha Visita.',
+        'Currently we are developing a new version of the product, using the latest technologies, like Vue and NestJS, and best practices. I propose and implement scalable solutions to issues identified with our services and the application.',
+        'I\'m collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps.',
+
+      ],
       role: 'Fullstack Mid Developer',
       period: 'from October 2021 until now',
       link: 'https://www.minhavisita.app/',
@@ -183,6 +204,7 @@
         display: flex;
         flex-direction: column;
         padding: 0 2rem;
+        height: 500px;
 
         & .title {
           font-size: 1.5rem;
@@ -208,6 +230,10 @@
           line-height: 1.5rem;
           text-align: justify;
           max-width: 800px;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          list-style-type: circle;
         }
       }
     }
