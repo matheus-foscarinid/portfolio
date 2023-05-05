@@ -117,7 +117,7 @@
 
 <style lang="scss" scoped>
   #career {
-    height: 100vh;
+    height: 80vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -204,7 +204,7 @@
         display: flex;
         flex-direction: column;
         padding: 0 2rem;
-        height: 500px;
+        height: 350px;
 
         & .title {
           font-size: 1.5rem;
