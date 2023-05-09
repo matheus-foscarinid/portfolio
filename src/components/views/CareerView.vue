@@ -117,7 +117,7 @@
 
 <style lang="scss" scoped>
   #career {
-    height: 80vh;
+    height: 90vh;
     display: flex;
     justify-content: center;
     flex-direction: column;

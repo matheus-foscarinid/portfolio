@@ -3,8 +3,7 @@
     <div class="container">
       <h2>Projects</h2>
 
-      <div class="project-cards">
-
+      <div class="featured-project-cards">
         <ProjectCard
           v-for="(project, index) in projects"
           :key="index"
@@ -75,7 +74,7 @@
       }
     }
 
-    .project-cards {
+    .featured-project-cards {
       display: flex;
       flex-direction: column;
       justify-content: center;
