@@ -4,11 +4,19 @@
       <h2>Projects</h2>
 
       <div class="featured-project-cards">
+        <FeaturedProjectCard
+          v-for="(project, index) in featuredProjects"
+          :key="index"
+          :project="project"
+          :reverse="index % 2 === 0"
+        />
+      </div>
+
+      <div class="project-cards">
         <ProjectCard
           v-for="(project, index) in projects"
           :key="index"
           :project="project"
-          :reverse="index % 2 === 0"
         />
       </div>
     </div>
@@ -16,24 +24,43 @@
 </template>
 
 <script setup>
+  import FeaturedProjectCard from '@/components/cards/FeaturedProjectCard.vue';
   import ProjectCard from '@/components/cards/ProjectCard.vue';
 
+
+  const featuredProjects = [
+    {
+      link: 'test.co',
+      name: 'Test',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+    },
+    {
+      link: 'test.co',
+      name: 'Test',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+    },
+    {
+      link: 'test.co',
+      name: 'Test',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+    },
+  ];
 
   const projects = [
     {
       link: 'test.co',
       name: 'Test',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
     },
     {
       link: 'test.co',
       name: 'Test',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
     },
     {
       link: 'test.co',
       name: 'Test',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
     },
   ]
 </script>
@@ -82,6 +109,14 @@
       flex-wrap: wrap;
       gap: 3rem;
       margin-top: 2rem;
+    }
+
+    .project-cards {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+
     }
   }
 </style>
