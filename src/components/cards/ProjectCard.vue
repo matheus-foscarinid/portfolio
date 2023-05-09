@@ -3,13 +3,18 @@
     class="project-card"
     :class="{ 'reverse': reverse }"
   >
-    <div class="project-image"/>
+    <div 
+      class="project-image"
+      @click="openProjectLink"
+    />
+    <div class="featured-project-sign">
+      Featured Project
+    </div>
 
     <div class="project-infos">
       <a 
         class="title"
-        :href="project.link"
-        target="_blank"
+        @click="openProjectLink"
       >
         {{ project.name }}
       </a>
@@ -23,6 +28,10 @@
 
 <script setup>
   const props = defineProps(['project', 'reverse']);
+
+  const openProjectLink = () => {
+    window.open(props.project.link, '_blank');
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -40,6 +49,21 @@
 
     &.reverse {
       flex-direction: row-reverse;
+
+      & .featured-project-sign {
+        left: 1rem;
+        right: auto;
+      }
+    }
+
+    .featured-project-sign {
+      position: absolute;
+      top: -1.5rem;
+      right: 1rem;
+      width: 10rem;
+      padding: 1rem;
+      background: var(--default-border);
+      border-radius: 2px;
     }
 
     .project-image {
@@ -49,6 +73,7 @@
       overflow: hidden;
       width: 30rem;
       height: 20rem;
+      cursor: pointer;
     }
 
     .project-infos {
@@ -63,6 +88,7 @@
         text-decoration: none;
         transition: all 0.3s ease-in-out;
         text-transform: uppercase;
+        cursor: pointer;
       }
 
       .description {

@@ -41,7 +41,7 @@
 
 <style lang="scss" scoped>
   #projects {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -81,7 +81,7 @@
       justify-content: center;
       align-items: start;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: 3rem;
       margin-top: 2rem;
     }
   }
