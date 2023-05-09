@@ -1,27 +1,18 @@
 <template>
-  <div 
-    class="project-card"
-    :class="{ 'reverse': reverse }"
-  >
-    <div 
-      class="project-image"
-      @click="openProjectLink"
-    />
-    <div class="featured-project-sign">
-      Featured Project
+  <div class="project-card">
+    <div class="top-content">
+      <font-awesome-icon icon="fa-brands fa-github" />
+      <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
     </div>
+    <a 
+      class="title"
+      @click="openProjectLink"
+    >
+      {{ project.name }}
+    </a>
 
-    <div class="project-infos">
-      <a 
-        class="title"
-        @click="openProjectLink"
-      >
-        {{ project.name }}
-      </a>
-  
-      <div class="description">
-        {{ project.description }}
-      </div>
+    <div class="description">
+      {{ project.description }}
     </div>
   </div>
 </template>
@@ -37,8 +28,7 @@
 <style lang="scss" scoped>
   .project-card {
     display: flex;
-    width: 100%;
-    min-height: 15rem;
+    flex-direction: column;
     padding: 2rem;
     gap: 2rem;
     border-radius: 15px;
@@ -47,58 +37,39 @@
     transition: all 0.3s ease-in-out;
     text-align: center;
 
-    &.reverse {
-      flex-direction: row-reverse;
+    .top-content {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      align-items: self-start;
+      width: 100%;
+      height: 100%;
+      border-radius: 15px;
+      background-color: var(--primary-background);
+      transition: all 0.3s ease-in-out;
 
-      & .featured-project-sign {
-        left: 1rem;
-        right: auto;
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+        transition: all 0.3s ease-in-out;
       }
     }
 
-    .featured-project-sign {
-      position: absolute;
-      top: -1.5rem;
-      right: 1rem;
-      width: 10rem;
-      padding: 1rem;
-      background: var(--default-border);
-      border-radius: 2px;
-    }
-
-    .project-image {
-      background-color: #b5b5bf;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,.1);
-      overflow: hidden;
-      width: 30rem;
-      height: 20rem;
+    .title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-text);
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      text-transform: uppercase;
       cursor: pointer;
     }
 
-    .project-infos {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary-text);
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-        text-transform: uppercase;
-        cursor: pointer;
-      }
-
-      .description {
-        font-size: 1rem;
-        font-weight: 400;
-        color: var(--secondary-text);
-        margin-top: 1rem;
-        width: 30rem;
-      }
+    .description {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--secondary-text);
+      margin-top: 1rem;
     }
-
   }
 </style>
