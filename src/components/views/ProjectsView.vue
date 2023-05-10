@@ -49,18 +49,57 @@
   const projects = [
     {
       link: 'test.co',
-      name: 'Test',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+      name: 'Test project 1 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['Vue', 'Vite', 'Quasar', 'SCSS' ]
     },
     {
       link: 'test.co',
-      name: 'Test',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+      name: 'Test project 2 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['Ruby on Rails', 'Sass', 'SQLite']
     },
     {
       link: 'test.co',
-      name: 'Test',
-      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+      name: 'Test project 3 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['Angular', 'Tailwind', 'Firebase']
+    },
+    {
+      link: 'test.co',
+      name: 'Test project 4 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['React', 'Next', 'SCSS']
+    },
+    {
+      link: 'test.co',
+      name: 'Test project 5 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['Vue', 'Vite', 'Quasar', 'SCSS' ]
+    },
+    {
+      link: 'test.co',
+      name: 'Test project 6 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['Ruby on Rails', 'Sass', 'SQLite']
+    },
+    {
+      link: 'test.co',
+      name: 'Test project 7 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['Angular', 'Tailwind', 'Firebase']
+    },
+    {
+      link: 'test.co',
+      name: 'Test project 8 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['React', 'Next', 'SCSS']
+    },
+    {
+      link: 'test.co',
+      name: 'Test project 9 - A really nice name!',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.',
+      stack: ['React', 'Next', 'SCSS']
     },
   ]
 </script>

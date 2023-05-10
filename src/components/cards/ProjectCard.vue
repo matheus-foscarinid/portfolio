@@ -4,15 +4,27 @@
       <font-awesome-icon icon="fa-brands fa-github" />
       <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
     </div>
-    <a 
-      class="title"
-      @click="openProjectLink"
-    >
-      {{ project.name }}
-    </a>
 
-    <div class="description">
-      {{ project.description }}
+    <div class="main-content">
+      <a 
+        class="title"
+        @click="openProjectLink"
+      >
+        {{ project.name }}
+      </a>
+  
+      <div class="description">
+        {{ project.description }}
+      </div>
+    </div>
+
+    <div class="stack">
+      <span 
+        v-for="item in project.stack"
+        :key="item"
+      >
+        {{ item }}
+      </span>
     </div>
   </div>
 </template>
@@ -35,7 +47,11 @@
     background-color: var(--details-background);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease-in-out;
-    text-align: center;
+
+    &:hover {
+      transform: scale(1.01) translateY(-0.5rem);
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+    }
 
     .top-content {
       display: flex;
@@ -49,27 +65,39 @@
       transition: all 0.3s ease-in-out;
 
       svg {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.25rem;
+        height: 1.25rem;
         transition: all 0.3s ease-in-out;
       }
     }
 
-    .title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary-text);
-      text-decoration: none;
-      transition: all 0.3s ease-in-out;
-      text-transform: uppercase;
-      cursor: pointer;
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      .title {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        font-weight: 700;
+        color: var(--primary-text);
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+      }
+  
+      .description {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--secondary-text);
+      }
     }
 
-    .description {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--secondary-text);
-      margin-top: 1rem;
+    .stack {
+      color: var(--disabled-text);
+      font-family: var(--alternative-font);
+      font-size: 0.875rem;
+      display: flex;
+      gap: 1rem;
     }
   }
 </style>

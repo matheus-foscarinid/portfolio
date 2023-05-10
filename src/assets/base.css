@@ -8,6 +8,7 @@
  --disabled-text: #7a838b;
 
  --default-border: #CED4DA;
+ --alternative-font: 'Fira Code', monospace;
 }
 
 html{scroll-behavior:smooth}
