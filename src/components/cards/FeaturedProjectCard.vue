@@ -12,15 +12,17 @@
     </div>
 
     <div class="project-infos">
-      <a 
-        class="title"
-        @click="openProjectLink"
-      >
-        {{ project.name }}
-      </a>
-  
-      <div class="description">
-        {{ project.description }}
+      <div>
+        <a 
+          class="title"
+          @click="openProjectLink"
+        >
+          {{ project.name }}
+        </a>
+    
+        <div class="description">
+          {{ project.description }}
+        </div>
       </div>
     </div>
   </div>
@@ -45,10 +47,12 @@
     background-color: var(--details-background);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease-in-out;
-    text-align: center;
+    text-align: left;
 
     &.reverse {
       flex-direction: row-reverse;
+      text-align: right;
+
 
       & .featured-project-sign {
         left: 1rem;
