@@ -24,6 +24,15 @@
           {{ project.description }}
         </div>
       </div>
+
+      <div class="stack">
+        <span 
+          v-for="item in project.stack"
+          :key="item"
+        >
+          {{ item }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -57,6 +66,10 @@
       & .featured-project-sign {
         left: 1rem;
         right: auto;
+      }
+
+      .stack {
+        align-self: flex-end !important;
       }
     }
 
@@ -101,6 +114,16 @@
         color: var(--secondary-text);
         margin-top: 1rem;
         width: 30rem;
+      }
+
+      .stack {
+        color: var(--disabled-text);
+        font-family: var(--alternative-font);
+        font-size: 0.875rem;
+        display: flex;
+        gap: 1rem;
+        align-self: flex-start;
+        margin-top: 3rem;
       }
     }
 
