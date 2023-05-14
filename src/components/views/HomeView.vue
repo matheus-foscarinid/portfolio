@@ -22,7 +22,7 @@
 
 <style lang="scss" scoped>
   #home {
-    height: calc(100vh - 5rem);
+    min-height: calc(100vh - 5rem);
     display: flex;
 
     .container {
@@ -81,5 +81,11 @@
       }
     }
 
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
   }
 </style>

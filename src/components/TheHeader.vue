@@ -53,4 +53,13 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    header {
+      place-content: center;
+      .menu {
+        display: none;
+      }
+    }
+  }
 </style>

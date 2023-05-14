@@ -66,7 +66,7 @@ const stacks = [
 
 <style lang="scss" scoped>
 #about {
-  height: 70vh;
+  min-height: 70vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
