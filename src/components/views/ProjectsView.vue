@@ -110,6 +110,7 @@
 <style lang="scss" scoped>
   #projects {
     min-height: 100vh;
+    margin: 10rem 0;
     display: flex;
     justify-content: center;
     flex-direction: column;
