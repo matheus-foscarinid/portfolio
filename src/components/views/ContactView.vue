@@ -29,10 +29,12 @@
     {
       icon: 'fa-brands fa-github',
       text: 'matheus-foscarinid',
+      link: 'https://github.com/matheus-foscarinid'
     },
     {
       icon: 'fa-brands fa-linkedin',
       text: 'Matheus Foscarini Dias',
+      link: 'https://linkedin.com/in/matheus-foscarinid/'
     },
   ];
 </script>
