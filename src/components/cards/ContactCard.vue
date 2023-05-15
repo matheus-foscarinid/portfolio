@@ -1,5 +1,9 @@
 <template>
-  <div class="contact-card">
+  <div 
+    class="contact-card"
+    :class="props.contact.link ? 'hoverable' : ''"
+    @click="openLink(props.contact.link)"
+  >
     <div class="icon">
       <font-awesome-icon :icon="props.contact.icon" />
     </div>
@@ -12,6 +16,12 @@
 
 <script setup>
   const props = defineProps(['contact']);
+
+  const openLink = (link) => {
+    if (!link) return;
+
+    window.open(link, '_blank');
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -22,10 +32,14 @@
     transition: all 0.3s ease-in-out;
     border: 1px solid var(--default-border);
 
-    &:hover {
-      border: 1px solid var(--default-background);
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-      transform: scale(1.01) translateY(-0.1rem);
+    &.hoverable {
+      cursor: pointer;
+
+      &:hover {
+        border: 1px solid var(--default-background);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        transform: scale(1.01) translateY(-0.1rem);
+      }
     }
 
     & .icon {
