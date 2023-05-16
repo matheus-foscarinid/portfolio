@@ -26,6 +26,7 @@
 
 <style lang="scss" scoped>
   .contact-card {
+    width: 100%;
     display: flex;
     padding: 1rem 1.5rem;
     border-radius: 15px;
