@@ -117,7 +117,7 @@
 
 <style lang="scss" scoped>
   #career {
-    height: 90vh;
+    min-height: 90vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -234,6 +234,23 @@
           flex-direction: column;
           gap: 0.5rem;
           list-style-type: circle;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    #career {
+      .places-container {
+        display: flex;
+        flex-direction: column;
+
+        & .active-place-content {
+          padding: 0 !important;
+
+          .title, .period {
+            text-align: center;
+          }	
         }
       }
     }

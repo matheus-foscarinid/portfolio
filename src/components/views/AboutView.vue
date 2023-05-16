@@ -150,4 +150,19 @@ const stacks = [
     }
   }
 }
+
+@media (max-width: 768px) {
+  #about {
+
+    h2 {
+      &::before, &::after {
+        width: 50%;
+      }
+    }
+    .content-containers {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
 </style>

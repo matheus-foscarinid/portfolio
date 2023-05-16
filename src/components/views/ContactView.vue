@@ -41,7 +41,7 @@
 
 <style lang="scss">
   #contact {
-    height: 60vh;
+    min-height: 60vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -79,6 +79,16 @@
       display: flex;
       flex-direction: column;
       gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #contact {
+      h2 {
+        &::before, &::after {
+          width: 50%;
+        }
+      }
     }
   }
 </style>
