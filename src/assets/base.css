@@ -1,6 +1,7 @@
 :root {
  --default-background: #E9ECEF;
  --secondary-background: #F8F9FA;
+ --dark-background: #212529;
  --details-background: #FFFFFF;
 
  --default-text: #212529;
@@ -34,7 +35,7 @@ html{scroll-behavior:smooth}
 
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 8rem auto;
   padding: 0 2rem;
 }
 
