@@ -7,7 +7,7 @@
         <div class="buttons-container">
           <div 
             class="current-selected-marker"
-            :style="{ top: `${currentPlaceIndex * 25}%` }"
+            :style="selectedMarkerStyle"
           />
           <button
             v-for="(place, index) in placesTimeline"
@@ -62,6 +62,19 @@
 
   const currentPlaceIndex = ref(0);
   const currentPlace = computed(() => (placesTimeline[currentPlaceIndex.value] || {}));
+
+  const selectedMarkerStyle = computed(() => {
+    // If is mobile
+    if (window.innerWidth <= 768) {
+      return {
+        left: `${currentPlaceIndex.value * 25}%`,
+      };
+    }
+
+    return {
+      top: `${currentPlaceIndex.value * 25}%`,
+    };
+  });
 
   const placesTimeline = [
     { 
@@ -247,11 +260,19 @@
 
         & .buttons-container {
           flex-direction: row;
+          width: 100%;
 
           button {
+            width: 25%;
             border: none;
             border-top: 1px solid var(--default-border);
+            padding: 0.5rem 0.25rem;
           }
+        }
+
+        & .current-selected-marker {
+          height: 3px !important;
+          width: 25% !important;
         }
 
         & .active-place-content {
