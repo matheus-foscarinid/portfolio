@@ -89,6 +89,18 @@
           width: 50%;
         }
       }
+
+      .contact-card {
+        padding: 1rem;
+
+        & .text {
+          font-size: 1rem;
+        }
+
+        & .icon {
+          margin-right: 0;
+        }
+      }
     }
   }
 </style>
