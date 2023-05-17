@@ -77,6 +77,12 @@
         }
       }
     }
+  }
 
+  @media (max-width: 768px) {
+    footer {
+      flex-direction: column;
+      gap: 1rem;
+    }
   }
 </style>
