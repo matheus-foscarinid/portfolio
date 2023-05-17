@@ -245,6 +245,15 @@
         display: flex;
         flex-direction: column;
 
+        & .buttons-container {
+          flex-direction: row;
+
+          button {
+            border: none;
+            border-top: 1px solid var(--default-border);
+          }
+        }
+
         & .active-place-content {
           padding: 0 !important;
 
