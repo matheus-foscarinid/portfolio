@@ -17,11 +17,24 @@
         @click="openMobileMenu"
       />
     </div>
+    
+    <div 
+      v-if="isMenuOpen"
+      class="mobile-menu"
+    >
+
+    </div>
   </header>
 </template>
 
 <script setup>
+  import { ref } from 'vue'
+  const isMenuOpen = ref(false);
 
+  const openMobileMenu = () => {
+    console.log('open');
+    isMenuOpen.value = !isMenuOpen.value;
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -59,13 +72,36 @@
         }
       }
     }
+
+    .mobile-menu-icon {
+      display: none;
+    }
+
+    .mobile-menu {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60vw;
+      height: 100vh;
+      background-color: var(--secondary-background);
+      z-index: 1;
+    }
   }
 
   @media (max-width: 768px) {
     header {
-      place-content: center;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
       .menu {
         display: none;
+      }
+
+      .mobile-menu-icon {
+        display: block;
+        font-size: 1.5rem;
       }
     }
   }
