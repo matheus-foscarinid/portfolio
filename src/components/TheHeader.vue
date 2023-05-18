@@ -10,6 +10,13 @@
       <!-- <li><a href="#projects">Projects</a></li> -->
       <li><a href="#contact">Contact</a></li>
     </ul>
+
+    <div class="mobile-menu-icon">
+      <font-awesome-icon 
+        icon="fas fa-bars"
+        @click="openMobileMenu"
+      />
+    </div>
   </header>
 </template>
 
