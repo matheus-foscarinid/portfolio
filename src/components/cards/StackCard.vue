@@ -1,5 +1,5 @@
 <template>
-  <div class="stack">
+  <div class="stack" :title="props.name">
     <img 
       :src="`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${props.name}/${props.name}-${props.type}.svg`"
       :alt="props.name"
