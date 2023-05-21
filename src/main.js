@@ -11,7 +11,8 @@ import {
   faFolder, 
   faEnvelope, 
   faLocationPin, 
-  faBars 
+  faBars ,
+  faClose
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -21,7 +22,8 @@ library.add(
   faFolder, 
   faEnvelope, 
   faLocationPin,
-  faBars
+  faBars,
+  faClose
 )
 
 createApp(App)
