@@ -22,8 +22,15 @@
       v-if="isMenuOpen"
       class="mobile-menu"
     >
-
+      <div class="top-container">
+        <font-awesome-icon
+          class="close-icon"
+          icon="fas fa-close"
+          @click="closeMobileMenu"
+        />
+      </div>
     </div>
+    <div class="defocus" />
   </header>
 </template>
 
@@ -33,7 +40,12 @@
 
   const openMobileMenu = () => {
     console.log('open');
-    isMenuOpen.value = !isMenuOpen.value;
+    isMenuOpen.value = true;
+  }
+
+  const closeMobileMenu = () => {
+    console.log('close');
+    isMenuOpen.value = false;
   }
 </script>
 
@@ -85,6 +97,19 @@
       height: 100vh;
       background-color: var(--secondary-background);
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .defocus {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 0;
+      display: none;
     }
   }
 
@@ -99,9 +124,20 @@
         display: none;
       }
 
+      .top-container {
+        display: flex;
+        justify-content: flex-end;
+      }
+
       .mobile-menu-icon {
         display: block;
         font-size: 1.5rem;
+      }
+
+      .close-icon {
+        display: block;
+        font-size: 1.8rem;
+        padding: 26px 32px;
       }
     }
   }
