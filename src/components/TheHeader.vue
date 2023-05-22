@@ -18,19 +18,23 @@
       />
     </div>
     
-    <div 
-      v-if="isMenuOpen"
-      class="mobile-menu"
-    >
-      <div class="top-container">
-        <font-awesome-icon
-          class="close-icon"
-          icon="fas fa-close"
-          @click="closeMobileMenu"
-        />
+    <Transition 
+        name="slide-in"
+        mode="out-in"
+      >
+      <div 
+        v-if="isMenuOpen"
+        class="mobile-menu"
+      >
+        <div class="top-container">
+          <font-awesome-icon
+            class="close-icon"
+            icon="fas fa-close"
+            @click="closeMobileMenu"
+          />
+        </div>
       </div>
-    </div>
-    <div class="defocus" />
+    </Transition>
   </header>
 </template>
 
@@ -90,26 +94,16 @@
     }
 
     .mobile-menu {
-      position: absolute;
+      position: fixed;
       top: 0;
       right: 0;
+      bottom: 0;
       width: 60vw;
       height: 100vh;
       background-color: var(--secondary-background);
       z-index: 1;
       display: flex;
       flex-direction: column;
-    }
-
-    .defocus {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-      display: none;
     }
   }
 
@@ -140,5 +134,21 @@
         padding: 26px 32px;
       }
     }
+  }
+
+  /* slide transition */
+  .slide-in-enter-active,
+  .slide-in-leave-active {
+    transition: all 0.3s ease;
+  }
+
+  .slide-in-enter-from,
+  .slide-in-leave-to {
+    transform: translateX(100%);
+  }
+
+  .slide-in-enter-to,
+  .slide-in-leave-from {
+    transform: translateX(0);
   }
 </style>
