@@ -23,16 +23,6 @@ html{scroll-behavior:smooth}
   font-weight: normal;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 0.4rem;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--secondary-text);
-  border-radius: 15px;
-}
-
 .container {
   max-width: 1200px;
   margin: 8rem auto;
