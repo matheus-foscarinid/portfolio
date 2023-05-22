@@ -19,9 +19,9 @@
     </div>
     
     <Transition 
-        name="slide-in"
-        mode="out-in"
-      >
+      name="slide-in"
+      mode="out-in"
+    >
       <div 
         v-if="isMenuOpen"
         class="mobile-menu"
@@ -33,7 +33,28 @@
             @click="closeMobileMenu"
           />
         </div>
+
+        <ul 
+          class="mobile-menu-items"
+          @click="closeMobileMenu"
+        >
+          <li><a href="#about">About</a></li>
+          <li><a href="#career">Career</a></li>
+          <!-- <li><a href="#projects">Projects</a></li> -->
+          <li><a href="#contact">Contact</a></li>
+        </ul>
       </div>
+    </Transition>
+
+    <Transition 
+      name="fade"
+      mode="out-in"
+    >
+      <div 
+        v-if="isMenuOpen"
+        class="defocus"
+        @click="closeMobileMenu"
+      />
     </Transition>
   </header>
 </template>
@@ -98,12 +119,33 @@
       top: 0;
       right: 0;
       bottom: 0;
-      width: 60vw;
+      width: 65vw;
       height: 100vh;
       background-color: var(--secondary-background);
       z-index: 1;
       display: flex;
       flex-direction: column;
+
+      & .mobile-menu-items {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem;
+        text-align: center;
+        gap: 1rem;
+
+        a {
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 1.5rem;
+          color: var(--text-default);
+
+          &:hover {
+            color: var(--secondary-text);
+          }
+        }
+      }
     }
   }
 
@@ -134,6 +176,18 @@
         padding: 26px 32px;
       }
     }
+  }
+
+  .defocus {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.2);
+    overscroll-behavior: contain;
+    overflow: hidden;
   }
 
   /* slide transition */
