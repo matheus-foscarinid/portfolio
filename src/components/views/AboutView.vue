@@ -1,6 +1,6 @@
 <template>
   <section id="about">
-    <div class="container">
+    <div class="container appear-on-scroll">
       <h2>About</h2>
       <div class="content-containers">
         <div class="summary">

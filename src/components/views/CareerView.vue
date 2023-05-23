@@ -1,6 +1,6 @@
 <template>
   <section id="career">
-    <div class="container">
+    <div class="container appear-on-scroll">
       <h2>Career</h2>
 
       <div class="places-container">

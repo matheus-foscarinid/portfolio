@@ -1,6 +1,6 @@
 <template>
   <section id="contact">
-    <div class="container">
+    <div class="container appear-on-scroll">
       <h2>Contact</h2>
 
       <div class="contact-cards">

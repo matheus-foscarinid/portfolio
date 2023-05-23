@@ -1,6 +1,6 @@
 <template>
   <section id="projects">
-    <div class="container">
+    <div class="container appear-on-scroll">
       <h2>Projects</h2>
 
       <div class="featured-project-cards">

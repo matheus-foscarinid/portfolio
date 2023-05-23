@@ -1,6 +1,6 @@
 <template>
   <section id="home">
-    <div class="container">
+    <div class="container appear-on-scroll">
       <div class="myself-container">
         <img src="@/assets/images/me.jpg" alt="Matheus Foscarini Dias" />
       </div>
