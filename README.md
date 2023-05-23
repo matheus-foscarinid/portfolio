@@ -1,14 +1,8 @@
-# portfolio
+# Matheus Dias Portfolio
 
-This template should help get you started developing with Vue 3 in Vite.
+My personal website and portfolio, built with Vite! It's a WIP, but I'm already testing it using Vercel.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Try here 👉 [matheusdias.vercel.app](https://matheusdias.vercel.app)
 
 ## Project Setup
 
@@ -16,20 +10,14 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compile and Hot-Reload for Development and Testing
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### TODOs and Ideas
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- [ ] Add some projects and make the project section appear
+- [ ] Add Portuguese support
+- [ ] Add dark mode support
