@@ -29,3 +29,23 @@ library.add(
 createApp(App)
   .component('font-awesome-icon', FontAwesomeIcon)
   .mount('#app');
+
+const addObserverOnScroll = () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('appeared');
+        setTimeout(() => {
+          entry.target.classList.remove('appear-on-scroll');
+        }, 1500);
+
+        observer.unobserve(entry.target);
+      }
+    });
+  });
+
+  const targets = document.querySelectorAll('.appear-on-scroll');
+  targets.forEach((target) => observer.observe(target));
+};
+
+window.addEventListener('load', addObserverOnScroll);
