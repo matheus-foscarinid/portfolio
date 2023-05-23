@@ -122,6 +122,7 @@
       width: 65vw;
       height: 100vh;
       background-color: var(--secondary-background);
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
       z-index: 1;
       display: flex;
       flex-direction: column;
