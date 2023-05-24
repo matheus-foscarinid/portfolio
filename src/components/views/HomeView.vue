@@ -84,7 +84,8 @@
           font-weight: 700;
           cursor: pointer;
           border: 1px solid var(--default-border);
-          transition: all 0.3s ease-in-out;
+          transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+          
 
           &:hover {
             transform: scale(1.05);
