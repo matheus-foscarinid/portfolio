@@ -12,12 +12,9 @@
 
   const changeTheme = () => {
     isDarkTheme.value = !isDarkTheme.value;
+    const newTheme = isDarkTheme.value ? 'dark' : 'light';
 
-    if (isDarkTheme.value) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
+    document.documentElement.setAttribute('data-theme', newTheme);
   }
 </script>
 
