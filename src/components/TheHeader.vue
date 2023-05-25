@@ -48,6 +48,8 @@
           <li><a href="#career">Career</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
+
+        <ThemeSwitch class="switch" />
       </div>
     </Transition>
 
@@ -154,6 +156,12 @@
           }
         }
       }
+
+      & .switch {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+      }
     }
   }
 
@@ -182,6 +190,10 @@
         display: block;
         font-size: 1.8rem;
         padding: 26px 32px;
+      }
+
+      .theme-switch-container {
+        display: none;
       }
     }
   }
