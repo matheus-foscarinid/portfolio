@@ -12,7 +12,9 @@ import {
   faEnvelope, 
   faLocationPin, 
   faBars ,
-  faClose
+  faClose,
+  faSun,
+  faMoon
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -23,7 +25,9 @@ library.add(
   faEnvelope, 
   faLocationPin,
   faBars,
-  faClose
+  faClose,
+  faSun,
+  faMoon
 )
 
 createApp(App)
