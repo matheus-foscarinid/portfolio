@@ -1,7 +1,20 @@
 <template>
   <label class="switch">
     <input type="checkbox" @change="changeTheme">
-    <span class="slider"></span>
+    <span class="slider">
+      <div class="slider-circle">
+        <font-awesome-icon 
+          v-if="isDarkTheme"
+          icon="fa-solid fa-moon"
+          class="moon"
+        />
+        <font-awesome-icon 
+          v-else
+          icon="fa-solid fa-sun"
+          class="sun"
+        />
+      </div>
+    </span>
   </label>
 </template>
 
@@ -30,10 +43,12 @@
       width: 0;
       height: 0;
 
-      &:checked + .slider:before {
-        -webkit-transform: translateX(26px);
-        -ms-transform: translateX(26px);
-        transform: translateX(26px);
+      &:checked + .slider {
+        .slider-circle {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+        }
       }
     }
 
@@ -50,7 +65,7 @@
       border-radius: 34px;
       transition: .4s;
 
-      &:before {
+      & .slider-circle {
         position: absolute;
         content: "";
         height: 26px;
@@ -62,6 +77,19 @@
         border-radius: 50%;
         box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05);
         transition: .4s;
+
+        svg {
+          font-size: 16px;
+          padding: 5px;
+        }
+
+        .sun {
+          color: #f39d12;
+        }
+
+        .moon {
+          color: #f4ca25;
+        }
       }
     }
   }
