@@ -1,3 +1,8 @@
 {
-  "TEST": "Test"
+  "HOME": {
+    "PRESENTATION_1": "Hi! My name is",
+    "PRESENTATION_2": "I'm a Fullstack developer.",
+    "SUMMARY": "As a fullstack mid-level developer based in Rio Grande do Sul, Brazil. I specialize in creating high-quality, scalable applications with exceptional user experiences. With expertise in both front-end and back-end development, I'm able to build end-to-end solutions that are efficient. Whether it's complex architecture or intuitive user interfaces, I'm committed to delivering results that exceed client expectations.",
+    "DOWNLOAD_CV": "Download CV"
+  }
 }

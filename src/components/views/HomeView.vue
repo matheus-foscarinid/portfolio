@@ -6,17 +6,17 @@
       </div>
       
       <div class="presentation-container">
-        <span class="presentation">Hi! My name is</span>
+        <span class="presentation">{{  $t('HOME.PRESENTATION_1') }}</span>
         <h2>Matheus Foscarini Dias</h2>
-        <h3>I'm a Fullstack developer.</h3>
+        <h3>{{  $t('HOME.PRESENTATION_2') }}</h3>
     
-        <p class="summary">As a fullstack mid-level developer based in Rio Grande do Sul, Brazil. I specialize in creating high-quality, scalable applications with exceptional user experiences. With expertise in both front-end and back-end development, I'm able to build end-to-end solutions that are efficient. Whether it's complex architecture or intuitive user interfaces, I'm committed to delivering results that exceed client expectations.</p>
+        <p class="summary">{{  $t('HOME.SUMMARY') }}</p>
 
         <button 
           class="cv-button"
           @click="downloadCV"
         >
-          Download CV
+          {{  $t('HOME.DOWNLOAD_CV') }}
         </button>
       </div>
     </div>
