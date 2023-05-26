@@ -1,4 +1,8 @@
 import { createApp } from 'vue'
+import { createI18n } from 'vue-i18n'
+import pt from './i18n/pt.json'
+import en from './i18n/en.json'
+
 import App from './App.vue'
 
 import './assets/main.css'
@@ -28,11 +32,8 @@ library.add(
   faClose,
   faSun,
   faMoon
-)
+);
 
-createApp(App)
-  .component('font-awesome-icon', FontAwesomeIcon)
-  .mount('#app');
 
 const addObserverOnScroll = () => {
   const observer = new IntersectionObserver((entries) => {
@@ -52,4 +53,20 @@ const addObserverOnScroll = () => {
   targets.forEach((target) => observer.observe(target));
 };
 
-window.addEventListener('load', addObserverOnScroll);
+const startApp = () => {
+  const locale = window.navigator.language.substring(0, 2);
+  const i18n = createI18n({
+    locale,
+    fallbackLocale: 'en',
+    messages: { pt, en }
+  });
+
+  createApp(App)
+    .component('font-awesome-icon', FontAwesomeIcon)
+    .use(i18n)
+    .mount('#app');
+
+  window.addEventListener('load', addObserverOnScroll);
+};
+
+startApp();
