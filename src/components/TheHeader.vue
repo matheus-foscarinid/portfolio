@@ -16,6 +16,10 @@
       <ThemeSwitch />
     </div>
 
+    <div class="lang-select">
+      <LangSelect />
+    </div>
+
     <div class="mobile-menu-icon">
       <font-awesome-icon 
         icon="fas fa-bars"
@@ -68,6 +72,7 @@
 
 <script setup>
   import ThemeSwitch from './ThemeSwitch.vue';
+  import LangSelect from './LangSelect.vue';
 
   import { ref } from 'vue'
   const isMenuOpen = ref(false);
