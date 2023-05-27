@@ -2,7 +2,7 @@
 
 My personal website and portfolio, built with Vite! It's a WIP, but I'm already testing it using Vercel.
 
-Try here 👉 [matheusdias.vercel.app](https://matheusdias.vercel.app)
+Try here 👉 [wip-matheusdias.vercel.app](https://wip-matheusdias.vercel.app)
 
 ## Project Setup
 
