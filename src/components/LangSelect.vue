@@ -1,5 +1,5 @@
 <template>
-  <div class="lang-select">
+  <div class="lang-select" v-if="false">
     <select v-model="lang" @change="changeLang">
       <option v-for="lang in langs" :key="lang.value" :value="lang.value">
         {{ lang.label }}
