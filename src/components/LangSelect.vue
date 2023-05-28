@@ -29,3 +29,18 @@ watch(lang, (newLang) => {
 })
 
 </script>
+
+<style lang="scss" scoped>
+.lang-select {
+  select {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    outline: none;
+  }
+}
+</style>
