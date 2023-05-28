@@ -1,5 +1,5 @@
 <template>
-  <div class="lang-select" v-if="false">
+  <div class="lang-select">
     <select v-model="lang" @change="changeLang">
       <option v-for="lang in langs" :key="lang.value" :value="lang.value">
         {{ lang.label }}
@@ -22,7 +22,7 @@ const langs = [
     value: 'pt'
   }
 ];
-const lang = ref('pt')
+const lang = ref(i18n.global.locale)
 
 watch(lang, (newLang) => {
   i18n.global.locale = newLang;
