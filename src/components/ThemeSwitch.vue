@@ -72,11 +72,11 @@
         width: 26px;
         left: 4px;
         bottom: 4px;
-        background-color: white;
-        -webkit-transition: .4s;
+        background-color: var(--details-background);
         border-radius: 50%;
         box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.05);
         transition: .4s;
+        -webkit-transition: .4s;
 
         svg {
           font-size: 16px;
