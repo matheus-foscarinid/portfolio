@@ -4,5 +4,11 @@
     "PRESENTATION_2": "eu sou desenvolvedor fullstack.",
     "SUMMARY": "Como um desenvolvedor fullstack pleno, sediado no Rio Grande do Sul, Brasil. Eu me especializo na criação de Apps de alta qualidade e escaláveis com experiências excepcionais para os usuários. Com experiência no desenvolvimento tanto do front-end quanto do back-end, sou capaz de construir soluções completas que são eficientes. Seja uma arquitetura complexa ou interfaces de usuário intuitivas, estou comprometido em entregar resultados que superem as expectativas do cliente.",
     "DOWNLOAD_CV": "Baixar currículo"
+  },
+  "ABOUT": {
+    "SUMMARY_1": "Olá, eu sou <span class=\"highlight\">Matheus</span>, desenvolvedor fullstack habitante do Rio Grande do Sul, Brasil. Para mim, criar sistemas vai além de apenas um trabalho - é uma paixão. Descobri essa vontade inicialmente ao me aventurar no design gráfico usando o Photoshop, o que eventualmente me levou a explorar o empolgante mundo do desenvolvimento web.",
+    "SUMMARY_2": "Com <span class=\"highlight\">3 anos de experiência</span> no currículo, estou sempre ansioso para aprender e expandir meu conjunto de habilidades. Tenho particular interesse em <span class=\"highlight\">padrões e princípios de design</span>, e me esforço para aplicá-los em todos os meus projetos.",
+    "SUMMARY_3": "Minha jornada começou como um <span class=\"highlight\">estagiário trabalhando com Ruby on Rails</span>, e desde então ampliei meus horizontes para incluir tecnologias como Vue e NestJS. Eu adoro o desafio de criar <span class=\"highlight\">aplicações centradas no usuário</span> que resolvam problemas do mundo real, e tenho muito orgulho em entregar produtos que são não apenas funcionais, mas também visualmente atraentes.",
+    "SUMMARY_4": "Quando não estou programando, geralmente estou me mantendo atualizado com as <span class=\"highlight\">últimas tendências da área Tech</span> ou experimentando novas ferramentas e frameworks. Obrigado por passar por aqui e me conhecer um pouco melhor!"
   }
 }

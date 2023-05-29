@@ -64,3 +64,8 @@ html{scroll-behavior:smooth}
   filter: blur(0px);
 }
 
+.highlight {
+  color: var(--primary-text);
+  font-weight: 700;
+}
+

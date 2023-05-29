@@ -4,5 +4,11 @@
     "PRESENTATION_2": "I'm a Fullstack developer.",
     "SUMMARY": "As a fullstack mid-level developer based in Rio Grande do Sul, Brazil. I specialize in creating high-quality, scalable applications with exceptional user experiences. With expertise in both front-end and back-end development, I'm able to build end-to-end solutions that are efficient. Whether it's complex architecture or intuitive user interfaces, I'm committed to delivering results that exceed client expectations.",
     "DOWNLOAD_CV": "Download CV"
+  },
+  "ABOUT": {
+    "SUMMARY_1": "Hey there, I'm <span class=\"highlight\">Matheus</span>, a fullstack developer based in Rio Grande do Sul, Brazil. For me, creating digital products is more than just a job - it's a passion. I first discovered this passion while dabbling in graphic design using Photoshop, which eventually led me to explore the exciting world of web development.",
+    "SUMMARY_2": "With <span class=\"highlight\">3 years of experience</span> under my belt, I'm always eager to learn and expand my skillset. I'm particularly interested in <span class=\"highlight\">design patterns and principles</span>, and strive to apply them in all of my work.",
+    "SUMMARY_3": "My journey began as a <span class=\"highlight\">trainee working with Ruby on Rails</span>, and I've since broadened my horizons to include technologies such as Vue and NestJS. I love the challenge of creating <span class=\"highlight\">user-centric applications</span> that solve real-world problems, and I take great pride in delivering products that are not only functional, but also visually appealing.",
+    "SUMMARY_4": "When I'm not coding, you can usually find me keeping up-to-date with the <span class=\"highlight\">latest industry trends</span> or experimenting with new tools and frameworks. Thanks for stopping by and getting to know me a little better!"
   }
 }
