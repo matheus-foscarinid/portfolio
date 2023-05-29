@@ -12,12 +12,13 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
 
-    <div class="theme-switch-container">
-      <ThemeSwitch />
-    </div>
-
-    <div class="lang-select">
-      <LangSelect />
+    <div class="buttons-container">
+      <div class="theme-switch-container">
+        <ThemeSwitch />
+      </div>
+      <div class="lang-select">
+        <LangSelect />
+      </div>
     </div>
 
     <div class="mobile-menu-icon">
@@ -167,6 +168,12 @@
         bottom: 2rem;
         right: 2rem;
       }
+    }
+
+    .buttons-container {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
     }
   }
 
