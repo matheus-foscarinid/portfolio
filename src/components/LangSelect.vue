@@ -35,8 +35,9 @@ watch(lang, (newLang) => {
   select {
     padding: 0.5rem;
     border-radius: 0.5rem;
-    border: 1px solid #ccc;
-    background-color: #fff;
+    border: 1px solid var(--default-border);
+    background-color: var(--details-background);
+    color: var(--default-text);
     font-size: 1rem;
     font-family: inherit;
     cursor: pointer;
