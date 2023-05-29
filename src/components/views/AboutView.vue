@@ -85,6 +85,9 @@ const stacks = [
 
     .summary {
       max-width: 700px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
     .tech-stack {
