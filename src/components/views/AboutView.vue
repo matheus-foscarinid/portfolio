@@ -1,7 +1,7 @@
 <template>
   <section id="about">
     <div class="container appear-on-scroll">
-      <h2>About</h2>
+      <h2>{{ $t('ABOUT.TITLE') }}</h2>
       <div class="content-containers">
         <div class="summary">
           <p v-html="$t('ABOUT.SUMMARY_1')" />
