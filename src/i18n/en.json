@@ -11,5 +11,12 @@
     "SUMMARY_2": "With <span class=\"highlight\">3 years of experience</span> under my belt, I'm always eager to learn and expand my skillset. I'm particularly interested in <span class=\"highlight\">design patterns and principles</span>, and strive to apply them in all of my work.",
     "SUMMARY_3": "My journey began as a <span class=\"highlight\">trainee working with Ruby on Rails</span>, and I've since broadened my horizons to include technologies such as Vue and NestJS. I love the challenge of creating <span class=\"highlight\">user-centric applications</span> that solve real-world problems, and I take great pride in delivering products that are not only functional, but also visually appealing.",
     "SUMMARY_4": "When I'm not coding, you can usually find me keeping up-to-date with the <span class=\"highlight\">latest industry trends</span> or experimenting with new tools and frameworks. Thanks for stopping by and getting to know me a little better!"
+  },
+  "HEADER": {
+    "HOME": "Home",
+    "ABOUT": "About",
+    "CAREER": "Career",
+    "PROJECTS": "Projects",
+    "CONTACT": "Contact"
   }
 }

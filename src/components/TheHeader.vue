@@ -5,11 +5,11 @@
     </div>
 
     <ul class="menu">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#career">Career</a></li>
-      <!-- <li><a href="#projects">Projects</a></li> -->
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#home">{{ $t('HEADER.HOME') }}</a></li>
+      <li><a href="#about">{{ $t('HEADER.ABOUT') }}</a></li>
+      <li><a href="#career">{{ $t('HEADER.CAREER') }}</a></li>
+      <!-- <li><a href="#projects">{{ $t('HEADER.PROJECTS') }}</a></li> -->
+      <li><a href="#contact">{{ $t('HEADER.CONTACT') }}</a></li>
     </ul>
 
     <div class="buttons-container">
