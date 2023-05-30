@@ -18,5 +18,9 @@
     "CAREER": "Carreira",
     "PROJECTS": "Projetos",
     "CONTACT": "Contato"
+  },
+  "FOOTER": {
+    "AUTHOR": "Projetado e desenvolvido por Matheus Dias",
+    "COPYRIGHT": "Copyright © 2023. Todos os direitos reservados."
   }
 }

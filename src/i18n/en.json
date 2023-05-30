@@ -18,5 +18,9 @@
     "CAREER": "Career",
     "PROJECTS": "Projects",
     "CONTACT": "Contact"
+  },
+  "FOOTER": {
+    "AUTHOR": "Designed & Built by Matheus Dias",
+    "COPYRIGHT": "Copyright © 2023. All rights are reserved"
   }
 }

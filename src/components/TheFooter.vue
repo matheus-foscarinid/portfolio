@@ -1,8 +1,8 @@
 <template>
   <footer>
     <div class="texts">
-      <span class="author">Designed & Built by Matheus Dias</span>
-      <span class="copyright">Copyright © 2023. All rights are reserved</span>
+      <span class="author">{{ $t('FOOTER.AUTHOR') }}</span>
+      <span class="copyright">{{ $t('FOOTER.COPYRIGHT') }}</span>
     </div>
 
     <div class="icons">
