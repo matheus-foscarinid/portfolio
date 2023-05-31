@@ -47,7 +47,7 @@
                 v-for="i in currentPlace.paragraphsQtt"
                 :key="i"
               >
-                {{ $t(`CAREER.${currentPlace.name.toUpperCase()}.RESUME_${i}`) }}
+                {{ $t(`CAREER.${currentPlace.key}.RESUME_${i}`) }}
               </li>
             </ul>
           </div>
@@ -81,7 +81,8 @@
 
   const placesTimeline = [
     { 
-      name: 'CIMOL', 
+      name: 'CIMOL',
+      key: 'CIMOL',
       paragraphsQtt: 3,
       role: 'Student',
       period: 'from 2018 to 2020',
@@ -89,6 +90,7 @@
    },
     { 
       name: 'Unisinos',
+      key: 'UNISINOS',
       paragraphsQtt: 2,
       role: 'Student',
       period: 'from 2021 until now',
@@ -96,13 +98,15 @@
     },
     { 
       name: 'Scopi',
+      key: 'SCOPI',
       paragraphsQtt: 3,
       role: 'Trainee',
       period: 'from January 2021 to October 2021',
       link: 'https://www.scopi.com.br/',
     },
     { 
-      name: 'Minha visita', 
+      name: 'Minha visita',
+      key: 'MINHA_VISITA',
       paragraphsQtt: 3,
       role: 'Fullstack Mid Developer',
       period: 'from October 2021 until now',
