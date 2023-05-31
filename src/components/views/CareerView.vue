@@ -90,10 +90,6 @@
     { 
       name: 'Unisinos',
       paragraphsQtt: 2,
-      paragraphs: [
-        'At Internet Systems college, we gain a deep understanding of the foundational concepts behind internet technologies and systems. In addition to the technical knowledge we acquire, we also learn about the broader internet ecosystem and how it functions as a whole. This well-rounded education prepares us to excel in the ever-evolving field of web development.',
-        'With a focus on practical skills and hands-on experience, I expect to graduate from this program in 2025 with a thorough understanding of how to build effective and efficient digital solutions.'
-      ],
       role: 'Student',
       period: 'from 2021 until now',
       link: 'https://www.unisinos.br/',
@@ -101,11 +97,6 @@
     { 
       name: 'Scopi',
       paragraphsQtt: 3,
-      paragraphs: [
-        'Scopi is a software company that offers a variety of solutions for strategic planning, project management, and performance monitoring. As a trainee, I was responsible for developing new features and maintaining existing ones for the company’s flagship product, Scopi.',
-        'During my time at Scopi, I was able to gain valuable experience working with a variety of technologies, including Angular, Ruby and SQL. I also learned how to work effectively as part of a team using SCRUM, and how to communicate and collaborate with my colleagues to achieve our shared goals.',
-        'I am grateful for the opportunity to have worked at Scopi, and I am confident that the skills and experience I gained there will serve me well in my future endeavors.'
-      ],
       role: 'Trainee',
       period: 'from January 2021 to October 2021',
       link: 'https://www.scopi.com.br/',
@@ -113,11 +104,6 @@
     { 
       name: 'Minha visita', 
       paragraphsQtt: 3,
-      paragraphs: [
-        'Minha Visita is a startup that offers the simplest and most efficient way to manage commercial visits to customers. As a fullstack developer, I am responsible for developing new features and maintaining existing ones for the company’s flagship product, Minha Visita.',
-        'Currently we are developing a new version of the product, using the latest technologies, like Vue and NestJS, and best practices. I propose and implement scalable solutions to issues identified with our services and the application.',
-        'I\'m collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps.',
-      ],
       role: 'Fullstack Mid Developer',
       period: 'from October 2021 until now',
       link: 'https://www.minhavisita.app/',
