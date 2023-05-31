@@ -1,7 +1,7 @@
 <template>
   <section id="career">
     <div class="container appear-on-scroll">
-      <h2>Career</h2>
+      <h2>{{ $t('CAREER.TITLE') }}</h2>
 
       <div class="places-container">
         <div class="buttons-container">
@@ -44,10 +44,10 @@
 
             <ul class="description">
               <li 
-                v-for="(paragraph, index) in currentPlace.paragraphs"
-                :key="index"
+                v-for="i in currentPlace.paragraphsQtt"
+                :key="i"
               >
-                {{ paragraph }}
+                {{ $t(`CAREER.${currentPlace.name.toUpperCase()}.RESUME_${i}`) }}
               </li>
             </ul>
           </div>
@@ -59,6 +59,9 @@
 
 <script setup>
   import { ref, computed } from 'vue';
+  import { useI18n } from 'vue-i18n';
+
+  const { t: $t } = useI18n();
 
   const currentPlaceIndex = ref(0);
   const currentPlace = computed(() => (placesTimeline[currentPlaceIndex.value] || {}));
@@ -79,17 +82,14 @@
   const placesTimeline = [
     { 
       name: 'CIMOL', 
-      paragraphs: [
-        'The CIMOL is a technical school that offers a variety of courses in areas like informatics, design and electronics.',
-        'In the technical course integrated with high school, I was presented to a variety of subjects, including programming, web development, graphic design, and hardware. Through this comprehensive curriculum, I acquired a solid foundation in the field of information technology.',
-        'By the end of the course, I was well-equipped with the knowledge and skills necessary to enter the job market with confidence. Thanks to the practical training and real-world experience provided by the program, I was able to seamlessly transition into my professional career and continue to build upon the strong foundation I had established during my time in the course.'
-      ],
+      paragraphsQtt: 3,
       role: 'Student',
       period: 'from 2018 to 2020',
       link: 'https://www.cimol.g12.br/',
    },
     { 
-      name: 'Unisinos', 
+      name: 'Unisinos',
+      paragraphsQtt: 2,
       paragraphs: [
         'At Internet Systems college, we gain a deep understanding of the foundational concepts behind internet technologies and systems. In addition to the technical knowledge we acquire, we also learn about the broader internet ecosystem and how it functions as a whole. This well-rounded education prepares us to excel in the ever-evolving field of web development.',
         'With a focus on practical skills and hands-on experience, I expect to graduate from this program in 2025 with a thorough understanding of how to build effective and efficient digital solutions.'
@@ -99,7 +99,8 @@
       link: 'https://www.unisinos.br/',
     },
     { 
-      name: 'Scopi', 
+      name: 'Scopi',
+      paragraphsQtt: 3,
       paragraphs: [
         'Scopi is a software company that offers a variety of solutions for strategic planning, project management, and performance monitoring. As a trainee, I was responsible for developing new features and maintaining existing ones for the company’s flagship product, Scopi.',
         'During my time at Scopi, I was able to gain valuable experience working with a variety of technologies, including Angular, Ruby and SQL. I also learned how to work effectively as part of a team using SCRUM, and how to communicate and collaborate with my colleagues to achieve our shared goals.',
@@ -111,11 +112,11 @@
     },
     { 
       name: 'Minha visita', 
+      paragraphsQtt: 3,
       paragraphs: [
         'Minha Visita is a startup that offers the simplest and most efficient way to manage commercial visits to customers. As a fullstack developer, I am responsible for developing new features and maintaining existing ones for the company’s flagship product, Minha Visita.',
         'Currently we are developing a new version of the product, using the latest technologies, like Vue and NestJS, and best practices. I propose and implement scalable solutions to issues identified with our services and the application.',
         'I\'m collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps.',
-
       ],
       role: 'Fullstack Mid Developer',
       period: 'from October 2021 until now',
