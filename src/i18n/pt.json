@@ -12,6 +12,28 @@
     "SUMMARY_3": "Minha jornada começou como um <span class=\"highlight\">estagiário trabalhando com Ruby on Rails</span>, e desde então ampliei meus horizontes para incluir tecnologias como Vue e NestJS. Eu adoro o desafio de criar <span class=\"highlight\">aplicações centradas no usuário</span> que resolvam problemas do mundo real, e tenho muito orgulho em entregar produtos que são não apenas funcionais, mas também visualmente atraentes.",
     "SUMMARY_4": "Quando não estou programando, geralmente estou me mantendo atualizado com as <span class=\"highlight\">últimas tendências da área Tech</span> ou experimentando novas ferramentas e frameworks. Obrigado por passar por aqui e me conhecer um pouco melhor!"
   },
+  "CAREER": {
+    "TITLE": "Carreira",
+    "CIMOL": {
+      "RESUME_1": "O CIMOL é uma escola técnica que oferece uma variedade de cursos em áreas como de informática, design e eletrônica.",
+      "RESUME_2": "No curso técnico integrado ao ensino médio, fui apresentado a uma variedade de disciplinas, incluindo programação, desenvolvimento web, design gráfico e hardware. Através deste currículo abrangente, adquiri uma base sólida no campo da tecnologia da informação.",
+      "RESUME_3": "Ao final do curso, estava bem preparado com o conhecimento e habilidades necessárias para ingressar no mercado de trabalho com confiança. Graças ao treinamento prático e à experiência do mundo real fornecidos pelo programa, pude fazer a transição perfeita para minha carreira profissional e continuar a construir sobre a sólida base que estabeleci durante o curso."
+    },
+    "UNISINOS": {
+      "RESUME_1": "No faculdade de Sistemas para Internet, obtemos uma compreensão profunda dos conceitos fundamentais por trás das tecnologias e sistemas da internet. Além do conhecimento técnico que adquirimos, também aprendemos sobre o ecossistema mais amplo da internet e como ele funciona como um todo. Essa educação abrangente nos prepara para nos destacarmos no campo em constante evolução do desenvolvimento web.",
+      "RESUME_2": "Com foco em habilidades práticas e experiência prática, espero me formar neste programa em 2025 com um entendimento completo de como construir soluções digitais eficientes."
+    },
+    "SCOPI": {
+      "RESUME_1": "A Scopi é uma empresa de software que oferece uma variedade de soluções para planejamento estratégico, gerenciamento de projetos e monitoramento de desempenho. Como estagiário, fui responsável pelo desenvolvimento de novos recursos e pela manutenção dos existentes para o produto principal da empresa.",
+      "RESUME_2": "Durante o meu tempo na Scopi, pude adquirir experiência valiosa trabalhando com diversas tecnologias, incluindo Angular, Ruby e SQL. Também aprendi a trabalhar de forma eficaz como parte de uma equipe usando SCRUM, e como comunicar e colaborar com meus colegas para alcançar nossos objetivos comuns.",
+      "RESUME_3": "Sou grato pela oportunidade de ter trabalhado na Scopi e tenho confiança de que as habilidades e experiência que adquiri lá me servirão bem em minhas futuras experiências."
+    },
+    "MINHA VISITA": {
+      "RESUME_1": "Minha Visita é uma startup que oferece a maneira mais simples e eficiente de gerenciar visitas comerciais aos clientes. Como desenvolvedor fullstack, sou responsável pelo desenvolvimento de novos recursos e pela manutenção dos existentes para o produto principal da empresa, o Minha Visita.",
+      "RESUME_2": "Atualmente, estamos desenvolvendo uma nova versão do produto, utilizando as tecnologias mais recentes, como Vue e NestJS, e as melhores práticas. Proponho e implemento soluções escaláveis para problemas identificados em nossos serviços e no aplicativo.",
+      "RESUME_3": "Estou colaborando com nossa equipe para garantir experiências de usuário cuidadosas e consistentes em toda a aplicação web e os aplicativos."
+    }
+  },
   "HEADER": {
     "HOME": "Início",
     "ABOUT": "Sobre",

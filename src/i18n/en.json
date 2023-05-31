@@ -12,6 +12,28 @@
     "SUMMARY_3": "My journey began as a <span class=\"highlight\">trainee working with Ruby on Rails</span>, and I've since broadened my horizons to include technologies such as Vue and NestJS. I love the challenge of creating <span class=\"highlight\">user-centric applications</span> that solve real-world problems, and I take great pride in delivering products that are not only functional, but also visually appealing.",
     "SUMMARY_4": "When I'm not coding, you can usually find me keeping up-to-date with the <span class=\"highlight\">latest industry trends</span> or experimenting with new tools and frameworks. Thanks for stopping by and getting to know me a little better!"
   },
+  "CAREER": {
+    "TITLE": "Career",
+    "CIMOL": {
+      "RESUME_1": "The CIMOL is a technical school that offers a variety of courses in areas like informatics, design and electronics.",
+      "RESUME_2": "In the technical course integrated with high school, I was presented to a variety of subjects, including programming, web development, graphic design, and hardware. Through this comprehensive curriculum, I acquired a solid foundation in the field of information technology.",
+      "RESUME_3": "By the end of the course, I was well-equipped with the knowledge and skills necessary to enter the job market with confidence. Thanks to the practical training and real-world experience provided by the program, I was able to seamlessly transition into my professional career and continue to build upon the strong foundation I had established during my time in the course."
+    },
+    "UNISINOS": {
+      "RESUME_1": "At Internet Systems college, we gain a deep understanding of the foundational concepts behind internet technologies and systems. In addition to the technical knowledge we acquire, we also learn about the broader internet ecosystem and how it functions as a whole. This well-rounded education prepares us to excel in the ever-evolving field of web development.",
+      "RESUME_2": "With a focus on practical skills and hands-on experience, I expect to graduate from this program in 2025 with a thorough understanding of how to build efficient digital solutions."
+    },
+    "SCOPI": {
+      "RESUME_1": "Scopi is a software company that offers a variety of solutions for strategic planning, project management, and performance monitoring. As a trainee, I was responsible for developing new features and maintaining existing ones for the company’s flagship product, Scopi.",
+      "RESUME_2": "During my time at Scopi, I was able to gain valuable experience working with a variety of technologies, including Angular, Ruby and SQL. I also learned how to work effectively as part of a team using SCRUM, and how to communicate and collaborate with my colleagues to achieve our shared goals.",
+      "RESUME_3": "I am grateful for the opportunity to have worked at Scopi, and I am confident that the skills and experience I gained there will serve me well in my future endeavors."
+    },
+    "MINHA VISITA": {
+      "RESUME_1": "Minha Visita is a startup that offers the simplest and most efficient way to manage commercial visits to customers. As a fullstack developer, I am responsible for developing new features and maintaining existing ones for the company’s flagship product, Minha Visita.",
+      "RESUME_2": "Currently we are developing a new version of the product, using the latest technologies, like Vue and NestJS, and best practices. I propose and implement scalable solutions to issues identified with our services and the application.",
+      "RESUME_3": "I'm collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps."
+    }
+  },
   "HEADER": {
     "HOME": "Home",
     "ABOUT": "About",
