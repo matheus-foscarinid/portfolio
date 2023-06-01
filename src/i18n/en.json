@@ -34,6 +34,10 @@
       "RESUME_3": "I'm collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps."
     }
   },
+  "CONTACT": {
+    "TITLE": "Contact",
+    "LOCATION": "Rio Grande do Sul, Brazil"
+  },
   "HEADER": {
     "HOME": "Home",
     "ABOUT": "About",

@@ -34,6 +34,10 @@
       "RESUME_3": "Estou colaborando com nossa equipe para garantir experiências de usuário cuidadosas e consistentes em toda a aplicação web e os aplicativos."
     }
   },
+  "CONTACT": {
+    "TITLE": "Contato",
+    "LOCATION": "Rio Grande do Sul, Brasil"
+  },
   "HEADER": {
     "HOME": "Início",
     "ABOUT": "Sobre",

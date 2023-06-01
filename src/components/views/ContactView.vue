@@ -1,7 +1,7 @@
 <template>
   <section id="contact">
     <div class="container appear-on-scroll">
-      <h2>Contact</h2>
+      <h2>{{ $t('CONTACT.TITLE')}}</h2>
 
       <div class="contact-cards">
         <ContactCard
@@ -16,11 +16,13 @@
 
 <script setup>
   import ContactCard from '@/components/cards/ContactCard.vue';
+  import { useI18n } from 'vue-i18n';
+  const { t: $t } = useI18n();
 
   const contacts = [
     {
       icon: 'fa-solid fa-location-pin',
-      text: 'Rio Grande do Sul, Brazil',
+      text: $t('CONTACT.LOCATION'),
     },
     {
       icon: 'fa-solid fa-envelope',
