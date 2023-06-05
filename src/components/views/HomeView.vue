@@ -24,13 +24,18 @@
 </template>
 
 <script setup>
-  const downloadCV = () => {
-    const link = document.createElement('a');
+import i18n from '../../i18n';
 
-    link.href = '/dias-matheus-cv.pdf';
-    link.download = 'dias-matheus-cv.pdf';
-    link.click();
-  };
+const downloadCV = () => {
+  const link = document.createElement('a');
+
+  const PT_CV_PATH = '/dias-matheus-cv.pdf';
+  const EN_CV_PATH = '/dias-matheus-cv-en.pdf';
+
+  link.href = i18n.global.locale == 'pt' ? PT_CV_PATH : EN_CV_PATH ;
+  link.download = 'dias-matheus-cv.pdf';
+  link.click();
+};
 </script>
 
 <style lang="scss" scoped>
