@@ -102,7 +102,6 @@
           width: 100%;
           border-radius: 50%;
           aspect-ratio: 1/1;
-          object-fit: cover;
           transition: all 0.3s ease-in-out;
           border: 2px solid var(--default-border);
   
