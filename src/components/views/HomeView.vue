@@ -2,7 +2,12 @@
   <section id="home">
     <div class="container appear-on-scroll">
       <div class="myself-container">
-        <img src="@/assets/images/me.jpg" alt="Matheus Foscarini Dias" />
+        <img
+          ref="target"
+          src="@/assets/images/me.jpg" 
+          alt="Matheus Foscarini Dias" 
+          :style="{ transform: cardTransform }"
+        />
       </div>
       
       <div class="presentation-container">
@@ -24,7 +29,28 @@
 </template>
 
 <script setup>
+import { computed, ref } from 'vue';
 import i18n from '../../i18n';
+import { useMouseInElement } from '@vueuse/core';
+const target = ref(null);
+
+const { elementX, elementY, isOutside, elementHeight, elementWidth } = useMouseInElement(target);	
+
+const cardTransform = computed(() => {
+  if (isOutside.value) return '';
+
+  const MAX_ROTATION = 6;
+
+  const xRotation = (elementY.value / elementHeight.value) * MAX_ROTATION;
+  const fixedXRotation = xRotation.toFixed(2);
+
+  const yRotation = (elementX.value / elementWidth.value) * MAX_ROTATION;
+  const fixedYRotation = yRotation.toFixed(2);
+
+  const rotation = `rotateX(${fixedXRotation}deg) rotateY(${fixedYRotation}deg)`;
+  const perspective = `perspective(${elementWidth.value}px)`;
+  return `${perspective} ${rotation}`;
+});
 
 const downloadCV = () => {
   const link = document.createElement('a');
@@ -107,13 +133,8 @@ const downloadCV = () => {
           width: 100%;
           border-radius: 50%;
           aspect-ratio: 1/1;
-          transition: all 0.3s ease-in-out;
           border: 2px solid var(--default-border);
-  
-          &:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
-          }
+          transition: transform 0.25 ease-out;
         }
       }
     }
