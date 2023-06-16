@@ -6,7 +6,7 @@
           ref="target"
           src="@/assets/images/me.jpg" 
           alt="Matheus Foscarini Dias" 
-          :style="{ transform: cardTransform }"
+          :style="{ transform: cardTransform, boxShadow: cardBoxShadow }"
         />
       </div>
       
@@ -50,6 +50,21 @@ const cardTransform = computed(() => {
   const rotation = `rotateX(${fixedXRotation}deg) rotateY(${fixedYRotation}deg)`;
   const perspective = `perspective(${elementWidth.value}px)`;
   return `${perspective} ${rotation}`;
+});
+
+const cardBoxShadow = computed(() => {
+  if (isOutside.value) return '';
+
+  const MAX_SHADOW = 20;
+
+  const xShadow = MAX_SHADOW / 2 - (elementY.value / elementHeight.value) * MAX_SHADOW;
+  const fixedXShadow = xShadow.toFixed(2);
+
+  const yShadow = (elementX.value / elementWidth.value) * MAX_SHADOW - MAX_SHADOW / 2;
+  const fixedYShadow = -yShadow.toFixed(2);
+
+  const shadow = `${fixedYShadow}px ${fixedXShadow}px 20px rgba(0, 0, 0, 0.25)`;
+  return shadow;
 });
 
 const downloadCV = () => {
