@@ -1,14 +1,7 @@
 <template>
   <section id="home">
     <div class="container appear-on-scroll">
-      <div class="myself-container">
-        <img
-          ref="target"
-          src="@/assets/images/me.jpg" 
-          alt="Matheus Foscarini Dias" 
-          :style="{ transform: cardTransform, boxShadow: cardBoxShadow }"
-        />
-      </div>
+      <MyPhoto />
       
       <div class="presentation-container">
         <span class="presentation">{{  $t('HOME.PRESENTATION_1') }}</span>
@@ -29,43 +22,8 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
 import i18n from '../../i18n';
-import { useMouseInElement } from '@vueuse/core';
-const target = ref(null);
-
-const { elementX, elementY, isOutside, elementHeight, elementWidth } = useMouseInElement(target);	
-
-const cardTransform = computed(() => {
-  if (isOutside.value) return '';
-
-  const MAX_ROTATION = 6;
-
-  const xRotation = MAX_ROTATION / 2 - (elementY.value / elementHeight.value) * MAX_ROTATION;
-  const fixedXRotation = xRotation.toFixed(2);
-
-  const yRotation = (elementX.value / elementWidth.value) * MAX_ROTATION - MAX_ROTATION / 2;
-  const fixedYRotation = yRotation.toFixed(2);
-
-  const rotation = `rotateX(${fixedXRotation}deg) rotateY(${fixedYRotation}deg)`;
-  const perspective = `perspective(${elementWidth.value}px)`;
-  return `${perspective} ${rotation}`;
-});
-
-const cardBoxShadow = computed(() => {
-  if (isOutside.value) return '';
-
-  const MAX_SHADOW = 20;
-
-  const xShadow = MAX_SHADOW / 2 - (elementY.value / elementHeight.value) * MAX_SHADOW;
-  const fixedXShadow = xShadow.toFixed(2);
-
-  const yShadow = (elementX.value / elementWidth.value) * MAX_SHADOW - MAX_SHADOW / 2;
-  const fixedYShadow = -yShadow.toFixed(2);
-
-  const shadow = `${fixedYShadow}px ${fixedXShadow}px 20px rgba(0, 0, 0, 0.25)`;
-  return shadow;
-});
+import MyPhoto from '../MyPhoto.vue';
 
 const downloadCV = () => {
   const link = document.createElement('a');
@@ -138,18 +96,6 @@ const downloadCV = () => {
             background-color: var(--secondary-background);
             box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
           }
-        }
-      }
-  
-      .myself-container {
-        flex: 2;
-  
-        img {
-          width: 100%;
-          border-radius: 50%;
-          aspect-ratio: 1/1;
-          border: 2px solid var(--default-border);
-          transition: all 0.25s ease-out;
         }
       }
     }
