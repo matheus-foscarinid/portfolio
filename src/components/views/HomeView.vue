@@ -1,9 +1,7 @@
 <template>
   <section id="home">
     <div class="container appear-on-scroll">
-      <div class="myself-container">
-        <img src="@/assets/images/me.jpg" alt="Matheus Foscarini Dias" />
-      </div>
+      <MyPhoto />
       
       <div class="presentation-container">
         <span class="presentation">{{  $t('HOME.PRESENTATION_1') }}</span>
@@ -25,6 +23,7 @@
 
 <script setup>
 import i18n from '../../i18n';
+import MyPhoto from '../MyPhoto.vue';
 
 const downloadCV = () => {
   const link = document.createElement('a');
@@ -96,23 +95,6 @@ const downloadCV = () => {
             transform: scale(1.05);
             background-color: var(--secondary-background);
             box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
-          }
-        }
-      }
-  
-      .myself-container {
-        flex: 2;
-  
-        img {
-          width: 100%;
-          border-radius: 50%;
-          aspect-ratio: 1/1;
-          transition: all 0.3s ease-in-out;
-          border: 2px solid var(--default-border);
-  
-          &:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
           }
         }
       }
