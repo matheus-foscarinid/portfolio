@@ -41,10 +41,10 @@ const cardTransform = computed(() => {
 
   const MAX_ROTATION = 6;
 
-  const xRotation = (elementY.value / elementHeight.value) * MAX_ROTATION;
+  const xRotation = MAX_ROTATION / 2 - (elementY.value / elementHeight.value) * MAX_ROTATION;
   const fixedXRotation = xRotation.toFixed(2);
 
-  const yRotation = (elementX.value / elementWidth.value) * MAX_ROTATION;
+  const yRotation = (elementX.value / elementWidth.value) * MAX_ROTATION - MAX_ROTATION / 2;
   const fixedYRotation = yRotation.toFixed(2);
 
   const rotation = `rotateX(${fixedXRotation}deg) rotateY(${fixedYRotation}deg)`;
@@ -134,7 +134,7 @@ const downloadCV = () => {
           border-radius: 50%;
           aspect-ratio: 1/1;
           border: 2px solid var(--default-border);
-          transition: transform 0.25 ease-out;
+          transition: all 0.25s ease-out;
         }
       }
     }
