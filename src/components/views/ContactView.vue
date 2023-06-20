@@ -47,7 +47,6 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background: var(--details-background);
 
     h2 {
       display: flex;

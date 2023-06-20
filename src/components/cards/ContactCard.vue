@@ -31,13 +31,11 @@
     padding: 1rem 1.5rem;
     border-radius: 15px;
     transition: all 0.3s ease-in-out;
-    border: 1px solid var(--default-border);
-
+    background: var(--details-background);
     &.hoverable {
       cursor: pointer;
 
       &:hover {
-        border: 1px solid var(--default-background);
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
         transform: scale(1.01) translateY(-0.1rem);
       }
