@@ -3,6 +3,10 @@
     <div class="container appear-on-scroll">
       <h2>Projects</h2>
 
+      <div v-if="!featuredProjects.length && !projects.length">
+        <h1>{{ $t('PROJECTS.COMING_SOON')}}</h1>
+      </div>
+
       <div class="featured-project-cards">
         <FeaturedProjectCard
           v-for="(project, index) in featuredProjects"
@@ -41,11 +45,10 @@
 
 <style lang="scss" scoped>
   #projects {
-    min-height: 100vh;
-    margin: 10rem 0;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    background: var(--details-background);
 
     h2 {
       display: flex;
