@@ -5,7 +5,7 @@
     <HomeView />
     <AboutView />
     <CareerView />
-    <!-- <ProjectsView /> -->
+    <ProjectsView />
     <ContactView />
   </body>
 
@@ -19,7 +19,7 @@ import TheFooter from './components/TheFooter.vue';
 import HomeView from './components/views/HomeView.vue';
 import AboutView from './components/views/AboutView.vue';
 import CareerView from './components/views/CareerView.vue';
-// import ProjectsView from './components/views/ProjectsView.vue';
+import ProjectsView from './components/views/ProjectsView.vue';
 import ContactView from './components/views/ContactView.vue';
 
 </script>
