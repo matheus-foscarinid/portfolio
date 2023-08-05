@@ -26,9 +26,7 @@
         <div class="description">
           <span>{{ project.description }}</span>
         </div>
-      </div>
 
-      <div class="bottom">
         <div class="stack">
           <span 
             v-for="item in project.stack"
@@ -37,14 +35,18 @@
             {{ item }}
           </span>
         </div>
-  
+      </div>
+
+      <div class="bottom">
         <div class="buttons">
           <button @click="openProjectLink">
-            {{  $t('PROJECTS.VIEW') }}
+            {{ $t('PROJECTS.VIEW') }}
+            <font-awesome-icon icon="fa-brands fa-github" />
           </button>
   
           <button @click="openRepository">
-            {{  $t('PROJECTS.REPOSITORY') }}
+            {{ $t('PROJECTS.REPOSITORY') }}
+            <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
           </button>
         </div>
       </div>
@@ -97,9 +99,12 @@
       top: -1.5rem;
       right: 1rem;
       min-width: 10rem;
-      padding: 1rem;
+      text-align: center;
+      padding: .5rem 1rem;
       background: var(--default-border);
+      color: var(--details-background);
       border-radius: 2px;
+      box-shadow: 0 0 10px rgba(0,0,0,.1);
     }
 
     .project-image {
@@ -151,12 +156,12 @@
         display: flex;
         justify-content: flex-end;
         gap: 1rem;
-        margin-bottom: .5rem;
+        margin-top: .5rem;
       }
 
       .buttons {
         display: flex;
-        gap: 1rem;
+        gap: .5rem;
         justify-content: flex-end;
 
         button {
@@ -165,15 +170,14 @@
           background-color: var(--details-background);
           color: var(--default-text);
           font-size: 1.2rem;
-          font-weight: 700;
           cursor: pointer;
-          border: 1px solid var(--default-border);
+          border: none;
           transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-          
+          align-self: center;
+          justify-content: center;
 
           &:hover {
             transform: scale(1.05);
-            background-color: var(--secondary-background);
             box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
           }
         }
