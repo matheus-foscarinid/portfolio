@@ -19,6 +19,6 @@ npm run dev
 ### TODOs and Ideas
 
 - [ ] Add my main projects
-- [ ] Add animations
+- [x] Add animations
 - [x] Add Portuguese support
 - [x] Add dark mode support
