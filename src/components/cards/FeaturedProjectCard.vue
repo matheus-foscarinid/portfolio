@@ -3,10 +3,13 @@
     class="featured-project-card"
     :class="{ 'reverse': reverse }"
   >
-    <div 
+    <img 
       class="project-image"
+      :src="project.image"
+      alt="Project Image"
       @click="openProjectLink"
     />
+
     <div class="featured-project-sign">
       Featured Project
     </div>
@@ -36,7 +39,7 @@
         </div>
   
         <div class="buttons">
-          <button @click="openProject">
+          <button @click="openProjectLink">
             {{  $t('PROJECTS.VIEW') }}
           </button>
   
@@ -54,6 +57,10 @@
 
   const openProjectLink = () => {
     window.open(props.project.link, '_blank');
+  }
+
+  const openRepository = () => {
+    window.open(props.project.repository, '_blank');
   }
 </script>
 
@@ -96,12 +103,10 @@
     }
 
     .project-image {
-      background-color: #b5b5bf;
       border-radius: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,.1);
-      overflow: hidden;
+      background-size: cover;
       width: 30rem;
-      height: 20rem;
       cursor: pointer;
     }
 

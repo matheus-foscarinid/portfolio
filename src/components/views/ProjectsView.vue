@@ -38,7 +38,8 @@
       repository: 'https://github.com/matheus-foscarinid/json-searcher-vscode',
       name: 'JSON Searcher',
       description: 'JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.',
-      stack: ['Typescript', 'VSCode API']
+      stack: ['Typescript', 'VSCode API'],
+      image: 'https://github-production-user-asset-6210df.s3.amazonaws.com/57161520/254410881-7a6b8067-167d-4b9c-b324-5eef96fd35db.gif'
     }
   ];
 </script>
