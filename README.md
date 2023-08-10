@@ -18,6 +18,8 @@ npm run dev
 
 ### TODOs and Ideas
 
-- [ ] Add some projects and make the project section appear
+- [ ] Add my main projects
+- [ ] Add my JSON Searcher extension on projects
+- [x] Add animations
 - [x] Add Portuguese support
 - [x] Add dark mode support
