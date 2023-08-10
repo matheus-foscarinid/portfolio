@@ -11,7 +11,7 @@
     />
 
     <div class="featured-project-sign">
-      Featured Project
+      {{ $t('PROJECTS.FEATURED') }}
     </div>
 
     <div class="project-infos">
@@ -96,7 +96,7 @@
       position: absolute;
       top: -1.5rem;
       right: 1rem;
-      width: 10rem;
+      min-width: 10rem;
       padding: 1rem;
       background: var(--default-border);
       border-radius: 2px;

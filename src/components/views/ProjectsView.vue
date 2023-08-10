@@ -1,7 +1,7 @@
 <template>
   <section id="projects">
     <div class="container appear-on-scroll">
-      <h2>Projects</h2>
+      <h2>{{ $t('PROJECTS.TITLE') }}</h2>
 
       <div class="featured-project-cards">
         <FeaturedProjectCard
