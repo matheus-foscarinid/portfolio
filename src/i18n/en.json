@@ -39,7 +39,9 @@
     "LOCATION": "Rio Grande do Sul, Brazil"
   },
   "PROJECTS": {
-    "COMING_SOON": "New projects coming soon! 😎"
+    "COMING_SOON": "New projects coming soon! 😎",
+    "REPOSITORY": "Repository",
+    "VIEW": "View"
   },
   "HEADER": {
     "HOME": "Home",

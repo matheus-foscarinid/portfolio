@@ -21,17 +21,29 @@
         </a>
     
         <div class="description">
-          {{ project.description }}
+          <span>{{ project.description }}</span>
         </div>
       </div>
 
-      <div class="stack">
-        <span 
-          v-for="item in project.stack"
-          :key="item"
-        >
-          {{ item }}
-        </span>
+      <div class="bottom">
+        <div class="stack">
+          <span 
+            v-for="item in project.stack"
+            :key="item"
+          >
+            {{ item }}
+          </span>
+        </div>
+  
+        <div class="buttons">
+          <button @click="openProject">
+            {{  $t('PROJECTS.VIEW') }}
+          </button>
+  
+          <button @click="openRepository">
+            {{  $t('PROJECTS.REPOSITORY') }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -97,6 +109,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-between;
 
       .title {
         font-size: 2rem;
@@ -112,8 +125,18 @@
         font-size: 1rem;
         font-weight: 400;
         color: var(--secondary-text);
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
         margin-top: 1rem;
-        width: 30rem;
+
+        span {
+          max-width: 30rem;
+        }
+      }
+
+      .bottom {
+        width: 100%;
       }
 
       .stack {
@@ -121,9 +144,34 @@
         font-family: var(--alternative-font);
         font-size: 0.875rem;
         display: flex;
+        justify-content: flex-end;
         gap: 1rem;
-        align-self: flex-start;
-        margin-top: 3rem;
+        margin-bottom: .5rem;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+
+        button {
+          padding: .5rem 1rem;
+          border-radius: 0.5rem;
+          background-color: var(--details-background);
+          color: var(--default-text);
+          font-size: 1.2rem;
+          font-weight: 700;
+          cursor: pointer;
+          border: 1px solid var(--default-border);
+          transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+          
+
+          &:hover {
+            transform: scale(1.05);
+            background-color: var(--secondary-background);
+            box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+          }
+        }
       }
     }
 
