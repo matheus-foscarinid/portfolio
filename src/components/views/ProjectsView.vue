@@ -3,10 +3,6 @@
     <div class="container appear-on-scroll">
       <h2>Projects</h2>
 
-      <div v-if="!featuredProjects.length && !projects.length">
-        <h1>{{ $t('PROJECTS.COMING_SOON')}}</h1>
-      </div>
-
       <div class="featured-project-cards">
         <FeaturedProjectCard
           v-for="(project, index) in featuredProjects"
@@ -22,6 +18,10 @@
           :key="index"
           :project="project"
         />
+      </div>
+
+      <div class="coming-soon-message">
+        <h1>{{ $t('PROJECTS.COMING_SOON')}}</h1>
       </div>
     </div>
   </section>
@@ -94,7 +94,15 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
+    }
 
+    .coming-soon-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      font-weight: 700;
+      color: var(--secondary-text);
     }
   }
 </style>
