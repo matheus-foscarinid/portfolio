@@ -31,16 +31,16 @@
   import FeaturedProjectCard from '@/components/cards/FeaturedProjectCard.vue';
   import ProjectCard from '@/components/cards/ProjectCard.vue';
 
-  /**
-   * {
-   *   link: 'test.co',
-   *   name: '...',
-   *   description: '...',
-   *   stack: ['React', 'Next', 'SCSS']
-   * }
-   */
   const projects = [];
-  const featuredProjects = [];
+  const featuredProjects = [
+    {
+      link: 'https://marketplace.visualstudio.com/items?itemName=matheus-foscarinid.json-searcher',
+      repository: 'https://github.com/matheus-foscarinid/json-searcher-vscode',
+      name: 'JSON Searcher',
+      description: 'JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.',
+      stack: ['Typescript', 'VSCode API']
+    }
+  ];
 </script>
 
 <style lang="scss" scoped>
