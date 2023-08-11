@@ -181,4 +181,30 @@
     }
 
   }
+
+  @media (max-width: 768px) {
+    .featured-project-card {
+      flex-direction: column !important;
+
+      .project-image {
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .title, .description {
+        text-align: center;
+      }
+
+      .bottom {
+        .stack {
+          margin: 1rem 0;
+          justify-content: center;
+        }
+
+        .buttons {
+          justify-content: center;
+        }
+      }
+    }
+  }
 </style>
