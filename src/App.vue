@@ -22,6 +22,16 @@ import CareerView from './components/views/CareerView.vue';
 import ProjectsView from './components/views/ProjectsView.vue';
 import ContactView from './components/views/ContactView.vue';
 
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  const defaultTheme = prefersLight ? 'light' : 'dark';
+
+  const theme = localStorage.getItem('theme') || defaultTheme;
+  document.documentElement.setAttribute('data-theme', theme);
+});
+
 </script>
 
 <style lang="scss" scoped>

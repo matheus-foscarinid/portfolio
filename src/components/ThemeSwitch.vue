@@ -1,6 +1,9 @@
 <template>
   <label class="switch">
-    <input type="checkbox" @change="changeTheme">
+    <input
+      type="checkbox" 
+      @change="changeTheme"
+    >
     <span class="slider">
       <div class="slider-circle">
         <font-awesome-icon 
@@ -21,12 +24,17 @@
 <script setup>
   import { ref } from 'vue'
 
-  const isDarkTheme = ref(false);
+  const currentTheme = localStorage.getItem('theme');
+  const initialValue = currentTheme === 'dark';
+  const isDarkTheme = ref(initialValue);
 
   const changeTheme = () => {
     isDarkTheme.value = !isDarkTheme.value;
+    console.log('changeTheme', isDarkTheme.value);
+
     const newTheme = isDarkTheme.value ? 'dark' : 'light';
 
+    localStorage.setItem('theme', newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
   }
 </script>
