@@ -1,18 +1,12 @@
-# Matheus Dias Portfolio
+# 👨‍💻 Matheus Dias Portfolio
 
-My personal website and portfolio, built with Vite! It's on Beta, but I'm already testing it using Vercel.
+Try here 👉 [matheusdias.vercel.app](https://matheusdias.vercel.app)</br>
+My personal website and portfolio, built with Vite! It's on Beta, but I'm already testing it using Vercel!
 
-Try here 👉 [matheusdias.vercel.app](https://matheusdias.vercel.app)
-
-## Project Setup
+### 🚀 Project Setup & Running
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development and Testing
-
-```sh
 npm run dev
 ```
 
