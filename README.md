@@ -1,7 +1,7 @@
 # 👨‍💻 Matheus Dias Portfolio
 
-Try here 👉 [matheusdias.vercel.app](https://matheusdias.vercel.app)</br>
-My personal website and portfolio, built with Vite! It's on Beta, but I'm already testing it using Vercel!
+Try here 👉 [matheusdias.dev](https://matheusdias.dev)</br>
+My personal website and portfolio, built with Vue 3 and Vite! It's on Beta, but you can already check it out!
 
 ### 🚀 Project Setup & Running
 
