@@ -6,7 +6,7 @@
       <div class="presentation-container">
         <span class="presentation">{{  $t('HOME.PRESENTATION_1') }}</span>
         <h2>Matheus Foscarini Dias</h2>
-        <h3>{{  $t('HOME.PRESENTATION_2') }}</h3>
+        <TypedPresentation />
     
         <p class="summary">{{  $t('HOME.SUMMARY') }}</p>
 
@@ -23,7 +23,8 @@
 
 <script setup>
 import i18n from '../../i18n';
-import MyPhoto from '../MyPhoto.vue';
+import MyPhoto from '../home/MyPhoto.vue';
+import TypedPresentation from '../home/TypedPresentation.vue';
 
 const downloadCV = () => {
   const link = document.createElement('a');
@@ -62,13 +63,6 @@ const downloadCV = () => {
           font-size: 3rem;
           font-weight: 700;
           line-height: 1.2;
-          margin: 0;
-        }
-    
-        h3 {
-          color: var(--secondary-text);
-          font-size: 2.5rem;
-          font-weight: 700;
           margin: 0;
         }
     
