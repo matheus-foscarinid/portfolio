@@ -66,13 +66,6 @@ const downloadCV = () => {
           margin: 0;
         }
     
-        h3 {
-          color: var(--secondary-text);
-          font-size: 2.5rem;
-          font-weight: 700;
-          margin: 0;
-        }
-    
         .summary {
           max-width: 700px;
           text-align: justify;
