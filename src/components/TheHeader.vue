@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="logo">
-      <h2>Matheus.dev</h2>
+      <h2>matheusdias<span class="dev">.dev</span></h2>
     </div>
 
     <ul class="menu">
@@ -106,6 +106,10 @@
 
     h2 {
       font-weight: 700;
+
+      .dev {
+        color: var(--secondary-text);
+      }
     }
     .menu {
       display: flex;
