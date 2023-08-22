@@ -1,7 +1,11 @@
 {
   "HOME": {
     "PRESENTATION_1": "Olá! Meu nome é",
-    "PRESENTATION_2": "eu sou desenvolvedor fullstack.",
+    "PRESENTATION_2": "eu sou",
+    "TITLE_1": "Desenvolvedor fullstack.",
+    "TITLE_2": "Designer.",
+    "TITLE_3": "Pai de gatos.",
+    "TITLE_4": "Palestrante.",
     "SUMMARY": "Sou desenvolvedor fullstack pleno, do Rio Grande do Sul, Brasil. Eu me especializo na criação de Apps de alta qualidade e escaláveis com experiências excepcionais para os usuários. Com experiência no desenvolvimento tanto do front-end quanto do back-end, sou capaz de construir soluções completas e eficientes.",
     "DOWNLOAD_CV": "Baixar currículo"
   },
