@@ -1,6 +1,6 @@
 <template>
   <h3>
-    I'm a <span class="typed-text">{{ typedValue }}</span>
+    {{  $t('HOME.PRESENTATION_2') }} <span class="typed-text">{{ typedValue }}</span>
     <span class="cursor" :class="{'typing': isTyping}">|</span>
   </h3>
 </template>
