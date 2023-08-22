@@ -16,10 +16,12 @@
 
 <script setup>
   import ContactCard from '@/components/cards/ContactCard.vue';
+
+  import { computed } from 'vue';
   import { useI18n } from 'vue-i18n';
   const { t: $t } = useI18n();
 
-  const contacts = [
+  const contacts = computed(() => [
     {
       icon: 'fa-solid fa-location-pin',
       text: $t('CONTACT.LOCATION'),
@@ -38,7 +40,7 @@
       text: 'Matheus Foscarini Dias',
       link: 'https://linkedin.com/in/matheus-foscarinid/'
     },
-  ];
+  ]);
 </script>
 
 <style lang="scss">
