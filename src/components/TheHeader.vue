@@ -13,10 +13,10 @@
     </ul>
 
     <div class="buttons-container">
-      <div class="theme-switch-container">
+      <div class="desktop-theme-switch">
         <ThemeSwitch />
       </div>
-      <div class="lang-select">
+      <div class="desktop-lang-select">
         <LangSelect />
       </div>
     </div>
@@ -54,7 +54,8 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
 
-        <ThemeSwitch class="switch" />
+        <ThemeSwitch class="mobile-theme-switch" />
+        <LangSelect class="mobile-lang-select"/>
       </div>
     </Transition>
 
@@ -167,9 +168,15 @@
         }
       }
 
-      & .switch {
+      & .mobile-theme-switch {
         position: absolute;
         bottom: 2rem;
+        right: 2rem;
+      }
+
+      & .mobile-lang-select {
+        position: absolute;
+        bottom: 5rem;
         right: 2rem;
       }
     }
@@ -208,7 +215,7 @@
         padding: 26px 32px;
       }
 
-      .theme-switch-container {
+      .desktop-theme-switch, .desktop-lang-select {
         display: none;
       }
     }
