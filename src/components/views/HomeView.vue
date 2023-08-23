@@ -84,7 +84,7 @@ const downloadCV = () => {
           border: none;
           transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
           // button shake 2s every 10s and keep repeating
-          animation: shake 10s infinite ease-in-out;
+          animation: shake 18s infinite ease-in-out;
           
 
           &:hover {
@@ -106,11 +106,11 @@ const downloadCV = () => {
   // shake animation with just rotation
   @keyframes shake {
     0% { transform: rotate(0deg); }
-    90% { transform: rotate(0deg); }
-    92% { transform: rotate(6deg); }
-    94% { transform: rotate(-6deg); }
+    95% { transform: rotate(0deg); }
     96% { transform: rotate(6deg); }
-    98% { transform: rotate(-6deg); }
+    97% { transform: rotate(-6deg); }
+    98% { transform: rotate(6deg); }
+    99% { transform: rotate(-6deg); }
     100% { transform: rotate(0deg); }
   }
   
