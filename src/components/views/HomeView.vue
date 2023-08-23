@@ -102,4 +102,16 @@ const downloadCV = () => {
       flex-direction: column;
     }
   }
+
+  // shake animation with just rotation
+  @keyframes shake {
+    0% { transform: rotate(0deg); }
+    90% { transform: rotate(0deg); }
+    92% { transform: rotate(6deg); }
+    94% { transform: rotate(-6deg); }
+    96% { transform: rotate(6deg); }
+    98% { transform: rotate(-6deg); }
+    100% { transform: rotate(0deg); }
+  }
+  
 </style>
