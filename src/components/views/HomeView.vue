@@ -77,17 +77,18 @@ const downloadCV = () => {
           padding: 1rem 2rem;
           border-radius: 0.5rem;
           background-color: var(--details-background);
-          color: var(--default-text);
+          color: var(--secondary-text);
           font-size: 1.2rem;
           font-weight: 700;
           cursor: pointer;
-          border: 1px solid var(--default-border);
+          border: none;
           transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+          // button shake 2s every 10s and keep repeating
+          animation: shake 10s infinite ease-in-out;
           
 
           &:hover {
             transform: scale(1.05);
-            background-color: var(--secondary-background);
             box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
           }
         }
