@@ -138,7 +138,7 @@
       content: '';
       display: block;
       position: relative;
-      width: 15%;
+      width: 50px;
       height: 1px;
       margin-right: 20px;
       background-color: var(--default-border);
@@ -148,7 +148,7 @@
         content: '';
         display: block;
         position: relative;
-        width: 85%;
+        width: 100%;
         height: 1px;
         margin-left: 20px;
         background-color: var(--default-border);
@@ -180,6 +180,7 @@
           color: var(--disabled-text);
           font-size: 1rem;
           font-weight: 600;
+          border-radius: 0 .5rem .5rem 0;
 
           &:hover {
             background-color: var(--default-border);
@@ -219,6 +220,24 @@
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
+
+            &::after {
+              content: '';
+              position: absolute;
+              width: 100%;
+              transform: scaleX(0);
+              height: 3px;
+              bottom: 0px;
+              left: 0;
+              background: var(--secondary-text);
+              transform-origin: bottom right;
+              transition: transform 0.25s ease-out;
+            }
+
+            &:hover::after {
+              transform: scaleX(1);
+              transform-origin: bottom left;
+            }
           }
         }
 
