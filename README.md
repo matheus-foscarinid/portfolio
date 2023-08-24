@@ -1,8 +1,8 @@
 # 👨‍💻 Matheus Dias Portfolio
 
 Try here 👉 [matheusdias.dev](https://matheusdias.dev)</br>
-My personal website and portfolio, built with Vue 3 and Vite! It's on Beta, but you can already check it out!
-If you think it's good, can you give me a star 🌟?
+My personal website and portfolio, built with Vue 3 and Vite! It's on Beta, but you can already check it out!</br>
+If you think it's good, can you give me a star 🌟?</br>
 
 ### 🚀 Project Setup & Running
 
