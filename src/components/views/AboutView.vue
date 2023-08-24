@@ -11,7 +11,6 @@
         </div>
 
         <div class="tech-stack">
-          <h3>Tech Stack</h3>
           <div class="stacks-container">
             <StackCard 
               v-for="stack in stacks"
@@ -81,7 +80,7 @@ const stacks = [
 
   .content-containers {
     display: flex;
-    gap: 5rem;
+    gap: 3rem;
 
     .summary {
       max-width: 700px;
