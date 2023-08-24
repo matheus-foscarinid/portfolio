@@ -13,6 +13,8 @@ npm run dev
 ### TODOs and Ideas
 
 - [ ] Add my main projects
+- [ ] Standardize styling
+- [x] Change Language select to a custom one 
 - [x] Add my JSON Searcher extension on projects
 - [x] Add animations
 - [x] Add Portuguese support
