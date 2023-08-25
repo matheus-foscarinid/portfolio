@@ -38,6 +38,11 @@
       &:hover {
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
         transform: scale(1.01) translateY(-0.1rem);
+
+        & .icon {
+          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+          transform: scale(1.05);
+        }
       }
     }
 
@@ -52,11 +57,6 @@
       border-radius: 50%;
       transition: all 0.3s ease-in-out;
       color: var(--secondary-text);
-
-      &:hover {
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        transform: scale(1.05);
-      }
 
       svg {
         width: 100%;

@@ -23,12 +23,9 @@
 
   const contacts = computed(() => [
     {
-      icon: 'fa-solid fa-location-pin',
-      text: $t('CONTACT.LOCATION'),
-    },
-    {
       icon: 'fa-solid fa-envelope',
       text: 'matheus.foscarinid@gmail.com',
+      link: 'mailto:matheus.foscarinid@gmail.com'
     },
     {
       icon: 'fa-brands fa-github',
@@ -45,7 +42,7 @@
 
 <style lang="scss">
   #contact {
-    min-height: 60vh;
+    min-height: 50vh;
     display: flex;
     justify-content: center;
     flex-direction: column;

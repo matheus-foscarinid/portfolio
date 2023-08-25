@@ -188,7 +188,7 @@
 
           &.active {
             background-color: var(--default-border);
-            color: var(--active-text);
+            color: var(--details-background);
           }
         }
 
