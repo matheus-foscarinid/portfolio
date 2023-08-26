@@ -16,13 +16,15 @@ import {
   faBars ,
   faClose,
   faSun,
-  faMoon
+  faMoon,
+  faCaretDown
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
   faGithub, 
   faLinkedin, 
   faArrowUpRightFromSquare, 
+  faCaretDown,
   faFolder, 
   faEnvelope, 
   faLocationPin,
