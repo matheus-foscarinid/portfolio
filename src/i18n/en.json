@@ -46,6 +46,8 @@
     "COMING_SOON": "New projects coming soon! 😎",
     "REPOSITORY": "Repository",
     "VIEW": "View",
+    "JSON_SEARCHER": "JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.",
+    "CONSTRUSAUSEN": "Institutional website for the Construsausen timber company, with some company information, developed with Vue.js and SCSS.",
     "FEATURED": "Featured Project"
   },
   "HEADER": {
