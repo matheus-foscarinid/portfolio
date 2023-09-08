@@ -28,20 +28,33 @@
 </template>
 
 <script setup>
+  import { computed } from 'vue';
+  import { useI18n } from 'vue-i18n';
+
   import FeaturedProjectCard from '@/components/cards/FeaturedProjectCard.vue';
   import ProjectCard from '@/components/cards/ProjectCard.vue';
-
-  const projects = [];
-  const featuredProjects = [
+  
+  const { t: $t } = useI18n();
+  const featuredProjects = computed(() => [
     {
       link: 'https://marketplace.visualstudio.com/items?itemName=matheus-foscarinid.json-searcher',
       repository: 'https://github.com/matheus-foscarinid/json-searcher-vscode',
       name: 'JSON Searcher',
-      description: 'JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.',
+      description: $t('PROJECTS.JSON_SEARCHER'),
       stack: ['Typescript', 'VSCode API'],
       image: 'https://github-production-user-asset-6210df.s3.amazonaws.com/57161520/254410881-7a6b8067-167d-4b9c-b324-5eef96fd35db.gif'
+    },
+    {
+      link: 'https://construsausen.com',
+      name: 'Site Construsausen',
+      description: $t('PROJECTS.CONSTRUSAUSEN'),
+      stack: ['Vue', 'Typescript', 'SCSS'],
+      image: '/images/construsausen.png',
+      scroll: true,
     }
-  ];
+  ]);
+
+  const projects = [];
 </script>
 
 <style lang="scss" scoped>

@@ -3,7 +3,20 @@
     class="featured-project-card"
     :class="{ 'reverse': reverse }"
   >
-    <img 
+    <div
+      v-if="project.scroll" 
+      class="scroll-image-container"
+    >
+      <img 
+        class="scroll-image"
+        :src="project.image"
+        alt="Project Image"
+        @click="openProjectLink"
+      />
+    </div>
+
+    <img
+      v-else
       class="project-image"
       :src="project.image"
       alt="Project Image"
@@ -41,12 +54,15 @@
         <div class="buttons">
           <button @click="openProjectLink">
             {{ $t('PROJECTS.VIEW') }}
-            <font-awesome-icon icon="fa-brands fa-github" />
+            <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
           </button>
   
-          <button @click="openRepository">
+          <button 
+            v-if="project.repository"
+            @click="openRepository"
+          >
             {{ $t('PROJECTS.REPOSITORY') }}
-            <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
+            <font-awesome-icon icon="fa-brands fa-github" />
           </button>
         </div>
       </div>
@@ -89,8 +105,8 @@
         right: auto;
       }
 
-      .stack {
-        align-self: flex-end !important;
+      .stack, .buttons {
+        justify-content: flex-end !important;
       }
     }
 
@@ -109,10 +125,46 @@
 
     .project-image {
       border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,.1);
       background-size: cover;
       width: 30rem;
       cursor: pointer;
+      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
+      transition: transform .3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.025);
+      }
+    }
+
+    .scroll-image-container {
+      position: relative;
+      width: 30rem;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: 15px;
+      background-color: var(--details-background);
+      transition: transform .3s ease-in-out;
+      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.025);
+      }
+
+      .scroll-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        transition: object-position 8s ease-in-out;
+
+        &:hover {
+          object-position: bottom;
+        }
+      }
     }
 
     .project-infos {
@@ -154,7 +206,7 @@
         font-family: var(--alternative-font);
         font-size: 0.875rem;
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         gap: 1rem;
         margin-top: .5rem;
       }
@@ -162,7 +214,7 @@
       .buttons {
         display: flex;
         gap: .5rem;
-        justify-content: flex-end;
+        justify-content: flex-start;
 
         button {
           padding: .5rem 1rem;
