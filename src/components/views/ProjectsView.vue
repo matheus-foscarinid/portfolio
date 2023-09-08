@@ -40,6 +40,14 @@
       description: 'JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.',
       stack: ['Typescript', 'VSCode API'],
       image: 'https://github-production-user-asset-6210df.s3.amazonaws.com/57161520/254410881-7a6b8067-167d-4b9c-b324-5eef96fd35db.gif'
+    },
+    {
+      link: 'https://construsausen.com',
+      name: 'Site Construsausen',
+      description: 'Site institucional para a empresa Madereira Construsausen, com algumas informações da empresa, desenvolvido com Vue.js e SCSS.',
+      stack: ['Vue', 'Typescript', 'SCSS'],
+      image: '/images/construsausen.png',
+      scroll: true,
     }
   ];
 </script>
