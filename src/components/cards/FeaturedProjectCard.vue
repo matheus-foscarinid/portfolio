@@ -7,12 +7,13 @@
       v-if="project.scroll" 
       class="scroll-image-container"
     >
-      <img 
+      <img
         class="scroll-image"
+        :srcset="project.srcset"
         :src="project.image"
         alt="Project Image"
         @click="openProjectLink"
-      />
+      >
     </div>
 
     <img
