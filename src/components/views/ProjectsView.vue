@@ -49,7 +49,8 @@
       name: 'Site Construsausen',
       description: $t('PROJECTS.CONSTRUSAUSEN'),
       stack: ['Vue', 'Typescript', 'SCSS'],
-      image: '/images/construsausen.webp',
+      srcset: '/images/construsausen_w_200.webp 200w, /images/construsausen_w_667.webp 667w, /images/construsausen_w_954.webp 954w, /images/construsausen_w_1293.webp 1293w, /images/construsausen_w_1400 1400w',
+      image: '/images/construsausen_w_1400.webp',
       scroll: true,
     }
   ]);
