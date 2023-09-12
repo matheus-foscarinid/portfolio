@@ -49,7 +49,7 @@
       name: 'Site Construsausen',
       description: $t('PROJECTS.CONSTRUSAUSEN'),
       stack: ['Vue', 'Typescript', 'SCSS'],
-      image: '/images/construsausen.png',
+      image: '/images/construsausen.webp',
       scroll: true,
     }
   ]);
