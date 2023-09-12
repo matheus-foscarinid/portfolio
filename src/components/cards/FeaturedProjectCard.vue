@@ -31,7 +31,7 @@
       <div>
         <a 
           class="title"
-          @click="openProjectLink"
+          :href="project.link"
         >
           {{ project.name }}
         </a>
