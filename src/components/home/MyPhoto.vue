@@ -6,7 +6,7 @@
         @/assets/images/me/me_w_280.webp 280w,
         @/assets/images/me/me_w_794.webp 794w,
         @/assets/images/me/me_w_1130.webp 1130w,
-        @/assets/images/me/me_w_1440.webp 1440w,
+        @/assets/images/me/me_w_1440.webp 1440w
       "
       src="@/assets/images/me/me_w_1440.webp"
       alt="Matheus Foscarini Dias" 
