@@ -31,7 +31,7 @@
       <div>
         <a 
           class="title"
-          @click="openProjectLink"
+          :href="project.link"
         >
           {{ project.name }}
         </a>
@@ -127,6 +127,7 @@
       border-radius: 15px;
       background-size: cover;
       width: 30rem;
+      aspect-ratio: 16/9;
       cursor: pointer;
       box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
       transition: transform .3s ease-in-out;
