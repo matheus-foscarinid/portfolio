@@ -14,9 +14,9 @@ npm run dev
 ### TODOs and Ideas
 
 - [ ] Add my main projects
-- [ ] Fix mobile layout to work on any standard smartphone
+- [x] Fix mobile layout to work on any standard smartphone
 - [ ] Change darkmode colors
-- [ ] Standardize styling
+- [x] Standardize styling
 - [x] Change Language select to a custom one 
 - [x] Add my JSON Searcher extension on projects
 - [x] Add animations
