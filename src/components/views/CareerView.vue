@@ -187,7 +187,7 @@
           }
 
           &.active {
-            background-color: var(--default-border);
+            background-color: var(--default-border) !important;
             color: var(--details-background);
           }
         }
@@ -277,6 +277,7 @@
             border: none;
             border-top: 1px solid var(--default-border);
             padding: 0.5rem 0.25rem;
+            border-radius: 0 0 .5rem .5rem;
           }
         }
 
@@ -291,6 +292,10 @@
           .title, .period {
             text-align: center;
           }	
+        }
+
+        ul {
+          padding: .5rem;
         }
       }
     }

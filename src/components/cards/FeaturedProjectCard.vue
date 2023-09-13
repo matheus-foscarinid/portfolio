@@ -107,7 +107,7 @@
       }
 
       .stack, .buttons {
-        justify-content: flex-end !important;
+        justify-content: flex-end;
       }
     }
 
@@ -242,9 +242,10 @@
 
   @media (max-width: 768px) {
     .featured-project-card {
+      padding: 1rem;
       flex-direction: column !important;
 
-      .project-image {
+      .project-image, .scroll-image-container {
         width: 100%;
         margin-top: 1rem;
       }
@@ -253,15 +254,20 @@
         text-align: center;
       }
 
-      .bottom {
-        .stack {
-          margin: 1rem 0;
-          justify-content: center;
-        }
+      .stack {
+        margin: 1rem 0;
+        justify-content: center !important;
+      }
 
-        .buttons {
-          justify-content: center;
-        }
+      .buttons {
+        justify-content: center !important;
+      }
+
+      .title {
+        display: flex;
+        justify-content: center;
+        font-size: 1.5rem !important;
+        text-align: center;
       }
     }
   }
