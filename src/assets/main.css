@@ -6,3 +6,19 @@
   font-weight: 400;
   color: var(--default-text);
 }
+
+/* style css scrollbar only on desktop */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: .75rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--secondary-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--disabled-text);
+    border-radius: 1rem;
+  }
+}
