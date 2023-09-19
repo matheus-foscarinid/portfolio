@@ -1,15 +1,21 @@
 <template>
-  <header>
+  <header :class="{ scrolled: hasScrolled }">
     <div class="logo">
       <h2>matheusdias<span class="dev">.dev</span></h2>
     </div>
 
     <ul class="menu">
-      <li><a href="#home">{{ $t('HEADER.HOME') }}</a></li>
-      <li><a href="#about">{{ $t('HEADER.ABOUT') }}</a></li>
-      <li><a href="#career">{{ $t('HEADER.CAREER') }}</a></li>
-      <!-- <li><a href="#projects">{{ $t('HEADER.PROJECTS') }}</a></li> -->
-      <li><a href="#contact">{{ $t('HEADER.CONTACT') }}</a></li>
+      <li
+        v-for="section in sectionOptions"
+        :key="section.id"
+      >
+        <a 
+          :href="`#${section.id}`" 
+          :class="{ active: currentActiveSection === section.id }"
+        >
+          {{ section.label }}
+        </a>
+      </li>
     </ul>
 
     <div class="buttons-container">
@@ -48,10 +54,14 @@
           class="mobile-menu-items"
           @click="closeMobileMenu"
         >
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#career">Career</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <li
+          v-for="section in sectionOptions"
+          :key="section.id"
+        >
+          <a :href="`#${section.id}`">
+            {{ section.label }}
+          </a>
+        </li>
         </ul>
 
         <ThemeSwitch class="mobile-theme-switch" />
@@ -73,21 +83,52 @@
 </template>
 
 <script setup>
+  import { ref, onMounted } from 'vue'
+  import { useI18n } from 'vue-i18n';
   import ThemeSwitch from './ThemeSwitch.vue';
   import LangSelect from './LangSelect.vue';
 
-  import { ref } from 'vue'
+  const { t: $t } = useI18n();
+
+  const sectionOptions = [
+    { id: 'home', label: $t('HEADER.HOME') },
+    { id: 'about', label: $t('HEADER.ABOUT') },
+    { id: 'career', label: $t('HEADER.CAREER') },
+    { id: 'projects', label: $t('HEADER.PROJECTS') },
+    { id: 'contact', label: $t('HEADER.CONTACT') },
+  ];
+  
   const isMenuOpen = ref(false);
 
   const openMobileMenu = () => {
-    console.log('open');
     isMenuOpen.value = true;
   }
 
   const closeMobileMenu = () => {
-    console.log('close');
     isMenuOpen.value = false;
   }
+
+  const hasScrolled = ref(false);
+  const currentActiveSection = ref(null);
+
+  const watchCurrentActiveSection = (sections) => {
+    const currentShowedSection = sections.find((section) => {
+      const rectangle = section.getBoundingClientRect();
+      return rectangle.top <= window.innerHeight / 2 && rectangle.bottom >= window.innerHeight / 2;
+    });
+
+    currentActiveSection.value = currentShowedSection.id;
+  }
+
+  onMounted(() => {
+    const sectionsNodeList = document.querySelectorAll('section');
+    const sections = Array.from(sectionsNodeList);
+
+    window.addEventListener('scroll', () => {
+      hasScrolled.value = window.scrollY > 0;
+      watchCurrentActiveSection(sections);
+    });
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -102,8 +143,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
-    background-color: var(--secondary-background);
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    transition: all .3s ease;
+    
+
+    &.scrolled {
+      background-color: var(--secondary-background);
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+      color: var(--default-text);
+    }
 
     h2 {
       font-weight: 700;
@@ -126,6 +173,21 @@
 
         &:hover {
           color: var(--secondary-text);
+        }
+
+        &.active {
+          // add underline to active section with animation
+          position: relative;
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-text);
+            animation: underline .35s ease-in-out;
+          }
         }
       }
     }
@@ -247,5 +309,15 @@
   .slide-in-enter-to,
   .slide-in-leave-from {
     transform: translateX(0);
+  }
+
+  // underline animation from left to right
+  @keyframes underline {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
   }
 </style>

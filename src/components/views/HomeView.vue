@@ -40,7 +40,8 @@ const downloadCV = () => {
 
 <style lang="scss" scoped>
   #home {
-    min-height: calc(100vh - 5rem);
+    min-height: 100vh;
+    margin-top: -5rem;
     display: flex;
 
     .container {
