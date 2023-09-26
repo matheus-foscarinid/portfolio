@@ -4,19 +4,27 @@
       <h2>matheusdias<span class="dev">.dev</span></h2>
     </div>
 
-    <ul class="menu">
-      <li
-        v-for="section in sectionOptions"
-        :key="section.id"
+    <Transition 
+      name="fade"
+      mode="out-in"
+    >
+      <ul
+        v-if="hasScrolled || !isFirstScroll" 
+        class="menu"
       >
-        <a 
-          :href="`#${section.id}`" 
-          :class="{ active: currentActiveSection === section.id }"
+        <li
+          v-for="section in sectionOptions"
+          :key="section.id"
         >
-          {{ section.label }}
-        </a>
-      </li>
-    </ul>
+          <a 
+            :href="`#${section.id}`" 
+            :class="{ active: currentActiveSection === section.id }"
+          >
+            <span>{{ section.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </Transition>
 
     <div class="buttons-container">
       <div class="desktop-theme-switch">
@@ -109,6 +117,7 @@
   }
 
   const hasScrolled = ref(false);
+  const isFirstScroll = ref(true);
   const currentActiveSection = ref(null);
 
   const watchCurrentActiveSection = (sections) => {
@@ -126,6 +135,7 @@
 
     window.addEventListener('scroll', () => {
       hasScrolled.value = window.scrollY > 0;
+      isFirstScroll.value = false;
       watchCurrentActiveSection(sections);
     });
   });
@@ -143,18 +153,17 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
-    transition: all .3s ease;
+    transition: all .5s ease;
     
 
     &.scrolled {
       background-color: var(--secondary-background);
-      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.25);
       color: var(--default-text);
     }
 
     h2 {
       font-weight: 700;
-
       .dev {
         color: var(--secondary-text);
       }
@@ -176,12 +185,15 @@
         }
 
         &.active {
-          // add underline to active section with animation
           position: relative;
+
+          span { z-index: 2; }
+
           &::after {
             content: '';
             position: absolute;
-            bottom: 1px;
+            bottom: 0;
+            z-index: 1;
             left: 0;
             width: 100%;
             height: 2px;
