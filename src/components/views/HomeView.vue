@@ -12,9 +12,9 @@
 
         <button 
           class="cv-button"
-          @click="downloadCV"
+          @click="viewCV"
         >
-          {{  $t('HOME.DOWNLOAD_CV') }}
+          {{  $t('HOME.VIEW_CV') }}
         </button>
       </div>
     </div>
@@ -26,15 +26,12 @@ import i18n from '../../i18n';
 import MyPhoto from '../home/MyPhoto.vue';
 import TypedPresentation from '../home/TypedPresentation.vue';
 
-const downloadCV = () => {
-  const link = document.createElement('a');
-
+const viewCV = () => {
   const PT_CV_PATH = '/dias-matheus-cv.pdf';
   const EN_CV_PATH = '/dias-matheus-cv-en.pdf';
 
-  link.href = i18n.global.locale == 'pt' ? PT_CV_PATH : EN_CV_PATH ;
-  link.download = 'dias-matheus-cv.pdf';
-  link.click();
+  const cvPath = i18n.global.locale == 'pt' ? PT_CV_PATH : EN_CV_PATH ;
+  window.open(cvPath, '_blank');
 };
 </script>
 
