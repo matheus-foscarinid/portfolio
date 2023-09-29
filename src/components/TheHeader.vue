@@ -16,12 +16,14 @@
           v-for="section in sectionOptions"
           :key="section.id"
         >
-          <a 
-            :href="`#${section.id}`" 
+          <div 
+            class="menu-item"
             :class="{ active: currentActiveSection === section.id }"
           >
-            <span>{{ section.label }}</span>
-          </a>
+            <a :href="`#${section.id}`">
+              <span>{{ section.label }}</span>
+            </a>
+          </div>
         </li>
       </ul>
     </Transition>
@@ -160,6 +162,28 @@
       background-color: var(--secondary-background);
       box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.25);
       color: var(--default-text);
+
+      & .menu-item {
+        background-color: var(--secondary-background);
+        
+        &.active {
+          z-index: 1;
+          transform: scale(1.075);
+          box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+          position: relative;
+
+          &::after {
+            // add a line under the menu item
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-text);
+          }
+        }
+      }
     }
 
     h2 {
@@ -171,37 +195,23 @@
     .menu {
       display: flex;
       justify-content: space-between;
-      gap: 1.5rem;
       text-decoration: none;
       list-style: none;
 
-      a {
-        text-decoration: none;
-        font-weight: 700;
-        color: var(--text-default);
+      & .menu-item {
+        height: 5rem;
+        display: flex;
+        align-items: center;
+        padding: 0 1rem;
+        transition: all .2s ease;
 
-        &:hover {
-          color: var(--secondary-text);
-        }
-
-        &.active {
-          position: relative;
-
-          span { z-index: 2; }
-
-          &::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            z-index: 1;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--secondary-text);
-            animation: underline .35s ease-in-out;
-          }
+        a {
+          text-decoration: none;
+          font-weight: 700;
+          color: var(--text-default);
         }
       }
+
     }
 
     .mobile-menu-icon {
