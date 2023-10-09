@@ -13,7 +13,7 @@ npm run dev
 
 ### TODOs and Ideas
 
-- [ ] Add my main projects
+- [x] Add my main projects
 - [x] Fix mobile layout to work on any standard smartphone
 - [ ] Change darkmode colors
 - [x] Standardize styling
