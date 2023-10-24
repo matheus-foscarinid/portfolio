@@ -118,9 +118,9 @@
       min-width: 10rem;
       text-align: center;
       padding: .5rem 1rem;
-      background: var(--default-border);
-      color: var(--details-background);
-      border-radius: 2px;
+      background: var(--disabled-text);
+      color: var(--highlight);
+      border-radius: 5px;
       box-shadow: 0 0 10px rgba(0,0,0,.1);
     }
 
