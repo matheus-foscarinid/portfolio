@@ -19,9 +19,9 @@
 /* Darkmode */
 [data-theme="dark"] {
   /* Cores de fundo */
-  --default-background: #141414;
-  --secondary-background: #1E1E1E;
-  --details-background: #252525;
+  --default-background: #1A1A1A;
+  --secondary-background: #202020;
+  --details-background: #2C2C2C;
   --dark-background: #000000;
 
   /* Cores de texto */
