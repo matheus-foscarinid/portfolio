@@ -21,7 +21,11 @@
 <script setup>
   import { ref } from 'vue'
 
-  const isDarkTheme = ref(false);
+  const deviceDefaultIsDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const isDarkTheme = ref(deviceDefaultIsDark);
+  if (isDarkTheme.value) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
 
   const changeTheme = () => {
     isDarkTheme.value = !isDarkTheme.value;
