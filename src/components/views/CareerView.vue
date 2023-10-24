@@ -175,9 +175,9 @@
           border: 0;
           border-left: 1px solid var(--default-border);
           background: transparent;
+          color: var(--default-text);
           cursor: pointer;
           transition: all 0.2s ease-in-out;
-          color: var(--disabled-text);
           font-size: 1rem;
           font-weight: 600;
           border-radius: 0 .5rem .5rem 0;
@@ -188,14 +188,14 @@
 
           &.active {
             background-color: var(--default-border) !important;
-            color: var(--details-background);
+            color: var(--highlight);
           }
         }
 
         .current-selected-marker {
           width: 3px;
           height: 25%;
-          background-color: var(--details-background);
+          background-color: var(--highlight);
           position: absolute;
           left: 0;
           top: 0;
@@ -216,7 +216,7 @@
           font-weight: 600;
           
           & .place-name {
-            color: var(--secondary-text);
+            color: var(--default-text);
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s ease-in-out;
@@ -229,7 +229,7 @@
               height: 3px;
               bottom: 0px;
               left: 0;
-              background: var(--secondary-text);
+              background: var(--default-text);
               transform-origin: bottom right;
               transition: transform 0.25s ease-out;
             }
@@ -243,13 +243,13 @@
 
         & .period {
           font-size: 1rem;
-          color: var(--secondary-text);
+          color: var(--default-text);
           margin-bottom: 1rem;
         }
 
         & .description {
           font-size: 1rem;
-          color: var(--secondary-text);
+          color: var(--default-text);
           line-height: 1.5rem;
           text-align: justify;
           max-width: 800px;

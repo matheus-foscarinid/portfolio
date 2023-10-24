@@ -21,7 +21,7 @@
     border-radius: 50%;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     text-align: center;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.25s ease-in-out;
 
     img {
       width: 100%;
@@ -29,8 +29,8 @@
     }
 
     &:hover {
-      transform: translateY(-0.15rem) scale(1.05);
-      box-shadow: 0 0.75rem 1.2rem rgba(0, 0, 0, 0.15);
+      transform: scale(1.1);
+      box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.2);
     }
   }
 </style>

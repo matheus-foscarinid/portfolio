@@ -31,7 +31,7 @@
     padding: 1rem 1.5rem;
     border-radius: 15px;
     transition: all 0.3s ease-in-out;
-    background: var(--details-background);
+    background: var(--secondary-background);
     &.hoverable {
       cursor: pointer;
 
@@ -42,6 +42,7 @@
         & .icon {
           box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
           transform: scale(1.05);
+          background: var(--details-background);
         }
       }
     }

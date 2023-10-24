@@ -170,6 +170,7 @@
           z-index: 1;
           transform: scale(1.075);
           box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+          background-color: var(--details-background);
           position: relative;
 
           &::after {
