@@ -1,24 +1,35 @@
+/* Lightmode */
 :root {
-  /* Cores do tema light */
+  /* Cores de fundo */
   --default-background: #E9ECEF;
   --secondary-background: #F8F9FA;
-  --dark-background: #212529;
   --details-background: #FFFFFF;
+  --dark-background: #212529;
+
+  /* Cores de texto */
   --default-text: #212529;
   --secondary-text: #495057;
   --disabled-text: #7a838b;
+
+  /* Cores complementares */
   --default-border: #CED4DA;
+  --highlight: #FFFFFF;
 }
 
+/* Darkmode */
 [data-theme="dark"] {
-  /* Cores do tema dark */
-  --default-background: #1E1E1E;
-  --secondary-background: #252525;
+  /* Cores de fundo */
+  --default-background: #141414;
+  --secondary-background: #1E1E1E;
+  --details-background: #252525;
   --dark-background: #000000;
-  --details-background: #141414;
+
+  /* Cores de texto */
   --default-text: #FFFFFF;
-  --secondary-text: #A8A8A8;
+  --secondary-text: #c8c8c8;
   --disabled-text: #707070;
+
+  /* Cores complementares */
   --default-border: #454545;
 }
 
