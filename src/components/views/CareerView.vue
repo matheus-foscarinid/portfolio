@@ -58,7 +58,9 @@
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue';
+  import { gsap } from 'gsap';
+
+  import { ref, computed, onMounted } from 'vue';
   import { useI18n } from 'vue-i18n';
 
   const { t: $t } = useI18n();
@@ -117,6 +119,48 @@
   const setPlaceAsActive = (index) => {
     currentPlaceIndex.value = index;
   }
+
+  const addObserverOnScroll = () => {
+  const observer = new IntersectionObserver((entries, self) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateElement();
+        self.unobserve(entry.target);
+      }
+    });
+  });
+
+  const target = document.querySelector('#career');
+  observer.observe(target)
+
+  function animateElement() {
+    const tl = gsap.timeline();
+
+    const title = document.querySelector('#career h2');
+    const placesButtons = document.querySelectorAll('.buttons-container > *');
+    const placeInfos = document.querySelectorAll('.active-place-content > *');
+
+    gsap.fromTo(
+      title, 
+      { opacity: 0, y: 50, filter: 'blur(2px)' }, 
+      { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)' }
+    );
+
+    tl.fromTo(
+      placesButtons, 
+      { opacity: 0, x: -50, filter: 'blur(2px)' }, 
+      { opacity: 1, x: 0, duration: .5, filter: 'blur(0px)', stagger: .1, delay: .35 }
+    );
+
+    gsap.fromTo(
+      placeInfos,
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: .5, stagger: .1, delay: .35 }
+    );
+  }
+};
+
+onMounted(addObserverOnScroll);
 </script>
 
 <style lang="scss" scoped>
