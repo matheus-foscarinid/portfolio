@@ -57,7 +57,7 @@ const addObserverOnScroll = () => {
     gsap.fromTo(
       photo, 
       { opacity: 0, x: -90, filter: 'blur(2px)', scale: .9 }, 
-      { opacity: 1, x: 0, duration: 1.5, delay: .5, filter: 'blur(0px)', ease: 'expo.out', scale: 1 }
+      { opacity: 1, x: 0, duration: 1.5, delay: .5, filter: 'blur(0px)', ease: 'expo.out(2)', scale: 1 }
     );
   }
 };
@@ -75,7 +75,7 @@ const viewCV = () => {
 
 <style lang="scss" scoped>
   #home {
-    min-height: 100vh;
+    min-height: 110vh;
     margin-top: -5rem;
     display: flex;
 
