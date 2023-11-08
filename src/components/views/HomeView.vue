@@ -1,6 +1,6 @@
 <template>
   <section id="home">
-    <div class="container appear-on-scroll">
+    <div class="container">
       <MyPhoto />
       
       <div class="presentation-container">
@@ -22,9 +22,47 @@
 </template>
 
 <script setup>
+import gsap from 'gsap';
+
 import i18n from '../../i18n';
 import MyPhoto from '../home/MyPhoto.vue';
 import TypedPresentation from '../home/TypedPresentation.vue';
+
+import { onMounted } from 'vue';
+
+const addObserverOnScroll = () => {
+  const observer = new IntersectionObserver((entries, self) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateElement();
+        self.unobserve(entry.target);
+      }
+    });
+  });
+
+  const target = document.querySelector('#home');
+  observer.observe(target)
+
+  function animateElement() {
+    const photo = document.querySelector('.my-photo');
+    const texts = document.querySelectorAll('.presentation-container > *');
+    const tl = gsap.timeline();
+
+    tl.fromTo(
+      texts, 
+      { opacity: 0, y: 50, filter: 'blur(2px)', scale: .9 }, 
+      { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', stagger: .1, scale: 1 }
+    );
+
+    gsap.fromTo(
+      photo, 
+      { opacity: 0, x: -90, filter: 'blur(2px)', scale: .9 }, 
+      { opacity: 1, x: 0, duration: 1.5, delay: .5, filter: 'blur(0px)', ease: 'expo.out', scale: 1 }
+    );
+  }
+};
+
+onMounted(addObserverOnScroll);
 
 const viewCV = () => {
   const PT_CV_PATH = '/dias-matheus-cv.pdf';
