@@ -1,6 +1,6 @@
 <template>
   <section id="about">
-    <div class="container appear-on-scroll">
+    <div class="container">
       <h2>{{ $t('ABOUT.TITLE') }}</h2>
       <div class="content-containers">
         <div class="summary">
@@ -26,7 +26,11 @@
 </template>
 
 <script setup>
+import { gsap } from 'gsap';
+import { onMounted } from 'vue';
+
 import StackCard from '@/components/cards/StackCard.vue';
+
 const stacks = [
   { name: 'html5', type: 'original'},
   { name: 'css3', type: 'original'},
@@ -39,6 +43,48 @@ const stacks = [
   { name: 'git', type: 'original'},
   { name: 'rails', type: 'original-wordmark'}
 ];
+
+const addObserverOnScroll = () => {
+  const observer = new IntersectionObserver((entries, self) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        animateElement();
+        self.unobserve(entry.target);
+      }
+    });
+  });
+
+  const target = document.querySelector('#about');
+  observer.observe(target)
+
+  function animateElement() {
+    const tl = gsap.timeline();
+
+    const texts = document.querySelectorAll('.summary > *');
+    const stackCards = document.querySelectorAll('.stacks-container > *');
+    const title = document.querySelector('#about h2');
+
+    gsap.fromTo(
+      title, 
+      { opacity: 0, y: 50, filter: 'blur(2px)' }, 
+      { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)' }
+    );
+
+    tl.fromTo(
+      texts, 
+      { opacity: 0, y: 50, filter: 'blur(2px)' }, 
+      { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', stagger: .1, ease: 'back.out(1.4)', delay: .35 }
+    );
+
+    gsap.fromTo(
+      stackCards,
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: .5, stagger: .1, delay: .35 }
+    );
+  }
+};
+
+onMounted(addObserverOnScroll);
 
 </script>
 
