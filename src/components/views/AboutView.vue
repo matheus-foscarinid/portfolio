@@ -185,6 +185,9 @@ onMounted(addObserverOnScroll);
       display: flex;
       flex-direction: column;
     }
+
+    .summary { text-align: justify; }
+    .stacks-container { justify-content: center; }
   }
 }
 </style>
