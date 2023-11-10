@@ -82,4 +82,10 @@ onMounted(() => setTimeout(typeText, 1000));
     50% { opacity: 0; }
     99% { opacity: 0; }
   }
+
+  @media (max-width: 768px) {
+    h3 { font-size: 2rem !important; }
+  }
+
+
 </style>

@@ -50,6 +50,10 @@ html{scroll-behavior:smooth}
   padding: 0 2rem;
 }
 
+@media (max-width: 768px) {
+  .container { padding: 0 1.2rem; }
+}
+
 /* Fade transition */
 .fade-enter-active,
 .fade-leave-active {

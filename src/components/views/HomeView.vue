@@ -135,6 +135,16 @@ const viewCV = () => {
   @media (max-width: 768px) {
     .container {
       flex-direction: column;
+      margin: 6rem auto;
+      gap: 3rem !important;
+
+        .presentation-container {
+          width: 100% !important;
+          text-align: center;
+
+          .presentation { font-size: 1rem; }
+          h2 { font-size: 2rem !important; }
+        }
     }
   }
 

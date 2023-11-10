@@ -65,4 +65,11 @@ const cardBoxShadow = computed(() => {
       transition: all 0.25s ease-out;
     }
   }
+
+  @media (max-width: 768px) {
+    .my-photo {
+      text-align: center;
+      img { width: 80%; }
+    }
+  }
 </style>
