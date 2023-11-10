@@ -93,8 +93,8 @@
     border-radius: 15px;
     background-color: var(--details-background);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease-in-out;
     text-align: left;
+    opacity: 0;
 
     &.reverse {
       flex-direction: row-reverse;

@@ -21,7 +21,6 @@
     border-radius: 50%;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     text-align: center;
-    transition: all 0.25s ease-in-out;
 
     img {
       width: 100%;
