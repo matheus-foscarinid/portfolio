@@ -1,6 +1,6 @@
 <template>
   <section id="career">
-    <div class="container appear-on-scroll">
+    <div class="container">
       <h2>{{ $t('CAREER.TITLE') }}</h2>
 
       <div class="places-container">
@@ -121,46 +121,46 @@
   }
 
   const addObserverOnScroll = () => {
-  const observer = new IntersectionObserver((entries, self) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateElement();
-        self.unobserve(entry.target);
-      }
+    const observer = new IntersectionObserver((entries, self) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateElement();
+          self.unobserve(entry.target);
+        }
+      });
     });
-  });
 
-  const target = document.querySelector('#career');
-  observer.observe(target)
+    const target = document.querySelector('#career .container');
+    observer.observe(target)
 
-  function animateElement() {
-    const tl = gsap.timeline();
+    function animateElement() {
+      const tl = gsap.timeline();
 
-    const title = document.querySelector('#career h2');
-    const placesButtons = document.querySelectorAll('.buttons-container > *');
-    const placeInfos = document.querySelectorAll('.active-place-content > *');
+      const title = document.querySelector('#career h2');
+      const placesButtons = document.querySelectorAll('.buttons-container > *');
+      const placeInfos = document.querySelectorAll('.active-place-content > *');
 
-    gsap.fromTo(
-      title, 
-      { opacity: 0, y: 50, filter: 'blur(2px)' }, 
-      { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)' }
-    );
+      gsap.fromTo(
+        title, 
+        { opacity: 0, y: 50, filter: 'blur(2px)', transition: 'none' }, 
+        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)' }
+      );
 
-    tl.fromTo(
-      placesButtons, 
-      { opacity: 0, x: -50, filter: 'blur(2px)' }, 
-      { opacity: 1, x: 0, duration: .5, filter: 'blur(0px)', stagger: .1, delay: .35 }
-    );
+      tl.fromTo(
+        placesButtons, 
+        { opacity: 0, x: -50, filter: 'blur(2px)', transition: 'none' }, 
+        { opacity: 1, x: 0, duration: .5, filter: 'blur(0px)', stagger: .1 }
+      );
 
-    gsap.fromTo(
-      placeInfos,
-      { opacity: 0, y: 20 }, 
-      { opacity: 1, y: 0, duration: .5, stagger: .1, delay: .35 }
-    );
-  }
-};
+      gsap.fromTo(
+        placeInfos,
+        { opacity: 0, y: 20, transition: 'none' }, 
+        { opacity: 1, y: 0, duration: .5, stagger: .1 }
+      );
+    }
+  };
 
-onMounted(addObserverOnScroll);
+  onMounted(addObserverOnScroll);
 </script>
 
 <style lang="scss" scoped>

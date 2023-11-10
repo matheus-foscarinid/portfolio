@@ -1,6 +1,6 @@
 <template>
   <section id="projects">
-    <div class="container appear-on-scroll">
+    <div class="container">
       <h2>{{ $t('PROJECTS.TITLE') }}</h2>
 
       <div class="featured-project-cards">
@@ -28,7 +28,9 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue';
+  import { gsap } from 'gsap';
+
+  import { computed, onMounted } from 'vue';
   import { useI18n } from 'vue-i18n';
 
   import FeaturedProjectCard from '@/components/cards/FeaturedProjectCard.vue';
@@ -56,6 +58,48 @@
   ]);
 
   const projects = [];
+
+  const addObserverOnScroll = () => {
+    const observer = new IntersectionObserver((entries, self) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateElement();
+          self.unobserve(entry.target);
+        }
+      });
+    });
+
+    const target = document.querySelector('#projects .container');
+    observer.observe(target)
+
+    function animateElement() {
+      const tl = gsap.timeline();
+
+      const title = document.querySelector('#projects h2');
+      const featuredCards = document.querySelectorAll('.featured-project-cards > *');
+      const message = document.querySelector('.coming-soon-message');
+
+      gsap.fromTo(
+        title, 
+        { opacity: 0, y: 50, filter: 'blur(2px)' }, 
+        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)', delay: .35 }
+      );
+
+      tl.fromTo(
+        featuredCards, 
+        { opacity: 0, y: 75, filter: 'blur(2px)' }, 
+        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', stagger: .25, delay: .5 }
+      );
+
+      gsap.fromTo(
+        message, 
+        { opacity: 0, y: 75, filter: 'blur(2px)' }, 
+        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', delay: .5 }
+      );
+    }
+  };
+
+  onMounted(addObserverOnScroll);
 </script>
 
 <style lang="scss" scoped>
@@ -72,6 +116,8 @@
       font-weight: 700;
       margin-bottom: 2.5rem;
       color: var(--secondary-text);
+      // Opacity 0 to prevent the animation from running before the element is visible
+      opacity: 0;
 
       &::before {
       content: '';
