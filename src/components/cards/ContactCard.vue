@@ -32,12 +32,14 @@
     border-radius: 15px;
     transition: all 0.3s ease-in-out;
     background: var(--secondary-background);
+    opacity: 0;
+
     &.hoverable {
       cursor: pointer;
 
       &:hover {
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        transform: scale(1.01) translateY(-0.1rem);
+        transform: scale(1.01) translateY(-0.1rem) !important;
 
         & .icon {
           box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);

@@ -1,6 +1,6 @@
 <template>
   <section id="contact">
-    <div class="container appear-on-scroll">
+    <div class="container">
       <h2>{{ $t('CONTACT.TITLE')}}</h2>
 
       <div class="contact-cards">
@@ -15,9 +15,11 @@
 </template>
 
 <script setup>
+  import { gsap } from 'gsap';
+
+  import { computed, onMounted } from 'vue';
   import ContactCard from '@/components/cards/ContactCard.vue';
 
-  import { computed } from 'vue';
   import { useI18n } from 'vue-i18n';
   const { t: $t } = useI18n();
 
@@ -38,6 +40,41 @@
       link: 'https://linkedin.com/in/matheus-foscarinid/'
     },
   ]);
+
+  const addObserverOnScroll = () => {
+    const observer = new IntersectionObserver((entries, self) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateElement();
+          self.unobserve(entry.target);
+        }
+      });
+    });
+
+    const target = document.querySelector('#contact .container');
+    observer.observe(target)
+
+    function animateElement() {
+      const tl = gsap.timeline();
+
+      const title = document.querySelector('#contact h2');
+      const contactCards = document.querySelectorAll('.contact-cards > *');
+
+      gsap.fromTo(
+        title, 
+        { opacity: 0, y: 50, filter: 'blur(2px)' }, 
+        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)', delay: .35 }
+      );
+
+      tl.fromTo(
+        contactCards, 
+        { opacity: 0, x: -50, filter: 'blur(2px)' }, 
+        { opacity: 1, x: 0, duration: .5, filter: 'blur(0px)', stagger: .1, delay: .5 }
+      );
+    }
+  };
+
+  onMounted(addObserverOnScroll);
 </script>
 
 <style lang="scss">
@@ -54,6 +91,7 @@
       font-weight: 700;
       margin-bottom: 1rem;
       color: var(--secondary-text);
+      opacity: 0;
 
       &::before {
         content: '';
