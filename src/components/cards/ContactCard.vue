@@ -4,8 +4,21 @@
     :class="props.contact.link ? 'hoverable' : ''"
     @click="openLink(props.contact.link)"
   >
-    <div class="icon">
+    <div 
+      v-if="contact.icon"
+      class="icon"
+    >
       <font-awesome-icon :icon="props.contact.icon" />
+    </div>
+
+    <div 
+      v-else
+    >
+      <!-- pass customIcon as a custom component name  -->
+      <component 
+        :is="props.contact.customIcon"
+        class="icon"
+      />
     </div>
 
     <span class="text">

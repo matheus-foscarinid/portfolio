@@ -19,6 +19,7 @@
 
   import { computed, onMounted } from 'vue';
   import ContactCard from '@/components/cards/ContactCard.vue';
+  import LeetCodeIcon from '@/assets/svgs/leetcode-icon.vue';
 
   import { useI18n } from 'vue-i18n';
   const { t: $t } = useI18n();
@@ -38,6 +39,11 @@
       icon: 'fa-brands fa-linkedin',
       text: 'Matheus Foscarini Dias',
       link: 'https://linkedin.com/in/matheus-foscarinid/'
+    },
+    {
+      customIcon: LeetCodeIcon,
+      text: 'Matheus Foscarini Dias',
+      link: 'https://leetcode.com/matheus-foscarinid/'
     },
   ]);
 
