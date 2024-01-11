@@ -53,7 +53,10 @@
 
       <div class="bottom">
         <div class="buttons">
-          <button @click="openProjectLink">
+          <button 
+            v-if="project.link"
+            @click="openProjectLink"
+          >
             {{ $t('PROJECTS.VIEW') }}
             <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
           </button>
@@ -107,7 +110,7 @@
       }
 
       .stack, .buttons {
-        justify-content: flex-end;
+        justify-content: flex-end !important;
       }
     }
 
