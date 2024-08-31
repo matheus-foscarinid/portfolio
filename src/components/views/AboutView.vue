@@ -38,7 +38,7 @@ const stacks = [
   { name: 'typescript', type: 'original'},
   { name: 'vuejs', type: 'original'},
   { name: 'nodejs', type: 'original'},
-  { name: 'nestjs', type: 'plain'},
+  { name: 'nestjs', type: 'original'},
   { name: 'mysql', type: 'original'},
   { name: 'git', type: 'original'},
   { name: 'rails', type: 'original-wordmark'}
