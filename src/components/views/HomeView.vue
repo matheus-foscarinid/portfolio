@@ -68,7 +68,7 @@ const viewCV = () => {
   const PT_CV_PATH = '/dias-matheus-cv.pdf';
   const EN_CV_PATH = '/dias-matheus-cv-en.pdf';
 
-  const cvPath = i18n.global.locale == 'pt' ? PT_CV_PATH : EN_CV_PATH ;
+  const cvPath = i18n.global.locale.value === 'pt' ? PT_CV_PATH : EN_CV_PATH ;
   window.open(cvPath, '_blank');
 };
 </script>
