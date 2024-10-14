@@ -47,7 +47,6 @@
       image: 'https://github-production-user-asset-6210df.s3.amazonaws.com/57161520/254410881-7a6b8067-167d-4b9c-b324-5eef96fd35db.gif'
     },
     {
-      link: 'https://construsausen.com',
       name: 'Site Construsausen',
       description: $t('PROJECTS.CONSTRUSAUSEN'),
       stack: ['Vue', 'Typescript', 'SCSS'],
