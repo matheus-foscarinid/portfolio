@@ -1,7 +1,7 @@
 # 👨‍💻 Matheus Dias Portfolio
 
 Try here 👉 [matheusdias.dev](https://matheusdias.dev)</br>
-My personal website and portfolio, built with Vue 3 and Vite! It's on Beta, but you can already check it out!</br>
+My personal website and portfolio, built with Vue 3 and Vite!!</br>
 If you think it's good, can you give me a star 🌟?</br>
 
 ### 🚀 Project Setup & Running
@@ -15,7 +15,7 @@ npm run dev
 
 - [x] Add my main projects
 - [x] Fix mobile layout to work on any standard smartphone
-- [ ] Fix headers that are not changing label when tha lang is switched
+- [x] Fix headers that are not changing label when tha lang is switched
 - [ ] Change darkmode colors
 - [x] Standardize styling
 - [x] Change Language select to a custom one 
