@@ -3,10 +3,11 @@
     "PRESENTATION_1": "Hi! My name is",
     "PRESENTATION_2": "I'm a",
     "TITLE_1": "Fullstack developer.",
-    "TITLE_2": "Designer.",
-    "TITLE_3": "Cat dad.",
+    "TITLE_2": "Software Engineer.",
+    "TITLE_3": "Designer.",
     "TITLE_4": "Speaker.",
-    "SUMMARY": "I'm a fullstack mid-level developer based in Rio Grande do Sul, Brazil. Specialized in creating high-quality, scalable applications with exceptional UX. With expertise in both front-end and back-end, I'm able to build end-to-end solutions that are efficient. Whether it's complex architecture or intuitive user interfaces.",
+    "TITLE_5": "Cat dad.",
+    "SUMMARY": "I'm a fullstack mid-level software engineer based in Rio Grande do Sul, Brazil. Specialized in creating high-quality, scalable applications with exceptional UX. With expertise in both front-end and back-end, I'm able to build end-to-end solutions that are efficient. Whether it's complex architecture or intuitive user interfaces.",
     "VIEW_CV": "View Resume"
   },
   "ABOUT": {

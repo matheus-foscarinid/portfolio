@@ -12,7 +12,13 @@ const { t: $t } = useI18n();
 
 const typedValue = ref('');
 const isTyping = ref(false);
-const titlesArray = computed(() =>[$t('HOME.TITLE_1'), $t('HOME.TITLE_2'), $t('HOME.TITLE_3'), $t('HOME.TITLE_4')]);
+const titlesArray = computed(() =>[
+  $t('HOME.TITLE_1'), 
+  $t('HOME.TITLE_2'), 
+  $t('HOME.TITLE_3'), 
+  $t('HOME.TITLE_4'),
+  $t('HOME.TITLE_5'),
+]);
 
 const TYPING_SPEED = 30;
 const ERASING_SPEED = 30;
