@@ -36,12 +36,15 @@ const stacks = [
   { name: 'css3', type: 'original'},
   { name: 'javascript', type: 'original'},
   { name: 'typescript', type: 'original'},
+  { name: 'ruby', type: 'original'},
+  { name: 'rails', type: 'original-wordmark'},
   { name: 'vuejs', type: 'original'},
   { name: 'nodejs', type: 'original'},
-  { name: 'nestjs', type: 'original'},
+  { name: 'python', type: 'original'},
   { name: 'mysql', type: 'original'},
+  { name: 'docker', type: 'original'},
   { name: 'git', type: 'original'},
-  { name: 'rails', type: 'original-wordmark'}
+  { name: 'graphql', type: 'plain'},
 ];
 
 const addObserverOnScroll = () => {
