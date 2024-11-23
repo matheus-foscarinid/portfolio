@@ -37,6 +37,10 @@
       "RESUME_1": "Minha Visita é uma startup que oferece a maneira mais simples e eficiente de gerenciar visitas comerciais aos clientes. Como desenvolvedor fullstack, sou responsável pelo desenvolvimento de novos recursos e pela manutenção dos existentes para o produto principal da empresa, o Minha Visita.",
       "RESUME_2": "Atualmente, estamos desenvolvendo uma nova versão do produto, utilizando as tecnologias mais recentes, como Vue e NestJS, e as melhores práticas. Proponho e implemento soluções escaláveis para problemas identificados em nossos serviços e no aplicativo.",
       "RESUME_3": "Estou colaborando com nossa equipe para garantir experiências de usuário cuidadosas e consistentes em toda a aplicação web e os aplicativos."
+    },
+    "FULLSTACK_LABS": {
+      "RESUME_1": "Na Fullstack Labs, estou alocado em um projeto de um cliente dos Estados Unidos, onde sou responsável pelo desenvolvimento de novos recursos e pela manutenção dos existentes para o produto principal da empresa.",
+      "RESUME_2": "Estou trabalhando com tecnologias como Vue, Ruby on Rails, Docker e PostgreSQL, e estou aprendendo muito com a equipe de desenvolvimento sênior. Estou colaborando com nossa equipe para garantir experiências de usuário cuidadosas e consistentes em toda a aplicação web e os aplicativos."
     }
   },
   "CONTACT": {

@@ -72,12 +72,12 @@
     // If is mobile
     if (window.innerWidth <= 768) {
       return {
-        left: `${currentPlaceIndex.value * 25}%`,
+        left: `${currentPlaceIndex.value * 20}%`,
       };
     }
 
     return {
-      top: `${currentPlaceIndex.value * 25}%`,
+      top: `${currentPlaceIndex.value * 20}%`,
     };
   });
 
@@ -111,8 +111,16 @@
       key: 'MINHA_VISITA',
       paragraphsQtt: 3,
       role: 'Fullstack Mid Developer',
-      period: 'from October 2021 until now',
+      period: 'from October 2021 to November 2024',
       link: 'https://www.minhavisita.app/',
+    },
+    {
+      name: 'Fullstack Labs',
+      key: 'FULLSTACK_LABS',
+      paragraphsQtt: 2,
+      role: 'Mid-level Software Engineer',
+      period: 'from November 2024 to present',
+      link: 'https://www.fullstack.com/',
     }
   ]
 
@@ -238,7 +246,7 @@
 
         .current-selected-marker {
           width: 3px;
-          height: 25%;
+          height: 20%;
           background-color: var(--highlight);
           position: absolute;
           left: 0;
@@ -317,7 +325,7 @@
           width: 100%;
 
           button {
-            width: 25%;
+            width: 20%;
             border: none;
             border-top: 1px solid var(--default-border);
             padding: 0.5rem 0.25rem;
@@ -327,7 +335,7 @@
 
         & .current-selected-marker {
           height: 3px !important;
-          width: 25% !important;
+          width: 20% !important;
         }
 
         & .active-place-content {

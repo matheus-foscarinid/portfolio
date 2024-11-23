@@ -37,6 +37,10 @@
       "RESUME_1": "Minha Visita is a startup that offers the simplest and most efficient way to manage commercial visits to customers. As a fullstack developer, I am responsible for developing new features and maintaining existing ones for the company’s flagship product, Minha Visita.",
       "RESUME_2": "Currently we are developing a new version of the product, using the latest technologies, like Vue and NestJS, and best practices. I propose and implement scalable solutions to issues identified with our services and the application.",
       "RESUME_3": "I'm collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps."
+    },
+    "FULLSTACK_LABS": {
+      "RESUME_1": "At Fullstack Labs, I'm allocated to a project for a client from the United States, where I'm responsible for developing new features and maintaining existing ones for the company's flagship product.",
+      "RESUME_2": "I'm working with technologies like Vue, Ruby on Rails, Docker, and PostgreSQL, and I'm learning a lot from the senior development team. I'm collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps."
     }
   },
   "CONTACT": {
