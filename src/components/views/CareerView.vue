@@ -117,7 +117,7 @@
     {
       name: 'Fullstack Labs',
       key: 'FULLSTACK_LABS',
-      paragraphsQtt: 2,
+      paragraphsQtt: 3,
       role: 'Mid-level Software Engineer',
       period: 'from November 2024 to present',
       link: 'https://www.fullstack.com/',

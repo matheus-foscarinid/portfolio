@@ -13,7 +13,7 @@
   "ABOUT": {
     "TITLE": "About",
     "SUMMARY_1": "Hey there, I'm <span class=\"highlight\">Matheus</span>, a fullstack developer based in Rio Grande do Sul, Brazil. For me, creating digital products is more than just a job - it's a passion. I first discovered this passion while dabbling in graphic design using Photoshop, which eventually led me to explore the exciting world of web development.",
-    "SUMMARY_2": "With <span class=\"highlight\">3 years of experience</span> under my belt, I'm always eager to learn and expand my skillset. I'm particularly interested in <span class=\"highlight\">design patterns and principles</span>, and strive to apply them in all of my work.",
+    "SUMMARY_2": "With <span class=\"highlight\">5 years of experience</span> under my belt, I'm always eager to learn and expand my skillset. I'm particularly interested in <span class=\"highlight\">design patterns and principles</span>, and strive to apply them in all of my work.",
     "SUMMARY_3": "My journey began as a <span class=\"highlight\">trainee working with Ruby on Rails</span>, and I've since broadened my horizons to include technologies such as Vue and NestJS. I love the challenge of creating <span class=\"highlight\">user-centric applications</span> that solve real-world problems, and I take great pride in delivering products that are not only functional, but also visually appealing.",
     "SUMMARY_4": "When I'm not coding, you can usually find me keeping up-to-date with the <span class=\"highlight\">latest industry trends</span> or experimenting with new tools and frameworks. Thanks for stopping by and getting to know me a little better!"
   },
@@ -39,8 +39,9 @@
       "RESUME_3": "I'm collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps."
     },
     "FULLSTACK_LABS": {
-      "RESUME_1": "At Fullstack Labs, I'm allocated to a project for a client from the United States, where I'm responsible for developing new features and maintaining existing ones for the company's flagship product.",
-      "RESUME_2": "I'm working with technologies like Vue, Ruby on Rails, Docker, and PostgreSQL, and I'm learning a lot from the senior development team. I'm collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps."
+      "RESUME_1": "Allocated to a U.S.-based client at Fullstack Labs, contributing to the development and maintenance of their flagship product. I work closely with a senior team to implement thoughtful and consistent user experiences across web and mobile platforms.",
+      "RESUME_2": "Developing new features and enhancing existing ones using Vue, Nuxt, Vuetify, Ruby on Rails, PostgreSQL, and Docker, while collaborating in an Agile environment with active participation in SCRUM ceremonies.",
+      "RESUME_3": "Implemented and integrated a fully containerized CI testing pipeline using Docker, enabling automated end-to-end tests with Jest, Cypress, and RSpec—ensuring code reliability and stability across environments."
     }
   },
   "CONTACT": {
