@@ -42,6 +42,11 @@
       "RESUME_1": "Alocado em um cliente dos Estados Unidos pela Fullstack Labs, contribuindo para o desenvolvimento e manutenção do principal produto da empresa. Trabalho em colaboração com um time sênior para implementar experiências de usuário consistentes e bem pensadas nas plataformas web e mobile.",
       "RESUME_2": "Desenvolvendo novas funcionalidades e aprimorando as existentes utilizando tecnologias como Vue, Nuxt, Vuetify, Ruby on Rails, PostgreSQL e Docker, colaborando em um ambiente ágil com participação ativa em cerimônias SCRUM.",
       "RESUME_3": "Implementei e integrei um pipeline de testes totalmente containerizado em ambiente de CI com Docker, permitindo testes automatizados end-to-end com Jest, Cypress e RSpec — garantindo confiabilidade e estabilidade do código em diferentes ambientes."
+    },
+    "HIPEOPLE": {
+      "RESUME_1": "Colaborei com uma equipe internacional para construir soluções de Inteligência de Contratação baseadas em IA, incluindo Triagem por Voz/Currículo, Avaliações e Verificação de Referências usando APIs OpenAI, NLP e pipelines baseados em LLM.",
+      "RESUME_2": "Arquitetei sistemas escaláveis com React, Next.js e Go (Echo). Implementei CI/CD, automação Vitest e ambientes Dockerizados para processos eficientes de desenvolvimento e implantação.",
+      "RESUME_3": "Desenvolvi integrações de IA em tempo real via OpenAI Realtime Conversations, trabalhando sob fluxo de trabalho Ágil/Linear para entregar soluções de contratação de ponta que aproveitam o mais recente em tecnologia de inteligência artificial."
     }
   },
   "CONTACT": {
