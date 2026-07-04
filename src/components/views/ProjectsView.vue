@@ -43,14 +43,14 @@
       name: 'JSON Searcher',
       description: $t('PROJECTS.JSON_SEARCHER'),
       stack: ['Typescript', 'VSCode API'],
-      image: 'https://github-production-user-asset-6210df.s3.amazonaws.com/57161520/254410881-7a6b8067-167d-4b9c-b324-5eef96fd35db.gif'
+      video: '/images/json_searcher.mp4'
     },
     {
       name: 'Site Construsausen',
       description: $t('PROJECTS.CONSTRUSAUSEN'),
       stack: ['Vue', 'Typescript', 'SCSS'],
-      srcset: '/images/construsausen_w_200.webp 200w, /images/construsausen_w_667.webp 667w, /images/construsausen_w_954.webp 954w, /images/construsausen_w_1293.webp 1293w, /images/construsausen_w_1400.webp 1400w',
-      image: '/images/construsausen_w_1400.webp',
+      srcset: '/images/construsausen_w_200.webp 200w, /images/construsausen_w_667.webp 667w, /images/construsausen_w_954.webp 954w',
+      image: '/images/construsausen_w_954.webp',
       scroll: true,
     },
     {
@@ -58,7 +58,7 @@
       name: 'Wpp Web Hide Chats Tools',
       description: $t('PROJECTS.WW_HIDE_CHATS_TOOLS'),
       stack: ['Javascript', 'Google Chrome API'],
-      image: '/images/ww_hide_chats_tools.gif',
+      video: '/images/ww_hide_chats_tools.mp4',
     },
   ]);
 

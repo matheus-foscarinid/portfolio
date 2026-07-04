@@ -3,8 +3,20 @@
     class="featured-project-card"
     :class="{ 'reverse': reverse }"
   >
+    <video
+      v-if="project.video"
+      class="project-image"
+      :src="project.video"
+      autoplay
+      loop
+      muted
+      playsinline
+      preload="metadata"
+      @click="openProjectLink"
+    />
+
     <div
-      v-if="project.scroll" 
+      v-else-if="project.scroll"
       class="scroll-image-container"
     >
       <img
@@ -12,6 +24,7 @@
         :srcset="project.srcset"
         :src="project.image"
         alt="Project Image"
+        loading="lazy"
         @click="openProjectLink"
       >
     </div>
@@ -21,6 +34,7 @@
       class="project-image"
       :src="project.image"
       alt="Project Image"
+      loading="lazy"
       @click="openProjectLink"
     />
 
@@ -129,7 +143,7 @@
 
     .project-image {
       border-radius: 15px;
-      background-size: cover;
+      object-fit: cover;
       width: 30rem;
       aspect-ratio: 16/9;
       cursor: pointer;
