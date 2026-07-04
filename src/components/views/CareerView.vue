@@ -1,7 +1,10 @@
 <template>
   <section id="career">
     <div class="container">
-      <h2>{{ $t('CAREER.TITLE') }}</h2>
+      <header class="section-heading">
+        <span class="marker" aria-hidden="true"></span>
+        <h2>{{ $t('CAREER.TITLE') }}</h2>
+      </header>
 
       <div class="places-container">
         <div class="buttons-container">
@@ -47,22 +50,6 @@ import { useI18n } from 'vue-i18n'
 import { reveal, onReveal, EASE } from '@/composables/useReveal'
 
 const { t: $t } = useI18n()
-
-const currentPlaceIndex = ref(0)
-const currentPlace = computed(() => placesTimeline[currentPlaceIndex.value] || {})
-
-const selectedMarkerStyle = computed(() => {
-  // If is mobile
-  if (window.innerWidth <= 768) {
-    return {
-      left: `${currentPlaceIndex.value * (100 / placesTimeline.length)}%`
-    }
-  }
-
-  return {
-    top: `${currentPlaceIndex.value * (100 / placesTimeline.length)}%`
-  }
-})
 
 const placesTimeline = [
   {
@@ -115,20 +102,28 @@ const placesTimeline = [
   }
 ]
 
+const currentPlaceIndex = ref(placesTimeline.length - 1)
+
+const currentPlace = computed(() => placesTimeline[currentPlaceIndex.value] || {})
+
+const selectedMarkerStyle = computed(() => ({
+  top: `${currentPlaceIndex.value * (100 / placesTimeline.length)}%`
+}))
+
 const setPlaceAsActive = (index) => {
   currentPlaceIndex.value = index
 }
 
 const animateElement = () => {
-  const title = document.querySelector('#career h2')
+  const heading = document.querySelectorAll('#career .section-heading > *')
   const placesButtons = document.querySelectorAll('.buttons-container > *')
   const placeInfos = document.querySelectorAll('.active-place-content > *')
 
   reveal(
-    title,
+    heading,
     { opacity: 0, y: 50, blur: 2 },
     { opacity: 1, y: 0, blur: 0 },
-    { duration: 500, easing: EASE.outBack }
+    { duration: 500, stagger: 80, easing: EASE.outBack }
   )
 
   reveal(
@@ -146,7 +141,12 @@ const animateElement = () => {
   )
 }
 
-onMounted(() => onReveal('#career .container', animateElement))
+onMounted(() => {
+  onReveal('#career .container', animateElement)
+
+  const activeChip = document.querySelector('#career .buttons-container button.active')
+  if (activeChip) activeChip.scrollIntoView({ block: 'nearest', inline: 'center' })
+})
 </script>
 
 <style lang="scss" scoped>
@@ -156,32 +156,22 @@ onMounted(() => onReveal('#career .container', animateElement))
   justify-content: center;
   flex-direction: column;
 
-  h2 {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--secondary-text);
+  .section-heading {
+    margin-bottom: 2.5rem;
 
-    &::before {
-      content: '';
+    .marker {
       display: block;
-      position: relative;
-      width: 50px;
-      height: 1px;
-      margin-right: 20px;
-      background-color: var(--default-border);
+      width: 2.5rem;
+      height: 3px;
+      background-color: var(--accent);
+      margin-bottom: 1rem;
     }
 
-    &::after {
-      content: '';
-      display: block;
-      position: relative;
-      width: 100%;
-      height: 1px;
-      margin-left: 20px;
-      background-color: var(--default-border);
+    h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0;
     }
   }
 
@@ -191,7 +181,6 @@ onMounted(() => onReveal('#career .container', animateElement))
     align-items: start;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-top: 2rem;
 
     & .buttons-container {
       display: flex;
@@ -201,31 +190,34 @@ onMounted(() => onReveal('#career .container', animateElement))
       button {
         margin: 0;
         margin-left: 1px;
-        padding: 1rem;
+        padding: 0.85rem 1.25rem;
         border: 0;
         border-left: 1px solid var(--default-border);
         background: transparent;
-        color: var(--default-text);
+        color: var(--secondary-text);
         cursor: pointer;
         transition: all 0.2s ease-in-out;
-        font-size: 1rem;
-        font-weight: 600;
-        border-radius: 0 0.5rem 0.5rem 0;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-align: left;
+        white-space: nowrap;
 
         &:hover {
-          background-color: var(--default-border);
+          color: var(--default-text);
+          background-color: color-mix(in srgb, var(--accent) 10%, transparent);
         }
 
         &.active {
-          background-color: var(--default-border) !important;
-          color: var(--highlight);
+          color: var(--default-text);
+          font-weight: 700;
         }
       }
 
       .current-selected-marker {
-        width: 3px;
+        width: 2px;
         height: calc(100% / 6);
-        background-color: var(--highlight);
+        background-color: var(--accent);
         position: absolute;
         left: 0;
         top: 0;
@@ -238,16 +230,16 @@ onMounted(() => onReveal('#career .container', animateElement))
       flex: 1;
       display: flex;
       flex-direction: column;
-      padding: 0 2rem;
+      padding: 0 2.5rem;
       height: 350px;
 
       & .title {
-        font-size: 1.5rem;
-        font-weight: 600;
+        font-size: 1.4rem;
+        font-weight: 700;
 
         & .place-name {
-          color: var(--default-text);
-          font-weight: 600;
+          color: var(--accent);
+          font-weight: 700;
           text-decoration: none;
           transition: all 0.2s ease-in-out;
 
@@ -256,10 +248,10 @@ onMounted(() => onReveal('#career .container', animateElement))
             position: absolute;
             width: 100%;
             transform: scaleX(0);
-            height: 3px;
-            bottom: 0px;
+            height: 2px;
+            bottom: -2px;
             left: 0;
-            background: var(--default-text);
+            background: var(--accent);
             transform-origin: bottom right;
             transition: transform 0.25s ease-out;
           }
@@ -272,21 +264,25 @@ onMounted(() => onReveal('#career .container', animateElement))
       }
 
       & .period {
-        font-size: 1rem;
-        color: var(--default-text);
-        margin-bottom: 1rem;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.85rem;
+        color: var(--secondary-text);
+        margin-top: 0.4rem;
+        margin-bottom: 1.5rem;
       }
 
       & .description {
         font-size: 1rem;
-        color: var(--default-text);
-        line-height: 1.5rem;
-        text-align: justify;
+        color: var(--secondary-text);
+        line-height: 1.7;
         max-width: 800px;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-        list-style-type: circle;
+        gap: 0.75rem;
+        padding-left: 1.1rem;
+        list-style-type: square;
+
+        li::marker { color: var(--accent); }
       }
     }
   }
@@ -294,39 +290,49 @@ onMounted(() => onReveal('#career .container', animateElement))
 
 @media (max-width: 768px) {
   #career {
+    .section-heading { margin-bottom: 1.5rem; }
+
+    .container { min-width: 0; }
+
     .places-container {
-      display: flex;
       flex-direction: column;
+      align-items: stretch;
+      min-width: 0;
+      gap: 1.75rem;
 
       & .buttons-container {
         flex-direction: row;
-        width: 100%;
+        width: calc(100vw - 2.4rem);
+        max-width: calc(100vw - 2.4rem);
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar { display: none; }
+
+        .current-selected-marker { display: none; }
 
         button {
-          width: calc(100% / 6);
-          border: none;
-          border-top: 1px solid var(--default-border);
-          padding: 0.5rem 0.25rem;
-          border-radius: 0 0 0.5rem 0.5rem;
-        }
-      }
+          flex: 0 0 auto;
+          width: auto;
+          margin-left: 0;
+          border: 1px solid var(--default-border);
+          border-radius: 2rem;
+          padding: 0.5rem 1rem;
+          white-space: nowrap;
 
-      & .current-selected-marker {
-        height: 3px !important;
-        width: calc(100% / 6) !important;
+          &.active {
+            color: var(--accent);
+            border-color: var(--accent);
+            background-color: color-mix(in srgb, var(--accent) 12%, transparent);
+          }
+        }
       }
 
       & .active-place-content {
+        height: auto;
         padding: 0 !important;
-
-        .title,
-        .period {
-          text-align: center;
-        }
-      }
-
-      ul {
-        padding: 0.5rem;
       }
     }
   }
