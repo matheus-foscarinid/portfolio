@@ -1,7 +1,10 @@
 <template>
   <section id="contact">
     <div class="container">
-      <h2>{{ $t('CONTACT.TITLE')}}</h2>
+      <header class="section-heading">
+        <span class="marker" aria-hidden="true"></span>
+        <h2>{{ $t('CONTACT.TITLE') }}</h2>
+      </header>
 
       <div class="contact-cards">
         <ContactCard
@@ -26,41 +29,45 @@
   const contacts = computed(() => [
     {
       icon: 'fa-solid fa-envelope',
+      label: 'Email',
       text: 'matheus.foscarinid@gmail.com',
       link: 'mailto:matheus.foscarinid@gmail.com'
     },
     {
       icon: 'fa-brands fa-github',
+      label: 'GitHub',
       text: 'matheus-foscarinid',
       link: 'https://github.com/matheus-foscarinid'
     },
     {
       icon: 'fa-brands fa-linkedin',
+      label: 'LinkedIn',
       text: 'Matheus Foscarini Dias',
       link: 'https://linkedin.com/in/matheus-foscarinid/'
     },
     {
       customIcon: LeetCodeIcon,
+      label: 'LeetCode',
       text: 'Matheus Foscarini Dias',
       link: 'https://leetcode.com/matheus-foscarinid/'
     },
   ]);
 
   const animateElement = () => {
-    const title = document.querySelector('#contact h2');
+    const heading = document.querySelectorAll('#contact .section-heading > *');
     const contactCards = document.querySelectorAll('.contact-cards > *');
 
     reveal(
-      title,
+      heading,
       { opacity: 0, y: 50, blur: 2 },
       { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, delay: 350, easing: EASE.outBack }
+      { duration: 500, stagger: 80, delay: 350, easing: EASE.outBack }
     );
 
     reveal(
       contactCards,
-      { opacity: 0, x: -50, blur: 2 },
-      { opacity: 1, x: 0, blur: 0 },
+      { opacity: 0, y: 30, blur: 2 },
+      { opacity: 1, y: 0, blur: 0 },
       { duration: 500, stagger: 100, delay: 500 }
     );
   };
@@ -75,61 +82,35 @@
     justify-content: center;
     flex-direction: column;
 
-    h2 {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--secondary-text);
-      opacity: 0;
+    .section-heading {
+      margin-bottom: 2.5rem;
 
-      &::before {
-        content: '';
+      .marker {
         display: block;
-        position: relative;
-        width: 50px;
-        height: 1px;
-        margin-right: 20px;
-        background-color: var(--default-border);
+        width: 2.5rem;
+        height: 3px;
+        background-color: var(--accent);
+        margin-bottom: 1rem;
       }
-      &::after {
-        content: '';
-        display: block;
-        position: relative;
-        width: 530px;
-        height: 1px;
-        margin-left: 20px;
-        background-color: var(--default-border);
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0;
       }
     }
 
     .contact-cards {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
   }
 
   @media (max-width: 768px) {
-    #contact {
-      h2 {
-        &::before, &::after {
-          width: 50%;
-        }
-      }
-
-      .contact-card {
-        padding: 1rem;
-
-        & .text {
-          font-size: 1rem;
-        }
-
-        & .icon {
-          margin-right: 0;
-        }
-      }
+    #contact .contact-cards {
+      grid-template-columns: 1fr;
     }
   }
 </style>

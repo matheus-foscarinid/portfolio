@@ -1,16 +1,21 @@
 <template>
   <footer>
     <div class="texts">
+      <span class="logo">matheusdias<span class="dev">.dev</span></span>
       <span class="author">{{ $t('FOOTER.AUTHOR') }}</span>
       <span class="copyright">{{ $t('FOOTER.COPYRIGHT') }}</span>
     </div>
 
     <div class="icons">
-      <font-awesome-icon 
+      <font-awesome-icon
+        icon="fa-solid fa-envelope"
+        @click="openEmail"
+      />
+      <font-awesome-icon
         icon="fa-brands fa-linkedin"
         @click="openLinkedin"
       />
-      <font-awesome-icon 
+      <font-awesome-icon
         icon="fa-brands fa-github"
         @click="openGithub"
       />
@@ -19,6 +24,10 @@
 </template>
 
 <script setup>
+  const openEmail = () => {
+    window.open('mailto:matheus.foscarinid@gmail.com', '_blank');
+  };
+
   const openLinkedin = () => {
     window.open('https://linkedin.com/in/matheus-foscarinid/', '_blank');
   };
@@ -30,50 +39,56 @@
 
 <style lang="scss" scoped>
   footer {
+    --footer-fg: #fbf1c7;
+
     width: 100%;
-    padding: 3rem;
+    padding: 2.5rem 3rem;
     background-color: var(--dark-background);
-    color: var(--text-default);
+    border-top: 2px solid var(--accent);
     display: flex;
     justify-content: space-between;
-    
+    align-items: center;
+
     .texts {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      .author {
-        font-size: 1.2rem;
-        font-weight: 400;
-        line-height: 1.5;
-        text-align: center;
-        text-align: start;
-        color: var(--default-border);
+      gap: 0.35rem;
+
+      .logo {
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        color: var(--footer-fg);
+
+        .dev { color: var(--accent); }
       }
-  
+
+      .author {
+        font-size: 0.95rem;
+        color: color-mix(in srgb, #fbf1c7 78%, transparent);
+      }
+
       .copyright {
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        text-align: center;
-        text-align: start;
-        color: var(--disabled-text);
+        font-family: 'Fira Code', monospace;
+        font-size: 0.78rem;
+        color: color-mix(in srgb, #fbf1c7 45%, transparent);
       }
     }
 
     .icons {
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 1rem;
-      font-size: 1.75rem;
-      color: var(--default-border);
+      gap: 1.25rem;
+      font-size: 1.5rem;
+      color: color-mix(in srgb, #fbf1c7 70%, transparent);
 
       svg {
-        transition: color 0.3s ease-in-out;
+        transition: color 0.25s ease, transform 0.25s ease;
         cursor: pointer;
 
         &:hover {
-          color: var(--details-background);
+          color: var(--accent);
+          transform: translateY(-2px);
         }
       }
     }
@@ -82,7 +97,9 @@
   @media (max-width: 768px) {
     footer {
       flex-direction: column;
-      gap: 1rem;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 2rem 1.5rem;
     }
   }
 </style>

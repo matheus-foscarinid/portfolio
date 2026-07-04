@@ -1,91 +1,117 @@
 <template>
-  <div 
+  <a
     class="contact-card"
-    :class="props.contact.link ? 'hoverable' : ''"
-    @click="openLink(props.contact.link)"
+    :class="{ hoverable: props.contact.link }"
+    :href="props.contact.link || undefined"
+    :target="props.contact.link ? '_blank' : undefined"
+    rel="noopener"
   >
-    <div 
-      v-if="contact.icon"
-      class="icon"
-    >
-      <font-awesome-icon :icon="props.contact.icon" />
-    </div>
-
-    <div 
-      v-else
-    >
-      <!-- pass customIcon as a custom component name  -->
-      <component 
+    <div class="icon">
+      <font-awesome-icon
+        v-if="contact.icon"
+        :icon="props.contact.icon"
+      />
+      <component
+        v-else
         :is="props.contact.customIcon"
-        class="icon"
       />
     </div>
 
-    <span class="text">
-      {{ props.contact.text }}
-    </span>
-  </div>
+    <div class="info">
+      <span class="label">{{ props.contact.label }}</span>
+      <span class="text">{{ props.contact.text }}</span>
+    </div>
+
+    <font-awesome-icon
+      v-if="props.contact.link"
+      class="arrow"
+      icon="fa-solid fa-arrow-right"
+    />
+  </a>
 </template>
 
 <script setup>
   const props = defineProps(['contact']);
-
-  const openLink = (link) => {
-    if (!link) return;
-
-    window.open(link, '_blank');
-  };
 </script>
 
 <style lang="scss" scoped>
   .contact-card {
-    width: 100%;
     display: flex;
-    padding: 1rem 1.5rem;
-    border-radius: 15px;
-    transition: all 0.3s ease-in-out;
-    background: var(--secondary-background);
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.35rem;
+    border-radius: 0.85rem;
+    border: 1px solid var(--default-border);
+    background: var(--details-background);
+    text-decoration: none;
     opacity: 0;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 
     &.hoverable {
       cursor: pointer;
 
       &:hover {
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        transform: scale(1.01) translateY(-0.1rem) !important;
+        transform: translateY(-3px);
+        border-color: var(--accent);
+        box-shadow: 0 0.75rem 1.5rem color-mix(in srgb, var(--accent) 14%, transparent);
 
-        & .icon {
-          box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-          transform: scale(1.05);
-          background: var(--details-background);
-        }
+        .icon { color: var(--accent); border-color: var(--accent); }
+        .arrow { color: var(--accent); transform: translateX(3px); }
       }
     }
 
-    & .icon {
+    .icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 60px;
-      height: 60px;
-      padding: 1rem;
-      margin-right: 1rem;
+      flex: 0 0 auto;
+      width: 2.75rem;
+      height: 2.75rem;
+      padding: 0.7rem;
       border-radius: 50%;
-      transition: all 0.3s ease-in-out;
+      border: 1px solid var(--default-border);
       color: var(--secondary-text);
+      transition: all 0.25s ease;
 
-      svg {
-        width: 100%;
-        height: 100%;
+      svg { width: 100%; height: 100%; }
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 0;
+
+      .label {
+        font-family: 'Fira Code', monospace;
+        font-size: 0.72rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--disabled-text);
+      }
+
+      .text {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--default-text);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
 
-    & .text {
-      display: flex;
-      align-items: center;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--secondary-text);
+    .arrow {
+      margin-left: auto;
+      color: var(--disabled-text);
+      transition: all 0.25s ease;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-card {
+      padding: 1rem;
+
+      .info .text { font-size: 0.95rem; }
     }
   }
 </style>
