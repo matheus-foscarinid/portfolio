@@ -28,13 +28,12 @@
 </template>
 
 <script setup>
-  import { gsap } from 'gsap';
-
   import { computed, onMounted } from 'vue';
   import { useI18n } from 'vue-i18n';
 
   import FeaturedProjectCard from '@/components/cards/FeaturedProjectCard.vue';
   import ProjectCard from '@/components/cards/ProjectCard.vue';
+  import { reveal, onReveal, EASE } from '@/composables/useReveal';
   
   const { t: $t } = useI18n();
   const featuredProjects = computed(() => [
@@ -65,47 +64,34 @@
 
   const projects = [];
 
-  const addObserverOnScroll = () => {
-    const observer = new IntersectionObserver((entries, self) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateElement();
-          self.unobserve(entry.target);
-        }
-      });
-    });
+  const animateElement = () => {
+    const title = document.querySelector('#projects h2');
+    const featuredCards = document.querySelectorAll('.featured-project-cards > *');
+    const message = document.querySelector('.coming-soon-message');
 
-    const target = document.querySelector('#projects .container');
-    observer.observe(target)
+    reveal(
+      title,
+      { opacity: 0, y: 50, blur: 2 },
+      { opacity: 1, y: 0, blur: 0 },
+      { duration: 500, delay: 350, easing: EASE.outBack }
+    );
 
-    function animateElement() {
-      const tl = gsap.timeline();
+    reveal(
+      featuredCards,
+      { opacity: 0, y: 75, blur: 2 },
+      { opacity: 1, y: 0, blur: 0 },
+      { duration: 500, stagger: 250, delay: 500 }
+    );
 
-      const title = document.querySelector('#projects h2');
-      const featuredCards = document.querySelectorAll('.featured-project-cards > *');
-      const message = document.querySelector('.coming-soon-message');
-
-      gsap.fromTo(
-        title, 
-        { opacity: 0, y: 50, filter: 'blur(2px)' }, 
-        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)', delay: .35 }
-      );
-
-      tl.fromTo(
-        featuredCards, 
-        { opacity: 0, y: 75, filter: 'blur(2px)' }, 
-        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', stagger: .25, delay: .5 }
-      );
-
-      gsap.fromTo(
-        message, 
-        { opacity: 0, y: 75, filter: 'blur(2px)' }, 
-        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', delay: .5 }
-      );
-    }
+    reveal(
+      message,
+      { opacity: 0, y: 75, blur: 2 },
+      { opacity: 1, y: 0, blur: 0 },
+      { duration: 500, delay: 500 }
+    );
   };
 
-  onMounted(addObserverOnScroll);
+  onMounted(() => onReveal('#projects .container', animateElement));
 </script>
 
 <style lang="scss" scoped>

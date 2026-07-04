@@ -15,11 +15,10 @@
 </template>
 
 <script setup>
-  import { gsap } from 'gsap';
-
   import { computed, onMounted } from 'vue';
   import ContactCard from '@/components/cards/ContactCard.vue';
   import LeetCodeIcon from '@/assets/svgs/leetcode-icon.vue';
+  import { reveal, onReveal, EASE } from '@/composables/useReveal';
 
   import { useI18n } from 'vue-i18n';
   const { t: $t } = useI18n();
@@ -47,40 +46,26 @@
     },
   ]);
 
-  const addObserverOnScroll = () => {
-    const observer = new IntersectionObserver((entries, self) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateElement();
-          self.unobserve(entry.target);
-        }
-      });
-    });
+  const animateElement = () => {
+    const title = document.querySelector('#contact h2');
+    const contactCards = document.querySelectorAll('.contact-cards > *');
 
-    const target = document.querySelector('#contact .container');
-    observer.observe(target)
+    reveal(
+      title,
+      { opacity: 0, y: 50, blur: 2 },
+      { opacity: 1, y: 0, blur: 0 },
+      { duration: 500, delay: 350, easing: EASE.outBack }
+    );
 
-    function animateElement() {
-      const tl = gsap.timeline();
-
-      const title = document.querySelector('#contact h2');
-      const contactCards = document.querySelectorAll('.contact-cards > *');
-
-      gsap.fromTo(
-        title, 
-        { opacity: 0, y: 50, filter: 'blur(2px)' }, 
-        { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)', delay: .35 }
-      );
-
-      tl.fromTo(
-        contactCards, 
-        { opacity: 0, x: -50, filter: 'blur(2px)' }, 
-        { opacity: 1, x: 0, duration: .5, filter: 'blur(0px)', stagger: .1, delay: .5 }
-      );
-    }
+    reveal(
+      contactCards,
+      { opacity: 0, x: -50, blur: 2 },
+      { opacity: 1, x: 0, blur: 0 },
+      { duration: 500, stagger: 100, delay: 500 }
+    );
   };
 
-  onMounted(addObserverOnScroll);
+  onMounted(() => onReveal('#contact .container', animateElement));
 </script>
 
 <style lang="scss">

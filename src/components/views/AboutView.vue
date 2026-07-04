@@ -26,10 +26,10 @@
 </template>
 
 <script setup>
-import { gsap } from 'gsap';
 import { onMounted } from 'vue';
 
 import StackCard from '@/components/cards/StackCard.vue';
+import { reveal, onReveal, EASE } from '@/composables/useReveal';
 
 const stacks = [
   { name: 'html5', type: 'original'},
@@ -47,47 +47,34 @@ const stacks = [
   { name: 'graphql', type: 'plain'},
 ];
 
-const addObserverOnScroll = () => {
-  const observer = new IntersectionObserver((entries, self) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateElement();
-        self.unobserve(entry.target);
-      }
-    });
-  });
+const animateElement = () => {
+  const texts = document.querySelectorAll('.summary > *');
+  const stackCards = document.querySelectorAll('.stacks-container > *');
+  const title = document.querySelector('#about h2');
 
-  const target = document.querySelector('#about');
-  observer.observe(target)
+  reveal(
+    title,
+    { opacity: 0, y: 50, blur: 2 },
+    { opacity: 1, y: 0, blur: 0 },
+    { duration: 500, easing: EASE.outBack }
+  );
 
-  function animateElement() {
-    const tl = gsap.timeline();
+  reveal(
+    texts,
+    { opacity: 0, y: 50, blur: 2 },
+    { opacity: 1, y: 0, blur: 0 },
+    { duration: 500, stagger: 100, delay: 350, easing: EASE.outBack }
+  );
 
-    const texts = document.querySelectorAll('.summary > *');
-    const stackCards = document.querySelectorAll('.stacks-container > *');
-    const title = document.querySelector('#about h2');
-
-    gsap.fromTo(
-      title, 
-      { opacity: 0, y: 50, filter: 'blur(2px)' }, 
-      { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', ease: 'back.out(1.4)' }
-    );
-
-    tl.fromTo(
-      texts, 
-      { opacity: 0, y: 50, filter: 'blur(2px)' }, 
-      { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', stagger: .1, ease: 'back.out(1.4)', delay: .35 }
-    );
-
-    gsap.fromTo(
-      stackCards,
-      { opacity: 0, y: 20 }, 
-      { opacity: 1, y: 0, duration: .5, stagger: .1, delay: .35 }
-    );
-  }
+  reveal(
+    stackCards,
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0 },
+    { duration: 500, stagger: 100, delay: 350 }
+  );
 };
 
-onMounted(addObserverOnScroll);
+onMounted(() => onReveal('#about', animateElement));
 
 </script>
 

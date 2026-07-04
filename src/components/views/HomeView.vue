@@ -22,47 +22,33 @@
 </template>
 
 <script setup>
-import gsap from 'gsap';
-
 import i18n from '../../i18n';
 import MyPhoto from '../home/MyPhoto.vue';
 import TypedPresentation from '../home/TypedPresentation.vue';
 
 import { onMounted } from 'vue';
+import { reveal, onReveal, EASE } from '@/composables/useReveal';
 
-const addObserverOnScroll = () => {
-  const observer = new IntersectionObserver((entries, self) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateElement();
-        self.unobserve(entry.target);
-      }
-    });
-  });
+const animateElement = () => {
+  const photo = document.querySelector('.my-photo');
+  const texts = document.querySelectorAll('.presentation-container > *');
 
-  const target = document.querySelector('#home');
-  observer.observe(target)
+  reveal(
+    texts,
+    { opacity: 0, y: 50, blur: 2, scale: .9 },
+    { opacity: 1, y: 0, blur: 0, scale: 1 },
+    { duration: 500, stagger: 100 }
+  );
 
-  function animateElement() {
-    const photo = document.querySelector('.my-photo');
-    const texts = document.querySelectorAll('.presentation-container > *');
-    const tl = gsap.timeline();
-
-    tl.fromTo(
-      texts, 
-      { opacity: 0, y: 50, filter: 'blur(2px)', scale: .9 }, 
-      { opacity: 1, y: 0, duration: .5, filter: 'blur(0px)', stagger: .1, scale: 1 }
-    );
-
-    gsap.fromTo(
-      photo, 
-      { opacity: 0, x: -90, filter: 'blur(2px)', scale: .9 }, 
-      { opacity: 1, x: 0, duration: 1.5, delay: .5, filter: 'blur(0px)', ease: 'expo.out(2)', scale: 1 }
-    );
-  }
+  reveal(
+    photo,
+    { opacity: 0, x: -90, blur: 2, scale: .9 },
+    { opacity: 1, x: 0, blur: 0, scale: 1 },
+    { duration: 1500, delay: 500, easing: EASE.outExpo }
+  );
 };
 
-onMounted(addObserverOnScroll);
+onMounted(() => onReveal('#home', animateElement));
 
 const viewCV = () => {
   const PT_CV_PATH = '/dias-matheus-cv.pdf';

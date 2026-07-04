@@ -42,10 +42,9 @@
 </template>
 
 <script setup>
-import { gsap } from 'gsap'
-
 import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { reveal, onReveal, EASE } from '@/composables/useReveal'
 
 const { t: $t } = useI18n()
 
@@ -120,47 +119,34 @@ const setPlaceAsActive = (index) => {
   currentPlaceIndex.value = index
 }
 
-const addObserverOnScroll = () => {
-  const observer = new IntersectionObserver((entries, self) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        animateElement()
-        self.unobserve(entry.target)
-      }
-    })
-  })
+const animateElement = () => {
+  const title = document.querySelector('#career h2')
+  const placesButtons = document.querySelectorAll('.buttons-container > *')
+  const placeInfos = document.querySelectorAll('.active-place-content > *')
 
-  const target = document.querySelector('#career .container')
-  observer.observe(target)
+  reveal(
+    title,
+    { opacity: 0, y: 50, blur: 2 },
+    { opacity: 1, y: 0, blur: 0 },
+    { duration: 500, easing: EASE.outBack }
+  )
 
-  function animateElement() {
-    const tl = gsap.timeline()
+  reveal(
+    placesButtons,
+    { opacity: 0, x: -50, blur: 2 },
+    { opacity: 1, x: 0, blur: 0 },
+    { duration: 500, stagger: 100 }
+  )
 
-    const title = document.querySelector('#career h2')
-    const placesButtons = document.querySelectorAll('.buttons-container > *')
-    const placeInfos = document.querySelectorAll('.active-place-content > *')
-
-    gsap.fromTo(
-      title,
-      { opacity: 0, y: 50, filter: 'blur(2px)', transition: 'none' },
-      { opacity: 1, y: 0, duration: 0.5, filter: 'blur(0px)', ease: 'back.out(1.4)' }
-    )
-
-    tl.fromTo(
-      placesButtons,
-      { opacity: 0, x: -50, filter: 'blur(2px)', transition: 'none' },
-      { opacity: 1, x: 0, duration: 0.5, filter: 'blur(0px)', stagger: 0.1 }
-    )
-
-    gsap.fromTo(
-      placeInfos,
-      { opacity: 0, y: 20, transition: 'none' },
-      { opacity: 1, y: 0, duration: 0.5, stagger: 0.1 }
-    )
-  }
+  reveal(
+    placeInfos,
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0 },
+    { duration: 500, stagger: 100 }
+  )
 }
 
-onMounted(addObserverOnScroll)
+onMounted(() => onReveal('#career .container', animateElement))
 </script>
 
 <style lang="scss" scoped>
