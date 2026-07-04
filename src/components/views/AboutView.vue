@@ -1,7 +1,11 @@
 <template>
   <section id="about">
     <div class="container">
-      <h2>{{ $t('ABOUT.TITLE') }}</h2>
+      <header class="section-heading">
+        <span class="marker" aria-hidden="true"></span>
+        <h2>{{ $t('ABOUT.TITLE') }}</h2>
+      </header>
+
       <div class="content-containers">
         <div class="summary">
           <p v-html="$t('ABOUT.SUMMARY_1')" />
@@ -11,12 +15,14 @@
         </div>
 
         <div class="tech-stack">
+          <span class="stack-label">{{ $t('ABOUT.STACK_TITLE') }}</span>
           <div class="stacks-container">
-            <StackCard 
+            <StackCard
               v-for="stack in stacks"
               :key="stack.name"
               :name="stack.name"
               :type="stack.type"
+              :label="stack.label"
             />
           </div>
         </div>
@@ -32,31 +38,33 @@ import StackCard from '@/components/cards/StackCard.vue';
 import { reveal, onReveal, EASE } from '@/composables/useReveal';
 
 const stacks = [
-  { name: 'html5', type: 'original'},
-  { name: 'css3', type: 'original'},
-  { name: 'javascript', type: 'original'},
-  { name: 'typescript', type: 'original'},
-  { name: 'ruby', type: 'original'},
-  { name: 'rails', type: 'original-wordmark'},
-  { name: 'vuejs', type: 'original'},
-  { name: 'nodejs', type: 'original'},
-  { name: 'python', type: 'original'},
-  { name: 'mysql', type: 'original'},
-  { name: 'docker', type: 'original'},
-  { name: 'git', type: 'original'},
-  { name: 'graphql', type: 'plain'},
+  { name: 'html5', type: 'original', label: 'HTML5' },
+  { name: 'css3', type: 'original', label: 'CSS3' },
+  { name: 'javascript', type: 'original', label: 'JavaScript' },
+  { name: 'go', type: 'original', label: 'Go' },
+  { name: 'typescript', type: 'original', label: 'TypeScript' },
+  { name: 'ruby', type: 'original', label: 'Ruby' },
+  { name: 'rails', type: 'original-wordmark', label: 'Rails' },
+  { name: 'vuejs', type: 'original', label: 'Vue.js' },
+  { name: 'react', type: 'original', label: 'React' },
+  { name: 'nodejs', type: 'original', label: 'Node.js' },
+  { name: 'python', type: 'original', label: 'Python' },
+  { name: 'mysql', type: 'original', label: 'MySQL' },
+  { name: 'docker', type: 'original', label: 'Docker' },
+  { name: 'git', type: 'original', label: 'Git' },
+  { name: 'graphql', type: 'plain', label: 'GraphQL' },
 ];
 
 const animateElement = () => {
   const texts = document.querySelectorAll('.summary > *');
   const stackCards = document.querySelectorAll('.stacks-container > *');
-  const title = document.querySelector('#about h2');
+  const heading = document.querySelectorAll('#about .section-heading > *');
 
   reveal(
-    title,
+    heading,
     { opacity: 0, y: 50, blur: 2 },
     { opacity: 1, y: 0, blur: 0 },
-    { duration: 500, easing: EASE.outBack }
+    { duration: 500, stagger: 80, easing: EASE.outBack }
   );
 
   reveal(
@@ -86,78 +94,64 @@ onMounted(() => onReveal('#about', animateElement));
   flex-direction: column;
   background: var(--secondary-background);
 
-  h2 {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--secondary-text);
+  .section-heading {
+    margin-bottom: 2rem;
 
-    &::before {
-      content: '';
+    .marker {
       display: block;
-      position: relative;
-      width: 50px;
-      height: 1px;
-      margin-right: 20px;
-      background-color: var(--default-border);
+      width: 2.5rem;
+      height: 3px;
+      background-color: var(--accent);
+      margin-bottom: 1rem;
     }
-    &::after {
-      content: '';
-      display: block;
-      position: relative;
-      width: 530px;
-      height: 1px;
-      margin-left: 20px;
-      background-color: var(--default-border);
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0;
     }
   }
 
   .content-containers {
     display: flex;
     gap: 3rem;
+    align-items: flex-start;
 
     .summary {
-      max-width: 700px;
+      flex: 1.4;
+      max-width: 62ch;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.75rem;
+      color: var(--secondary-text);
+      line-height: 1.75;
     }
 
     .tech-stack {
-      .stacks-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
+      flex: 1;
 
-      h3 {
-        display: flex;
+      .stack-label {
+        display: inline-flex;
         align-items: center;
-        font-size: 1.5rem;
-        font-weight: 700;
+        gap: 0.75rem;
         margin-bottom: 1rem;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.9rem;
         color: var(--secondary-text);
 
         &::before {
           content: '';
-          display: block;
-          position: relative;
-          width: 120px;
-          height: 1px;
-          margin-right: 20px;
-          background-color: var(--default-border);
+          width: 1.5rem;
+          height: 2px;
+          background-color: var(--accent);
         }
-        &::after {
-          content: '';
-          display: block;
-          position: relative;
-          width: 50px;
-          height: 1px;
-          margin-left: 20px;
-          background-color: var(--default-border);
-        }
+      }
+
+      .stacks-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
       }
     }
   }
@@ -165,18 +159,21 @@ onMounted(() => onReveal('#about', animateElement));
 
 @media (max-width: 768px) {
   #about {
+    .section-heading { margin-bottom: 2rem; }
 
-    h2 {
-      &::before, &::after {
-        width: 50%;
-      }
-    }
     .content-containers {
-      display: flex;
       flex-direction: column;
+      gap: 2.5rem;
     }
 
-    .summary { text-align: justify; }
+    .summary { max-width: 100%; }
+
+    .tech-stack {
+      width: 100%;
+
+      .stack-label { justify-content: center; }
+    }
+
     .stacks-container { justify-content: center; }
   }
 }
