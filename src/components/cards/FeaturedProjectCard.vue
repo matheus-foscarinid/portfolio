@@ -3,9 +3,59 @@
     class="featured-project-card"
     :class="{ 'reverse': reverse }"
   >
-    <div class="media" @click="openProjectLink">
+    <div
+      v-if="hasMedia"
+      class="media"
+      @click="openProjectLink"
+    >
+      <div
+        v-if="project.metrics"
+        class="perf-panel"
+      >
+        <div class="perf-chrome">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="perf-url">{{ project.metricsTitle }}</span>
+        </div>
+        <ul class="perf-metrics">
+          <li
+            v-for="metric in project.metrics"
+            :key="metric.label"
+          >
+            <span class="key">{{ metric.label }}</span>
+            <span class="value">{{ metric.value }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div
+        v-else-if="project.console"
+        class="perf-panel term-panel"
+      >
+        <div class="perf-chrome">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="perf-url">{{ project.consoleTitle }}</span>
+        </div>
+        <div class="term-lines">
+          <span
+            v-for="(line, index) in project.console"
+            :key="index"
+            class="line"
+            :class="{ accent: line.accent }"
+          >
+            <span
+              v-if="line.prompt"
+              class="prompt"
+            >{{ line.prompt }} </span>{{ line.text }}
+          </span>
+        </div>
+      </div>
+
       <video
-        v-if="project.video"
+        v-else-if="project.video"
         class="project-image"
         :src="project.video"
         autoplay
@@ -68,7 +118,7 @@
           @click="openProjectLink"
         >
           {{ $t('PROJECTS.VIEW') }}
-          <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
+          <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />
         </button>
 
         <button
@@ -77,7 +127,7 @@
           @click="openRepository"
         >
           {{ $t('PROJECTS.REPOSITORY') }}
-          <font-awesome-icon icon="fa-brands fa-github" />
+          <font-awesome-icon icon="fa-brands fa-github" aria-hidden="true" />
         </button>
       </div>
     </div>
@@ -85,11 +135,19 @@
 </template>
 
 <script setup>
+  import { computed } from 'vue';
+
   const props = defineProps(['project', 'reverse']);
 
+  const hasMedia = computed(() => {
+    const p = props.project;
+    return Boolean(p.metrics || p.console || p.video || p.scroll || p.image);
+  });
+
   const openProjectLink = () => {
-    if (!props.project.link) return;
-    window.open(props.project.link, '_blank');
+    const url = props.project.link || props.project.repository;
+    if (!url) return;
+    window.open(url, '_blank');
   }
 
   const openRepository = () => {
@@ -141,8 +199,96 @@
     }
 
     .media:hover .project-image,
-    .media:hover .scroll-image-container {
+    .media:hover .scroll-image-container,
+    .media:hover .perf-panel {
       transform: scale(1.025);
+    }
+
+    .perf-panel {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--dark-background);
+      border: 1px solid var(--default-border);
+      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease-in-out;
+      text-align: left;
+
+      .perf-chrome {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.6rem 0.85rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+        .dot {
+          width: 0.6rem;
+          height: 0.6rem;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.25);
+        }
+        .dot:first-child { background: var(--accent-on-dark); }
+
+        .perf-url {
+          margin-left: 0.5rem;
+          font-family: 'Fira Code', monospace;
+          font-size: 0.72rem;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+
+      .perf-metrics {
+        list-style: none;
+        margin: 0;
+        padding: 0.5rem 0.85rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        gap: 0.15rem;
+        font-family: 'Fira Code', monospace;
+
+        li {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          gap: 1rem;
+          padding: 0.35rem 0;
+          font-size: clamp(0.72rem, 1.4vw, 0.85rem);
+          border-bottom: 1px dashed rgba(255, 255, 255, 0.07);
+        }
+        li:last-child { border-bottom: 0; }
+
+        .key { color: rgba(255, 255, 255, 0.7); }
+        .value { color: var(--accent-on-dark); font-weight: 700; white-space: nowrap; }
+      }
+
+      .term-lines {
+        margin: 0;
+        padding: 0.75rem 0.85rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        font-family: 'Fira Code', monospace;
+        font-size: clamp(0.68rem, 1.35vw, 0.82rem);
+        line-height: 1.9;
+        word-break: break-word;
+
+        .line {
+          display: block;
+          color: rgba(255, 255, 255, 0.7);
+        }
+        .line.accent { color: var(--accent-on-dark); font-weight: 700; }
+        .prompt {
+          color: var(--accent-on-dark);
+          margin-right: 0.5rem;
+        }
+      }
     }
 
     .scroll-image-container {

@@ -7,7 +7,7 @@
     "TITLE_3": "Designer.",
     "TITLE_4": "Speaker.",
     "TITLE_5": "Cat dad.",
-    "SUMMARY": "I'm a fullstack mid-level software engineer based in Rio Grande do Sul, Brazil. Specialized in creating high-quality, scalable applications with exceptional UX. With expertise in both front-end and back-end, I'm able to build end-to-end solutions that are efficient. Whether it's complex architecture or intuitive user interfaces.",
+    "SUMMARY": "I'm a fullstack software engineer based in Rio Grande do Sul, Brazil. I specialize in building high-quality, scalable applications with a strong focus on performance improvements and exceptional UX. Working across front-end and back-end, I deliver efficient end-to-end solutions - from complex architecture to fast, intuitive interfaces.",
     "VIEW_CV": "View Resume"
   },
   "ABOUT": {
@@ -27,7 +27,7 @@
     },
     "UNISINOS": {
       "RESUME_1": "At Internet Systems college, we gain a deep understanding of the foundational concepts behind internet technologies and systems. In addition to the technical knowledge we acquire, we also learn about the broader internet ecosystem and how it functions as a whole. This well-rounded education prepares us to excel in the ever-evolving field of web development.",
-      "RESUME_2": "With a focus on practical skills and hands-on experience, I expect to graduate from this program in 2025 with a thorough understanding of how to build efficient digital solutions."
+      "RESUME_2": "With a focus on practical skills and hands-on experience, I graduated from this program in 2025 with a thorough understanding of how to build efficient digital solutions."
     },
     "SCOPI": {
       "RESUME_1": "Scopi is a software company that offers a variety of solutions for strategic planning, project management, and performance monitoring. As a trainee, I was responsible for developing new features and maintaining existing ones for the company’s flagship product, Scopi.",
@@ -47,7 +47,8 @@
     "HIPEOPLE": {
       "RESUME_1": "Collaborating with an international team to build AI-driven Hiring Intelligence solutions including Voice/Resume Screening, Assessments, and Reference Check using OpenAI APIs, NLP, and LLM-based pipelines.",
       "RESUME_2": "Architected scalable systems with React, Next.js, and Go (Echo). Implemented CI/CD, Vitest automation, and Dockerized environments for efficient development and deployment processes.",
-      "RESUME_3": "Developed realtime AI integrations via OpenAI Realtime Conversations, working under Agile/Linear workflow to deliver cutting-edge hiring solutions that leverage the latest in artificial intelligence technology."
+      "RESUME_3": "Developed realtime AI integrations via OpenAI Realtime Conversations, working under Agile/Linear workflow to deliver cutting-edge hiring solutions that leverage the latest in artificial intelligence technology.",
+      "RESUME_4": "Led a front-end performance overhaul that cut the initial JS payload by 65% (over 1 MB), lifted Lighthouse scores from 18 to 60+, and reduced weekly production errors by 85%."
     }
   },
   "CONTACT": {
@@ -61,7 +62,9 @@
     "JSON_SEARCHER": "JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.",
     "CONSTRUSAUSEN": "Institutional website for the Construsausen timber company, with some company information, developed with Vue.js and SCSS.",
     "WW_HIDE_CHATS_TOOLS": "My newest project, currently a work in progress (WIP), is a Chrome extension designed to hide, blur, and provide many more features for chats on WhatsApp Web.",
-    "FEATURED": "Featured Project"
+    "FEATURED": "Featured Project",
+    "THIS_SITE": "Yep, you're looking at it. This site was engineered to feel instant. A lean Vue 3 SPA bundled with Vite and Rolldown, with native animations, code-split sections, and modern media formats. Every byte was measured.",
+    "GB_EMU": "A work in progress Game Boy emulator written from scratch in Go, built as a low level study of CPU and hardware emulation. It already parses the cartridge header and decodes a handful of CPU instructions."
   },
   "HEADER": {
     "HOME": "Home",

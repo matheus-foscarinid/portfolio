@@ -7,7 +7,7 @@
     "TITLE_3": "Designer.",
     "TITLE_4": "Palestrante.",
     "TITLE_5": "Pai de gatos.",
-    "SUMMARY": "Sou desenvolvedor fullstack pleno, do Rio Grande do Sul, Brasil. Eu me especializo na criação de Apps de alta qualidade e escaláveis com experiências excepcionais para os usuários. Com experiência no desenvolvimento tanto do front-end quanto do back-end, sou capaz de construir soluções completas e eficientes.",
+    "SUMMARY": "Sou desenvolvedor fullstack, do Rio Grande do Sul, Brasil. Me especializo na criação de aplicações escaláveis e de alta qualidade, com forte foco em melhorias de performance e em uma ótima experiência para o usuário. Atuando tanto no front-end quanto no back-end, entrego soluções completas e eficientes - de arquiteturas complexas a interfaces rápidas e intuitivas.",
     "VIEW_CV": "Ver currículo"
   },
   "ABOUT": {
@@ -27,7 +27,7 @@
     },
     "UNISINOS": {
       "RESUME_1": "No faculdade de Sistemas para Internet, obtemos uma compreensão profunda dos conceitos fundamentais por trás das tecnologias e sistemas da internet. Além do conhecimento técnico que adquirimos, também aprendemos sobre o ecossistema mais amplo da internet e como ele funciona como um todo. Essa educação abrangente nos prepara para nos destacarmos no campo em constante evolução do desenvolvimento web.",
-      "RESUME_2": "Com foco em habilidades práticas e experiência prática, espero me formar neste programa em 2025 com um entendimento completo de como construir soluções digitais eficientes."
+      "RESUME_2": "Com foco em habilidades práticas e experiência prática, me formei neste programa em 2025 com um entendimento completo de como construir soluções digitais eficientes."
     },
     "SCOPI": {
       "RESUME_1": "A Scopi é uma empresa de software que oferece uma variedade de soluções para planejamento estratégico, gerenciamento de projetos e monitoramento de desempenho. Como estagiário, fui responsável pelo desenvolvimento de novos recursos e pela manutenção dos existentes para o produto principal da empresa.",
@@ -47,7 +47,8 @@
     "HIPEOPLE": {
       "RESUME_1": "Colaborei com uma equipe internacional para construir soluções de Inteligência de Contratação baseadas em IA, incluindo Triagem por Voz/Currículo, Avaliações e Verificação de Referências usando APIs OpenAI, NLP e pipelines baseados em LLM.",
       "RESUME_2": "Arquitetei sistemas escaláveis com React, Next.js e Go (Echo). Implementei CI/CD, automação Vitest e ambientes Dockerizados para processos eficientes de desenvolvimento e implantação.",
-      "RESUME_3": "Desenvolvi integrações de IA em tempo real via OpenAI Realtime Conversations, trabalhando sob fluxo de trabalho Ágil/Linear para entregar soluções de contratação de ponta que aproveitam o mais recente em tecnologia de inteligência artificial."
+      "RESUME_3": "Desenvolvi integrações de IA em tempo real via OpenAI Realtime Conversations, trabalhando sob fluxo de trabalho Ágil/Linear para entregar soluções de contratação de ponta que aproveitam o mais recente em tecnologia de inteligência artificial.",
+      "RESUME_4": "Liderei uma reformulação de performance no front-end que reduziu o payload inicial de JS em 65% (mais de 1 MB), elevou o Lighthouse de 18 para mais de 60 e diminuiu os erros semanais em produção em 85%."
     }
   },
   "CONTACT": {
@@ -61,7 +62,9 @@
     "JSON_SEARCHER": "JSON Searcher é uma extensão simples para o VSCode usada para buscar caminhos dentro de arquivos JSON, particularmente útil para usar com arquivos de i18n (internationalization).",
     "CONSTRUSAUSEN": "Site institucional para a empresa Madereira Construsausen, com algumas informações da empresa, desenvolvido com Vue.js e SCSS.",
     "WW_HIDE_CHATS_TOOLS": "Meu projeto mais recente, atualmente em desenvolvimento (WIP), é uma extensão para o Chrome projetada para ocultar, desfocar e oferecer muitos outros recursos para bate-papos no WhatsApp Web.",
-    "FEATURED": "Projeto em destaque"
+    "FEATURED": "Projeto em destaque",
+    "THIS_SITE": "Sim, é isso mesmo que você está vendo. Este site foi feito para parecer instantâneo. Uma SPA enxuta em Vue 3 empacotada com Vite e Rolldown, com animações nativas, seções com code-splitting e formatos de mídia modernos. Cada byte foi medido.",
+    "GB_EMU": "Um emulador de Game Boy em desenvolvimento (WIP) escrito do zero em Go, feito como um estudo de baixo nível de CPU e emulação de hardware. Já consegue ler o header do cartucho e decodificar algumas instruções."
   },
   "HEADER": {
     "HOME": "Início",

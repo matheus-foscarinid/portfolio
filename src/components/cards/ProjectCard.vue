@@ -1,13 +1,22 @@
 <template>
   <div class="project-card">
     <div class="top-content">
-      <font-awesome-icon icon="fa-brands fa-github" />
-      <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
+      <font-awesome-icon
+        v-if="project.repository"
+        icon="fa-brands fa-github"
+        aria-hidden="true"
+      />
+      <font-awesome-icon
+        v-if="project.link"
+        icon="fa-solid fa-arrow-up-right-from-square"
+        aria-hidden="true"
+      />
     </div>
 
     <div class="main-content">
-      <a 
+      <a
         class="title"
+        :class="{ clickable: url }"
         @click="openProjectLink"
       >
         {{ project.name }}
@@ -30,10 +39,15 @@
 </template>
 
 <script setup>
+  import { computed } from 'vue';
+
   const props = defineProps(['project', 'reverse']);
 
+  const url = computed(() => props.project.link || props.project.repository);
+
   const openProjectLink = () => {
-    window.open(props.project.link, '_blank');
+    if (!url.value) return;
+    window.open(url.value, '_blank');
   }
 </script>
 
@@ -82,7 +96,8 @@
         color: var(--primary-text);
         text-decoration: none;
         transition: all 0.3s ease-in-out;
-        cursor: pointer;
+
+        &.clickable { cursor: pointer; }
       }
   
       .description {
@@ -93,7 +108,7 @@
     }
 
     .stack {
-      color: var(--disabled-text);
+      color: var(--secondary-text);
       font-family: var(--alternative-font);
       font-size: 0.875rem;
       display: flex;

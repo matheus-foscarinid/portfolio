@@ -38,9 +38,38 @@
   import FeaturedProjectCard from '@/components/cards/FeaturedProjectCard.vue';
   import ProjectCard from '@/components/cards/ProjectCard.vue';
   import { reveal, onReveal, EASE } from '@/composables/useReveal';
-  
+
   const { t: $t } = useI18n();
   const featuredProjects = computed(() => [
+    {
+      link: 'https://matheusdias.dev',
+      repository: 'https://github.com/matheus-foscarinid/portfolio',
+      name: 'This Portfolio',
+      description: $t('PROJECTS.THIS_SITE'),
+      stack: ['Vue 3', 'Vite + Rolldown', 'Web Animations API'],
+      metricsTitle: 'matheusdias.dev',
+      metrics: [
+        { label: 'JS shipped', value: '~78 KB gzip' },
+        { label: 'Bundler', value: 'Vite 8 + Rolldown' },
+        { label: 'Animations', value: 'Native, 0 libs' },
+        { label: 'Media', value: 'Modern WebP + video' },
+        { label: 'Sections', value: 'Lazy-loaded' },
+      ],
+    },
+    {
+      repository: 'https://github.com/matheus-foscarinid/gb-emu-go',
+      name: 'GB Emulator',
+      description: $t('PROJECTS.GB_EMU'),
+      stack: ['Go', 'Emulation'],
+      consoleTitle: '~/gb-emu-go',
+      console: [
+        { prompt: '$', text: 'go run . tetris.gb' },
+        { text: 'header  parsed OK' },
+        { text: 'cpu     decoding ops' },
+        { text: 'mem     ROM mapped' },
+        { text: 'status: work in progress', accent: true },
+      ],
+    },
     {
       link: 'https://marketplace.visualstudio.com/items?itemName=matheus-foscarinid.json-searcher',
       repository: 'https://github.com/matheus-foscarinid/json-searcher-vscode',
@@ -49,24 +78,21 @@
       stack: ['Typescript', 'VSCode API'],
       video: '/images/json_searcher.mp4'
     },
+  ]);
+
+  const projects = computed(() => [
     {
       name: 'Site Construsausen',
       description: $t('PROJECTS.CONSTRUSAUSEN'),
       stack: ['Vue', 'Typescript', 'SCSS'],
-      srcset: '/images/construsausen_w_200.webp 200w, /images/construsausen_w_667.webp 667w, /images/construsausen_w_954.webp 954w',
-      image: '/images/construsausen_w_954.webp',
-      scroll: true,
     },
     {
       repository: 'https://github.com/matheus-foscarinid/whatsapp-web-hide-chats-tools',
       name: 'Wpp Web Hide Chats Tools',
       description: $t('PROJECTS.WW_HIDE_CHATS_TOOLS'),
       stack: ['Javascript', 'Google Chrome API'],
-      video: '/images/ww_hide_chats_tools.mp4',
     },
   ]);
-
-  const projects = [];
 
   const animateElement = () => {
     const heading = document.querySelectorAll('#projects .section-heading > *');
@@ -148,11 +174,11 @@
       margin-top: 2.5rem;
       padding: 1.25rem;
       border-radius: 0.75rem;
-      background: var(--details-background);
+      background: var(--dark-background);
       font-family: 'Fira Code', monospace;
 
-      .prompt { color: var(--accent); }
-      .text { color: var(--secondary-text); }
+      .prompt { color: var(--accent-on-dark); }
+      .text { color: rgba(255, 255, 255, 0.82); }
     }
   }
 </style>

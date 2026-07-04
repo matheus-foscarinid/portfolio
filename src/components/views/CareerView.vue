@@ -53,7 +53,7 @@ const { t: $t } = useI18n()
 
 const placesTimeline = [
   {
-    name: 'CIMOL',
+    name: 'ETEC Monteiro Lobato',
     key: 'CIMOL',
     paragraphsQtt: 3,
     role: 'Student',
@@ -65,7 +65,7 @@ const placesTimeline = [
     key: 'UNISINOS',
     paragraphsQtt: 2,
     role: 'Student',
-    period: 'from 2021 until now',
+    period: 'from 2021 to 2025',
     link: 'https://www.unisinos.br/'
   },
   {
@@ -80,7 +80,7 @@ const placesTimeline = [
     name: 'Minha visita',
     key: 'MINHA_VISITA',
     paragraphsQtt: 3,
-    role: 'Fullstack Mid Developer',
+    role: 'Full-stack Software Engineer',
     period: 'from October 2021 to November 2024',
     link: 'https://www.minhavisita.app/'
   },
@@ -95,10 +95,10 @@ const placesTimeline = [
   {
     name: 'HiPeople',
     key: 'HIPEOPLE',
-    paragraphsQtt: 3,
+    paragraphsQtt: 4,
     role: 'Software Engineer',
     period: 'from July 2025 to present',
-    link: 'https://www.hiprople.com/'
+    link: 'https://www.hipeople.io/'
   }
 ]
 

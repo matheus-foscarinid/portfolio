@@ -38,21 +38,23 @@ import StackCard from '@/components/cards/StackCard.vue';
 import { reveal, onReveal, EASE } from '@/composables/useReveal';
 
 const stacks = [
-  { name: 'html5', type: 'original', label: 'HTML5' },
-  { name: 'css3', type: 'original', label: 'CSS3' },
   { name: 'javascript', type: 'original', label: 'JavaScript' },
-  { name: 'go', type: 'original', label: 'Go' },
   { name: 'typescript', type: 'original', label: 'TypeScript' },
-  { name: 'ruby', type: 'original', label: 'Ruby' },
-  { name: 'rails', type: 'original-wordmark', label: 'Rails' },
   { name: 'vuejs', type: 'original', label: 'Vue.js' },
   { name: 'react', type: 'original', label: 'React' },
+  { name: 'nextjs', type: 'original', label: 'Next.js' },
   { name: 'nodejs', type: 'original', label: 'Node.js' },
+  { name: 'nestjs', type: 'original', label: 'NestJS' },
+  { name: 'go', type: 'original', label: 'Go' },
+  { name: 'ruby', type: 'original', label: 'Ruby' },
+  { name: 'rails', type: 'original-wordmark', label: 'Rails' },
   { name: 'python', type: 'original', label: 'Python' },
   { name: 'mysql', type: 'original', label: 'MySQL' },
+  { name: 'graphql', type: 'plain', label: 'GraphQL' },
   { name: 'docker', type: 'original', label: 'Docker' },
   { name: 'git', type: 'original', label: 'Git' },
-  { name: 'graphql', type: 'plain', label: 'GraphQL' },
+  { name: 'html5', type: 'original', label: 'HTML5' },
+  { name: 'css3', type: 'original', label: 'CSS3' },
 ];
 
 const animateElement = () => {
