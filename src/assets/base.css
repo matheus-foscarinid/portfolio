@@ -1,36 +1,42 @@
 /* Lightmode */
 :root {
   /* Cores de fundo */
-  --default-background: #E9ECEF;
-  --secondary-background: #F8F9FA;
-  --details-background: #FFFFFF;
-  --dark-background: #212529;
+  --default-background: #fbf1c7;
+  --secondary-background: #f2e5bc;
+  --details-background: #ebdbb2;
+  --dark-background: #3c3836;
 
   /* Cores de texto */
-  --default-text: #212529;
-  --secondary-text: #495057;
-  --disabled-text: #7a838b;
+  --default-text: #3c3836;
+  --secondary-text: #504945;
+  --disabled-text: #7c6f64;
 
   /* Cores complementares */
-  --default-border: #CED4DA;
-  --highlight: #FFFFFF;
+  --default-border: #d5c4a1;
+  --highlight: #fbf1c7;
+
+  --accent: #d65d0e;
+  --accent-contrast: #fbf1c7;
 }
 
 /* Darkmode */
 [data-theme="dark"] {
   /* Cores de fundo */
-  --default-background: #1A1A1A;
-  --secondary-background: #202020;
-  --details-background: #2C2C2C;
-  --dark-background: #000000;
+  --default-background: #282828;
+  --secondary-background: #32302f;
+  --details-background: #3c3836;
+  --dark-background: #1d2021;
 
   /* Cores de texto */
-  --default-text: #FFFFFF;
-  --secondary-text: #c8c8c8;
-  --disabled-text: #707070;
+  --default-text: #ebdbb2;
+  --secondary-text: #d5c4a1;
+  --disabled-text: #a89984;
 
   /* Cores complementares */
-  --default-border: #454545;
+  --default-border: #504945;
+
+  --accent: #d3869b;
+  --accent-contrast: #282828;
 }
 
 html{scroll-behavior:smooth}
@@ -66,7 +72,7 @@ html{scroll-behavior:smooth}
 }
 
 .highlight {
-  color: var(--primary-text);
+  color: var(--accent);
   font-weight: 700;
 }
 
