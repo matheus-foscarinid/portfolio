@@ -111,6 +111,8 @@ const cardBoxShadow = computed(() => {
       align-self: center;
       max-width: 280px;
       &::before { inset: -0.7rem; }
+
+      img { height: 100%; }
     }
   }
 </style>

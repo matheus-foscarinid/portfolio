@@ -9,8 +9,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import {
-  faArrowUpRightFromSquare, 
-  faFolder, 
+  faArrowUpRightFromSquare,
+  faArrowRight,
+  faFolder,
   faEnvelope, 
   faLocationPin, 
   faBars ,
@@ -23,7 +24,8 @@ import {
 library.add(
   faGithub, 
   faLinkedin, 
-  faArrowUpRightFromSquare, 
+  faArrowUpRightFromSquare,
+  faArrowRight,
   faCaretDown,
   faFolder, 
   faEnvelope, 

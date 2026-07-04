@@ -1,97 +1,83 @@
 <template>
-  <h3>
-    {{  $t('HOME.PRESENTATION_2') }} <span class="typed-text">{{ typedValue }}</span>
-    <span class="cursor" :class="{'typing': isTyping}">|</span>
-  </h3>
+  <p class="roles">
+    <span
+      v-for="(role, index) in roles"
+      :key="role"
+    >
+      <span class="role">{{ role }}</span>
+      <span
+        v-if="index < roles.length - 1"
+        class="sep"
+        aria-hidden="true"
+      >·</span>
+    </span>
+    <span class="cursor" aria-hidden="true"></span>
+  </p>
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 const { t: $t } = useI18n();
 
-const typedValue = ref('');
-const isTyping = ref(false);
-const titlesArray = computed(() =>[
-  $t('HOME.TITLE_1'), 
-  $t('HOME.TITLE_2'), 
-  $t('HOME.TITLE_3'), 
+const roles = computed(() => [
+  $t('HOME.TITLE_1'),
+  $t('HOME.TITLE_2'),
+  $t('HOME.TITLE_3'),
   $t('HOME.TITLE_4'),
   $t('HOME.TITLE_5'),
-]);
-
-const TYPING_SPEED = 30;
-const ERASING_SPEED = 30;
-const NEW_TEXT_DELAY = 3500;
-
-let titlesArrayIndex = 0;
-let charIndex = 0;
-
-const typeText = () => {
-  const currentWord = titlesArray.value[titlesArrayIndex];
-
-  if(charIndex < currentWord.length) {
-    if(!isTyping.value) isTyping.value = true;
-
-    typedValue.value += currentWord.charAt(charIndex);
-    charIndex += 1;
-
-    setTimeout(typeText, TYPING_SPEED);
-  } else {
-    isTyping.value = false;
-    setTimeout(eraseText, NEW_TEXT_DELAY);
-  }
-};
-
-const eraseText = () => {
-  if(charIndex > 0) {
-    if(!isTyping.value) isTyping.value = true;
-
-    typedValue.value = titlesArray.value[titlesArrayIndex].substring(0, charIndex - 1);
-    charIndex -= 1;
-    setTimeout(eraseText, ERASING_SPEED);
-  } else {
-    isTyping.value = false;
-    titlesArrayIndex += 1;
-    if(titlesArrayIndex >= titlesArray.value.length) titlesArrayIndex = 0;
-
-    setTimeout(typeText, TYPING_SPEED);
-  }
-}
-
-onMounted(() => setTimeout(typeText, 1000));
+].map((role) => role.replace(/\.$/, '')));
 </script>
 
 <style lang="scss" scoped>
-  h3 {
+  .roles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 0.5rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
     color: var(--secondary-text);
-    font-size: 2.5rem;
     margin: 0;
 
-    & .typed-text {
-      font-weight: 700;
-    }
-    & .cursor {
-      content: "&nbsp;";
-      display: inline-block;
-      margin-left: 1px;
-      animation: cursorBlink 1s infinite;
+    > span { display: inline-flex; align-items: center; }
 
-      &.typing {
-        animation: none;
-      }
+    .role {
+      white-space: nowrap;
+    }
+
+    .sep {
+      color: var(--accent);
+      font-weight: 700;
+      margin: 0 0.6rem;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 0.5rem;
+      height: 1rem;
+      margin-left: 0.4rem;
+      transform: translateY(1px);
+      background-color: var(--accent);
+      animation: cursorBlink 1.1s step-end infinite;
     }
   }
 
   @keyframes cursorBlink {
-    49% { opacity: 1; }
+    0%, 100% { opacity: 1; }
     50% { opacity: 0; }
-    99% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .roles .cursor { animation: none; }
   }
 
   @media (max-width: 768px) {
-    h3 { font-size: 2rem !important; }
+    .roles {
+      font-size: 0.8rem;
+      line-height: 2.1;
+
+      .sep { margin: 0 0.4rem; }
+    }
   }
-
-
 </style>

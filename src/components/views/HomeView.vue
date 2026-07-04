@@ -1,22 +1,26 @@
 <template>
   <section id="home">
     <div class="container">
-      <MyPhoto />
-      
       <div class="presentation-container">
-        <span class="presentation">{{  $t('HOME.PRESENTATION_1') }}</span>
-        <h2>Matheus Foscarini Dias</h2>
+        <span class="eyebrow">{{ $t('HOME.PRESENTATION_1') }}</span>
+        <h1 class="name">
+          <span class="line">Matheus</span>
+          <span class="line">Foscarini Dias</span>
+        </h1>
         <TypedPresentation />
-    
-        <p class="summary">{{  $t('HOME.SUMMARY') }}</p>
 
-        <button 
+        <p class="summary">{{ $t('HOME.SUMMARY') }}</p>
+
+        <button
           class="cv-button"
           @click="viewCV"
         >
-          {{  $t('HOME.VIEW_CV') }}
+          <span>{{ $t('HOME.VIEW_CV') }}</span>
+          <font-awesome-icon icon="fas fa-arrow-right" />
         </button>
       </div>
+
+      <MyPhoto />
     </div>
   </section>
 </template>
@@ -42,7 +46,7 @@ const animateElement = () => {
 
   reveal(
     photo,
-    { opacity: 0, x: -90, blur: 2, scale: .9 },
+    { opacity: 0, x: 90, blur: 2, scale: .9 },
     { opacity: 1, x: 0, blur: 0, scale: 1 },
     { duration: 1500, delay: 500, easing: EASE.outExpo }
   );
@@ -61,88 +65,133 @@ const viewCV = () => {
 
 <style lang="scss" scoped>
   #home {
-    min-height: 110vh;
+    min-height: 100vh;
     margin-top: -5rem;
     display: flex;
+    align-items: center;
 
     .container {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      gap: 5rem;
+      gap: 6rem;
+    }
 
-      .presentation-container {
-        flex: 3;
-  
-        .presentation {
-          color: var(--secondary-text);
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin: 0;
-        }
-    
-        h2 {
-          font-size: 3rem;
-          font-weight: 700;
-          line-height: 1.2;
-          margin: 0;
-        }
-    
-        .summary {
-          max-width: 700px;
-          text-align: justify;
-          margin-top: 1rem;
-        }
+    .presentation-container {
+      flex: 1.4;
+      min-width: 0;
 
-        .cv-button {
-          margin-top: 2rem;
-          padding: 1rem 2rem;
-          border-radius: 0.5rem;
-          background-color: var(--details-background);
-          color: var(--secondary-text);
-          font-size: 1.2rem;
-          font-weight: 700;
-          cursor: pointer;
-          border: none;
-          transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-          // button shake 2s every 10s and keep repeating
-          animation: shake 18s infinite ease-in-out;
-          
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.9rem;
+        letter-spacing: 0.02em;
+        color: var(--secondary-text);
 
-          &:hover {
-            box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
-          }
+        &::before {
+          content: '';
+          width: 2rem;
+          height: 2px;
+          background-color: var(--accent);
+        }
+      }
+
+      .name {
+        font-size: clamp(2.75rem, 6vw, 4.75rem);
+        font-weight: 800;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        margin: 1rem 0 1.25rem;
+
+        .line { display: block; }
+      }
+
+      .summary {
+        max-width: 56ch;
+        color: var(--secondary-text);
+        line-height: 1.7;
+        margin-top: 1.5rem;
+      }
+
+      .cv-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-top: 2.25rem;
+        padding: 0.9rem 1.75rem;
+        border-radius: 0.5rem;
+        background-color: var(--accent);
+        color: var(--accent-contrast);
+        font-size: 1.05rem;
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+        svg { transition: transform 0.25s ease; }
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 0.75rem 1.25rem color-mix(in srgb, var(--accent) 30%, transparent);
+
+          svg { transform: translateX(4px); }
         }
       }
     }
-
   }
 
   @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
-      margin: 6rem auto;
-      gap: 3rem !important;
+    #home {
+      min-height: 100svh;
 
-        .presentation-container {
-          width: 100% !important;
-          text-align: center;
+      .container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        padding-top: 7rem;
+        padding-bottom: 3rem;
+        gap: 1.5rem;
+      }
 
-          .presentation { font-size: 1rem; }
-          h2 { font-size: 2rem !important; }
+      .my-photo {
+        order: -1;
+        align-self: center;
+        flex: none;
+        width: 140px;
+        height: 140px;
+        max-width: 140px;
+        &::before { inset: -0.55rem; }
+      }
+
+      .presentation-container {
+        width: 100%;
+        max-width: 100%;
+        text-align: center;
+
+        .eyebrow { justify-content: center; }
+
+        .name {
+          font-size: clamp(2rem, 9vw, 2.75rem);
+          margin: 0.85rem 0 1rem;
         }
+
+        .roles { justify-content: center; }
+
+        .summary {
+          max-width: 42ch;
+          margin: 1.5rem auto 0;
+        }
+
+        .cv-button {
+          width: 100%;
+          justify-content: center;
+          margin-top: 2rem;
+          padding: 1.05rem 1.75rem;
+        }
+      }
     }
   }
-
-  // shake animation with just rotation
-  @keyframes shake {
-    0% { transform: rotate(0deg); }
-    95% { transform: rotate(0deg); }
-    96% { transform: rotate(6deg); }
-    97% { transform: rotate(-6deg); }
-    98% { transform: rotate(6deg); }
-    99% { transform: rotate(-6deg); }
-    100% { transform: rotate(0deg); }
-  }
-  
 </style>
