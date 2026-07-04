@@ -13,14 +13,16 @@
 </template>
 
 <script setup>
+import { defineAsyncComponent } from 'vue';
+
 import TheHeader from './components/TheHeader.vue';
 import TheFooter from './components/TheFooter.vue';
-
 import HomeView from './components/views/HomeView.vue';
-import AboutView from './components/views/AboutView.vue';
-import CareerView from './components/views/CareerView.vue';
-import ProjectsView from './components/views/ProjectsView.vue';
-import ContactView from './components/views/ContactView.vue';
+
+const AboutView = defineAsyncComponent(() => import('./components/views/AboutView.vue'));
+const CareerView = defineAsyncComponent(() => import('./components/views/CareerView.vue'));
+const ProjectsView = defineAsyncComponent(() => import('./components/views/ProjectsView.vue'));
+const ContactView = defineAsyncComponent(() => import('./components/views/ContactView.vue'));
 
 </script>
 
