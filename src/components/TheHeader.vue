@@ -122,23 +122,25 @@
   const isFirstScroll = ref(true);
   const currentActiveSection = ref(null);
 
-  const watchCurrentActiveSection = (sections) => {
+  const watchCurrentActiveSection = () => {
+    const sections = Array.from(document.querySelectorAll('section'));
+    const viewportMiddle = window.innerHeight / 2;
+
     const currentShowedSection = sections.find((section) => {
       const rectangle = section.getBoundingClientRect();
-      return rectangle.top <= window.innerHeight / 2 && rectangle.bottom >= window.innerHeight / 2;
+      return rectangle.top <= viewportMiddle && rectangle.bottom >= viewportMiddle;
     });
 
-    currentActiveSection.value = currentShowedSection.id;
+    if (currentShowedSection) currentActiveSection.value = currentShowedSection.id;
   }
 
   onMounted(() => {
-    const sectionsNodeList = document.querySelectorAll('section');
-    const sections = Array.from(sectionsNodeList);
+    watchCurrentActiveSection();
 
     window.addEventListener('scroll', () => {
       hasScrolled.value = window.scrollY > 0;
       isFirstScroll.value = false;
-      watchCurrentActiveSection(sections);
+      watchCurrentActiveSection();
     });
   });
 </script>
@@ -159,38 +161,16 @@
     
 
     &.scrolled {
-      background-color: var(--secondary-background);
-      box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.25);
+      background-color: color-mix(in srgb, var(--secondary-background) 82%, transparent);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--default-border);
       color: var(--default-text);
-
-      & .menu-item {
-        background-color: var(--secondary-background);
-        
-        &.active {
-          z-index: 1;
-          transform: scale(1.075);
-          box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
-          background-color: var(--details-background);
-          position: relative;
-
-          &::after {
-            // add a line under the menu item
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--secondary-text);
-          }
-        }
-      }
     }
 
     h2 {
       font-weight: 700;
       .dev {
-        color: var(--secondary-text);
+        color: var(--accent);
       }
     }
     .menu {
@@ -204,12 +184,31 @@
         display: flex;
         align-items: center;
         padding: 0 1rem;
+        position: relative;
         transition: all .2s ease;
 
         a {
           text-decoration: none;
           font-weight: 700;
           color: var(--text-default);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 1.4rem;
+          left: 1rem;
+          right: 1rem;
+          height: 2px;
+          background-color: var(--accent);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform .25s ease;
+        }
+
+        &.active::after,
+        &:hover::after {
+          transform: scaleX(1);
         }
       }
 
