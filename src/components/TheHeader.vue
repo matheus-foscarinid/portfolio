@@ -38,10 +38,9 @@
     </div>
 
     <div class="mobile-menu-icon">
-      <font-awesome-icon 
-        icon="fas fa-bars"
-        @click="openMobileMenu"
-      />
+      <button type="button" aria-label="Open menu" @click="openMobileMenu">
+        <font-awesome-icon icon="fas fa-bars" aria-hidden="true" />
+      </button>
     </div>
     
     <Transition 
@@ -53,11 +52,9 @@
         class="mobile-menu"
       >
         <div class="top-container">
-          <font-awesome-icon
-            class="close-icon"
-            icon="fas fa-close"
-            @click="closeMobileMenu"
-          />
+          <button type="button" class="close-icon" aria-label="Close menu" @click="closeMobileMenu">
+            <font-awesome-icon icon="fas fa-close" aria-hidden="true" />
+          </button>
         </div>
 
         <ul 
@@ -216,6 +213,26 @@
 
     .mobile-menu-icon {
       display: none;
+
+      button {
+        padding: 0;
+        border: none;
+        background: none;
+        color: inherit;
+        font-size: inherit;
+        line-height: 0;
+        cursor: pointer;
+      }
+    }
+
+    .close-icon {
+      padding: 0;
+      border: none;
+      background: none;
+      color: inherit;
+      font-size: inherit;
+      line-height: 0;
+      cursor: pointer;
     }
 
     .mobile-menu {

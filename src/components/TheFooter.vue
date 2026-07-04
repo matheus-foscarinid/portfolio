@@ -7,18 +7,15 @@
     </div>
 
     <div class="icons">
-      <font-awesome-icon
-        icon="fa-solid fa-envelope"
-        @click="openEmail"
-      />
-      <font-awesome-icon
-        icon="fa-brands fa-linkedin"
-        @click="openLinkedin"
-      />
-      <font-awesome-icon
-        icon="fa-brands fa-github"
-        @click="openGithub"
-      />
+      <button type="button" aria-label="Email" @click="openEmail">
+        <font-awesome-icon icon="fa-solid fa-envelope" aria-hidden="true" />
+      </button>
+      <button type="button" aria-label="LinkedIn" @click="openLinkedin">
+        <font-awesome-icon icon="fa-brands fa-linkedin" aria-hidden="true" />
+      </button>
+      <button type="button" aria-label="GitHub" @click="openGithub">
+        <font-awesome-icon icon="fa-brands fa-github" aria-hidden="true" />
+      </button>
     </div>
   </footer>
 </template>
@@ -60,7 +57,7 @@
         letter-spacing: -0.01em;
         color: var(--footer-fg);
 
-        .dev { color: var(--accent); }
+        .dev { color: var(--accent-on-dark); }
       }
 
       .author {
@@ -71,7 +68,7 @@
       .copyright {
         font-family: 'Fira Code', monospace;
         font-size: 0.78rem;
-        color: color-mix(in srgb, #fbf1c7 45%, transparent);
+        color: color-mix(in srgb, #fbf1c7 62%, transparent);
       }
     }
 
@@ -80,14 +77,19 @@
       align-items: center;
       gap: 1.25rem;
       font-size: 1.5rem;
-      color: color-mix(in srgb, #fbf1c7 70%, transparent);
 
-      svg {
-        transition: color 0.25s ease, transform 0.25s ease;
+      button {
+        padding: 0;
+        border: none;
+        background: none;
+        color: color-mix(in srgb, #fbf1c7 82%, transparent);
+        font-size: inherit;
+        line-height: 0;
         cursor: pointer;
+        transition: color 0.25s ease, transform 0.25s ease;
 
         &:hover {
-          color: var(--accent);
+          color: var(--accent-on-dark);
           transform: translateY(-2px);
         }
       }

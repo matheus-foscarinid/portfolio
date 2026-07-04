@@ -16,7 +16,7 @@
           @click="viewCV"
         >
           <span>{{ $t('HOME.VIEW_CV') }}</span>
-          <font-awesome-icon icon="fas fa-arrow-right" />
+          <font-awesome-icon icon="fas fa-arrow-right" aria-hidden="true" />
         </button>
       </div>
 

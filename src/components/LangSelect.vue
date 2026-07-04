@@ -12,10 +12,11 @@
       <img :src="selectedLang.img" alt="lang" />
       {{ selectedLang.label }}
 
-      <font-awesome-icon 
+      <font-awesome-icon
         icon="fas fa-caret-down"
         class="arrow"
         :class="{ rotated: isDropdownOpen }"
+        aria-hidden="true"
       />
     </div>
 

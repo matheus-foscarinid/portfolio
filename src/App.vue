@@ -1,13 +1,13 @@
 <template>
   <TheHeader />
 
-  <body>
+  <main>
     <HomeView />
     <AboutView />
     <CareerView />
     <ProjectsView />
     <ContactView />
-  </body>
+  </main>
 
   <TheFooter />
 </template>
@@ -27,7 +27,8 @@ const ContactView = defineAsyncComponent(() => import('./components/views/Contac
 </script>
 
 <style lang="scss" scoped>
-  body {
+  main {
+    display: block;
     width: 100%;
     min-height: 100vh;
     margin: 0;

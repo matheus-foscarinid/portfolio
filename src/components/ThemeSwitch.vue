@@ -1,17 +1,19 @@
 <template>
   <label class="switch">
-    <input type="checkbox" @change="changeTheme">
+    <input type="checkbox" aria-label="Toggle dark mode" @change="changeTheme">
     <span class="slider">
       <div class="slider-circle">
-        <font-awesome-icon 
+        <font-awesome-icon
           v-if="isDarkTheme"
           icon="fa-solid fa-moon"
           class="moon"
+          aria-hidden="true"
         />
-        <font-awesome-icon 
+        <font-awesome-icon
           v-else
           icon="fa-solid fa-sun"
           class="sun"
+          aria-hidden="true"
         />
       </div>
     </span>

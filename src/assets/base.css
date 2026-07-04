@@ -15,8 +15,9 @@
   --default-border: #d5c4a1;
   --highlight: #fbf1c7;
 
-  --accent: #d65d0e;
+  --accent: #a33500;
   --accent-contrast: #fbf1c7;
+  --accent-on-dark: #fe8019;
 }
 
 /* Darkmode */
@@ -37,6 +38,7 @@
 
   --accent: #d3869b;
   --accent-contrast: #282828;
+  --accent-on-dark: #d3869b;
 }
 
 html{scroll-behavior:smooth}

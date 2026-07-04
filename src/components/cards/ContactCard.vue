@@ -10,6 +10,7 @@
       <font-awesome-icon
         v-if="contact.icon"
         :icon="props.contact.icon"
+        aria-hidden="true"
       />
       <component
         v-else
@@ -26,6 +27,7 @@
       v-if="props.contact.link"
       class="arrow"
       icon="fa-solid fa-arrow-right"
+      aria-hidden="true"
     />
   </a>
 </template>
@@ -87,7 +89,7 @@
         font-size: 0.72rem;
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        color: var(--disabled-text);
+        color: var(--secondary-text);
       }
 
       .text {
