@@ -1,97 +1,94 @@
 <template>
-  <div 
+  <article
     class="featured-project-card"
     :class="{ 'reverse': reverse }"
   >
-    <video
-      v-if="project.video"
-      class="project-image"
-      :src="project.video"
-      autoplay
-      loop
-      muted
-      playsinline
-      preload="metadata"
-      @click="openProjectLink"
-    />
+    <div class="media" @click="openProjectLink">
+      <video
+        v-if="project.video"
+        class="project-image"
+        :src="project.video"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+      />
 
-    <div
-      v-else-if="project.scroll"
-      class="scroll-image-container"
-    >
+      <div
+        v-else-if="project.scroll"
+        class="scroll-image-container"
+      >
+        <img
+          class="scroll-image"
+          :srcset="project.srcset"
+          :src="project.image"
+          alt="Project Image"
+          loading="lazy"
+        >
+      </div>
+
       <img
-        class="scroll-image"
-        :srcset="project.srcset"
+        v-else
+        class="project-image"
         :src="project.image"
         alt="Project Image"
         loading="lazy"
-        @click="openProjectLink"
-      >
-    </div>
-
-    <img
-      v-else
-      class="project-image"
-      :src="project.image"
-      alt="Project Image"
-      loading="lazy"
-      @click="openProjectLink"
-    />
-
-    <div class="featured-project-sign">
-      {{ $t('PROJECTS.FEATURED') }}
+      />
     </div>
 
     <div class="project-infos">
-      <div>
-        <a 
-          class="title"
-          :href="project.link"
+      <span class="featured-tag">{{ $t('PROJECTS.FEATURED') }}</span>
+
+      <a
+        v-if="project.link"
+        class="title"
+        :href="project.link"
+        target="_blank"
+      >
+        {{ project.name }}
+      </a>
+      <span v-else class="title static">{{ project.name }}</span>
+
+      <p class="description">{{ project.description }}</p>
+
+      <ul class="stack">
+        <li
+          v-for="item in project.stack"
+          :key="item"
         >
-          {{ project.name }}
-        </a>
-    
-        <div class="description">
-          <span>{{ project.description }}</span>
-        </div>
+          {{ item }}
+        </li>
+      </ul>
 
-        <div class="stack">
-          <span 
-            v-for="item in project.stack"
-            :key="item"
-          >
-            {{ item }}
-          </span>
-        </div>
-      </div>
+      <div class="buttons">
+        <button
+          v-if="project.link"
+          class="primary"
+          @click="openProjectLink"
+        >
+          {{ $t('PROJECTS.VIEW') }}
+          <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
+        </button>
 
-      <div class="bottom">
-        <div class="buttons">
-          <button 
-            v-if="project.link"
-            @click="openProjectLink"
-          >
-            {{ $t('PROJECTS.VIEW') }}
-            <font-awesome-icon icon="fa-solid fa-arrow-up-right-from-square" />
-          </button>
-  
-          <button 
-            v-if="project.repository"
-            @click="openRepository"
-          >
-            {{ $t('PROJECTS.REPOSITORY') }}
-            <font-awesome-icon icon="fa-brands fa-github" />
-          </button>
-        </div>
+        <button
+          v-if="project.repository"
+          class="secondary"
+          @click="openRepository"
+        >
+          {{ $t('PROJECTS.REPOSITORY') }}
+          <font-awesome-icon icon="fa-brands fa-github" />
+        </button>
       </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script setup>
   const props = defineProps(['project', 'reverse']);
 
   const openProjectLink = () => {
+    if (!props.project.link) return;
     window.open(props.project.link, '_blank');
   }
 
@@ -104,71 +101,53 @@
   .featured-project-card {
     display: flex;
     width: 100%;
-    min-height: 15rem;
-    padding: 2rem;
-    gap: 2rem;
-    border-radius: 15px;
+    padding: 1.75rem;
+    gap: 2.5rem;
+    border-radius: 1rem;
     background-color: var(--details-background);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--default-border);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
     text-align: left;
     opacity: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--default-border));
+      box-shadow: 0 1rem 2rem color-mix(in srgb, var(--accent) 14%, transparent);
+    }
 
     &.reverse {
       flex-direction: row-reverse;
-      text-align: right;
 
-
-      & .featured-project-sign {
-        left: 1rem;
-        right: auto;
-      }
-
-      .stack, .buttons {
-        justify-content: flex-end !important;
-      }
+      .project-infos { align-items: flex-end; text-align: right; }
     }
 
-    .featured-project-sign {
-      position: absolute;
-      top: -1.5rem;
-      right: 1rem;
-      min-width: 10rem;
-      text-align: center;
-      padding: .5rem 1rem;
-      background: var(--disabled-text);
-      color: var(--highlight);
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,.1);
-    }
-
-    .project-image {
-      border-radius: 15px;
-      object-fit: cover;
-      width: 30rem;
-      aspect-ratio: 16/9;
+    .media {
+      flex: 0 0 auto;
+      width: 28rem;
+      max-width: 55%;
       cursor: pointer;
-      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
-      transition: transform .3s ease-in-out;
+    }
 
-      &:hover {
-        transform: scale(1.025);
-      }
+    .project-image,
+    .scroll-image-container {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 0.75rem;
+      object-fit: cover;
+      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .media:hover .project-image,
+    .media:hover .scroll-image-container {
+      transform: scale(1.025);
     }
 
     .scroll-image-container {
       position: relative;
-      width: 30rem;
-      aspect-ratio: 16/9;
       overflow: hidden;
-      border-radius: 15px;
-      background-color: var(--details-background);
-      transition: transform .3s ease-in-out;
-      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
-      cursor: pointer;
-
-      &:hover {
-        transform: scale(1.025);
-      }
 
       .scroll-image {
         position: absolute;
@@ -179,112 +158,151 @@
         object-fit: cover;
         object-position: top;
         transition: object-position 8s ease-in-out;
-
-        &:hover {
-          object-position: bottom;
-        }
       }
+
+      &:hover .scroll-image { object-position: bottom; }
     }
 
     .project-infos {
+      flex: 1;
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 1rem;
 
-      .title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary-text);
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
+      .featured-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: 'Fira Code', monospace;
+        font-size: 0.75rem;
         text-transform: uppercase;
-        cursor: pointer;
-      }
-
-      .description {
-        font-size: 1rem;
-        font-weight: 400;
+        letter-spacing: 0.1em;
         color: var(--secondary-text);
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 1rem;
 
-        span {
-          max-width: 30rem;
+        &::before {
+          content: '';
+          width: 0.5rem;
+          height: 0.5rem;
+          border-radius: 50%;
+          background-color: var(--accent);
         }
       }
 
-      .bottom {
-        width: 100%;
+      .title {
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        color: var(--default-text);
+        text-decoration: none;
+
+        &:not(.static) {
+          cursor: pointer;
+
+          &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+          }
+
+          &:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+          }
+        }
+      }
+
+      .description {
+        color: var(--secondary-text);
+        line-height: 1.65;
+        max-width: 42ch;
       }
 
       .stack {
-        color: var(--disabled-text);
-        font-family: var(--alternative-font);
-        font-size: 0.875rem;
+        list-style: none;
         display: flex;
-        justify-content: flex-start;
-        gap: 1rem;
-        margin-top: .5rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0;
+
+        li {
+          font-family: 'Fira Code', monospace;
+          font-size: 0.75rem;
+          color: var(--secondary-text);
+          padding: 0.3rem 0.6rem;
+          border: 1px solid var(--default-border);
+          border-radius: 0.4rem;
+        }
       }
 
       .buttons {
         display: flex;
-        gap: .5rem;
-        justify-content: flex-start;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
 
         button {
-          padding: .5rem 1rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.6rem 1.1rem;
           border-radius: 0.5rem;
-          background-color: var(--details-background);
-          color: var(--default-text);
-          font-size: 1.2rem;
+          font-size: 0.95rem;
+          font-weight: 700;
           cursor: pointer;
-          border: none;
-          transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-          align-self: center;
-          justify-content: center;
+          border: 1px solid transparent;
+          transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 
-          &:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.1);
+          svg { transition: transform 0.25s ease; }
+
+          &.primary {
+            background-color: var(--accent);
+            color: var(--accent-contrast);
+
+            &:hover {
+              transform: translateY(-2px);
+              box-shadow: 0 0.5rem 1rem color-mix(in srgb, var(--accent) 30%, transparent);
+
+              svg { transform: translate(2px, -2px); }
+            }
+          }
+
+          &.secondary {
+            background-color: transparent;
+            border-color: var(--default-border);
+            color: var(--default-text);
+
+            &:hover {
+              border-color: var(--accent);
+              color: var(--accent);
+            }
           }
         }
       }
     }
-
   }
 
   @media (max-width: 768px) {
     .featured-project-card {
-      padding: 1rem;
       flex-direction: column !important;
+      padding: 1rem;
+      gap: 1.5rem;
 
-      .project-image, .scroll-image-container {
-        width: 100%;
-        margin-top: 1rem;
-      }
+      .media { width: 100%; max-width: 100%; }
 
-      .title, .description {
-        text-align: center;
-      }
-
-      .stack {
-        margin: 1rem 0;
-        justify-content: center !important;
-      }
-
-      .buttons {
-        justify-content: center !important;
-      }
-
-      .title {
-        display: flex;
-        justify-content: center;
-        font-size: 1.5rem !important;
-        text-align: center;
+      .project-infos,
+      &.reverse .project-infos {
+        align-items: flex-start;
+        text-align: left;
       }
     }
   }

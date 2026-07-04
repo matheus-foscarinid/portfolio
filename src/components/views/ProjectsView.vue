@@ -1,7 +1,10 @@
 <template>
   <section id="projects">
     <div class="container">
-      <h2>{{ $t('PROJECTS.TITLE') }}</h2>
+      <header class="section-heading">
+        <span class="marker" aria-hidden="true"></span>
+        <h2>{{ $t('PROJECTS.TITLE') }}</h2>
+      </header>
 
       <div class="featured-project-cards">
         <FeaturedProjectCard
@@ -21,7 +24,8 @@
       </div>
 
       <div class="coming-soon-message">
-        <h1>{{ $t('PROJECTS.COMING_SOON')}}</h1>
+        <span class="prompt">~/projects $</span>
+        <span class="text">{{ $t('PROJECTS.COMING_SOON') }}</span>
       </div>
     </div>
   </section>
@@ -65,15 +69,15 @@
   const projects = [];
 
   const animateElement = () => {
-    const title = document.querySelector('#projects h2');
+    const heading = document.querySelectorAll('#projects .section-heading > *');
     const featuredCards = document.querySelectorAll('.featured-project-cards > *');
     const message = document.querySelector('.coming-soon-message');
 
     reveal(
-      title,
+      heading,
       { opacity: 0, y: 50, blur: 2 },
       { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, delay: 350, easing: EASE.outBack }
+      { duration: 500, stagger: 80, delay: 350, easing: EASE.outBack }
     );
 
     reveal(
@@ -101,34 +105,22 @@
     flex-direction: column;
     background: var(--secondary-background);
 
-    h2 {
-      display: flex;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 2.5rem;
-      color: var(--secondary-text);
-      // Opacity 0 to prevent the animation from running before the element is visible
-      opacity: 0;
+    .section-heading {
+      margin-bottom: 3rem;
 
-      &::before {
-      content: '';
-      display: block;
-      position: relative;
-      width: 50%;
-      height: 1px;
-      margin-right: 20px;
-      background-color: var(--default-border);
-    }
-
-      &::after {
-        content: '';
+      .marker {
         display: block;
-        position: relative;
-        width: 50%;
-        height: 1px;
-        margin-left: 20px;
-        background-color: var(--default-border);
+        width: 2.5rem;
+        height: 3px;
+        background-color: var(--accent);
+        margin-bottom: 1rem;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0;
       }
     }
 
@@ -136,10 +128,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: start;
-      flex-wrap: wrap;
-      gap: 3rem;
-      margin-top: 2rem;
+      align-items: stretch;
+      gap: 1.5rem;
     }
 
     .project-cards {
@@ -153,9 +143,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100%;
-      font-weight: 700;
-      color: var(--secondary-text);
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      padding: 1.25rem;
+      border-radius: 0.75rem;
+      background: var(--details-background);
+      font-family: 'Fira Code', monospace;
+
+      .prompt { color: var(--accent); }
+      .text { color: var(--secondary-text); }
     }
   }
 </style>
