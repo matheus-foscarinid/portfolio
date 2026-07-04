@@ -85,12 +85,16 @@
       name: 'Site Construsausen',
       description: $t('PROJECTS.CONSTRUSAUSEN'),
       stack: ['Vue', 'Typescript', 'SCSS'],
+      srcset: '/images/construsausen_w_200.webp 200w, /images/construsausen_w_667.webp 667w, /images/construsausen_w_954.webp 954w',
+      image: '/images/construsausen_w_954.webp',
+      scroll: true,
     },
     {
       repository: 'https://github.com/matheus-foscarinid/whatsapp-web-hide-chats-tools',
       name: 'Wpp Web Hide Chats Tools',
       description: $t('PROJECTS.WW_HIDE_CHATS_TOOLS'),
       stack: ['Javascript', 'Google Chrome API'],
+      video: '/images/ww_hide_chats_tools.mp4',
     },
   ]);
 
@@ -161,8 +165,8 @@
     .project-cards {
       margin-top: 3rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
 
     .coming-soon-message {
@@ -179,6 +183,12 @@
 
       .prompt { color: var(--accent-on-dark); }
       .text { color: rgba(255, 255, 255, 0.82); }
+    }
+  }
+
+  @media (max-width: 768px) {
+    #projects .project-cards {
+      grid-template-columns: 1fr;
     }
   }
 </style>

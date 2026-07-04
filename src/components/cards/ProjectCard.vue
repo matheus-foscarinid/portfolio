@@ -1,39 +1,74 @@
 <template>
-  <div class="project-card">
-    <div class="top-content">
-      <font-awesome-icon
-        v-if="project.repository"
-        icon="fa-brands fa-github"
-        aria-hidden="true"
+  <div
+    class="project-card"
+    :class="{ clickable: url }"
+    @click="openProjectLink"
+  >
+    <div
+      v-if="hasMedia"
+      class="media"
+    >
+      <video
+        v-if="project.video"
+        class="thumb"
+        :src="project.video"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
       />
-      <font-awesome-icon
-        v-if="project.link"
-        icon="fa-solid fa-arrow-up-right-from-square"
-        aria-hidden="true"
-      />
-    </div>
 
-    <div class="main-content">
-      <a
-        class="title"
-        :class="{ clickable: url }"
-        @click="openProjectLink"
+      <div
+        v-else-if="project.scroll"
+        class="scroll-image-container"
       >
-        {{ project.name }}
-      </a>
-  
-      <div class="description">
-        {{ project.description }}
+        <img
+          class="scroll-image"
+          :srcset="project.srcset"
+          :src="project.image"
+          alt="Project Image"
+          loading="lazy"
+        >
       </div>
+
+      <img
+        v-else
+        class="thumb"
+        :src="project.image"
+        alt="Project Image"
+        loading="lazy"
+      />
     </div>
 
-    <div class="stack">
-      <span 
-        v-for="item in project.stack"
-        :key="item"
-      >
-        {{ item }}
-      </span>
+    <div class="body">
+      <div class="header">
+        <span class="title">{{ project.name }}</span>
+
+        <span class="icons">
+          <font-awesome-icon
+            v-if="project.repository"
+            icon="fa-brands fa-github"
+            aria-hidden="true"
+          />
+          <font-awesome-icon
+            v-if="project.link"
+            icon="fa-solid fa-arrow-up-right-from-square"
+            aria-hidden="true"
+          />
+        </span>
+      </div>
+
+      <p class="description">{{ project.description }}</p>
+
+      <ul class="stack">
+        <li
+          v-for="item in project.stack"
+          :key="item"
+        >
+          {{ item }}
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -41,9 +76,14 @@
 <script setup>
   import { computed } from 'vue';
 
-  const props = defineProps(['project', 'reverse']);
+  const props = defineProps(['project']);
 
   const url = computed(() => props.project.link || props.project.repository);
+
+  const hasMedia = computed(() => {
+    const p = props.project;
+    return Boolean(p.video || p.scroll || p.image);
+  });
 
   const openProjectLink = () => {
     if (!url.value) return;
@@ -55,64 +95,107 @@
   .project-card {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    gap: 2rem;
-    border-radius: 15px;
+    gap: 1.25rem;
+    padding: 1.25rem;
+    border-radius: 1rem;
     background-color: var(--details-background);
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease-in-out;
+    border: 1px solid var(--default-border);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+
+    &.clickable { cursor: pointer; }
 
     &:hover {
-      transform: scale(1.01) translateY(-0.5rem);
-      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+      transform: translateY(-4px);
+      border-color: color-mix(in srgb, var(--accent) 55%, var(--default-border));
+      box-shadow: 0 1rem 2rem color-mix(in srgb, var(--accent) 14%, transparent);
     }
 
-    .top-content {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.5rem;
-      align-items: self-start;
+    .media {
       width: 100%;
-      height: 100%;
-      border-radius: 15px;
-      background-color: var(--primary-background);
-      transition: all 0.3s ease-in-out;
+      aspect-ratio: 16/9;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
 
-      svg {
-        width: 1.25rem;
-        height: 1.25rem;
-        transition: all 0.3s ease-in-out;
+      .thumb {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .scroll-image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .scroll-image {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top;
+          transition: object-position 6s ease-in-out;
+        }
       }
     }
 
-    .main-content {
+    &:hover .media .scroll-image-container .scroll-image {
+      object-position: bottom;
+    }
+
+    .body {
       display: flex;
       flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
       gap: 1rem;
+
       .title {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         line-height: 1.2;
         font-weight: 700;
-        color: var(--primary-text);
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
+        color: var(--default-text);
+      }
 
-        &.clickable { cursor: pointer; }
-      }
-  
-      .description {
-        font-size: 1rem;
-        font-weight: 400;
+      .icons {
+        display: flex;
+        gap: 0.6rem;
         color: var(--secondary-text);
+        flex-shrink: 0;
+
+        svg { width: 1.1rem; height: 1.1rem; }
       }
+    }
+
+    .description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--secondary-text);
     }
 
     .stack {
-      color: var(--secondary-text);
-      font-family: var(--alternative-font);
-      font-size: 0.875rem;
+      list-style: none;
       display: flex;
-      gap: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0;
+      margin: 0;
+
+      li {
+        font-family: 'Fira Code', monospace;
+        font-size: 0.72rem;
+        color: var(--secondary-text);
+        padding: 0.3rem 0.6rem;
+        border: 1px solid var(--default-border);
+        border-radius: 0.4rem;
+      }
     }
   }
 </style>
