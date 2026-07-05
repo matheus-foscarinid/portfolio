@@ -45,7 +45,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { reveal, onReveal, EASE } from '@/composables/useReveal'
 
@@ -110,8 +110,18 @@ const selectedMarkerStyle = computed(() => ({
   top: `${currentPlaceIndex.value * (100 / placesTimeline.length)}%`
 }))
 
+const centerActiveChip = () => {
+  const container = document.querySelector('#career .buttons-container')
+  const activeChip = container?.querySelector('button.active')
+  if (!container || !activeChip) return
+
+  const left = activeChip.offsetLeft - (container.clientWidth - activeChip.clientWidth) / 2
+  container.scrollTo({ left, behavior: 'smooth' })
+}
+
 const setPlaceAsActive = (index) => {
   currentPlaceIndex.value = index
+  nextTick(centerActiveChip)
 }
 
 const animateElement = () => {
@@ -143,9 +153,6 @@ const animateElement = () => {
 
 onMounted(() => {
   onReveal('#career .container', animateElement)
-
-  const activeChip = document.querySelector('#career .buttons-container button.active')
-  if (activeChip) activeChip.scrollIntoView({ block: 'nearest', inline: 'center' })
 })
 </script>
 
