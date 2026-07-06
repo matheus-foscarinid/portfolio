@@ -15,12 +15,14 @@
       width="380"
       height="380"
       :style="{ transform: cardTransform, boxShadow: cardBoxShadow }"
+      @mousemove="handleMouseMove"
+      @mouseleave="handleMouseLeave"
     />
   </div>
 </template>
 
 <script setup>
-import { computed, ref, onMounted, onUnmounted } from 'vue';
+import { computed, ref, onUnmounted } from 'vue';
 
 const myPhoto = ref(null);
 
@@ -30,24 +32,41 @@ const elementWidth = ref(0);
 const elementHeight = ref(0);
 const isOutside = ref(true);
 
-const handleMouseMove = (event) => {
+// throttle to one layout read + state write per frame. the handler is bound to
+// the image itself, so it only runs while the pointer is actually over the photo
+let rafId = null;
+let pendingEvent = null;
+
+const applyTilt = () => {
+  rafId = null;
   const el = myPhoto.value;
-  if (!el) return;
+  if (!pendingEvent || !el) return;
 
   const rect = el.getBoundingClientRect();
   elementWidth.value = rect.width;
   elementHeight.value = rect.height;
-  elementX.value = event.clientX - rect.left;
-  elementY.value = event.clientY - rect.top;
-  isOutside.value =
-    elementX.value < 0 ||
-    elementY.value < 0 ||
-    elementX.value > rect.width ||
-    elementY.value > rect.height;
+  elementX.value = pendingEvent.clientX - rect.left;
+  elementY.value = pendingEvent.clientY - rect.top;
+  isOutside.value = false;
 };
 
-onMounted(() => document.addEventListener('mousemove', handleMouseMove));
-onUnmounted(() => document.removeEventListener('mousemove', handleMouseMove));
+const handleMouseMove = (event) => {
+  pendingEvent = event;
+  if (rafId === null) rafId = requestAnimationFrame(applyTilt);
+};
+
+const handleMouseLeave = () => {
+  if (rafId !== null) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+  pendingEvent = null;
+  isOutside.value = true;
+};
+
+onUnmounted(() => {
+  if (rafId !== null) cancelAnimationFrame(rafId);
+});
 
 const cardTransform = computed(() => {
   if (isOutside.value) return '';
@@ -102,7 +121,8 @@ const cardBoxShadow = computed(() => {
       aspect-ratio: 1/1;
       object-fit: cover;
       border: 2px solid var(--default-border);
-      transition: all 0.25s ease-out;
+      transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+      will-change: transform;
     }
   }
 
