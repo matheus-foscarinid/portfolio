@@ -8,7 +8,7 @@
         /images/me/me_w_1130.webp 1130w,
         /images/me/me_w_1440.webp 1440w
       "
-      sizes="(max-width: 768px) 280px, 380px"
+      sizes="(max-width: 768px) 140px, 380px"
       src="/images/me/me_w_1440.webp"
       alt="Matheus Foscarini Dias"
       fetchpriority="high"
