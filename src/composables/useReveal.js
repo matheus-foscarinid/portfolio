@@ -7,10 +7,11 @@ export const EASE = {
 const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const toKeyframe = ({ opacity = 1, x = 0, y = 0, scale = 1, blur = 0 }) => ({
+// only transform and opacity animate here - both are GPU-composited, so no
+// per-frame layout or paint. avoid filter/blur, which force a repaint every frame
+const toKeyframe = ({ opacity = 1, x = 0, y = 0, scale = 1 }) => ({
   opacity,
-  transform: `translate(${x}px, ${y}px) scale(${scale})`,
-  filter: `blur(${blur}px)`
+  transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`
 });
 
 const toList = (elements) => {

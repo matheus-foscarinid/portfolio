@@ -4,6 +4,7 @@ import App from './App.vue'
 import i18n from './i18n'
 
 import './assets/main.css'
+import './assets/reveal.css'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

@@ -1,0 +1,21 @@
+/* pre-hide scroll-reveal targets before first paint so content never flashes
+   visible and then re-animates. the transform offset is applied by the Web
+   Animations API while the element is still invisible, so there is no jump.
+   gated on no-preference: reduced-motion users (and any JS failure) see content. */
+@media (prefers-reduced-motion: no-preference) {
+  #home .presentation-container > *,
+  #home .my-photo,
+  #about .section-heading > *,
+  #about .summary > *,
+  #about .stacks-container > *,
+  #career .section-heading > *,
+  #career .buttons-container > *,
+  #career .active-place-content > *,
+  #projects .section-heading > *,
+  #projects .featured-project-cards > *,
+  #projects .coming-soon-message,
+  #contact .section-heading > *,
+  #contact .contact-cards > * {
+    opacity: 0;
+  }
+}
