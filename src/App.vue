@@ -7,6 +7,7 @@
     <CareerView />
     <ProjectsView />
     <ContactView />
+    <LighthouseScores />
   </main>
 
   <TheFooter />
@@ -20,6 +21,7 @@ import AboutView from './components/views/AboutView.vue';
 import CareerView from './components/views/CareerView.vue';
 import ProjectsView from './components/views/ProjectsView.vue';
 import ContactView from './components/views/ContactView.vue';
+import LighthouseScores from './components/LighthouseScores.vue';
 
 </script>
 

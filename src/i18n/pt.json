@@ -76,5 +76,10 @@
   "FOOTER": {
     "AUTHOR": "Projetado e desenvolvido por Matheus Dias",
     "COPYRIGHT": "Copyright © 2023. Todos os direitos reservados."
+  },
+  "LIGHTHOUSE": {
+    "TITLE": "Feito para velocidade",
+    "SUBTITLE": "Este site não é rápido por acaso. Estas são suas pontuações no Lighthouse, medidas no build de produção.",
+    "VERIFY": "Verifique no PageSpeed Insights ->"
   }
 }
