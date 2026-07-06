@@ -90,7 +90,7 @@
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, onUnmounted } from 'vue'
   import { useI18n } from 'vue-i18n';
   import ThemeSwitch from './ThemeSwitch.vue';
   import LangSelect from './LangSelect.vue';
@@ -131,15 +131,28 @@
     if (currentShowedSection) currentActiveSection.value = currentShowedSection.id;
   }
 
-  onMounted(() => {
-    watchCurrentActiveSection();
+  // coalesce scroll work into one rAF so the geometry reads happen once per
+  // frame (batched, before paint) instead of synchronously on every scroll
+  // event, which was forcing a reflow per section per event
+  let ticking = false;
 
-    window.addEventListener('scroll', () => {
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
       hasScrolled.value = window.scrollY > 0;
       isFirstScroll.value = false;
       watchCurrentActiveSection();
+      ticking = false;
     });
+  };
+
+  onMounted(() => {
+    watchCurrentActiveSection();
+    window.addEventListener('scroll', onScroll, { passive: true });
   });
+
+  onUnmounted(() => window.removeEventListener('scroll', onScroll));
 </script>
 
 <style lang="scss" scoped>
