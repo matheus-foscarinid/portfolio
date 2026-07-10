@@ -19,7 +19,7 @@
           </button>
         </div>
 
-        <Transition name="fade" mode="out-in">
+        <Transition name="fade" mode="out-in" @enter="revealContent">
           <div class="active-place-content" :key="currentPlaceIndex">
             <div class="title">
               <span>{{ currentPlace.role }} at </span>
@@ -124,10 +124,19 @@ const setPlaceAsActive = (index) => {
   nextTick(centerActiveChip)
 }
 
+const revealContent = (content) => {
+  reveal(
+    content.children,
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0 },
+    { duration: 500, stagger: 100 }
+  )
+}
+
 const animateElement = () => {
   const heading = document.querySelectorAll('#career .section-heading > *')
   const placesButtons = document.querySelectorAll('.buttons-container > *')
-  const placeInfos = document.querySelectorAll('.active-place-content > *')
+  const content = document.querySelector('.active-place-content')
 
   reveal(
     heading,
@@ -143,12 +152,7 @@ const animateElement = () => {
     { duration: 500, stagger: 100 }
   )
 
-  reveal(
-    placeInfos,
-    { opacity: 0, y: 20 },
-    { opacity: 1, y: 0 },
-    { duration: 500, stagger: 100 }
-  )
+  if (content) revealContent(content)
 }
 
 onMounted(() => {
