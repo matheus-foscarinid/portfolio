@@ -221,7 +221,12 @@
 
   @media (max-width: 560px) {
     .lighthouse .scores {
-      gap: 2rem;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-items: center;
+      gap: 2rem 1.5rem;
+      max-width: 22rem;
+      margin: 0 auto;
     }
   }
 </style>
