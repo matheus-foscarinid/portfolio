@@ -47,7 +47,7 @@
     "HIPEOPLE": {
       "RESUME_1": "Colaborei com uma equipe internacional para construir soluções de Inteligência de Contratação baseadas em IA, incluindo Triagem por Voz/Currículo, Avaliações e Verificação de Referências usando APIs OpenAI, NLP e pipelines baseados em LLM.",
       "RESUME_2": "Arquitetei sistemas escaláveis com React, Next.js e Go (Echo). Implementei CI/CD, automação Vitest e ambientes Dockerizados para processos eficientes de desenvolvimento e implantação.",
-      "RESUME_3": "Desenvolvi integrações de IA em tempo real com OpenAI Realtime Conversations, trabalhando em um fluxo Ágil/Linear e usando Claude e Codex no dia a dia pra entregar mais rápido.",
+      "RESUME_3": "Desenvolvi integrações de IA em tempo real com OpenAI Realtime Conversations, trabalhando em um fluxo Ágil/Linear e usando Claude no dia a dia pra entregar mais rápido.",
       "RESUME_4": "Liderei uma reformulação de performance no front-end que reduziu o payload inicial de JS em 65% (mais de 1 MB), elevou o Lighthouse de 18 para mais de 60 e diminuiu os erros semanais em produção em 85%."
     }
   },
