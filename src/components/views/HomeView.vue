@@ -145,51 +145,74 @@ const viewCV = () => {
   @media (max-width: 768px) {
     #home {
       min-height: 100svh;
+      position: relative;
+
+      // soft accent halo behind the photo, echoing the ambient glow of the ref
+      &::before {
+        content: '';
+        position: absolute;
+        top: 4.5rem;
+        left: 50%;
+        width: min(85vw, 22rem);
+        aspect-ratio: 1;
+        transform: translateX(-50%);
+        background: radial-gradient(
+          circle,
+          color-mix(in srgb, var(--accent) 20%, transparent),
+          transparent 68%
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
 
       .container {
+        position: relative;
+        z-index: 1;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         margin: 0 auto;
-        padding-top: 7rem;
+        padding-top: 6.5rem;
         padding-bottom: 3rem;
-        gap: 1.5rem;
+        gap: 1rem;
       }
 
       .my-photo {
         order: -1;
         align-self: center;
         flex: none;
-        width: 140px;
-        height: 140px;
-        max-width: 140px;
-        &::before { inset: -0.55rem; }
+        width: min(58vw, 15rem);
+        height: min(58vw, 15rem);
+        max-width: none;
+        margin-bottom: 1.5rem;
+        &::before { inset: -0.6rem; }
       }
 
       .presentation-container {
         width: 100%;
         max-width: 100%;
-        text-align: center;
+        text-align: left;
 
-        .eyebrow { justify-content: center; }
+        .eyebrow { justify-content: flex-start; }
 
         .name {
-          font-size: clamp(2rem, 9vw, 2.75rem);
-          margin: 0.85rem 0 1rem;
+          font-size: clamp(2.5rem, 13vw, 3.4rem);
+          margin: 0.85rem 0 0.9rem;
         }
 
-        .roles { justify-content: center; }
+        .roles { justify-content: flex-start; }
 
         .summary {
-          max-width: 42ch;
-          margin: 1.5rem auto 0;
+          max-width: none;
+          margin: 1.25rem 0 0;
         }
 
         .cv-button {
           width: 100%;
           justify-content: center;
-          margin-top: 2rem;
-          padding: 1.05rem 1.75rem;
+          margin-top: 2.25rem;
+          padding: 1.1rem 1.75rem;
+          border-radius: 999px;
         }
       }
     }

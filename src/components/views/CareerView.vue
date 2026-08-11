@@ -207,7 +207,7 @@ onMounted(() => {
         background: transparent;
         color: var(--secondary-text);
         cursor: pointer;
-        transition: all 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
         font-family: 'Fira Code', monospace;
         font-size: 0.9rem;
         font-weight: 500;
@@ -232,7 +232,7 @@ onMounted(() => {
         position: absolute;
         left: 0;
         top: 0;
-        transition: all 0.3s ease-in-out !important;
+        transition: top 0.3s ease-in-out !important;
         z-index: 10;
       }
     }

@@ -167,8 +167,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 2rem;
-    transition: all .5s ease;
-    
+    // don't transition backdrop-filter: animating the blur is expensive
+    transition: background-color .5s ease, box-shadow .5s ease, color .5s ease;
 
     &.scrolled {
       background-color: color-mix(in srgb, var(--secondary-background) 82%, transparent);
@@ -308,6 +308,13 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
+      // blurring behind a sticky header repaints every scroll frame, which is
+      // the main source of dropped frames on mobile. use a near-solid bg instead
+      &.scrolled {
+        backdrop-filter: none;
+        background-color: color-mix(in srgb, var(--secondary-background) 96%, transparent);
+      }
 
       .menu {
         display: none;
