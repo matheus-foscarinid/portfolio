@@ -47,7 +47,7 @@
     "HIPEOPLE": {
       "RESUME_1": "Collaborating with an international team to build AI-driven Hiring Intelligence solutions including Voice/Resume Screening, Assessments, and Reference Check using OpenAI APIs, NLP, and LLM-based pipelines.",
       "RESUME_2": "Architected scalable systems with React, Next.js, and Go (Echo). Implemented CI/CD, Vitest automation, and Dockerized environments for efficient development and deployment processes.",
-      "RESUME_3": "Built realtime AI integrations with OpenAI Realtime Conversations, working in an Agile/Linear workflow.",
+      "RESUME_3": "Built realtime AI integrations with OpenAI Realtime Conversations, working in an Agile/Linear workflow and using Claude and Codex daily to ship faster.",
       "RESUME_4": "Led a front-end performance overhaul that cut the initial JS payload by 65% (over 1 MB), lifted Lighthouse scores from 18 to 60+, and reduced weekly production errors by 85%."
     }
   },
