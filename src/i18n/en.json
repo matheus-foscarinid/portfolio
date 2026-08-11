@@ -7,47 +7,47 @@
     "TITLE_3": "Designer.",
     "TITLE_4": "Speaker.",
     "TITLE_5": "Cat dad.",
-    "SUMMARY": "I'm a fullstack software engineer based in Rio Grande do Sul, Brazil. I specialize in building high-quality, scalable applications with a strong focus on performance improvements and exceptional UX. Working across front-end and back-end, I deliver efficient end-to-end solutions, from complex architecture to fast, intuitive interfaces.",
+    "SUMMARY": "I'm a fullstack software engineer based in Rio Grande do Sul, Brazil. I build scalable applications, and I care a lot about how fast they run and how they feel to use. Working across the front-end and back-end, I can take a feature all the way from the database to the interface.",
     "VIEW_CV": "View Resume"
   },
   "ABOUT": {
     "TITLE": "About",
     "STACK_TITLE": "Tech stack",
-    "SUMMARY_1": "Hey there, I'm <span class=\"highlight\">Matheus</span>, a fullstack developer based in Rio Grande do Sul, Brazil. For me, creating digital products is more than just a job, it's a passion. I first discovered this passion while dabbling in graphic design using Photoshop, which eventually led me to explore the exciting world of web development.",
-    "SUMMARY_2": "With <span class=\"highlight\">5 years of experience</span> under my belt, I'm always eager to learn and expand my skillset. I'm particularly interested in <span class=\"highlight\">design patterns and principles</span>, and strive to apply them in all of my work.",
-    "SUMMARY_3": "My journey began as a <span class=\"highlight\">trainee working with Ruby on Rails</span>, and I've since broadened my horizons to include technologies such as Vue and NestJS. I love the challenge of creating <span class=\"highlight\">user-centric applications</span> that solve real-world problems, and I take great pride in delivering products that are not only functional, but also visually appealing.",
-    "SUMMARY_4": "When I'm not coding, you can usually find me keeping up-to-date with the <span class=\"highlight\">latest industry trends</span> or experimenting with new tools and frameworks. Thanks for stopping by and getting to know me a little better!"
+    "SUMMARY_1": "Hey, I'm <span class=\"highlight\">Matheus</span>, a fullstack developer based in Rio Grande do Sul, Brazil. I got into this through graphic design, messing around in Photoshop, and that curiosity slowly pulled me toward web development. I've been hooked ever since.",
+    "SUMMARY_2": "I've got almost <span class=\"highlight\">6 years of experience</span> now, and I still like picking up new things. I'm especially into <span class=\"highlight\">design patterns and principles</span>, and I try to actually use them instead of just reading about them.",
+    "SUMMARY_3": "I started out as a <span class=\"highlight\">trainee writing Ruby on Rails</span>, and since then I've picked up Vue, NestJS, React, Go and a handful of others. What I like most is building <span class=\"highlight\">user-centric applications</span> that solve real problems, and shipping something that works well and looks good too.",
+    "SUMMARY_4": "When I'm not coding, I'm usually watching something about <span class=\"highlight\">what's new in tech</span> or trying out some tool or framework I just came across. Thanks for stopping by and getting to know me a bit!"
   },
   "CAREER": {
     "TITLE": "Career",
     "CIMOL": {
-      "RESUME_1": "The CIMOL is a technical school that offers a variety of courses in areas like informatics, design and electronics.",
-      "RESUME_2": "In the technical course integrated with high school, I was presented to a variety of subjects, including programming, web development, graphic design, and hardware. Through this comprehensive curriculum, I acquired a solid foundation in the field of information technology.",
-      "RESUME_3": "By the end of the course, I was well-equipped with the knowledge and skills necessary to enter the job market with confidence. Thanks to the practical training and real-world experience provided by the program, I was able to seamlessly transition into my professional career and continue to build upon the strong foundation I had established during my time in the course."
+      "RESUME_1": "CIMOL is a technical school with courses in areas like IT, design, and electronics.",
+      "RESUME_2": "I took the technical track alongside regular high school, which covered programming, web development, graphic design, and hardware. It gave me a solid base in IT pretty early on.",
+      "RESUME_3": "By the time I finished, I felt ready to start working. The hands-on projects made the jump into my first job a lot smoother than I expected."
     },
     "UNISINOS": {
-      "RESUME_1": "At Internet Systems college, we gain a deep understanding of the foundational concepts behind internet technologies and systems. In addition to the technical knowledge we acquire, we also learn about the broader internet ecosystem and how it functions as a whole. This well-rounded education prepares us to excel in the ever-evolving field of web development.",
-      "RESUME_2": "With a focus on practical skills and hands-on experience, I graduated from this program in 2025 with a thorough understanding of how to build efficient digital solutions."
+      "RESUME_1": "The Internet Systems degree digs into how internet technologies and systems actually work, not just the code but how the whole ecosystem fits together. It's a solid grounding for web development.",
+      "RESUME_2": "It leaned heavily on practical work, and I graduated in 2025 knowing how to build things that actually ship."
     },
     "SCOPI": {
-      "RESUME_1": "Scopi is a software company that offers a variety of solutions for strategic planning, project management, and performance monitoring. As a trainee, I was responsible for developing new features and maintaining existing ones for the company’s flagship product, Scopi.",
-      "RESUME_2": "During my time at Scopi, I was able to gain valuable experience working with a variety of technologies, including Angular, Ruby and SQL. I also learned how to work effectively as part of a team using SCRUM, and how to communicate and collaborate with my colleagues to achieve our shared goals.",
-      "RESUME_3": "I am grateful for the opportunity to have worked at Scopi, and I am confident that the skills and experience I gained there will serve me well in my future endeavors."
+      "RESUME_1": "Scopi makes software for strategic planning, project management, and performance tracking. As a trainee, I built new features and maintained existing ones on their main product.",
+      "RESUME_2": "This is where I first worked with Angular, Ruby, and SQL on real projects. It's also where I learned how a team actually runs day to day, working in SCRUM and figuring out how to collaborate with people.",
+      "RESUME_3": "Scopi was a good place to start, and a lot of how I work today comes from that time."
     },
     "MINHA_VISITA": {
-      "RESUME_1": "Minha Visita is a startup that offers the simplest and most efficient way to manage commercial visits to customers. As a fullstack developer, I am responsible for developing new features and maintaining existing ones for the company’s flagship product, Minha Visita.",
-      "RESUME_2": "Currently we are developing a new version of the product, using the latest technologies, like Vue and NestJS, and best practices. I propose and implement scalable solutions to issues identified with our services and the application.",
-      "RESUME_3": "I'm collaborating with our team to ensure thoughtful and consistent user experiences across the web application and the apps."
+      "RESUME_1": "Minha Visita is a startup that helps teams manage commercial visits to customers. As a fullstack developer, I work on new features and keep the existing product running.",
+      "RESUME_2": "Right now we're rebuilding the product from the ground up with Vue and NestJS. I dig into problems in our services and the app, then propose and build fixes that scale.",
+      "RESUME_3": "I work closely with the team to keep the experience consistent across the web app and the mobile apps."
     },
     "FULLSTACK_LABS": {
-      "RESUME_1": "Allocated to a U.S.-based client at Fullstack Labs, contributing to the development and maintenance of their flagship product. I work closely with a senior team to implement thoughtful and consistent user experiences across web and mobile platforms.",
-      "RESUME_2": "Developing new features and enhancing existing ones using Vue, Nuxt, Vuetify, Ruby on Rails, PostgreSQL, and Docker, while collaborating in an Agile environment with active participation in SCRUM ceremonies.",
-      "RESUME_3": "Implemented and integrated a fully containerized CI testing pipeline using Docker, enabling automated end-to-end tests with Jest, Cypress, and RSpec—ensuring code reliability and stability across environments."
+      "RESUME_1": "At Fullstack Labs I was placed with a US-based client, working on their main product. I worked alongside a senior team to keep the experience consistent across web and mobile.",
+      "RESUME_2": "Developing new features and improving existing ones with Vue, Nuxt, Vuetify, Ruby on Rails, PostgreSQL, and Docker, working in an Agile setup with active participation in SCRUM ceremonies.",
+      "RESUME_3": "Built a fully containerized CI testing pipeline with Docker, running automated end-to-end tests with Jest, Cypress, and RSpec so the code stayed reliable across environments."
     },
     "HIPEOPLE": {
       "RESUME_1": "Collaborating with an international team to build AI-driven Hiring Intelligence solutions including Voice/Resume Screening, Assessments, and Reference Check using OpenAI APIs, NLP, and LLM-based pipelines.",
       "RESUME_2": "Architected scalable systems with React, Next.js, and Go (Echo). Implemented CI/CD, Vitest automation, and Dockerized environments for efficient development and deployment processes.",
-      "RESUME_3": "Developed realtime AI integrations via OpenAI Realtime Conversations, working under Agile/Linear workflow to deliver cutting-edge hiring solutions that leverage the latest in artificial intelligence technology.",
+      "RESUME_3": "Built realtime AI integrations with OpenAI Realtime Conversations, working in an Agile/Linear workflow.",
       "RESUME_4": "Led a front-end performance overhaul that cut the initial JS payload by 65% (over 1 MB), lifted Lighthouse scores from 18 to 60+, and reduced weekly production errors by 85%."
     }
   },

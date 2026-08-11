@@ -7,47 +7,47 @@
     "TITLE_3": "Designer.",
     "TITLE_4": "Palestrante.",
     "TITLE_5": "Pai de gatos.",
-    "SUMMARY": "Sou desenvolvedor fullstack, do Rio Grande do Sul, Brasil. Me especializo na criação de aplicações escaláveis e de alta qualidade, com forte foco em melhorias de performance e em uma ótima experiência para o usuário. Atuando tanto no front-end quanto no back-end, entrego soluções completas e eficientes, de arquiteturas complexas a interfaces rápidas e intuitivas.",
+    "SUMMARY": "Sou engenheiro de software fullstack, do Rio Grande do Sul, Brasil. Construo aplicações escaláveis e me importo bastante com o quão rápidas elas são e como é usá-las. Atuando no front-end e no back-end, consigo levar uma funcionalidade do banco de dados até a interface.",
     "VIEW_CV": "Ver currículo"
   },
   "ABOUT": {
     "TITLE": "Sobre mim",
     "STACK_TITLE": "Tecnologias",
-    "SUMMARY_1": "Olá, eu sou <span class=\"highlight\">Matheus</span>, desenvolvedor fullstack habitante do Rio Grande do Sul, Brasil. Para mim, criar sistemas vai além de apenas um trabalho, é uma paixão. Descobri essa vontade inicialmente ao me aventurar no design gráfico usando o Photoshop, o que eventualmente me levou a explorar o empolgante mundo do desenvolvimento web.",
-    "SUMMARY_2": "Com <span class=\"highlight\">5 anos de experiência</span> no currículo, estou sempre ansioso para aprender e expandir meu conjunto de habilidades. Tenho particular interesse em <span class=\"highlight\">padrões e princípios de design</span>, e me esforço para aplicá-los em todos os meus projetos.",
-    "SUMMARY_3": "Minha jornada começou como um <span class=\"highlight\">estagiário trabalhando com Ruby on Rails</span>, e desde então ampliei meus horizontes para incluir tecnologias como Vue e NestJS. Eu adoro o desafio de criar <span class=\"highlight\">aplicações centradas no usuário</span> que resolvam problemas do mundo real, e tenho muito orgulho em entregar produtos que são não apenas funcionais, mas também visualmente atraentes.",
-    "SUMMARY_4": "Quando não estou programando, geralmente estou me mantendo atualizado com as <span class=\"highlight\">últimas tendências da área Tech</span> ou experimentando novas ferramentas e frameworks. Obrigado por passar por aqui e me conhecer um pouco melhor!"
+    "SUMMARY_1": "Olá, eu sou <span class=\"highlight\">Matheus</span>, desenvolvedor fullstack aqui do Rio Grande do Sul, Brasil. Cheguei aqui pelo design gráfico, brincando no Photoshop, e essa curiosidade foi me puxando aos poucos pro desenvolvimento de software. Nunca mais larguei.",
+    "SUMMARY_2": "Já são quase<span class=\"highlight\">6 anos de experiência</span>, e continuo gostando de aprender coisa nova. Curto bastante <span class=\"highlight\">padrões e princípios de design</span>, e tento aplicar de verdade, não só ler sobre.",
+    "SUMMARY_3": "Comecei como <span class=\"highlight\">estagiário escrevendo Ruby on Rails</span>, e de lá pra cá fui pegando Vue, NestJS, React, Go e mais um monte de coisa. O que mais gosto é construir <span class=\"highlight\">aplicações otimizadas e performáticas</span> que resolvem problemas reais, e entregar algo que funciona bem e ainda fica bonito.",
+    "SUMMARY_4": "Quando não estou programando, geralmente estou vendo algo sobre <span class=\"highlight\">o que há de novo na área</span> ou testando alguma ferramenta ou framework que acabei de descobrir. Valeu por passar por aqui!"
   },
   "CAREER": {
     "TITLE": "Carreira",
     "CIMOL": {
-      "RESUME_1": "O CIMOL é uma escola técnica que oferece uma variedade de cursos em áreas como de informática, design e eletrônica.",
-      "RESUME_2": "No curso técnico integrado ao ensino médio, fui apresentado a uma variedade de disciplinas, incluindo programação, desenvolvimento web, design gráfico e hardware. Através deste currículo abrangente, adquiri uma base sólida no campo da tecnologia da informação.",
-      "RESUME_3": "Ao final do curso, estava bem preparado com o conhecimento e habilidades necessárias para ingressar no mercado de trabalho com confiança. Graças ao treinamento prático e à experiência do mundo real fornecidos pelo programa, pude fazer a transição perfeita para minha carreira profissional e continuar a construir sobre a sólida base que estabeleci durante o curso."
+      "RESUME_1": "O CIMOL é uma escola técnica com cursos em áreas como informática, design e eletrônica.",
+      "RESUME_2": "Fiz o técnico integrado ao ensino médio, que passava por programação, desenvolvimento web, design gráfico e hardware. Foi o que me deu uma base sólida em tecnologia bem cedo.",
+      "RESUME_3": "Quando terminei, já me sentia pronto pra começar a trabalhar. Os projetos práticos deixaram a transição pro primeiro emprego bem mais tranquila do que eu imaginava."
     },
     "UNISINOS": {
-      "RESUME_1": "No faculdade de Sistemas para Internet, obtemos uma compreensão profunda dos conceitos fundamentais por trás das tecnologias e sistemas da internet. Além do conhecimento técnico que adquirimos, também aprendemos sobre o ecossistema mais amplo da internet e como ele funciona como um todo. Essa educação abrangente nos prepara para nos destacarmos no campo em constante evolução do desenvolvimento web.",
-      "RESUME_2": "Com foco em habilidades práticas e experiência prática, me formei neste programa em 2025 com um entendimento completo de como construir soluções digitais eficientes."
+      "RESUME_1": "A faculdade de Sistemas para Internet vai fundo em como as tecnologias e sistemas da internet realmente funcionam, não só o código, mas como todo o ecossistema se encaixa. É uma boa base pro desenvolvimento web.",
+      "RESUME_2": "O curso era bem focado na prática, e me formei em 2025 sabendo como construir coisas que de fato vão pra produção."
     },
     "SCOPI": {
-      "RESUME_1": "A Scopi é uma empresa de software que oferece uma variedade de soluções para planejamento estratégico, gerenciamento de projetos e monitoramento de desempenho. Como estagiário, fui responsável pelo desenvolvimento de novos recursos e pela manutenção dos existentes para o produto principal da empresa.",
-      "RESUME_2": "Durante o meu tempo na Scopi, pude adquirir experiência valiosa trabalhando com diversas tecnologias, incluindo Angular, Ruby e SQL. Também aprendi a trabalhar de forma eficaz como parte de uma equipe usando SCRUM, e como comunicar e colaborar com meus colegas para alcançar nossos objetivos comuns.",
-      "RESUME_3": "Sou grato pela oportunidade de ter trabalhado na Scopi e tenho confiança de que as habilidades e experiência que adquiri lá me servirão bem em minhas futuras experiências."
+      "RESUME_1": "A Scopi faz software para planejamento estratégico, gestão de projetos e monitoramento de desempenho. Como estagiário, desenvolvi novos recursos e mantive os existentes no produto principal da empresa.",
+      "RESUME_2": "Foi ali que trabalhei pela primeira vez com Angular, Ruby e SQL em projetos de verdade. E foi onde aprendi como um time funciona no dia a dia, trabalhando com SCRUM e descobrindo como colaborar com as pessoas.",
+      "RESUME_3": "A Scopi foi um ótimo lugar pra começar, e boa parte de como eu trabalho hoje vem dessa época."
     },
     "MINHA_VISITA": {
-      "RESUME_1": "Minha Visita é uma startup que oferece a maneira mais simples e eficiente de gerenciar visitas comerciais aos clientes. Como desenvolvedor fullstack, sou responsável pelo desenvolvimento de novos recursos e pela manutenção dos existentes para o produto principal da empresa, o Minha Visita.",
-      "RESUME_2": "Atualmente, estamos desenvolvendo uma nova versão do produto, utilizando as tecnologias mais recentes, como Vue e NestJS, e as melhores práticas. Proponho e implemento soluções escaláveis para problemas identificados em nossos serviços e no aplicativo.",
-      "RESUME_3": "Estou colaborando com nossa equipe para garantir experiências de usuário cuidadosas e consistentes em toda a aplicação web e os aplicativos."
+      "RESUME_1": "O Minha Visita é uma startup que ajuda times a gerenciar visitas comerciais a clientes. Como desenvolvedor fullstack, trabalho em novos recursos e mantenho o produto existente.",
+      "RESUME_2": "No momento estamos reconstruindo o produto do zero com Vue e NestJS. Eu investigo problemas nos nossos serviços e no app, e proponho e implemento soluções que escalam.",
+      "RESUME_3": "Trabalho junto com o time pra manter a experiência consistente entre a aplicação web e os apps."
     },
     "FULLSTACK_LABS": {
-      "RESUME_1": "Alocado em um cliente dos Estados Unidos pela Fullstack Labs, contribuindo para o desenvolvimento e manutenção do principal produto da empresa. Trabalho em colaboração com um time sênior para implementar experiências de usuário consistentes e bem pensadas nas plataformas web e mobile.",
-      "RESUME_2": "Desenvolvendo novas funcionalidades e aprimorando as existentes utilizando tecnologias como Vue, Nuxt, Vuetify, Ruby on Rails, PostgreSQL e Docker, colaborando em um ambiente ágil com participação ativa em cerimônias SCRUM.",
-      "RESUME_3": "Implementei e integrei um pipeline de testes totalmente containerizado em ambiente de CI com Docker, permitindo testes automatizados end-to-end com Jest, Cypress e RSpec — garantindo confiabilidade e estabilidade do código em diferentes ambientes."
+      "RESUME_1": "Na Fullstack Labs fui alocado em um cliente dos Estados Unidos, trabalhando no produto principal deles. Trabalhei ao lado de um time sênior pra manter a experiência consistente entre web e mobile.",
+      "RESUME_2": "Desenvolvendo novas funcionalidades e melhorando as existentes com Vue, Nuxt, Vuetify, Ruby on Rails, PostgreSQL e Docker, num ambiente ágil com participação ativa nas cerimônias de SCRUM.",
+      "RESUME_3": "Construí um pipeline de testes totalmente containerizado em CI com Docker, rodando testes end-to-end automatizados com Jest, Cypress e RSpec, mantendo o código confiável entre os diferentes ambientes."
     },
     "HIPEOPLE": {
       "RESUME_1": "Colaborei com uma equipe internacional para construir soluções de Inteligência de Contratação baseadas em IA, incluindo Triagem por Voz/Currículo, Avaliações e Verificação de Referências usando APIs OpenAI, NLP e pipelines baseados em LLM.",
       "RESUME_2": "Arquitetei sistemas escaláveis com React, Next.js e Go (Echo). Implementei CI/CD, automação Vitest e ambientes Dockerizados para processos eficientes de desenvolvimento e implantação.",
-      "RESUME_3": "Desenvolvi integrações de IA em tempo real via OpenAI Realtime Conversations, trabalhando sob fluxo de trabalho Ágil/Linear para entregar soluções de contratação de ponta que aproveitam o mais recente em tecnologia de inteligência artificial.",
+      "RESUME_3": "Desenvolvi integrações de IA em tempo real com OpenAI Realtime Conversations, trabalhando em um fluxo Ágil/Linear.",
       "RESUME_4": "Liderei uma reformulação de performance no front-end que reduziu o payload inicial de JS em 65% (mais de 1 MB), elevou o Lighthouse de 18 para mais de 60 e diminuiu os erros semanais em produção em 85%."
     }
   },
