@@ -44,7 +44,11 @@ const startApp = () => {
     .use(i18n)
     .mount('#app');
 
-  inject();
+  // the vue component export needs vue-router, this app has no routes
+  inject(
+    { basePath: import.meta.env.VITE_VERCEL_OBSERVABILITY_BASEPATH },
+    import.meta.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG
+  );
 };
 
 startApp();
