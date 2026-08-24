@@ -23,6 +23,8 @@
               :name="stack.name"
               :type="stack.type"
               :label="stack.label"
+              :src="stack.src"
+              :highlight="stack.highlight"
             />
           </div>
         </div>
@@ -38,20 +40,24 @@ import StackCard from '@/components/cards/StackCard.vue';
 import { reveal, onReveal, EASE } from '@/composables/useReveal';
 
 const stacks = [
-  { name: 'javascript', type: 'original', label: 'JavaScript' },
-  { name: 'typescript', type: 'original', label: 'TypeScript' },
-  { name: 'vuejs', type: 'original', label: 'Vue.js' },
-  { name: 'react', type: 'original', label: 'React' },
+  { name: 'vuejs', type: 'original', label: 'Vue.js', highlight: true },
+  { name: 'react', type: 'original', label: 'React', highlight: true },
+  { name: 'typescript', type: 'original', label: 'TypeScript', highlight: true },
+  { name: 'go', type: 'original', label: 'Go', highlight: true },
+  { name: 'ruby', type: 'original', label: 'Ruby', highlight: true },
   { name: 'nextjs', type: 'original', label: 'Next.js' },
   { name: 'nodejs', type: 'original', label: 'Node.js' },
   { name: 'nestjs', type: 'original', label: 'NestJS' },
-  { name: 'go', type: 'original', label: 'Go' },
-  { name: 'ruby', type: 'original', label: 'Ruby' },
   { name: 'rails', type: 'original-wordmark', label: 'Rails' },
+  { name: 'graphql', type: 'plain', label: 'GraphQL' },
   { name: 'python', type: 'original', label: 'Python' },
   { name: 'mysql', type: 'original', label: 'MySQL' },
-  { name: 'graphql', type: 'plain', label: 'GraphQL' },
   { name: 'docker', type: 'original', label: 'Docker' },
+  { name: 'claude-code', src: '/icons/claude-code.svg', label: 'Claude Code' },
+  { name: 'linear', src: '/icons/linear.svg', label: 'Linear' },
+  { name: 'opencode', src: '/icons/opencode.svg', label: 'OpenCode' },
+  { name: 'superset', src: '/icons/superset.svg', label: 'Superset' },
+  { name: 'javascript', type: 'original', label: 'JavaScript' },
   { name: 'git', type: 'original', label: 'Git' },
   { name: 'html5', type: 'original', label: 'HTML5' },
   { name: 'css3', type: 'original', label: 'CSS3' },

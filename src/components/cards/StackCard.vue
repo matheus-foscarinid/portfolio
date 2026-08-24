@@ -1,8 +1,8 @@
 <template>
-  <div class="stack">
+  <div class="stack" :class="{ highlight: props.highlight }">
     <div class="icon" :class="{ 'invert-on-dark': monochrome.includes(props.name) }">
       <img
-        :src="`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${props.name}/${props.name}-${props.type}.svg`"
+        :src="props.src ?? `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${props.name}/${props.name}-${props.type}.svg`"
         :alt="props.label"
       />
     </div>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-  const props = defineProps(['name', 'type', 'label']);
+  const props = defineProps(['name', 'type', 'label', 'src', 'highlight']);
 
   const monochrome = ['nextjs'];
 </script >
@@ -38,10 +38,10 @@
         width: 100%;
         height: 100%;
       }
-    }
 
-    [data-theme="dark"] .icon.invert-on-dark img {
-      filter: invert(1);
+      [data-theme="dark"] &.invert-on-dark img {
+        filter: invert(1);
+      }
     }
 
     .label {
@@ -49,6 +49,10 @@
       font-size: 0.75rem;
       color: var(--secondary-text);
       text-align: center;
+    }
+
+    &.highlight .icon {
+      box-shadow: 0 0 0 2px var(--accent);
     }
 
     &:hover .icon {
