@@ -5,6 +5,7 @@
     :href="props.contact.link || undefined"
     :target="props.contact.link ? '_blank' : undefined"
     rel="noopener"
+    @click="trackContactClick"
   >
     <div class="icon">
       <font-awesome-icon
@@ -33,7 +34,17 @@
 </template>
 
 <script setup>
+  import { trackEvent } from '@/composables/useAnalytics';
+
   const props = defineProps(['contact']);
+
+  const trackContactClick = () => {
+    if (!props.contact.link) return;
+    trackEvent('social_click', {
+      network: props.contact.label.toLowerCase(),
+      location: 'contact'
+    });
+  };
 </script>
 
 <style lang="scss" scoped>

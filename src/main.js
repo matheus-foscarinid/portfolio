@@ -1,5 +1,4 @@
 import { createApp } from 'vue'
-import { inject } from '@vercel/analytics'
 
 import App from './App.vue'
 import i18n from './i18n'
@@ -43,12 +42,6 @@ const startApp = () => {
     .component('font-awesome-icon', FontAwesomeIcon)
     .use(i18n)
     .mount('#app');
-
-  // the vue component export needs vue-router, this app has no routes
-  inject(
-    { basePath: import.meta.env.VITE_VERCEL_OBSERVABILITY_BASEPATH },
-    import.meta.env.VITE_VERCEL_OBSERVABILITY_CLIENT_CONFIG
-  );
 };
 
 startApp();
