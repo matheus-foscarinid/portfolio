@@ -32,6 +32,7 @@ import TypedPresentation from '../home/TypedPresentation.vue';
 
 import { onMounted } from 'vue';
 import { reveal, onReveal, EASE } from '@/composables/useReveal';
+import { trackEvent } from '@/composables/useAnalytics';
 
 const animateElement = () => {
   const photo = document.querySelector('.my-photo');
@@ -59,6 +60,7 @@ const viewCV = () => {
   const EN_CV_PATH = '/dias-matheus-cv-en.pdf';
 
   const cvPath = i18n.global.locale.value === 'pt' ? PT_CV_PATH : EN_CV_PATH ;
+  trackEvent('cv_click', { lang: i18n.global.locale.value });
   window.open(cvPath, '_blank');
 };
 </script>
