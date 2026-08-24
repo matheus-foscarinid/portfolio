@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { inject } from '@vercel/analytics'
 
 import App from './App.vue'
 import i18n from './i18n'
@@ -42,6 +43,8 @@ const startApp = () => {
     .component('font-awesome-icon', FontAwesomeIcon)
     .use(i18n)
     .mount('#app');
+
+  inject();
 };
 
 startApp();
