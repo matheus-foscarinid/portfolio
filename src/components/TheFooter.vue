@@ -21,15 +21,20 @@
 </template>
 
 <script setup>
+  import { trackEvent } from '@/composables/useAnalytics';
+
   const openEmail = () => {
+    trackEvent('social_click', { network: 'email', location: 'footer' });
     window.open('mailto:matheus.foscarinid@gmail.com', '_blank');
   };
 
   const openLinkedin = () => {
+    trackEvent('social_click', { network: 'linkedin', location: 'footer' });
     window.open('https://linkedin.com/in/matheus-foscarinid/', '_blank');
   };
 
   const openGithub = () => {
+    trackEvent('social_click', { network: 'github', location: 'footer' });
     window.open('https://github.com/matheus-foscarinid', '_blank');
   };
 </script>
