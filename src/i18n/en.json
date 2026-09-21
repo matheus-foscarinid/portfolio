@@ -64,17 +64,14 @@
     "JSON_SEARCHER": "JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.",
     "CONSTRUSAUSEN": "Institutional website for the Construsausen timber company, with some company information, developed with Vue.js and SCSS.",
     "WW_HIDE_CHATS_TOOLS": "My newest project, currently a work in progress (WIP), is a Chrome extension designed to hide, blur, and provide many more features for chats on WhatsApp Web.",
-    "FEATURED": "Featured Project",
     "THIS_SITE": "Yep, you're looking at it. This site was engineered to feel instant. A lean Vue 3 SPA bundled with Vite and Rolldown, with native animations, code-split sections, and modern media formats. Every byte was measured.",
     "GB_EMU": "A work in progress Game Boy emulator written from scratch in Go, built as a low level study of CPU and hardware emulation. It already parses the cartridge header and decodes a handful of CPU instructions.",
-    "WORK_TITLE": "Professional work",
-    "WORK_SUBTITLE": "Products I've shipped with a team, still running in production.",
-    "SIDE_TITLE": "Side projects",
     "TAG_PROFESSIONAL": "Professional",
     "TAG_PERSONAL": "Personal",
     "HIPEOPLE": "AI hiring platform used by recruiting teams to screen candidates. I build the voice and resume screening flows end to end, from the Go services behind them to the React app recruiters live in.",
     "BENCHPREP": "Learning platform for exam prep and certification programs. Through Fullstack Labs I worked on the learner experience in Vue and Rails, and built a containerized CI pipeline so releases stopped breaking.",
-    "MINHA_VISITA": "Field sales software for teams that visit customers in person. I rebuilt the product on Vue and NestJS and kept the web app in sync with the offline-first mobile apps."
+    "MINHA_VISITA": "Field sales software for teams that visit customers in person. I rebuilt the product on Vue and NestJS and kept the web app in sync with the offline-first mobile apps.",
+    "SUBTITLE": "Products I've shipped with a team, and things I've built on my own."
   },
   "HEADER": {
     "HOME": "Home",

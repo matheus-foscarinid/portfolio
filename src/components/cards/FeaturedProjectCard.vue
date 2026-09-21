@@ -88,17 +88,27 @@
     </div>
 
     <div class="project-infos">
-      <span class="featured-tag">{{ $t('PROJECTS.FEATURED') }}</span>
+      <div class="heading">
+        <a
+          v-if="project.link"
+          class="title"
+          :href="project.link"
+          target="_blank"
+        >
+          {{ project.name }}
+        </a>
+        <span v-else class="title static">{{ project.name }}</span>
 
-      <a
-        v-if="project.link"
-        class="title"
-        :href="project.link"
-        target="_blank"
-      >
-        {{ project.name }}
-      </a>
-      <span v-else class="title static">{{ project.name }}</span>
+        <span
+          v-if="project.years"
+          class="years"
+        >{{ project.years }}</span>
+
+        <span
+          v-if="project.tag"
+          class="tag"
+        >{{ project.tag }}</span>
+      </div>
 
       <p class="description">{{ project.description }}</p>
 
@@ -317,22 +327,27 @@
       justify-content: center;
       gap: 1rem;
 
-      .featured-tag {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-family: 'Fira Code', monospace;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--secondary-text);
+      .heading {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.75rem;
 
-        &::before {
-          content: '';
-          width: 0.5rem;
-          height: 0.5rem;
-          border-radius: 50%;
-          background-color: var(--accent);
+        .years {
+          font-family: 'Fira Code', monospace;
+          font-size: 0.78rem;
+          color: var(--disabled-text);
+          white-space: nowrap;
+        }
+
+        .tag {
+          padding: 0.28rem 0.6rem;
+          border-radius: 0.4rem;
+          background: color-mix(in srgb, var(--accent) 12%, transparent);
+          color: var(--accent);
+          font-family: 'Fira Code', monospace;
+          font-size: 0.68rem;
+          letter-spacing: 0.02em;
         }
       }
 
@@ -448,6 +463,7 @@
         align-items: flex-start;
         text-align: left;
         gap: 0.85rem;
+
 
         .title { font-size: 1.5rem; }
 

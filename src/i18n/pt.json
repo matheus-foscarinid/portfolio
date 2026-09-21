@@ -64,17 +64,14 @@
     "JSON_SEARCHER": "JSON Searcher é uma extensão simples para o VSCode usada para buscar caminhos dentro de arquivos JSON, particularmente útil para usar com arquivos de i18n (internationalization).",
     "CONSTRUSAUSEN": "Site institucional para a empresa Madereira Construsausen, com algumas informações da empresa, desenvolvido com Vue.js e SCSS.",
     "WW_HIDE_CHATS_TOOLS": "Meu projeto mais recente, atualmente em desenvolvimento (WIP), é uma extensão para o Chrome projetada para ocultar, desfocar e oferecer muitos outros recursos para bate-papos no WhatsApp Web.",
-    "FEATURED": "Projeto em destaque",
     "THIS_SITE": "Sim, é isso mesmo que você está vendo. Este site foi feito para parecer instantâneo. Uma SPA enxuta em Vue 3 empacotada com Vite e Rolldown, com animações nativas, seções com code-splitting e formatos de mídia modernos. Cada byte foi medido.",
     "GB_EMU": "Um emulador de Game Boy em desenvolvimento (WIP) escrito do zero em Go, feito como um estudo de baixo nível de CPU e emulação de hardware. Já consegue ler o header do cartucho e decodificar algumas instruções.",
-    "WORK_TITLE": "Trabalho profissional",
-    "WORK_SUBTITLE": "Produtos que entreguei com um time e que seguem rodando em produção.",
-    "SIDE_TITLE": "Projetos pessoais",
     "TAG_PROFESSIONAL": "Profissional",
     "TAG_PERSONAL": "Pessoal",
     "HIPEOPLE": "Plataforma de contratação com IA usada por times de recrutamento para triagem de candidatos. Construo os fluxos de triagem por voz e currículo de ponta a ponta, dos serviços em Go até o app em React que os recrutadores usam.",
     "BENCHPREP": "Plataforma de ensino para preparação de provas e certificações. Pela Fullstack Labs, trabalhei na experiência do aluno em Vue e Rails e montei um pipeline de CI conteinerizado para os deploys pararem de quebrar.",
-    "MINHA_VISITA": "Software de vendas externas para times que visitam clientes presencialmente. Reconstruí o produto em Vue e NestJS e mantive o app web alinhado com os apps mobile offline-first."
+    "MINHA_VISITA": "Software de vendas externas para times que visitam clientes presencialmente. Reconstruí o produto em Vue e NestJS e mantive o app web alinhado com os apps mobile offline-first.",
+    "SUBTITLE": "Produtos que entreguei com um time e coisas que construí sozinho."
   },
   "HEADER": {
     "HOME": "Início",
