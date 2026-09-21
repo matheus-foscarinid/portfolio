@@ -8,6 +8,11 @@
       v-if="hasMedia"
       class="media"
     >
+      <span
+        v-if="project.tag"
+        class="tag"
+      >{{ project.tag }}</span>
+
       <video
         v-if="project.video"
         class="thumb"
@@ -35,15 +40,23 @@
       <img
         v-else
         class="thumb"
+        :srcset="project.srcset"
         :src="project.image"
-        alt="Project Image"
+        sizes="(max-width: 768px) 92vw, 30vw"
+        :alt="project.name"
         loading="lazy"
       />
     </div>
 
     <div class="body">
       <div class="header">
-        <span class="title">{{ project.name }}</span>
+        <span class="title">
+          {{ project.name }}
+          <span
+            v-if="project.years"
+            class="years"
+          >{{ project.years }}</span>
+        </span>
 
         <span class="icons">
           <font-awesome-icon
@@ -108,7 +121,6 @@
     &:hover {
       transform: translateY(-4px);
       border-color: color-mix(in srgb, var(--accent) 55%, var(--default-border));
-      box-shadow: 0 1rem 2rem color-mix(in srgb, var(--accent) 14%, transparent);
     }
 
     .media {
@@ -117,6 +129,21 @@
       border-radius: 0.75rem;
       overflow: hidden;
       box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
+
+      .tag {
+        position: absolute;
+        z-index: 1;
+        top: 0.6rem;
+        left: 0.6rem;
+        padding: 0.28rem 0.6rem;
+        border-radius: 0.4rem;
+        backdrop-filter: blur(6px);
+        background: color-mix(in srgb, var(--dark-background) 72%, transparent);
+        color: var(--accent-on-dark);
+        font-family: 'Fira Code', monospace;
+        font-size: 0.68rem;
+        letter-spacing: 0.02em;
+      }
 
       .thumb {
         width: 100%;
@@ -146,6 +173,7 @@
     }
 
     .body {
+      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
@@ -162,6 +190,15 @@
         line-height: 1.2;
         font-weight: 700;
         color: var(--default-text);
+
+        .years {
+          margin-left: 0.6rem;
+          font-family: 'Fira Code', monospace;
+          font-size: 0.75rem;
+          font-weight: 400;
+          color: var(--disabled-text);
+          white-space: nowrap;
+        }
       }
 
       .icons {
@@ -181,12 +218,12 @@
     }
 
     .stack {
+      margin-top: auto;
       list-style: none;
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       padding: 0;
-      margin: 0;
 
       li {
         font-family: 'Fira Code', monospace;

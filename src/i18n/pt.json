@@ -1,14 +1,14 @@
 {
   "HOME": {
-    "PRESENTATION_1": "Olá! Meu nome é",
-    "PRESENTATION_2": "Sou um",
     "TITLE_1": "Desenvolvedor fullstack.",
     "TITLE_2": "Engenheiro de Software.",
     "TITLE_3": "Designer.",
     "TITLE_4": "Palestrante.",
     "TITLE_5": "Pai de gatos.",
-    "SUMMARY": "Sou engenheiro de software fullstack, do Rio Grande do Sul, Brasil. Construo aplicações escaláveis e me importo bastante com o quão rápidas elas são e como é usá-las. Atuando no front-end e no back-end, consigo levar uma funcionalidade do banco de dados até a interface.",
-    "VIEW_CV": "Ver currículo"
+    "SUMMARY": "Quase seis anos construindo produtos de ponta a ponta. Hoje são ferramentas de contratação com IA na HiPeople: Go no back-end, React e Vue no front. A maior parte do meu trabalho é deixar coisas lentas rápidas.",
+    "EYEBROW": "Desenvolvedor fullstack {'@'} HiPeople",
+    "VIEW_CV": "Ver currículo",
+    "CONTACT_CTA": "Fale comigo"
   },
   "ABOUT": {
     "TITLE": "Sobre mim",
@@ -16,7 +16,7 @@
     "SUMMARY_1": "Olá, eu sou <span class=\"highlight\">Matheus</span>, desenvolvedor fullstack aqui do Rio Grande do Sul, Brasil. Cheguei aqui pelo design gráfico, brincando no Photoshop, e essa curiosidade foi me puxando aos poucos pro desenvolvimento de software. Nunca mais larguei.",
     "SUMMARY_2": "Já são quase<span class=\"highlight\">6 anos de experiência</span>, e continuo gostando de aprender coisa nova. Curto bastante <span class=\"highlight\">padrões e princípios de design</span>, e tento aplicar de verdade, não só ler sobre.",
     "SUMMARY_3": "Comecei como <span class=\"highlight\">estagiário escrevendo Ruby on Rails</span>, e de lá pra cá fui pegando Vue, NestJS, React, Go e mais um monte de coisa. O que mais gosto é construir <span class=\"highlight\">aplicações otimizadas e performáticas</span> que resolvem problemas reais, e entregar algo que funciona bem e ainda fica bonito.",
-    "SUMMARY_4": "Quando não estou programando, geralmente estou vendo algo sobre <span class=\"highlight\">o que há de novo na área</span> ou testando alguma ferramenta ou framework que acabei de descobrir. Valeu por passar por aqui!"
+    "SUMMARY_4": "Quando não estou programando, geralmente estou vendo algo sobre <span class=\"highlight\">o que há de novo na área</span> ou testando alguma ferramenta ou framework que acabei de descobrir. Se algo aqui tem a ver com o que você está construindo, minha caixa de entrada está aberta."
   },
   "CAREER": {
     "TITLE": "Carreira",
@@ -52,11 +52,15 @@
     }
   },
   "CONTACT": {
-    "TITLE": "Contato"
+    "TITLE": "Contato",
+    "SUBTITLE": "Contratando, ou construindo algo em que quer ajuda? Me conta no que você está trabalhando.",
+    "EMAIL_CTA": "Me mande um email",
+    "NOTE": "Email é o jeito mais rápido de falar comigo.",
+    "ELSEWHERE": "Ou me encontre aqui"
   },
   "PROJECTS": {
     "TITLE": "Projetos",
-    "COMING_SOON": "Novos projetos em breve! 😎",
+    "COMING_SOON": "Tem mais a caminho. O código da maioria está no GitHub.",
     "REPOSITORY": "Repositório",
     "VIEW": "Visualizar",
     "JSON_SEARCHER": "JSON Searcher é uma extensão simples para o VSCode usada para buscar caminhos dentro de arquivos JSON, particularmente útil para usar com arquivos de i18n (internationalization).",
@@ -64,7 +68,15 @@
     "WW_HIDE_CHATS_TOOLS": "Meu projeto mais recente, atualmente em desenvolvimento (WIP), é uma extensão para o Chrome projetada para ocultar, desfocar e oferecer muitos outros recursos para bate-papos no WhatsApp Web.",
     "FEATURED": "Projeto em destaque",
     "THIS_SITE": "Sim, é isso mesmo que você está vendo. Este site foi feito para parecer instantâneo. Uma SPA enxuta em Vue 3 empacotada com Vite e Rolldown, com animações nativas, seções com code-splitting e formatos de mídia modernos. Cada byte foi medido.",
-    "GB_EMU": "Um emulador de Game Boy em desenvolvimento (WIP) escrito do zero em Go, feito como um estudo de baixo nível de CPU e emulação de hardware. Já consegue ler o header do cartucho e decodificar algumas instruções."
+    "GB_EMU": "Um emulador de Game Boy em desenvolvimento (WIP) escrito do zero em Go, feito como um estudo de baixo nível de CPU e emulação de hardware. Já consegue ler o header do cartucho e decodificar algumas instruções.",
+    "WORK_TITLE": "Trabalho profissional",
+    "WORK_SUBTITLE": "Produtos que entreguei com um time e que seguem rodando em produção.",
+    "SIDE_TITLE": "Projetos pessoais",
+    "TAG_PROFESSIONAL": "Profissional",
+    "TAG_PERSONAL": "Pessoal",
+    "HIPEOPLE": "Plataforma de contratação com IA usada por times de recrutamento para triagem de candidatos. Construo os fluxos de triagem por voz e currículo de ponta a ponta, dos serviços em Go até o app em React que os recrutadores usam.",
+    "BENCHPREP": "Plataforma de ensino para preparação de provas e certificações. Pela Fullstack Labs, trabalhei na experiência do aluno em Vue e Rails e montei um pipeline de CI conteinerizado para os deploys pararem de quebrar.",
+    "MINHA_VISITA": "Software de vendas externas para times que visitam clientes presencialmente. Reconstruí o produto em Vue e NestJS e mantive o app web alinhado com os apps mobile offline-first."
   },
   "HEADER": {
     "HOME": "Início",
@@ -78,8 +90,8 @@
     "COPYRIGHT": "Copyright © 2023. Todos os direitos reservados."
   },
   "LIGHTHOUSE": {
-    "TITLE": "Feito para velocidade",
-    "SUBTITLE": "Este site não é rápido por acaso. Estas são suas pontuações no Lighthouse, medidas no build de produção.",
-    "VERIFY": "Verifique no PageSpeed Insights ->"
+    "TITLE": "Notas do Lighthouse",
+    "SUBTITLE": "Medidas na build de produção que está no ar, não em um build local.",
+    "VERIFY": "Verificar no PageSpeed Insights ->"
   }
 }

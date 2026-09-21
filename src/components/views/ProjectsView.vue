@@ -15,18 +15,41 @@
         />
       </div>
 
-      <div class="project-cards">
-        <ProjectCard
-          v-for="(project, index) in projects"
-          :key="index"
-          :project="project"
-        />
+      <div class="tier">
+        <div class="tier-heading">
+          <h3>{{ $t('PROJECTS.WORK_TITLE') }}</h3>
+          <p>{{ $t('PROJECTS.WORK_SUBTITLE') }}</p>
+        </div>
+
+        <div class="project-cards work">
+          <ProjectCard
+            v-for="(project, index) in workProjects"
+            :key="index"
+            :project="project"
+          />
+        </div>
+      </div>
+
+      <div class="tier">
+        <div class="tier-heading">
+          <h3>{{ $t('PROJECTS.SIDE_TITLE') }}</h3>
+        </div>
+
+        <div class="project-cards">
+          <ProjectCard
+            v-for="(project, index) in projects"
+            :key="index"
+            :project="project"
+          />
+        </div>
       </div>
 
       <div class="coming-soon-message">
         <span class="prompt">~/projects $</span>
         <span class="text">{{ $t('PROJECTS.COMING_SOON') }}</span>
       </div>
+
+      <LighthouseScores />
     </div>
   </section>
 </template>
@@ -37,6 +60,7 @@
 
   import FeaturedProjectCard from '@/components/cards/FeaturedProjectCard.vue';
   import ProjectCard from '@/components/cards/ProjectCard.vue';
+  import LighthouseScores from '@/components/LighthouseScores.vue';
   import { reveal, onReveal, EASE } from '@/composables/useReveal';
 
   const { t: $t } = useI18n();
@@ -80,9 +104,44 @@
     },
   ]);
 
+  const workProjects = computed(() => [
+    {
+      link: 'https://www.hipeople.io/',
+      name: 'HiPeople',
+      years: '2025 - now',
+      tag: $t('PROJECTS.TAG_PROFESSIONAL'),
+      description: $t('PROJECTS.HIPEOPLE'),
+      stack: ['Go', 'React', 'Next.js', 'OpenAI'],
+      srcset: '/images/projects/hipeople_w_600.webp 600w, /images/projects/hipeople.webp 1200w',
+      image: '/images/projects/hipeople.webp',
+    },
+    {
+      link: 'https://www.benchprep.com/',
+      name: 'BenchPrep',
+      years: '2024 - 2025',
+      tag: $t('PROJECTS.TAG_PROFESSIONAL'),
+      description: $t('PROJECTS.BENCHPREP'),
+      stack: ['Vue', 'Nuxt', 'Ruby on Rails', 'Docker'],
+      srcset: '/images/projects/benchprep_w_600.webp 600w, /images/projects/benchprep.webp 1200w',
+      image: '/images/projects/benchprep.webp',
+    },
+    {
+      link: 'https://www.minhavisita.app/',
+      name: 'Minha Visita',
+      years: '2021 - 2024',
+      tag: $t('PROJECTS.TAG_PROFESSIONAL'),
+      description: $t('PROJECTS.MINHA_VISITA'),
+      stack: ['Vue', 'NestJS', 'PostgreSQL'],
+      srcset: '/images/projects/minhavisita_w_600.webp 600w, /images/projects/minhavisita.webp 1200w',
+      image: '/images/projects/minhavisita.webp',
+    },
+  ]);
+
   const projects = computed(() => [
     {
       name: 'Site Construsausen',
+      years: '2021',
+      tag: $t('PROJECTS.TAG_PERSONAL'),
       description: $t('PROJECTS.CONSTRUSAUSEN'),
       stack: ['Vue', 'Typescript', 'SCSS'],
       srcset: '/images/construsausen_w_200.webp 200w, /images/construsausen_w_667.webp 667w, /images/construsausen_w_954.webp 954w',
@@ -92,6 +151,8 @@
     {
       repository: 'https://github.com/matheus-foscarinid/whatsapp-web-hide-chats-tools',
       name: 'Wpp Web Hide Chats Tools',
+      years: '2024',
+      tag: $t('PROJECTS.TAG_PERSONAL'),
       description: $t('PROJECTS.WW_HIDE_CHATS_TOOLS'),
       stack: ['Javascript', 'Google Chrome API'],
       video: '/images/ww_hide_chats_tools.mp4',
@@ -101,6 +162,7 @@
   const animateElement = () => {
     const heading = document.querySelectorAll('#projects .section-heading > *');
     const featuredCards = document.querySelectorAll('.featured-project-cards > *');
+    const tiers = document.querySelectorAll('#projects .tier');
     const message = document.querySelector('.coming-soon-message');
 
     reveal(
@@ -115,6 +177,13 @@
       { opacity: 0, y: 75, blur: 2 },
       { opacity: 1, y: 0, blur: 0 },
       { duration: 500, stagger: 250, delay: 500 }
+    );
+
+    reveal(
+      tiers,
+      { opacity: 0, y: 60, blur: 2 },
+      { opacity: 1, y: 0, blur: 0 },
+      { duration: 500, stagger: 150, delay: 500 }
     );
 
     reveal(
@@ -136,7 +205,7 @@
     background: var(--secondary-background);
 
     .section-heading {
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
 
       .marker {
         display: block;
@@ -162,12 +231,37 @@
       gap: 1.5rem;
     }
 
+    .tier {
+      margin-top: 4rem;
+
+      .tier-heading {
+        margin-bottom: 1.5rem;
+
+        h3 {
+          font-size: 1.35rem;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+          margin: 0;
+        }
+
+        p {
+          margin: 0.4rem 0 0;
+          max-width: 52ch;
+          color: var(--secondary-text);
+          font-size: 0.95rem;
+        }
+      }
+    }
+
     .project-cards {
-      margin-top: 3rem;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
+
+      &.work { grid-template-columns: repeat(3, 1fr); }
     }
+
+    #lighthouse { margin-top: 2.5rem; }
 
     .coming-soon-message {
       display: flex;
@@ -186,9 +280,16 @@
     }
   }
 
+  @media (max-width: 1024px) {
+    #projects .project-cards.work { grid-template-columns: repeat(2, 1fr); }
+  }
+
   @media (max-width: 768px) {
-    #projects .project-cards {
-      grid-template-columns: 1fr;
+    #projects {
+      .tier { margin-top: 3rem; }
+
+      .project-cards,
+      .project-cards.work { grid-template-columns: 1fr; }
     }
   }
 </style>

@@ -1,14 +1,14 @@
 {
   "HOME": {
-    "PRESENTATION_1": "Hi! My name is",
-    "PRESENTATION_2": "I'm a",
     "TITLE_1": "Fullstack developer.",
     "TITLE_2": "Software Engineer.",
     "TITLE_3": "Designer.",
     "TITLE_4": "Speaker.",
     "TITLE_5": "Cat dad.",
-    "SUMMARY": "I'm a fullstack software engineer based in Rio Grande do Sul, Brazil. I build scalable applications, and I care a lot about how fast they run and how they feel to use. Working across the front-end and back-end, I can take a feature all the way from the database to the interface.",
-    "VIEW_CV": "View Resume"
+    "SUMMARY": "Almost six years building products end to end. Right now: AI-driven hiring tools at HiPeople, Go on the back end, React and Vue on the front. Most of my work is making slow things fast.",
+    "EYEBROW": "Fullstack engineer {'@'} HiPeople",
+    "VIEW_CV": "View Resume",
+    "CONTACT_CTA": "Get in touch"
   },
   "ABOUT": {
     "TITLE": "About",
@@ -16,7 +16,7 @@
     "SUMMARY_1": "Hey, I'm <span class=\"highlight\">Matheus</span>, a fullstack developer based in Rio Grande do Sul, Brazil. I got into this through graphic design, messing around in Photoshop, and that curiosity slowly pulled me toward web development. I've been hooked ever since.",
     "SUMMARY_2": "I've got almost <span class=\"highlight\">6 years of experience</span> now, and I still like picking up new things. I'm especially into <span class=\"highlight\">design patterns and principles</span>, and I try to actually use them instead of just reading about them.",
     "SUMMARY_3": "I started out as a <span class=\"highlight\">trainee writing Ruby on Rails</span>, and since then I've picked up Vue, NestJS, React, Go and a handful of others. What I like most is building <span class=\"highlight\">user-centric applications</span> that solve real problems, and shipping something that works well and looks good too.",
-    "SUMMARY_4": "When I'm not coding, I'm usually watching something about <span class=\"highlight\">what's new in tech</span> or trying out some tool or framework I just came across. Thanks for stopping by and getting to know me a bit!"
+    "SUMMARY_4": "When I'm not coding, I'm usually watching something about <span class=\"highlight\">what's new in tech</span> or trying out some tool or framework I just came across. If any of this lines up with what you're building, my inbox is open."
   },
   "CAREER": {
     "TITLE": "Career",
@@ -52,7 +52,11 @@
     }
   },
   "CONTACT": {
-    "TITLE": "Contact"
+    "TITLE": "Contact",
+    "SUBTITLE": "Hiring, or building something you want a hand with? Tell me what you're working on.",
+    "EMAIL_CTA": "Send me an email",
+    "NOTE": "Email is the quickest way to reach me.",
+    "ELSEWHERE": "Or find me here"
   },
   "PROJECTS": {
     "TITLE": "Projects",
@@ -64,7 +68,15 @@
     "WW_HIDE_CHATS_TOOLS": "My newest project, currently a work in progress (WIP), is a Chrome extension designed to hide, blur, and provide many more features for chats on WhatsApp Web.",
     "FEATURED": "Featured Project",
     "THIS_SITE": "Yep, you're looking at it. This site was engineered to feel instant. A lean Vue 3 SPA bundled with Vite and Rolldown, with native animations, code-split sections, and modern media formats. Every byte was measured.",
-    "GB_EMU": "A work in progress Game Boy emulator written from scratch in Go, built as a low level study of CPU and hardware emulation. It already parses the cartridge header and decodes a handful of CPU instructions."
+    "GB_EMU": "A work in progress Game Boy emulator written from scratch in Go, built as a low level study of CPU and hardware emulation. It already parses the cartridge header and decodes a handful of CPU instructions.",
+    "WORK_TITLE": "Professional work",
+    "WORK_SUBTITLE": "Products I've shipped with a team, still running in production.",
+    "SIDE_TITLE": "Side projects",
+    "TAG_PROFESSIONAL": "Professional",
+    "TAG_PERSONAL": "Personal",
+    "HIPEOPLE": "AI hiring platform used by recruiting teams to screen candidates. I build the voice and resume screening flows end to end, from the Go services behind them to the React app recruiters live in.",
+    "BENCHPREP": "Learning platform for exam prep and certification programs. Through Fullstack Labs I worked on the learner experience in Vue and Rails, and built a containerized CI pipeline so releases stopped breaking.",
+    "MINHA_VISITA": "Field sales software for teams that visit customers in person. I rebuilt the product on Vue and NestJS and kept the web app in sync with the offline-first mobile apps."
   },
   "HEADER": {
     "HOME": "Home",
@@ -78,8 +90,8 @@
     "COPYRIGHT": "Copyright © 2023. All rights are reserved"
   },
   "LIGHTHOUSE": {
-    "TITLE": "Built for speed",
-    "SUBTITLE": "This site isn't just fast by accident. Here are its Lighthouse scores, measured against the live production build.",
+    "TITLE": "Lighthouse scores",
+    "SUBTITLE": "Measured against the live production build, not a local run.",
     "VERIFY": "Verify on PageSpeed Insights ->"
   }
 }
