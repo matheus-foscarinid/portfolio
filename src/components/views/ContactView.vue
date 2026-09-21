@@ -66,7 +66,6 @@
   const animateElement = () => {
     const heading = document.querySelectorAll('#contact .section-heading > *');
     const panel = document.querySelector('#contact .panel');
-    const contactCards = document.querySelectorAll('.contact-cards > *');
 
     reveal(
       heading,
@@ -80,13 +79,6 @@
       { opacity: 0, y: 30, blur: 2 },
       { opacity: 1, y: 0, blur: 0 },
       { duration: 500, delay: 500 }
-    );
-
-    reveal(
-      contactCards,
-      { opacity: 0, y: 30, blur: 2 },
-      { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, stagger: 100, delay: 650 }
     );
   };
 

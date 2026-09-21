@@ -94,3 +94,10 @@ body.no-scroll {
   font-weight: 700;
 }
 
+/* theme switch cross-fade: slower than the default so the palette swap reads */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.35s;
+  }
+}

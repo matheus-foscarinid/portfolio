@@ -149,6 +149,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .scroll-image-container {
@@ -168,8 +169,10 @@
       }
     }
 
-    &:hover .media .scroll-image-container .scroll-image {
-      object-position: bottom;
+    &:hover .media {
+      .scroll-image-container .scroll-image { object-position: bottom; }
+
+      .thumb { transform: scale(1.04); }
     }
 
     .body {
@@ -234,6 +237,13 @@
         border-radius: 0.4rem;
       }
     }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .project-card .media .thumb { transition: none; }
+
+    .project-card:hover .media .thumb { transform: none; }
   }
 
   @media (max-width: 768px) {

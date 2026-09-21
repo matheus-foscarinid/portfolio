@@ -1,5 +1,7 @@
 <template>
   <header :class="{ scrolled: hasScrolled }">
+    <span class="scroll-progress" aria-hidden="true"></span>
+
     <div class="logo">
       <h2>matheusdias<span class="dev">.dev</span></h2>
     </div>
@@ -170,6 +172,32 @@
       backdrop-filter: blur(12px);
       box-shadow: 0 1px 0 var(--default-border);
       color: var(--default-text);
+
+      .scroll-progress { opacity: 1; }
+    }
+
+    // scroll-driven, so the browser runs it off the main thread. browsers without
+    // scroll timelines just never show the line
+    .scroll-progress {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      transform-origin: left;
+      background-color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    @supports (animation-timeline: scroll()) {
+      @media (prefers-reduced-motion: no-preference) {
+        .scroll-progress {
+          scale: 0 1;
+          animation: scroll-progress linear;
+          animation-timeline: scroll(root block);
+        }
+      }
     }
 
     h2 {
@@ -378,6 +406,10 @@
   .slide-in-enter-to,
   .slide-in-leave-from {
     transform: translateX(0);
+  }
+
+  @keyframes scroll-progress {
+    to { scale: 1 1; }
   }
 
   // underline animation from left to right

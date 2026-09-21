@@ -55,7 +55,6 @@
     padding: 0.85rem 0.5rem;
     border-radius: 0.6rem;
     text-decoration: none;
-    opacity: 0;
     transition: background-color 0.25s ease, padding 0.25s ease;
 
     & + .contact-card { box-shadow: 0 -1px 0 var(--default-border); }

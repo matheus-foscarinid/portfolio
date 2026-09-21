@@ -29,11 +29,22 @@
     document.documentElement.setAttribute('data-theme', 'dark');
   }
 
-  const changeTheme = () => {
+  const applyTheme = () => {
     isDarkTheme.value = !isDarkTheme.value;
-    const newTheme = isDarkTheme.value ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', isDarkTheme.value ? 'dark' : 'light');
+  }
 
-    document.documentElement.setAttribute('data-theme', newTheme);
+  const prefersReducedMotion = () =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // the view transition cross-fades the whole page for free, on the compositor
+  const changeTheme = () => {
+    if (!document.startViewTransition || prefersReducedMotion()) {
+      applyTheme();
+      return;
+    }
+
+    document.startViewTransition(applyTheme);
   }
 </script>
 
