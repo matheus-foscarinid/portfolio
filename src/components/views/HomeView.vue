@@ -2,7 +2,7 @@
   <section id="home">
     <div class="container">
       <div class="presentation-container">
-        <span class="eyebrow">{{ $t('HOME.PRESENTATION_1') }}</span>
+        <span class="eyebrow">{{ $t('HOME.EYEBROW') }}</span>
         <h1 class="name">
           <span class="line">Matheus</span>
           <span class="line">Foscarini Dias</span>
@@ -11,13 +11,29 @@
 
         <p class="summary">{{ $t('HOME.SUMMARY') }}</p>
 
-        <button
-          class="cv-button"
-          @click="viewCV"
-        >
-          <span>{{ $t('HOME.VIEW_CV') }}</span>
-          <font-awesome-icon icon="fas fa-arrow-right" aria-hidden="true" />
-        </button>
+        <div class="actions">
+          <div class="cta-group">
+            <ResumeButton location="hero" />
+
+            <a
+              class="contact-cta"
+              href="#contact"
+              @click="trackEvent('contact_cta_click', { location: 'hero' })"
+            >{{ $t('HOME.CONTACT_CTA') }}</a>
+          </div>
+
+          <div class="profiles">
+            <a
+              v-for="profile in profiles"
+              :key="profile.network"
+              class="profile-link"
+              :href="profile.link"
+              target="_blank"
+              rel="noopener"
+              @click="trackProfile(profile.network)"
+            >{{ profile.label }}</a>
+          </div>
+        </div>
       </div>
 
       <MyPhoto />
@@ -26,13 +42,18 @@
 </template>
 
 <script setup>
-import i18n from '../../i18n';
 import MyPhoto from '../home/MyPhoto.vue';
+import ResumeButton from '../ResumeButton.vue';
 import TypedPresentation from '../home/TypedPresentation.vue';
 
 import { onMounted } from 'vue';
 import { reveal, onReveal, EASE } from '@/composables/useReveal';
 import { trackEvent } from '@/composables/useAnalytics';
+
+const profiles = [
+  { network: 'github', label: 'GitHub', link: 'https://github.com/matheus-foscarinid' },
+  { network: 'linkedin', label: 'LinkedIn', link: 'https://linkedin.com/in/matheus-foscarinid/' },
+];
 
 const animateElement = () => {
   const photo = document.querySelector('.my-photo');
@@ -55,13 +76,8 @@ const animateElement = () => {
 
 onMounted(() => onReveal('#home', animateElement));
 
-const viewCV = () => {
-  const PT_CV_PATH = '/dias-matheus-cv.pdf';
-  const EN_CV_PATH = '/dias-matheus-cv-en.pdf';
-
-  const cvPath = i18n.global.locale.value === 'pt' ? PT_CV_PATH : EN_CV_PATH ;
-  trackEvent('cv_click', { lang: i18n.global.locale.value });
-  window.open(cvPath, '_blank');
+const trackProfile = (network) => {
+  trackEvent('social_click', { network, location: 'hero' });
 };
 </script>
 
@@ -71,8 +87,11 @@ const viewCV = () => {
     margin-top: -5rem;
     display: flex;
     align-items: center;
+    position: relative;
 
     .container {
+      position: relative;
+      z-index: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -102,44 +121,70 @@ const viewCV = () => {
 
       .name {
         font-size: clamp(2.75rem, 6vw, 4.75rem);
-        font-weight: 800;
-        line-height: 1.02;
-        letter-spacing: -0.02em;
+        font-weight: 600;
+        line-height: 1.04;
+        letter-spacing: -0.035em;
         margin: 1rem 0 1.25rem;
 
         .line { display: block; }
       }
 
       .summary {
-        max-width: 56ch;
+        max-width: 52ch;
         color: var(--secondary-text);
         line-height: 1.7;
         margin-top: 1.5rem;
       }
 
-      .cv-button {
+      .actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.25rem 2.5rem;
+        margin-top: 2.25rem;
+      }
+
+      .cta-group {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .contact-cta {
         display: inline-flex;
         align-items: center;
-        gap: 0.6rem;
-        margin-top: 2.25rem;
-        padding: 0.9rem 1.75rem;
-        border-radius: 0.5rem;
-        background-color: var(--accent);
-        color: var(--accent-contrast);
-        font-size: 1.05rem;
-        font-weight: 700;
-        cursor: pointer;
-        border: none;
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-
-        svg { transition: transform 0.25s ease; }
+        justify-content: center;
+        min-width: 11rem;
+        padding: 0.85rem 1.9rem;
+        border: 1px solid color-mix(in srgb, var(--default-border) 70%, transparent);
+        border-radius: 999px;
+        color: var(--default-text);
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: border-color 0.25s ease, color 0.25s ease;
 
         &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 0.75rem 1.25rem color-mix(in srgb, var(--accent) 30%, transparent);
-
-          svg { transform: translateX(4px); }
+          border-color: var(--accent);
+          color: var(--accent);
         }
+      }
+
+      .profiles {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .profile-link {
+        font-family: 'Fira Code', monospace;
+        font-size: 0.85rem;
+        color: var(--disabled-text);
+        text-decoration: none;
+        transition: color 0.25s ease;
+
+        &:hover { color: var(--accent); }
       }
     }
   }
@@ -147,25 +192,6 @@ const viewCV = () => {
   @media (max-width: 768px) {
     #home {
       min-height: 100svh;
-      position: relative;
-
-      // soft accent halo behind the photo, echoing the ambient glow of the ref
-      &::before {
-        content: '';
-        position: absolute;
-        top: 4.5rem;
-        left: 50%;
-        width: min(85vw, 22rem);
-        aspect-ratio: 1;
-        transform: translateX(-50%);
-        background: radial-gradient(
-          circle,
-          color-mix(in srgb, var(--accent) 20%, transparent),
-          transparent 68%
-        );
-        pointer-events: none;
-        z-index: 0;
-      }
 
       .container {
         position: relative;
@@ -174,20 +200,21 @@ const viewCV = () => {
         align-items: flex-start;
         justify-content: center;
         margin: 0 auto;
-        padding-top: 6.5rem;
-        padding-bottom: 3rem;
+        padding-top: 5.5rem;
+        padding-bottom: 2rem;
         gap: 1rem;
       }
 
+      // sized so the resume button still lands above the fold on a short phone
       .my-photo {
         order: -1;
         align-self: center;
         flex: none;
-        width: min(58vw, 15rem);
-        height: min(58vw, 15rem);
+        width: min(46vw, 11.5rem);
+        height: min(46vw, 11.5rem);
         max-width: none;
-        margin-bottom: 1.5rem;
-        &::before { inset: -0.6rem; }
+        margin-bottom: 0.75rem;
+        &::before { inset: -0.55rem; }
       }
 
       .presentation-container {
@@ -198,24 +225,61 @@ const viewCV = () => {
         .eyebrow { justify-content: flex-start; }
 
         .name {
-          font-size: clamp(2.5rem, 13vw, 3.4rem);
-          margin: 0.85rem 0 0.9rem;
+          font-size: clamp(2.25rem, 11vw, 3rem);
+          margin: 0.6rem 0 0.7rem;
         }
 
         .roles { justify-content: flex-start; }
 
         .summary {
           max-width: none;
-          margin: 1.25rem 0 0;
+          margin: 1rem 0 0;
+          font-size: 0.95rem;
+          line-height: 1.6;
         }
 
-        .cv-button {
+        .actions {
           width: 100%;
-          justify-content: center;
-          margin-top: 2.25rem;
-          padding: 1.1rem 1.75rem;
-          border-radius: 999px;
+          gap: 1.25rem;
+          margin-top: 1.5rem;
         }
+
+        .cta-group {
+          width: 100%;
+          gap: 0.75rem;
+        }
+
+        :deep(.resume-button),
+        .contact-cta {
+          width: 100%;
+          min-width: 0;
+          justify-content: center;
+          padding: 1.1rem 1.75rem;
+        }
+      }
+    }
+  }
+
+  // short viewports (small phones, or a phone with the browser bars showing):
+  // trim the photo and the roles line so the resume button stays in view
+  @media (max-width: 768px) and (max-height: 720px) {
+    #home {
+      .container { padding-top: 4.5rem; }
+
+      .my-photo {
+        width: min(34vw, 8rem);
+        height: min(34vw, 8rem);
+        margin-bottom: 0.5rem;
+      }
+
+      .roles { display: none; }
+
+      .presentation-container {
+        .name { font-size: clamp(2rem, 10vw, 2.5rem); }
+
+        .summary { margin-top: 0.85rem; }
+
+        .actions { margin-top: 1.25rem; }
       }
     }
   }

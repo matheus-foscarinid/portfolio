@@ -110,7 +110,7 @@ const cardBoxShadow = computed(() => {
       position: absolute;
       inset: -0.9rem;
       border-radius: 50%;
-      border: 2px solid var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
       clip-path: polygon(0 0, 100% 0, 100% 55%, 0 55%);
       pointer-events: none;
     }
@@ -120,7 +120,7 @@ const cardBoxShadow = computed(() => {
       border-radius: 50%;
       aspect-ratio: 1/1;
       object-fit: cover;
-      border: 2px solid var(--default-border);
+      border: 1px solid color-mix(in srgb, var(--default-border) 60%, transparent);
       transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
       will-change: transform;
     }
