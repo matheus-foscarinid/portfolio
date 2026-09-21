@@ -211,8 +211,8 @@
 
       h2 {
         font-size: clamp(2rem, 4vw, 2.75rem);
-        font-weight: 800;
-        letter-spacing: -0.02em;
+        font-weight: 600;
+        letter-spacing: -0.03em;
         margin: 0;
       }
 
@@ -227,16 +227,16 @@
     .project-stream {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 4.5rem;
     }
 
     .project-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      gap: 2.5rem;
     }
 
-    #lighthouse { margin-top: 2.5rem; }
+    #lighthouse { margin-top: 3rem; }
 
     .coming-soon-message {
       display: flex;
@@ -244,19 +244,22 @@
       align-items: center;
       gap: 0.75rem;
       flex-wrap: wrap;
-      margin-top: 2.5rem;
-      padding: 1.25rem;
-      border-radius: 0.75rem;
-      background: var(--dark-background);
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid color-mix(in srgb, var(--default-border) 60%, transparent);
       font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
 
-      .prompt { color: var(--accent-on-dark); }
-      .text { color: rgba(255, 255, 255, 0.82); }
+      .prompt { color: var(--accent); }
+      .text { color: var(--disabled-text); }
     }
   }
 
   @media (max-width: 1024px) {
-    #projects .project-row { grid-template-columns: repeat(2, 1fr); }
+    #projects .project-row {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
   }
 
   // on a phone each row of three becomes a swipeable rail that bleeds to both
@@ -270,13 +273,13 @@
         min-width: 0;
       }
 
-      .project-stream { gap: 1.75rem; }
+      .project-stream { gap: 3rem; }
 
       .project-row {
         display: flex;
         grid-template-columns: none;
         min-width: 0;
-        gap: 1rem;
+        gap: 1.25rem;
         margin-left: calc(-1 * max(1.2rem, env(safe-area-inset-left)));
         margin-right: calc(-1 * max(1.2rem, env(safe-area-inset-right)));
         padding: 0.25rem max(1.2rem, env(safe-area-inset-right)) 0.75rem max(1.2rem, env(safe-area-inset-left));

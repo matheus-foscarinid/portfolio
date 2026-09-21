@@ -1,6 +1,6 @@
 <template>
-  <section id="lighthouse" class="lighthouse">
-    <div class="container">
+  <div id="lighthouse" class="lighthouse">
+    <div>
       <header class="section-heading">
         <span class="marker" aria-hidden="true"></span>
         <h2>{{ $t('LIGHTHOUSE.TITLE') }}</h2>
@@ -50,7 +50,7 @@
         {{ $t('LIGHTHOUSE.VERIFY') }}
       </a>
     </div>
-  </section>
+  </div>
 </template>
 
 <script setup>
@@ -105,7 +105,9 @@
   .lighthouse {
     --score: #2f9e5f;
 
-    padding: 2.5rem 0;
+    padding: 2.5rem 1.75rem;
+    border-radius: 1.25rem;
+    background-color: color-mix(in srgb, var(--details-background) 55%, transparent);
     text-align: center;
 
     .section-heading {
@@ -122,10 +124,12 @@
         margin-bottom: 1rem;
       }
 
+      // smaller than a section heading: this is an exhibit for the card above,
+      // not a section of its own
       h2 {
-        font-size: clamp(2rem, 4vw, 2.75rem);
-        font-weight: 800;
-        letter-spacing: -0.02em;
+        font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+        font-weight: 600;
+        letter-spacing: -0.025em;
         margin: 0;
       }
     }

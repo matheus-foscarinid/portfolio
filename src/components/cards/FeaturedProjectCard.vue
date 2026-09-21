@@ -168,21 +168,12 @@
 <style lang="scss" scoped>
   .featured-project-card {
     display: flex;
+    align-items: center;
     width: 100%;
-    padding: 1.75rem;
-    gap: 2.5rem;
-    border-radius: 1rem;
-    background-color: var(--details-background);
-    border: 1px solid var(--default-border);
-    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
+    padding: 1.5rem 0;
+    gap: 4rem;
     text-align: left;
     opacity: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-
-    &:hover {
-      transform: translateY(-4px);
-      border-color: color-mix(in srgb, var(--accent) 55%, var(--default-border));
-    }
 
     &.reverse {
       flex-direction: row-reverse;
@@ -201,29 +192,26 @@
     .scroll-image-container {
       width: 100%;
       aspect-ratio: 16/9;
-      border-radius: 0.75rem;
+      border-radius: 0.9rem;
       object-fit: cover;
-      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .media:hover .project-image,
     .media:hover .scroll-image-container,
     .media:hover .perf-panel {
-      transform: scale(1.025);
+      transform: scale(1.02);
     }
 
     .perf-panel {
       width: 100%;
       aspect-ratio: 16/9;
-      border-radius: 0.75rem;
+      border-radius: 0.9rem;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       background: var(--dark-background);
-      border: 1px solid var(--default-border);
-      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       text-align: left;
 
       .perf-chrome {
@@ -353,8 +341,8 @@
 
       .title {
         font-size: clamp(1.6rem, 3vw, 2.1rem);
-        font-weight: 800;
-        letter-spacing: -0.02em;
+        font-weight: 600;
+        letter-spacing: -0.03em;
         line-height: 1.1;
         color: var(--default-text);
         text-decoration: none;
@@ -397,11 +385,11 @@
 
         li {
           font-family: 'Fira Code', monospace;
-          font-size: 0.75rem;
-          color: var(--secondary-text);
-          padding: 0.3rem 0.6rem;
-          border: 1px solid var(--default-border);
+          font-size: 0.73rem;
+          color: var(--disabled-text);
+          padding: 0.28rem 0.55rem;
           border-radius: 0.4rem;
+          background-color: color-mix(in srgb, var(--default-border) 40%, transparent);
         }
       }
 
@@ -414,10 +402,10 @@
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.6rem 1.1rem;
-          border-radius: 0.5rem;
-          font-size: 0.95rem;
-          font-weight: 700;
+          padding: 0.6rem 1.25rem;
+          border-radius: 999px;
+          font-size: 0.92rem;
+          font-weight: 600;
           cursor: pointer;
           border: 1px solid transparent;
           transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, color 0.25s ease;
@@ -437,7 +425,7 @@
 
           &.secondary {
             background-color: transparent;
-            border-color: var(--default-border);
+            border-color: color-mix(in srgb, var(--default-border) 70%, transparent);
             color: var(--default-text);
 
             &:hover {
@@ -453,7 +441,8 @@
   @media (max-width: 768px) {
     .featured-project-card {
       flex-direction: column !important;
-      padding: 1.1rem;
+      align-items: stretch;
+      padding: 0;
       gap: 1.25rem;
 
       .media { width: 100%; max-width: 100%; }

@@ -108,40 +108,31 @@
   .project-card {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    padding: 1.25rem;
-    border-radius: 1rem;
-    background-color: var(--details-background);
-    border: 1px solid var(--default-border);
-    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    gap: 1.1rem;
 
     &.clickable { cursor: pointer; }
 
-    &:hover {
-      transform: translateY(-4px);
-      border-color: color-mix(in srgb, var(--accent) 55%, var(--default-border));
-    }
+    &:hover .header .title { color: var(--accent); }
 
     .media {
       width: 100%;
       aspect-ratio: 16/9;
-      border-radius: 0.75rem;
+      border-radius: 0.9rem;
       overflow: hidden;
-      box-shadow: 0 0.1rem 1rem rgba(0, 0, 0, 0.15);
+      background-color: var(--details-background);
 
       .tag {
         position: absolute;
         z-index: 1;
-        top: 0.6rem;
-        left: 0.6rem;
-        padding: 0.28rem 0.6rem;
+        top: 0.7rem;
+        left: 0.7rem;
+        padding: 0.25rem 0.55rem;
         border-radius: 0.4rem;
-        backdrop-filter: blur(6px);
-        background: color-mix(in srgb, var(--dark-background) 72%, transparent);
-        color: var(--accent-on-dark);
+        backdrop-filter: blur(8px);
+        background: color-mix(in srgb, var(--dark-background) 55%, transparent);
+        color: #fff;
         font-family: 'Fira Code', monospace;
-        font-size: 0.68rem;
+        font-size: 0.66rem;
         letter-spacing: 0.02em;
       }
 
@@ -189,10 +180,12 @@
       gap: 1rem;
 
       .title {
-        font-size: 1.25rem;
-        line-height: 1.2;
-        font-weight: 700;
+        font-size: 1.15rem;
+        line-height: 1.25;
+        font-weight: 600;
+        letter-spacing: -0.015em;
         color: var(--default-text);
+        transition: color 0.25s ease;
 
         .years {
           margin-left: 0.6rem;
@@ -207,10 +200,10 @@
       .icons {
         display: flex;
         gap: 0.6rem;
-        color: var(--secondary-text);
+        color: var(--disabled-text);
         flex-shrink: 0;
 
-        svg { width: 1.1rem; height: 1.1rem; }
+        svg { width: 0.95rem; height: 0.95rem; }
       }
     }
 
@@ -231,16 +224,15 @@
       li {
         font-family: 'Fira Code', monospace;
         font-size: 0.72rem;
-        color: var(--secondary-text);
-        padding: 0.3rem 0.6rem;
-        border: 1px solid var(--default-border);
+        color: var(--disabled-text);
+        padding: 0.28rem 0.55rem;
         border-radius: 0.4rem;
+        background-color: color-mix(in srgb, var(--default-border) 40%, transparent);
       }
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .project-card,
     .project-card .media .thumb { transition: none; }
 
     .project-card:hover .media .thumb { transform: none; }
@@ -248,8 +240,7 @@
 
   @media (max-width: 768px) {
     .project-card {
-      padding: 1rem;
-      gap: 1rem;
+      gap: 0.9rem;
 
       .header .title { font-size: 1.1rem; }
 
