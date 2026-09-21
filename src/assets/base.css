@@ -1,32 +1,32 @@
 /* Lightmode */
 :root {
   /* Cores de fundo */
-  --default-background: #fbf1c7;
-  --secondary-background: #f2e5bc;
-  --details-background: #ebdbb2;
-  --dark-background: #3c3836;
+  --default-background: #f7f4f3;
+  --secondary-background: #efeae9;
+  --details-background: #e6dfdd;
+  --dark-background: #2b2726;
 
   /* Cores de texto */
-  --default-text: #3c3836;
-  --secondary-text: #504945;
-  --disabled-text: #7c6f64;
+  --default-text: #2b2523;
+  --secondary-text: #5c5250;
+  --disabled-text: #8b7f7d;
 
   /* Cores complementares */
-  --default-border: #d5c4a1;
-  --highlight: #fbf1c7;
+  --default-border: #ddd3d1;
+  --highlight: #f7f4f3;
 
-  --accent: #a33500;
-  --accent-contrast: #fbf1c7;
-  --accent-on-dark: #fe8019;
+  --accent: #9b3550;
+  --accent-contrast: #fdf8f9;
+  --accent-on-dark: #d3869b;
 }
 
 /* Darkmode */
 [data-theme="dark"] {
   /* Cores de fundo */
-  --default-background: #282828;
-  --secondary-background: #32302f;
-  --details-background: #3c3836;
-  --dark-background: #1d2021;
+  --default-background: #262322;
+  --secondary-background: #302c2b;
+  --details-background: #3a3533;
+  --dark-background: #1c1a19;
 
   /* Cores de texto */
   --default-text: #ebdbb2;
@@ -34,10 +34,10 @@
   --disabled-text: #a89984;
 
   /* Cores complementares */
-  --default-border: #504945;
+  --default-border: #4d4644;
 
   --accent: #d3869b;
-  --accent-contrast: #282828;
+  --accent-contrast: #262322;
   --accent-on-dark: #d3869b;
 }
 
@@ -54,7 +54,7 @@ html{scroll-behavior:smooth}
 
 .container {
   max-width: 1200px;
-  margin: 8rem auto;
+  margin: 10rem auto;
   padding: 0 2rem;
 }
 

@@ -41,7 +41,7 @@
 
 <style lang="scss" scoped>
   footer {
-    --footer-fg: #fbf1c7;
+    --footer-fg: #f2ebe9;
 
     width: 100%;
     padding: 2.5rem 3rem;
@@ -67,13 +67,13 @@
 
       .author {
         font-size: 0.95rem;
-        color: color-mix(in srgb, #fbf1c7 78%, transparent);
+        color: color-mix(in srgb, var(--footer-fg) 78%, transparent);
       }
 
       .copyright {
         font-family: 'Fira Code', monospace;
         font-size: 0.78rem;
-        color: color-mix(in srgb, #fbf1c7 62%, transparent);
+        color: color-mix(in srgb, var(--footer-fg) 62%, transparent);
       }
     }
 
@@ -87,7 +87,7 @@
         padding: 0;
         border: none;
         background: none;
-        color: color-mix(in srgb, #fbf1c7 82%, transparent);
+        color: color-mix(in srgb, var(--footer-fg) 82%, transparent);
         font-size: inherit;
         line-height: 0;
         cursor: pointer;
