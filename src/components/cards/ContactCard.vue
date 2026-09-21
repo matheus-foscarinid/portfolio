@@ -51,25 +51,23 @@
   .contact-card {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1.1rem 1.35rem;
-    border-radius: 0.85rem;
-    border: 1px solid var(--default-border);
-    background: var(--details-background);
+    gap: 0.9rem;
+    padding: 0.85rem 0.5rem;
+    border-radius: 0.6rem;
     text-decoration: none;
     opacity: 0;
-    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: background-color 0.25s ease, padding 0.25s ease;
+
+    & + .contact-card { box-shadow: 0 -1px 0 var(--default-border); }
 
     &.hoverable {
       cursor: pointer;
 
       &:hover {
-        transform: translateY(-3px);
-        border-color: var(--accent);
-        box-shadow: 0 0.75rem 1.5rem color-mix(in srgb, var(--accent) 14%, transparent);
+        background: color-mix(in srgb, var(--accent) 8%, transparent);
 
         .icon { color: var(--accent); border-color: var(--accent); }
-        .arrow { color: var(--accent); transform: translateX(3px); }
+        .arrow { color: var(--accent); opacity: 1; transform: none; }
       }
     }
 
@@ -78,34 +76,33 @@
       align-items: center;
       justify-content: center;
       flex: 0 0 auto;
-      width: 2.75rem;
-      height: 2.75rem;
-      padding: 0.7rem;
+      width: 2.1rem;
+      height: 2.1rem;
+      padding: 0.45rem;
       border-radius: 50%;
       border: 1px solid var(--default-border);
       color: var(--secondary-text);
-      transition: all 0.25s ease;
+      transition: color 0.25s ease, border-color 0.25s ease;
 
       svg { width: 100%; height: 100%; }
     }
 
     .info {
       display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
+      align-items: baseline;
+      gap: 0.6rem;
       min-width: 0;
 
       .label {
+        flex: 0 0 5.5rem;
         font-family: 'Fira Code', monospace;
-        font-size: 0.72rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+        font-size: 0.78rem;
         color: var(--secondary-text);
       }
 
       .text {
-        font-size: 1.05rem;
-        font-weight: 700;
+        font-size: 0.95rem;
+        font-weight: 600;
         color: var(--default-text);
         overflow: hidden;
         text-overflow: ellipsis;
@@ -116,15 +113,23 @@
     .arrow {
       margin-left: auto;
       color: var(--disabled-text);
-      transition: all 0.25s ease;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
     }
   }
 
-  @media (max-width: 768px) {
-    .contact-card {
-      padding: 1rem;
+  @media (hover: none) {
+    .contact-card .arrow { opacity: 0.6; transform: none; }
+  }
 
-      .info .text { font-size: 0.95rem; }
+  @media (max-width: 768px) {
+    .contact-card .info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.1rem;
+
+      .label { flex: none; font-size: 0.72rem; }
     }
   }
 </style>
