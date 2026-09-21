@@ -235,4 +235,18 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    .project-card {
+      padding: 1rem;
+      gap: 1rem;
+
+      .header .title { font-size: 1.1rem; }
+
+      .description {
+        font-size: 0.9rem;
+        line-height: 1.55;
+      }
+    }
+  }
 </style>

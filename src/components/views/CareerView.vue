@@ -15,6 +15,22 @@
             :class="{ active: currentPlaceIndex === index }"
             @click="setPlaceAsActive(index)"
           >
+            <img
+              v-if="place.icon"
+              class="place-icon"
+              :class="{ 'invert-on-dark': isDarkMark(place.icon) }"
+              :src="place.icon"
+              :alt="place.name"
+              width="22"
+              height="22"
+              loading="lazy"
+            />
+            <span
+              v-else
+              class="place-icon monogram"
+              aria-hidden="true"
+            >{{ monogramFor(place.name) }}</span>
+
             {{ place.name }}
           </button>
         </div>
@@ -55,6 +71,7 @@ const placesTimeline = [
   {
     name: 'ETEC Monteiro Lobato',
     key: 'CIMOL',
+    icon: '/icons/companies/cimol.png',
     paragraphsQtt: 3,
     role: 'Student',
     period: 'from 2018 to 2020',
@@ -63,6 +80,7 @@ const placesTimeline = [
   {
     name: 'Unisinos',
     key: 'UNISINOS',
+    icon: '/icons/companies/unisinos.png',
     paragraphsQtt: 2,
     role: 'Student',
     period: 'from 2021 to 2025',
@@ -71,6 +89,7 @@ const placesTimeline = [
   {
     name: 'Scopi',
     key: 'SCOPI',
+    icon: '/icons/companies/scopi.png',
     paragraphsQtt: 3,
     role: 'Trainee',
     period: 'from January 2021 to October 2021',
@@ -79,6 +98,7 @@ const placesTimeline = [
   {
     name: 'Minha visita',
     key: 'MINHA_VISITA',
+    icon: '/icons/companies/minhavisita.svg',
     paragraphsQtt: 3,
     role: 'Full-stack Software Engineer',
     period: 'from October 2021 to November 2024',
@@ -87,6 +107,7 @@ const placesTimeline = [
   {
     name: 'Fullstack Labs',
     key: 'FULLSTACK_LABS',
+    icon: '/icons/companies/fullstack.svg',
     paragraphsQtt: 3,
     role: 'Mid-level Software Engineer',
     period: 'from November 2024 to July 2025',
@@ -95,12 +116,27 @@ const placesTimeline = [
   {
     name: 'HiPeople',
     key: 'HIPEOPLE',
+    icon: '/icons/companies/hipeople.svg',
     paragraphsQtt: 4,
     role: 'Software Engineer',
     period: 'from July 2025 to present',
     link: 'https://www.hipeople.io/'
   }
 ]
+
+const darkMarks = ['hipeople', 'scopi'];
+
+const isDarkMark = (icon) => darkMarks.some(mark => icon.includes(mark));
+
+// drop an svg in public/icons/companies and set `icon` on the place to replace
+// its monogram with the real logo
+const monogramFor = (name) =>
+  name
+    .split(' ')
+    .slice(0, 2)
+    .map(word => word[0])
+    .join('')
+    .toUpperCase()
 
 const currentPlaceIndex = ref(placesTimeline.length - 1)
 
@@ -153,6 +189,9 @@ const animateElement = () => {
   )
 
   if (content) revealContent(content)
+
+  // the rail opens on the oldest place, so bring the active one into view
+  nextTick(centerActiveChip)
 }
 
 onMounted(() => {
@@ -199,6 +238,9 @@ onMounted(() => {
       position: relative;
 
       button {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
         margin: 0;
         margin-left: 1px;
         padding: 0.85rem 1.25rem;
@@ -222,6 +264,42 @@ onMounted(() => {
         &.active {
           color: var(--default-text);
           font-weight: 700;
+
+          .place-icon { opacity: 1; }
+
+          .monogram {
+            border-color: var(--accent);
+            color: var(--accent);
+          }
+        }
+
+        .place-icon {
+          flex: none;
+          width: 1.65rem;
+          height: 1.65rem;
+          border-radius: 0.4rem;
+          opacity: 0.75;
+          object-fit: contain;
+          transition: opacity 0.2s ease-in-out;
+        }
+
+        // hipeople and scopi are near-black marks, so they need flipping to
+        // stay legible once the chip behind them is gone
+        [data-theme="dark"] & img.place-icon.invert-on-dark {
+          filter: invert(1);
+        }
+
+        .monogram {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: var(--details-background);
+          border: 1px solid var(--default-border);
+          font-size: 0.62rem;
+          font-weight: 700;
+          letter-spacing: 0.02em;
+          color: var(--secondary-text);
+          transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
         }
       }
 
@@ -303,22 +381,38 @@ onMounted(() => {
   #career {
     .section-heading { margin-bottom: 1.5rem; }
 
-    .container { min-width: 0; }
+    // the auto side margins on .container cancel the flex stretch, so the rail
+    // below would otherwise push it out to its own content width
+    .container {
+      width: 100%;
+      min-width: 0;
+    }
 
     .places-container {
       flex-direction: column;
+      // with wrap on, the rail sizes the column to its own content instead of
+      // stretching to the container
+      flex-wrap: nowrap;
       align-items: stretch;
       min-width: 0;
       gap: 1.75rem;
 
+      // full-bleed chip rail: the chips run to the screen edge so it is obvious
+      // there is more to swipe
       & .buttons-container {
         flex-direction: row;
-        width: calc(100vw - 2.4rem);
-        max-width: calc(100vw - 2.4rem);
+        min-width: 0;
         gap: 0.5rem;
         overflow-x: auto;
-        padding-bottom: 0.5rem;
+        // negative margins match .container's padding, so the rail bleeds to the
+        // screen edge without widening the column
+        margin-left: calc(-1 * max(1.2rem, env(safe-area-inset-left)));
+        margin-right: calc(-1 * max(1.2rem, env(safe-area-inset-right)));
+        padding: 0.25rem max(1.2rem, env(safe-area-inset-right)) 0.75rem max(1.2rem, env(safe-area-inset-left));
+        scroll-snap-type: x proximity;
+        scroll-padding-left: 1.2rem;
         scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
 
         &::-webkit-scrollbar { display: none; }
 
@@ -327,11 +421,14 @@ onMounted(() => {
         button {
           flex: 0 0 auto;
           width: auto;
+          min-height: 2.75rem;
           margin-left: 0;
           border: 1px solid var(--default-border);
           border-radius: 2rem;
           padding: 0.5rem 1rem;
+          font-size: 0.82rem;
           white-space: nowrap;
+          scroll-snap-align: start;
 
           &.active {
             color: var(--accent);
@@ -343,7 +440,18 @@ onMounted(() => {
 
       & .active-place-content {
         height: auto;
+        min-width: 0;
         padding: 0 !important;
+
+        & .title { font-size: 1.2rem; }
+
+        & .period { margin-bottom: 1.1rem; }
+
+        & .description {
+          font-size: 0.95rem;
+          line-height: 1.65;
+          gap: 0.6rem;
+        }
       }
     }
   }

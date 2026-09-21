@@ -106,7 +106,7 @@
       flex-direction: column;
       align-items: flex-start;
       gap: 1.5rem;
-      padding: 2rem 1.5rem;
+      padding: 2rem max(1.5rem, env(safe-area-inset-right)) calc(2rem + env(safe-area-inset-bottom)) max(1.5rem, env(safe-area-inset-left));
     }
   }
 </style>

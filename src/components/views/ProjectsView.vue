@@ -284,12 +284,40 @@
     #projects .project-cards.work { grid-template-columns: repeat(2, 1fr); }
   }
 
+  // on a phone the grids become swipeable rails that bleed to both screen edges,
+  // so three cards read as one row instead of three screens of scrolling
   @media (max-width: 768px) {
     #projects {
+      // the auto side margins on .container cancel the flex stretch, so the rails
+      // below would otherwise push it out to their own content width
+      .container {
+        width: 100%;
+        min-width: 0;
+      }
+
       .tier { margin-top: 3rem; }
 
       .project-cards,
-      .project-cards.work { grid-template-columns: 1fr; }
+      .project-cards.work {
+        display: flex;
+        grid-template-columns: none;
+        min-width: 0;
+        gap: 1rem;
+        margin-left: calc(-1 * max(1.2rem, env(safe-area-inset-left)));
+        margin-right: calc(-1 * max(1.2rem, env(safe-area-inset-right)));
+        padding: 0.25rem max(1.2rem, env(safe-area-inset-right)) 1rem max(1.2rem, env(safe-area-inset-left));
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+
+        &::-webkit-scrollbar { display: none; }
+
+        > * {
+          flex: 0 0 82vw;
+          scroll-snap-align: center;
+        }
+      }
     }
   }
 </style>

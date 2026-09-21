@@ -41,7 +41,12 @@
   --accent-on-dark: #d3869b;
 }
 
-html{scroll-behavior:smooth}
+html {
+  scroll-behavior: smooth;
+  /* anchor jumps have to clear the sticky header */
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
 
 *,
 *::before,
@@ -50,6 +55,13 @@ html{scroll-behavior:smooth}
   margin: 0;
   position: relative;
   font-weight: normal;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* keeps the page still behind the mobile menu */
+body.no-scroll {
+  overflow: hidden;
+  touch-action: none;
 }
 
 .container {
@@ -59,7 +71,11 @@ html{scroll-behavior:smooth}
 }
 
 @media (max-width: 768px) {
-  .container { padding: 0 1.2rem; }
+  .container {
+    margin: 6rem auto;
+    padding-left: max(1.2rem, env(safe-area-inset-left));
+    padding-right: max(1.2rem, env(safe-area-inset-right));
+  }
 }
 
 /* Fade transition */

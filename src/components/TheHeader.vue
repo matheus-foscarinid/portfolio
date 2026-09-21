@@ -4,29 +4,21 @@
       <h2>matheusdias<span class="dev">.dev</span></h2>
     </div>
 
-    <Transition 
-      name="fade"
-      mode="out-in"
-    >
-      <ul
-        v-if="hasScrolled || !isFirstScroll" 
-        class="menu"
+    <ul class="menu">
+      <li
+        v-for="section in sectionOptions"
+        :key="section.id"
       >
-        <li
-          v-for="section in sectionOptions"
-          :key="section.id"
+        <div 
+          class="menu-item"
+          :class="{ active: currentActiveSection === section.id }"
         >
-          <div 
-            class="menu-item"
-            :class="{ active: currentActiveSection === section.id }"
-          >
-            <a :href="`#${section.id}`">
-              <span>{{ section.label }}</span>
-            </a>
-          </div>
-        </li>
-      </ul>
-    </Transition>
+          <a :href="`#${section.id}`">
+            <span>{{ section.label }}</span>
+          </a>
+        </div>
+      </li>
+    </ul>
 
     <div class="buttons-container">
       <div class="desktop-theme-switch">
@@ -99,9 +91,9 @@
 
   const sectionOptions = [
     { id: 'home', label: $t('HEADER.HOME') },
-    { id: 'about', label: $t('HEADER.ABOUT') },
     { id: 'career', label: $t('HEADER.CAREER') },
     { id: 'projects', label: $t('HEADER.PROJECTS') },
+    { id: 'about', label: $t('HEADER.ABOUT') },
     { id: 'contact', label: $t('HEADER.CONTACT') },
   ];
   
@@ -109,14 +101,15 @@
 
   const openMobileMenu = () => {
     isMenuOpen.value = true;
+    document.body.classList.add('no-scroll');
   }
 
   const closeMobileMenu = () => {
     isMenuOpen.value = false;
+    document.body.classList.remove('no-scroll');
   }
 
   const hasScrolled = ref(false);
-  const isFirstScroll = ref(true);
   const currentActiveSection = ref(null);
 
   const watchCurrentActiveSection = () => {
@@ -141,7 +134,6 @@
     ticking = true;
     requestAnimationFrame(() => {
       hasScrolled.value = window.scrollY > 0;
-      isFirstScroll.value = false;
       watchCurrentActiveSection();
       ticking = false;
     });
@@ -152,7 +144,10 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   });
 
-  onUnmounted(() => window.removeEventListener('scroll', onScroll));
+  onUnmounted(() => {
+    window.removeEventListener('scroll', onScroll);
+    document.body.classList.remove('no-scroll');
+  });
 </script>
 
 <style lang="scss" scoped>
@@ -253,8 +248,11 @@
       top: 0;
       right: 0;
       bottom: 0;
-      width: 65vw;
-      height: 100vh;
+      width: min(80vw, 22rem);
+      height: 100dvh;
+      padding-top: env(safe-area-inset-top);
+      padding-right: env(safe-area-inset-right);
+      padding-bottom: env(safe-area-inset-bottom);
       background-color: var(--secondary-background);
       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
       z-index: 1;
@@ -266,31 +264,31 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 2rem;
-        text-align: center;
-        gap: 1rem;
+        padding: 1rem 2rem;
+        gap: 0.25rem;
 
         a {
+          display: block;
+          padding: 0.75rem 0;
           text-decoration: none;
           font-weight: 700;
-          font-size: 1.5rem;
-          color: var(--text-default);
+          font-size: 1.6rem;
+          letter-spacing: -0.01em;
+          color: var(--default-text);
 
-          &:hover {
-            color: var(--secondary-text);
-          }
+          &:active { color: var(--accent); }
         }
       }
 
       & .mobile-theme-switch {
         position: absolute;
-        bottom: 2rem;
-        right: 2rem;
+        bottom: calc(2rem + env(safe-area-inset-bottom));
+        left: 2rem;
       }
 
       & .mobile-lang-select {
         position: absolute;
-        bottom: 5rem;
+        bottom: calc(2rem + env(safe-area-inset-bottom));
         right: 2rem;
       }
     }
@@ -308,6 +306,10 @@
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      height: calc(4.5rem + env(safe-area-inset-top));
+      padding-top: env(safe-area-inset-top);
+      padding-left: max(1.2rem, env(safe-area-inset-left));
+      padding-right: max(1.2rem, env(safe-area-inset-right));
 
       // blurring behind a sticky header repaints every scroll frame, which is
       // the main source of dropped frames on mobile. use a near-solid bg instead
@@ -328,6 +330,14 @@
       .mobile-menu-icon {
         display: block;
         font-size: 1.5rem;
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 2.75rem;
+          height: 2.75rem;
+        }
       }
 
       .close-icon {
@@ -344,7 +354,7 @@
 
   .defocus {
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     position: fixed;
     top: 0;
     left: 0;

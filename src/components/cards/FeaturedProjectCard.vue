@@ -172,7 +172,6 @@
     &:hover {
       transform: translateY(-4px);
       border-color: color-mix(in srgb, var(--accent) 55%, var(--default-border));
-      box-shadow: 0 1rem 2rem color-mix(in srgb, var(--accent) 14%, transparent);
     }
 
     &.reverse {
@@ -416,7 +415,6 @@
 
             &:hover {
               transform: translateY(-2px);
-              box-shadow: 0 0.5rem 1rem color-mix(in srgb, var(--accent) 30%, transparent);
 
               svg { transform: translate(2px, -2px); }
             }
@@ -440,8 +438,8 @@
   @media (max-width: 768px) {
     .featured-project-card {
       flex-direction: column !important;
-      padding: 1rem;
-      gap: 1.5rem;
+      padding: 1.1rem;
+      gap: 1.25rem;
 
       .media { width: 100%; max-width: 100%; }
 
@@ -449,6 +447,25 @@
       &.reverse .project-infos {
         align-items: flex-start;
         text-align: left;
+        gap: 0.85rem;
+
+        .title { font-size: 1.5rem; }
+
+        .description {
+          font-size: 0.92rem;
+          line-height: 1.6;
+          max-width: none;
+        }
+
+        .buttons {
+          width: 100%;
+
+          button {
+            flex: 1;
+            justify-content: center;
+            min-height: 2.75rem;
+          }
+        }
       }
     }
   }
