@@ -88,6 +88,7 @@
 
 <script setup>
   import { computed } from 'vue';
+  import { trackEvent } from '@/composables/useAnalytics';
 
   const props = defineProps(['project']);
 
@@ -100,6 +101,12 @@
 
   const openProjectLink = () => {
     if (!url.value) return;
+
+    trackEvent('project_click', {
+      project: props.project.name,
+      tag: props.project.tag,
+      target: props.project.link ? 'site' : 'repository',
+    });
     window.open(url.value, '_blank');
   }
 </script>

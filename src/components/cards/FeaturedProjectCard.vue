@@ -94,6 +94,7 @@
           class="title"
           :href="project.link"
           target="_blank"
+          @click="track('site')"
         >
           {{ project.name }}
         </a>
@@ -146,6 +147,7 @@
 
 <script setup>
   import { computed } from 'vue';
+  import { trackEvent } from '@/composables/useAnalytics';
 
   const props = defineProps(['project', 'reverse']);
 
@@ -154,13 +156,23 @@
     return Boolean(p.metrics || p.console || p.video || p.scroll || p.image);
   });
 
+  const track = (target) =>
+    trackEvent('project_click', {
+      project: props.project.name,
+      tag: props.project.tag,
+      target,
+    });
+
   const openProjectLink = () => {
     const url = props.project.link || props.project.repository;
     if (!url) return;
+
+    track(props.project.link ? 'site' : 'repository');
     window.open(url, '_blank');
   }
 
   const openRepository = () => {
+    track('repository');
     window.open(props.project.repository, '_blank');
   }
 </script>

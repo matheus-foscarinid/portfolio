@@ -34,7 +34,12 @@
           <div class="active-place-content" :key="currentPlaceIndex">
             <div class="title">
               <span>{{ currentPlace.role }} at </span>
-              <a class="place-name" :href="currentPlace.link" target="_blank">
+              <a
+                class="place-name"
+                :href="currentPlace.link"
+                target="_blank"
+                @click="trackEvent('company_click', { company: currentPlace.name })"
+              >
                 {{ currentPlace.name }}
               </a>
             </div>
@@ -60,6 +65,7 @@ import { ref, computed, onMounted, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
 import CompanyMark from '@/components/CompanyMark.vue'
 import { reveal, onReveal, EASE } from '@/composables/useReveal'
+import { trackEvent } from '@/composables/useAnalytics'
 
 const { t: $t } = useI18n()
 

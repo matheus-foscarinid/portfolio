@@ -46,6 +46,7 @@
         :href="verifyUrl"
         target="_blank"
         rel="noopener"
+        @click="trackEvent('lighthouse_verify_click')"
       >
         {{ $t('LIGHTHOUSE.VERIFY') }}
       </a>
@@ -57,6 +58,7 @@
   import { ref, onMounted } from 'vue';
   import { useI18n } from 'vue-i18n';
   import { onReveal } from '@/composables/useReveal';
+  import { trackEvent } from '@/composables/useAnalytics';
 
   const { t: $t } = useI18n();
 
