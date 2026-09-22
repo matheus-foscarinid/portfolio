@@ -1,7 +1,7 @@
 <template>
   <div id="stack" class="stack-band">
     <div class="container">
-      <span class="label">{{ $t('ABOUT.STACK_TITLE') }}</span>
+      <span class="label">{{ $t('STACK.TITLE') }}</span>
 
       <div class="stacks-container">
         <StackCard

@@ -12,7 +12,6 @@
   },
   "ABOUT": {
     "TITLE": "Sobre mim",
-    "STACK_TITLE": "Tecnologias",
     "SUMMARY_1": "Olá, eu sou <span class=\"highlight\">Matheus</span>, desenvolvedor fullstack aqui do Rio Grande do Sul, Brasil. Cheguei aqui pelo design gráfico, brincando no Photoshop, e essa curiosidade foi me puxando aos poucos pro desenvolvimento de software. Nunca mais larguei.",
     "SUMMARY_2": "Já são quase<span class=\"highlight\">6 anos de experiência</span>, e continuo gostando de aprender coisa nova. Curto bastante <span class=\"highlight\">padrões e princípios de design</span>, e tento aplicar de verdade, não só ler sobre.",
     "SUMMARY_3": "Comecei como <span class=\"highlight\">estagiário escrevendo Ruby on Rails</span>, e de lá pra cá fui pegando Vue, NestJS, React, Go e mais um monte de coisa. O que mais gosto é construir <span class=\"highlight\">aplicações otimizadas e performáticas</span> que resolvem problemas reais, e entregar algo que funciona bem e ainda fica bonito.",
@@ -90,5 +89,8 @@
     "TITLE": "Notas do Lighthouse",
     "SUBTITLE": "Medidas na build de produção que está no ar, não em um build local.",
     "VERIFY": "Verificar no PageSpeed Insights ->"
+  },
+  "STACK": {
+    "TITLE": "Tecnologias"
   }
 }

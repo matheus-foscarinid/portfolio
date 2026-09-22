@@ -12,7 +12,6 @@
   },
   "ABOUT": {
     "TITLE": "About",
-    "STACK_TITLE": "Tech stack",
     "SUMMARY_1": "Hey, I'm <span class=\"highlight\">Matheus</span>, a fullstack developer based in Rio Grande do Sul, Brazil. I got into this through graphic design, messing around in Photoshop, and that curiosity slowly pulled me toward web development. I've been hooked ever since.",
     "SUMMARY_2": "I've got almost <span class=\"highlight\">6 years of experience</span> now, and I still like picking up new things. I'm especially into <span class=\"highlight\">design patterns and principles</span>, and I try to actually use them instead of just reading about them.",
     "SUMMARY_3": "I started out as a <span class=\"highlight\">trainee writing Ruby on Rails</span>, and since then I've picked up Vue, NestJS, React, Go and a handful of others. What I like most is building <span class=\"highlight\">user-centric applications</span> that solve real problems, and shipping something that works well and looks good too.",
@@ -90,5 +89,8 @@
     "TITLE": "Lighthouse scores",
     "SUBTITLE": "Measured against the live production build, not a local run.",
     "VERIFY": "Verify on PageSpeed Insights ->"
+  },
+  "STACK": {
+    "TITLE": "Tech stack"
   }
 }
