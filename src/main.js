@@ -12,6 +12,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import {
   faArrowUpRightFromSquare,
   faArrowRight,
+  faFileLines,
   faFolder,
   faEnvelope, 
   faLocationPin, 
@@ -28,6 +29,7 @@ library.add(
   faArrowUpRightFromSquare,
   faArrowRight,
   faCaretDown,
+  faFileLines,
   faFolder, 
   faEnvelope, 
   faLocationPin,
