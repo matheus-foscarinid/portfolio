@@ -139,8 +139,9 @@
         left: 0.7rem;
         padding: 0.25rem 0.55rem;
         border-radius: 0.4rem;
-        backdrop-filter: blur(8px);
-        background: color-mix(in srgb, var(--dark-background) 55%, transparent);
+        // a solid scrim instead of a backdrop blur: the pill sits inside a card
+        // that animates, and blurring a backdrop there costs a readback per frame
+        background: color-mix(in srgb, var(--dark-background) 78%, transparent);
         color: #fff;
         font-family: 'Fira Code', monospace;
         font-size: 0.66rem;
