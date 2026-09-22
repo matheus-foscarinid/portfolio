@@ -70,10 +70,8 @@
     .fab-leave-to { transform: none; }
   }
 
+  // on a phone it floats over the cards, and the hero's own button is a scroll away
   @media (max-width: 768px) {
-    .resume-fab {
-      right: calc(1.2rem + env(safe-area-inset-right));
-      bottom: calc(1.2rem + env(safe-area-inset-bottom));
-    }
+    .resume-fab { display: none; }
   }
 </style>
