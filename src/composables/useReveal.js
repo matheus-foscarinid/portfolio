@@ -25,12 +25,34 @@ export const reveal = (elements, from, to, options = {}) => {
   const { duration = 500, delay = 0, stagger = 0, easing = EASE.out } = options;
 
   toList(elements).forEach((el, index) => {
-    el.animate([toKeyframe(from), toKeyframe(to)], {
+    const play = () => el.animate([toKeyframe(from), toKeyframe(to)], {
       duration: reduced ? 0 : duration,
-      delay: reduced ? 0 : delay + index * stagger,
       easing,
       fill: 'both'
     });
+
+    const wait = reduced ? 0 : delay + index * stagger;
+    if (!wait) {
+      play();
+      return;
+    }
+
+    // the wait assumes the element is still below the fold. if the reader gets
+    // there first - a nav jump, or a scroll that outran the observer - it plays
+    // on arrival instead, so there is never a hole they are looking straight at
+    const timer = setTimeout(() => {
+      watcher.disconnect();
+      play();
+    }, wait);
+
+    const watcher = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      clearTimeout(timer);
+      watcher.disconnect();
+      play();
+    });
+
+    watcher.observe(el);
   });
 };
 
@@ -43,9 +65,9 @@ export const onReveal = (targetSelector, callback) => {
     return;
   }
 
-  // start the sequence before the section reaches the viewport. the reveals run
-  // on a deliberate delay, and without this lead the reader scrolls onto content
-  // that is still at opacity 0 and waits for it
+  // a small lead so the sequence is under way as the section arrives. it stays
+  // short on purpose: a long one reveals sections near the top of the page before
+  // the reader has scrolled at all, and reveal() already covers a fast arrival
   const observer = new IntersectionObserver((entries, self) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -53,7 +75,7 @@ export const onReveal = (targetSelector, callback) => {
         self.unobserve(entry.target);
       }
     });
-  }, { rootMargin: '0px 0px 150% 0px' });
+  }, { rootMargin: '0px 0px 25% 0px' });
 
   observer.observe(target);
 };
