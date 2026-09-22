@@ -53,10 +53,6 @@ onMounted(() => onReveal('#about', animateElement));
   flex-direction: column;
   background: var(--default-background);
 
-  // the auto side margins on .container cancel the flex stretch, so without this
-  // the container shrinks to the text width instead of filling the section
-  .container { width: 100%; }
-
   // the heading holds a left rail, the reading sits in its own measure beside it
   .columns {
     display: grid;

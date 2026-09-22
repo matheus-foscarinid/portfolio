@@ -68,6 +68,9 @@ body.no-scroll {
   max-width: 1200px;
   margin: 10rem auto;
   padding: 0 2rem;
+  /* the auto side margins cancel flex stretch, so a flex-column section would
+     otherwise shrink its container down to the content width */
+  width: 100%;
 }
 
 @media (max-width: 768px) {

@@ -368,12 +368,7 @@ onMounted(() => {
   #career {
     .section-heading { margin-bottom: 1.5rem; }
 
-    // the auto side margins on .container cancel the flex stretch, so the rail
-    // below would otherwise push it out to its own content width
-    .container {
-      width: 100%;
-      min-width: 0;
-    }
+    .container { min-width: 0; }
 
     .places-container {
       flex-direction: column;

@@ -266,12 +266,7 @@
   // screen edges, so it stays one row instead of three screens of scrolling
   @media (max-width: 768px) {
     #projects {
-      // the auto side margins on .container cancel the flex stretch, so the rails
-      // below would otherwise push it out to their own content width
-      .container {
-        width: 100%;
-        min-width: 0;
-      }
+      .container { min-width: 0; }
 
       .project-stream { gap: 1.5rem; }
 

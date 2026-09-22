@@ -110,8 +110,6 @@
     flex-direction: column;
     background: var(--secondary-background);
 
-    .container { width: 100%; }
-
     .section-heading {
       margin-bottom: 2rem;
 
