@@ -108,9 +108,9 @@
   .project-card {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    padding: 1.1rem;
-    border-radius: 1.1rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
     background-color: var(--default-background);
     border: 1px solid color-mix(in srgb, var(--default-border) 65%, transparent);
     transition: transform 0.3s ease;
@@ -181,7 +181,7 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 1.1rem;
     }
 
     .header {
@@ -244,7 +244,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      padding: 0;
+      padding: 0.25rem 0 0;
 
       li {
         font-family: 'Fira Code', monospace;
@@ -269,8 +269,8 @@
 
   @media (max-width: 768px) {
     .project-card {
-      gap: 0.9rem;
-      padding: 0.9rem;
+      gap: 1.25rem;
+      padding: 1.25rem;
 
       .header .title { font-size: 1.1rem; }
 

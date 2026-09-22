@@ -170,8 +170,8 @@
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 2rem;
-    gap: 3rem;
+    padding: 2.25rem;
+    gap: 3.5rem;
     border-radius: 1.25rem;
     background-color: var(--default-background);
     border: 1px solid color-mix(in srgb, var(--default-border) 65%, transparent);
@@ -316,7 +316,7 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.35rem;
 
       .heading {
         display: flex;
@@ -445,8 +445,8 @@
     .featured-project-card {
       flex-direction: column !important;
       align-items: stretch;
-      padding: 1.1rem;
-      gap: 1.25rem;
+      padding: 1.5rem;
+      gap: 1.5rem;
 
       .media { width: 100%; max-width: 100%; }
 
