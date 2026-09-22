@@ -456,7 +456,6 @@
         text-align: left;
         gap: 0.85rem;
 
-
         .title { font-size: 1.5rem; }
 
         .description {

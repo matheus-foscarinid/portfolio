@@ -120,7 +120,7 @@ const placesTimeline = [
   }
 ]
 
-// add a mark to CompanyMark and set `mark` on the place to replace its monogram
+// fallback for a place with no mark yet: initials from the first two words
 const monogramFor = (name) =>
   name
     .split(' ')
