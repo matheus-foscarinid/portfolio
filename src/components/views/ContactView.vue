@@ -68,6 +68,7 @@
   const animateElement = () => {
     const heading = document.querySelectorAll('#contact .section-heading > *');
     const cta = document.querySelector('#contact .primary-contact');
+    const elsewhere = document.querySelector('#contact .elsewhere');
     const contactCards = document.querySelectorAll('.contact-cards > *');
 
     reveal(
@@ -85,10 +86,17 @@
     );
 
     reveal(
+      elsewhere,
+      { opacity: 0, y: 20, blur: 2 },
+      { opacity: 1, y: 0, blur: 0 },
+      { duration: 500, delay: 600 }
+    );
+
+    reveal(
       contactCards,
       { opacity: 0, y: 30, blur: 2 },
       { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, stagger: 100, delay: 650 }
+      { duration: 500, stagger: 100, delay: 700 }
     );
   };
 
