@@ -262,34 +262,13 @@
     }
   }
 
-  // on a phone each row of three becomes a swipeable rail that bleeds to both
-  // screen edges, so it stays one row instead of three screens of scrolling
   @media (max-width: 768px) {
     #projects {
       .container { min-width: 0; }
 
       .project-stream { gap: 1.5rem; }
 
-      .project-row {
-        display: flex;
-        grid-template-columns: none;
-        min-width: 0;
-        gap: 1.25rem;
-        margin-left: calc(-1 * max(1.2rem, env(safe-area-inset-left)));
-        margin-right: calc(-1 * max(1.2rem, env(safe-area-inset-right)));
-        padding: 0.25rem max(1.2rem, env(safe-area-inset-right)) 0.75rem max(1.2rem, env(safe-area-inset-left));
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scrollbar-width: none;
-        -webkit-overflow-scrolling: touch;
-
-        &::-webkit-scrollbar { display: none; }
-
-        > * {
-          flex: 0 0 82vw;
-          scroll-snap-align: center;
-        }
-      }
+      .project-row { grid-template-columns: 1fr; }
     }
   }
 </style>
