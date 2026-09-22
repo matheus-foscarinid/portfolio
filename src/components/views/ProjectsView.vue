@@ -227,13 +227,13 @@
     .project-stream {
       display: flex;
       flex-direction: column;
-      gap: 4.5rem;
+      gap: 2rem;
     }
 
     .project-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
+      gap: 1.5rem;
     }
 
     #lighthouse { margin-top: 3rem; }
@@ -258,7 +258,7 @@
   @media (max-width: 1024px) {
     #projects .project-row {
       grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
+      gap: 1.5rem;
     }
   }
 
@@ -273,7 +273,7 @@
         min-width: 0;
       }
 
-      .project-stream { gap: 3rem; }
+      .project-stream { gap: 1.5rem; }
 
       .project-row {
         display: flex;

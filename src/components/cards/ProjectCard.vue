@@ -109,15 +109,25 @@
     display: flex;
     flex-direction: column;
     gap: 1.1rem;
+    padding: 1.1rem;
+    border-radius: 1.1rem;
+    background-color: var(--default-background);
+    border: 1px solid color-mix(in srgb, var(--default-border) 65%, transparent);
+    transition: transform 0.3s ease, border-color 0.3s ease;
 
     &.clickable { cursor: pointer; }
 
-    &:hover .header .title { color: var(--accent); }
+    &:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--accent) 40%, var(--default-border));
+
+      .header .title { color: var(--accent); }
+    }
 
     .media {
       width: 100%;
       aspect-ratio: 16/9;
-      border-radius: 0.9rem;
+      border-radius: 0.75rem;
       overflow: hidden;
       background-color: var(--details-background);
 
@@ -227,13 +237,16 @@
         color: var(--disabled-text);
         padding: 0.28rem 0.55rem;
         border-radius: 0.4rem;
-        background-color: color-mix(in srgb, var(--default-border) 40%, transparent);
+        background-color: color-mix(in srgb, var(--default-border) 45%, transparent);
       }
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .project-card,
     .project-card .media .thumb { transition: none; }
+
+    .project-card:hover { transform: none; }
 
     .project-card:hover .media .thumb { transform: none; }
   }
@@ -241,6 +254,7 @@
   @media (max-width: 768px) {
     .project-card {
       gap: 0.9rem;
+      padding: 0.9rem;
 
       .header .title { font-size: 1.1rem; }
 
