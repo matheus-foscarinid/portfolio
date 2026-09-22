@@ -29,16 +29,16 @@ const animateElement = () => {
 
   reveal(
     heading,
-    { opacity: 0, y: 50, blur: 2 },
-    { opacity: 1, y: 0, blur: 0 },
-    { duration: 500, stagger: 80, easing: EASE.outBack }
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0 },
+    { duration: 420, stagger: 50, easing: EASE.outExpo }
   );
 
   reveal(
     texts,
-    { opacity: 0, y: 50, blur: 2 },
-    { opacity: 1, y: 0, blur: 0 },
-    { duration: 500, stagger: 100, delay: 350, easing: EASE.outBack }
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0 },
+    { duration: 420, stagger: 55, delay: 120, easing: EASE.outExpo }
   );
 };
 

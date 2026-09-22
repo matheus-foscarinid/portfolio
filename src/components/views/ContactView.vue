@@ -73,30 +73,30 @@
 
     reveal(
       heading,
-      { opacity: 0, y: 50, blur: 2 },
-      { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, stagger: 80, delay: 350, easing: EASE.outBack }
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0 },
+      { duration: 420, stagger: 50, easing: EASE.outExpo }
     );
 
     reveal(
       cta,
-      { opacity: 0, y: 30, blur: 2 },
-      { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, delay: 500 }
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0 },
+      { duration: 420, delay: 140 }
     );
 
     reveal(
       elsewhere,
-      { opacity: 0, y: 20, blur: 2 },
-      { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, delay: 600 }
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0 },
+      { duration: 420, delay: 210 }
     );
 
     reveal(
       contactCards,
-      { opacity: 0, y: 30, blur: 2 },
-      { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, stagger: 100, delay: 700 }
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0 },
+      { duration: 420, stagger: 60, delay: 260 }
     );
   };
 

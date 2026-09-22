@@ -168,23 +168,23 @@
 
     reveal(
       heading,
-      { opacity: 0, y: 50, blur: 2 },
-      { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, stagger: 80, delay: 350, easing: EASE.outBack }
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0 },
+      { duration: 420, stagger: 50, easing: EASE.outExpo }
     );
 
     reveal(
       blocks,
-      { opacity: 0, y: 75, blur: 2 },
-      { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, stagger: 200, delay: 500 }
+      { opacity: 0, y: 75 },
+      { opacity: 1, y: 0 },
+      { duration: 420, stagger: 90, delay: 140 }
     );
 
     reveal(
       message,
-      { opacity: 0, y: 75, blur: 2 },
-      { opacity: 1, y: 0, blur: 0 },
-      { duration: 500, delay: 500 }
+      { opacity: 0, y: 75 },
+      { opacity: 1, y: 0 },
+      { duration: 420, delay: 200 }
     );
   };
 

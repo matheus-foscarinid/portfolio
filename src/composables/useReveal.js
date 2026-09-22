@@ -8,7 +8,7 @@ const prefersReducedMotion = () =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // only transform and opacity animate here - both are GPU-composited, so no
-// per-frame layout or paint. avoid filter/blur, which force a repaint every frame
+// per-frame layout or paint. never add filter/blur: it repaints every frame
 const toKeyframe = ({ opacity = 1, x = 0, y = 0, scale = 1 }) => ({
   opacity,
   transform: `translate3d(${x}px, ${y}px, 0) scale(${scale})`
