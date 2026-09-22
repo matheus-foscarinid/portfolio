@@ -133,8 +133,13 @@
       }
     }
 
+    // the panel fills the column: the call to action holds the left half, the
+    // other ways to reach me stack on the right
     .panel {
-      max-width: 34rem;
+      display: grid;
+      grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+      align-items: center;
+      gap: 2.5rem;
       padding: 1.75rem;
       border-radius: 1.25rem;
       border: 1px solid color-mix(in srgb, var(--default-border) 70%, transparent);
@@ -146,17 +151,15 @@
       flex-direction: column;
       align-items: stretch;
       gap: 0.6rem;
-      padding-bottom: 1.4rem;
-      margin-bottom: 0.6rem;
-      border-bottom: 1px solid var(--default-border);
 
       .email-cta {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.7rem;
-        padding: 1rem 1.75rem;
+        padding: 1rem 2rem;
         border-radius: 999px;
+        white-space: nowrap;
         background-color: var(--accent);
         color: var(--accent-contrast);
         font-size: 1.05rem;
@@ -193,7 +196,15 @@
 
       .section-heading { position: static; }
 
-      .panel { max-width: none; }
+      .panel {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+      }
+
+      .primary-contact {
+        padding-bottom: 1.4rem;
+        border-bottom: 1px solid var(--default-border);
+      }
     }
   }
 </style>
