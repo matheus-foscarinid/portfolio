@@ -170,21 +170,21 @@
       heading,
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0 },
-      { duration: 420, stagger: 50, easing: EASE.outExpo }
+      { duration: 500, stagger: 80, delay: 350, easing: EASE.outBack }
     );
 
     reveal(
       blocks,
       { opacity: 0, y: 75 },
       { opacity: 1, y: 0 },
-      { duration: 420, stagger: 90, delay: 140 }
+      { duration: 500, stagger: 200, delay: 500 }
     );
 
     reveal(
       message,
       { opacity: 0, y: 75 },
       { opacity: 1, y: 0 },
-      { duration: 420, delay: 200 }
+      { duration: 500, delay: 500 }
     );
   };
 

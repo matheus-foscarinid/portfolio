@@ -63,14 +63,14 @@ const animateElement = () => {
     texts,
     { opacity: 0, y: 50, scale: .9 },
     { opacity: 1, y: 0, scale: 1 },
-    { duration: 450, stagger: 70 }
+    { duration: 500, stagger: 100 }
   );
 
   reveal(
     photo,
     { opacity: 0, x: 90, scale: .9 },
     { opacity: 1, x: 0, scale: 1 },
-    { duration: 700, delay: 150, easing: EASE.outExpo }
+    { duration: 1500, delay: 500, easing: EASE.outExpo }
   );
 };
 

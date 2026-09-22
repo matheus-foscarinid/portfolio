@@ -55,7 +55,7 @@
       document.querySelectorAll('.stack-band .stacks-container > *'),
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0 },
-      { duration: 360, stagger: 25 }
+      { duration: 400, stagger: 40 }
     );
   };
 

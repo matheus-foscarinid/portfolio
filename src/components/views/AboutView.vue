@@ -31,14 +31,14 @@ const animateElement = () => {
     heading,
     { opacity: 0, y: 50 },
     { opacity: 1, y: 0 },
-    { duration: 420, stagger: 50, easing: EASE.outExpo }
+    { duration: 500, stagger: 80, easing: EASE.outBack }
   );
 
   reveal(
     texts,
     { opacity: 0, y: 50 },
     { opacity: 1, y: 0 },
-    { duration: 420, stagger: 55, delay: 120, easing: EASE.outExpo }
+    { duration: 500, stagger: 100, delay: 350, easing: EASE.outBack }
   );
 };
 

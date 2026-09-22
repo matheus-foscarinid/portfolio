@@ -75,28 +75,28 @@
       heading,
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0 },
-      { duration: 420, stagger: 50, easing: EASE.outExpo }
+      { duration: 500, stagger: 80, delay: 350, easing: EASE.outBack }
     );
 
     reveal(
       cta,
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0 },
-      { duration: 420, delay: 140 }
+      { duration: 500, delay: 500 }
     );
 
     reveal(
       elsewhere,
       { opacity: 0, y: 20 },
       { opacity: 1, y: 0 },
-      { duration: 420, delay: 210 }
+      { duration: 500, delay: 600 }
     );
 
     reveal(
       contactCards,
       { opacity: 0, y: 30 },
       { opacity: 1, y: 0 },
-      { duration: 420, stagger: 60, delay: 260 }
+      { duration: 500, stagger: 100, delay: 700 }
     );
   };
 

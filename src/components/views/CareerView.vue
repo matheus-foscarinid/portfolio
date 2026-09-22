@@ -156,7 +156,7 @@ const revealContent = (content) => {
     content.children,
     { opacity: 0, y: 20 },
     { opacity: 1, y: 0 },
-    { duration: 420, stagger: 60 }
+    { duration: 500, stagger: 100 }
   )
 }
 
@@ -169,14 +169,14 @@ const animateElement = () => {
     heading,
     { opacity: 0, y: 50 },
     { opacity: 1, y: 0 },
-    { duration: 420, stagger: 50, easing: EASE.outExpo }
+    { duration: 500, stagger: 80, easing: EASE.outBack }
   )
 
   reveal(
     placesButtons,
     { opacity: 0, x: -50 },
     { opacity: 1, x: 0 },
-    { duration: 420, stagger: 60 }
+    { duration: 500, stagger: 100 }
   )
 
   if (content) revealContent(content)
