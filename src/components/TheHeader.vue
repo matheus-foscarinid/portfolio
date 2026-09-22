@@ -115,7 +115,9 @@
   const currentActiveSection = ref(null);
 
   const watchCurrentActiveSection = () => {
-    const sections = Array.from(document.querySelectorAll('section'));
+    const sections = sectionOptions
+      .map(({ id }) => document.getElementById(id))
+      .filter(Boolean);
     const viewportMiddle = window.innerHeight / 2;
 
     const currentShowedSection = sections.find((section) => {

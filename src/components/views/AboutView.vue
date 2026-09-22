@@ -2,21 +2,17 @@
   <section id="about">
     <div class="container">
       <div class="columns">
-        <div class="about-column">
-          <header class="section-heading">
-            <span class="marker" aria-hidden="true"></span>
-            <h2>{{ $t('ABOUT.TITLE') }}</h2>
-          </header>
+        <header class="section-heading">
+          <span class="marker" aria-hidden="true"></span>
+          <h2>{{ $t('ABOUT.TITLE') }}</h2>
+        </header>
 
-          <div class="summary">
-            <p v-html="$t('ABOUT.SUMMARY_1')" />
-            <p v-html="$t('ABOUT.SUMMARY_2')" />
-            <p v-html="$t('ABOUT.SUMMARY_3')" />
-            <p v-html="$t('ABOUT.SUMMARY_4')" />
-          </div>
+        <div class="summary">
+          <p v-html="$t('ABOUT.SUMMARY_1')" />
+          <p v-html="$t('ABOUT.SUMMARY_2')" />
+          <p v-html="$t('ABOUT.SUMMARY_3')" />
+          <p v-html="$t('ABOUT.SUMMARY_4')" />
         </div>
-
-        <ContactView class="contact-column" />
       </div>
     </div>
   </section>
@@ -25,7 +21,6 @@
 <script setup>
 import { onMounted } from 'vue';
 
-import ContactView from '@/components/views/ContactView.vue';
 import { reveal, onReveal, EASE } from '@/composables/useReveal';
 
 const animateElement = () => {
@@ -53,7 +48,6 @@ onMounted(() => onReveal('#about', animateElement));
 
 <style lang="scss" scoped>
 #about {
-  min-height: 70vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -63,8 +57,17 @@ onMounted(() => onReveal('#about', animateElement));
   // the container shrinks to the text width instead of filling the section
   .container { width: 100%; }
 
+  // the heading holds a left rail, the reading sits in its own measure beside it
+  .columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: start;
+    gap: 4rem;
+  }
+
   .section-heading {
-    margin-bottom: 2.5rem;
+    position: sticky;
+    top: 7rem;
 
     .marker {
       display: block;
@@ -76,32 +79,17 @@ onMounted(() => onReveal('#about', animateElement));
 
     h2 {
       font-size: clamp(2rem, 4vw, 2.75rem);
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      font-weight: 600;
+      letter-spacing: -0.03em;
       margin: 0;
     }
-  }
-
-  .columns {
-    display: flex;
-    align-items: flex-start;
-    gap: 4rem;
-  }
-
-  .about-column { flex: 1.6; }
-
-  .contact-column {
-    flex: 1;
-    min-width: 0;
-    position: sticky;
-    top: 7rem;
   }
 
   .summary {
     max-width: 62ch;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
     color: var(--secondary-text);
     line-height: 1.75;
   }
@@ -110,18 +98,11 @@ onMounted(() => onReveal('#about', animateElement));
 @media (max-width: 900px) {
   #about {
     .columns {
-      flex-direction: column;
-      gap: 3rem;
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
 
-    // contact first on a phone: it is the action, the bio is the reading
-    .contact-column {
-      order: -1;
-      position: static;
-      width: 100%;
-    }
-
-    .section-heading { margin-bottom: 2rem; }
+    .section-heading { position: static; }
 
     .summary {
       max-width: 100%;

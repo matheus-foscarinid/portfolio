@@ -3,12 +3,14 @@
 
   <main>
     <HomeView />
-    <AboutView />
+    <TechStackBand />
     <CareerView />
     <ProjectsView />
+    <AboutView />
     <ContactView />
-    <LighthouseScores />
   </main>
+
+  <ResumeFab />
 
   <TheFooter />
 </template>
@@ -17,11 +19,12 @@
 import TheHeader from './components/TheHeader.vue';
 import TheFooter from './components/TheFooter.vue';
 import HomeView from './components/views/HomeView.vue';
-import AboutView from './components/views/AboutView.vue';
+import TechStackBand from './components/home/TechStackBand.vue';
 import CareerView from './components/views/CareerView.vue';
 import ProjectsView from './components/views/ProjectsView.vue';
+import AboutView from './components/views/AboutView.vue';
 import ContactView from './components/views/ContactView.vue';
-import LighthouseScores from './components/LighthouseScores.vue';
+import ResumeFab from './components/home/ResumeFab.vue';
 
 </script>
 

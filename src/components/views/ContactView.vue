@@ -1,33 +1,37 @@
 <template>
-  <div id="contact">
-    <header class="section-heading">
-      <span class="marker" aria-hidden="true"></span>
-      <h2>{{ $t('CONTACT.TITLE') }}</h2>
-      <p class="subtitle">{{ $t('CONTACT.SUBTITLE') }}</p>
-    </header>
+  <section id="contact">
+    <div class="container">
+      <div class="columns">
+        <header class="section-heading">
+          <span class="marker" aria-hidden="true"></span>
+          <h2>{{ $t('CONTACT.TITLE') }}</h2>
+          <p class="subtitle">{{ $t('CONTACT.SUBTITLE') }}</p>
+        </header>
 
-    <div class="panel">
-      <div class="primary-contact">
-        <a
-          class="email-cta"
-          :href="`mailto:${EMAIL}`"
-          @click="trackEvent('contact_click', { channel: 'email', location: 'contact_cta' })"
-        >
-          <font-awesome-icon icon="fa-solid fa-envelope" aria-hidden="true" />
-          <span>{{ $t('CONTACT.EMAIL_CTA') }}</span>
-        </a>
-        <span class="address">{{ EMAIL }}</span>
-      </div>
+        <div class="panel">
+          <div class="primary-contact">
+            <a
+              class="email-cta"
+              :href="`mailto:${EMAIL}`"
+              @click="trackEvent('contact_click', { channel: 'email', location: 'contact_cta' })"
+            >
+              <font-awesome-icon icon="fa-solid fa-envelope" aria-hidden="true" />
+              <span>{{ $t('CONTACT.EMAIL_CTA') }}</span>
+            </a>
+            <span class="address">{{ EMAIL }}</span>
+          </div>
 
-      <div class="contact-cards">
-        <ContactCard
-          v-for="(contact, index) in contacts"
-          :key="index"
-          :contact="contact"
-        />
+          <div class="contact-cards">
+            <ContactCard
+              v-for="(contact, index) in contacts"
+              :key="index"
+              :contact="contact"
+            />
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup>
@@ -87,8 +91,24 @@
 
 <style lang="scss">
   #contact {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: var(--secondary-background);
+
+    .container { width: 100%; }
+
+    // same rail as About, so the two read as a pair
+    .columns {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      align-items: start;
+      gap: 4rem;
+    }
+
     .section-heading {
-      margin-bottom: 2rem;
+      position: sticky;
+      top: 7rem;
 
       .marker {
         display: block;
@@ -100,13 +120,13 @@
 
       h2 {
         font-size: clamp(2rem, 4vw, 2.75rem);
-        font-weight: 800;
-        letter-spacing: -0.02em;
+        font-weight: 600;
+        letter-spacing: -0.03em;
         margin: 0;
       }
 
       .subtitle {
-        max-width: 46ch;
+        max-width: 40ch;
         margin: 0.9rem 0 0;
         color: var(--secondary-text);
         line-height: 1.6;
@@ -114,10 +134,11 @@
     }
 
     .panel {
+      max-width: 34rem;
       padding: 1.75rem;
       border-radius: 1.25rem;
-      border: 1px solid var(--default-border);
-      background: var(--secondary-background);
+      border: 1px solid color-mix(in srgb, var(--default-border) 70%, transparent);
+      background: var(--default-background);
     }
 
     .primary-contact {
@@ -160,6 +181,19 @@
     .contact-cards {
       display: grid;
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    #contact {
+      .columns {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .section-heading { position: static; }
+
+      .panel { max-width: none; }
     }
   }
 </style>
