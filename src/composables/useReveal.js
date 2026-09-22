@@ -43,6 +43,9 @@ export const onReveal = (targetSelector, callback) => {
     return;
   }
 
+  // start the sequence before the section reaches the viewport. the reveals run
+  // on a deliberate delay, and without this lead the reader scrolls onto content
+  // that is still at opacity 0 and waits for it
   const observer = new IntersectionObserver((entries, self) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -50,7 +53,7 @@ export const onReveal = (targetSelector, callback) => {
         self.unobserve(entry.target);
       }
     });
-  });
+  }, { rootMargin: '0px 0px 150% 0px' });
 
   observer.observe(target);
 };
