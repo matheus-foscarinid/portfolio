@@ -15,15 +15,10 @@
             :class="{ active: currentPlaceIndex === index }"
             @click="setPlaceAsActive(index)"
           >
-            <img
-              v-if="place.icon"
+            <CompanyMark
+              v-if="place.mark"
               class="place-icon"
-              :class="{ 'invert-on-dark': isDarkMark(place.icon) }"
-              :src="place.icon"
-              :alt="place.name"
-              width="22"
-              height="22"
-              loading="lazy"
+              :name="place.mark"
             />
             <span
               v-else
@@ -63,6 +58,7 @@
 <script setup>
 import { ref, computed, onMounted, nextTick } from 'vue'
 import { useI18n } from 'vue-i18n'
+import CompanyMark from '@/components/CompanyMark.vue'
 import { reveal, onReveal, EASE } from '@/composables/useReveal'
 
 const { t: $t } = useI18n()
@@ -71,7 +67,7 @@ const placesTimeline = [
   {
     name: 'ETEC Monteiro Lobato',
     key: 'CIMOL',
-    icon: '/icons/companies/cimol.png',
+    mark: 'cimol',
     paragraphsQtt: 3,
     role: 'Student',
     period: 'from 2018 to 2020',
@@ -80,7 +76,7 @@ const placesTimeline = [
   {
     name: 'Unisinos',
     key: 'UNISINOS',
-    icon: '/icons/companies/unisinos.png',
+    mark: 'unisinos',
     paragraphsQtt: 2,
     role: 'Student',
     period: 'from 2021 to 2025',
@@ -89,7 +85,7 @@ const placesTimeline = [
   {
     name: 'Scopi',
     key: 'SCOPI',
-    icon: '/icons/companies/scopi.png',
+    mark: 'scopi',
     paragraphsQtt: 3,
     role: 'Trainee',
     period: 'from January 2021 to October 2021',
@@ -98,7 +94,7 @@ const placesTimeline = [
   {
     name: 'Minha visita',
     key: 'MINHA_VISITA',
-    icon: '/icons/companies/minhavisita.svg',
+    mark: 'minhavisita',
     paragraphsQtt: 3,
     role: 'Full-stack Software Engineer',
     period: 'from October 2021 to November 2024',
@@ -107,7 +103,7 @@ const placesTimeline = [
   {
     name: 'Fullstack Labs',
     key: 'FULLSTACK_LABS',
-    icon: '/icons/companies/fullstack.svg',
+    mark: 'fullstack',
     paragraphsQtt: 3,
     role: 'Mid-level Software Engineer',
     period: 'from November 2024 to July 2025',
@@ -116,7 +112,7 @@ const placesTimeline = [
   {
     name: 'HiPeople',
     key: 'HIPEOPLE',
-    icon: '/icons/companies/hipeople.svg',
+    mark: 'hipeople',
     paragraphsQtt: 4,
     role: 'Software Engineer',
     period: 'from July 2025 to present',
@@ -124,12 +120,7 @@ const placesTimeline = [
   }
 ]
 
-const darkMarks = ['hipeople', 'scopi'];
-
-const isDarkMark = (icon) => darkMarks.some(mark => icon.includes(mark));
-
-// drop an svg in public/icons/companies and set `icon` on the place to replace
-// its monogram with the real logo
+// add a mark to CompanyMark and set `mark` on the place to replace its monogram
 const monogramFor = (name) =>
   name
     .split(' ')
@@ -265,7 +256,10 @@ onMounted(() => {
           color: var(--default-text);
           font-weight: 700;
 
-          .place-icon { opacity: 1; }
+          .place-icon {
+            opacity: 1;
+            color: var(--accent);
+          }
 
           .monogram {
             border-color: var(--accent);
@@ -275,24 +269,17 @@ onMounted(() => {
 
         .place-icon {
           flex: none;
-          width: 1.65rem;
-          height: 1.65rem;
-          border-radius: 0.4rem;
-          opacity: 0.75;
-          object-fit: contain;
-          transition: opacity 0.2s ease-in-out;
-        }
-
-        // hipeople and scopi are near-black marks, so they need flipping to
-        // stay legible once the chip behind them is gone
-        [data-theme="dark"] & img.place-icon.invert-on-dark {
-          filter: invert(1);
+          width: 1.4rem;
+          height: 1.4rem;
+          opacity: 0.65;
+          transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
         }
 
         .monogram {
           display: flex;
           align-items: center;
           justify-content: center;
+          border-radius: 0.4rem;
           background-color: var(--details-background);
           border: 1px solid var(--default-border);
           font-size: 0.62rem;
