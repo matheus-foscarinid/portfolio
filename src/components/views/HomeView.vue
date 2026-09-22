@@ -155,12 +155,11 @@ const trackProfile = (network) => {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-width: 11rem;
-        padding: 0.85rem 1.9rem;
+        padding: 0.85rem 1.35rem;
         border: 1px solid color-mix(in srgb, var(--default-border) 70%, transparent);
         border-radius: 999px;
-        color: var(--default-text);
-        font-size: 1rem;
+        color: var(--secondary-text);
+        font-size: 0.95rem;
         font-weight: 500;
         text-decoration: none;
         transition: border-color 0.25s ease, color 0.25s ease;
