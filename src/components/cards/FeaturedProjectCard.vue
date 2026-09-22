@@ -177,9 +177,6 @@
     border: 1px solid color-mix(in srgb, var(--default-border) 65%, transparent);
     text-align: left;
     opacity: 0;
-    transition: border-color 0.3s ease;
-
-    &:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--default-border)); }
 
     &.reverse {
       flex-direction: row-reverse;

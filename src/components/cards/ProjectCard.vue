@@ -113,15 +113,16 @@
     border-radius: 1.1rem;
     background-color: var(--default-background);
     border: 1px solid color-mix(in srgb, var(--default-border) 65%, transparent);
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease;
 
     &.clickable { cursor: pointer; }
 
     &:hover {
       transform: translateY(-3px);
-      border-color: color-mix(in srgb, var(--accent) 40%, var(--default-border));
 
-      .header .title { color: var(--accent); }
+      .header .title::after { transform: scaleX(1); transform-origin: bottom left; }
+
+      .icons { color: var(--secondary-text); }
     }
 
     .media {
@@ -195,7 +196,20 @@
         font-weight: 600;
         letter-spacing: -0.015em;
         color: var(--default-text);
-        transition: color 0.25s ease;
+
+        // the rule draws in from the left on hover, same idiom as the nav
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -0.2rem;
+          width: 100%;
+          height: 1px;
+          background: var(--accent);
+          transform: scaleX(0);
+          transform-origin: bottom right;
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
         .years {
           margin-left: 0.6rem;
@@ -212,6 +226,7 @@
         gap: 0.6rem;
         color: var(--disabled-text);
         flex-shrink: 0;
+        transition: color 0.25s ease;
 
         svg { width: 0.95rem; height: 0.95rem; }
       }
@@ -244,7 +259,8 @@
 
   @media (prefers-reduced-motion: reduce) {
     .project-card,
-    .project-card .media .thumb { transition: none; }
+    .project-card .media .thumb,
+    .project-card .header .title::after { transition: none; }
 
     .project-card:hover { transform: none; }
 
