@@ -54,7 +54,9 @@
   "CONTACT": {
     "TITLE": "Contact",
     "SUBTITLE": "Hiring, or building something you want a hand with? Tell me what you're working on.",
-    "EMAIL_CTA": "Send me an email"
+    "EMAIL_CTA": "Send me an email",
+    "NOTE": "Email is the quickest way to reach me.",
+    "ELSEWHERE": "Or find me here"
   },
   "PROJECTS": {
     "TITLE": "Projects",

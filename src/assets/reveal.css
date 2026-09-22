@@ -15,7 +15,7 @@
   #projects .project-stream > *,
   #projects .coming-soon-message,
   #contact .section-heading > *,
-  #contact .panel {
+  #contact .contact-cards > * {
     opacity: 0;
   }
 }

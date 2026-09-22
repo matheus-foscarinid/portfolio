@@ -54,7 +54,9 @@
   "CONTACT": {
     "TITLE": "Contato",
     "SUBTITLE": "Contratando, ou construindo algo em que quer ajuda? Me conta no que você está trabalhando.",
-    "EMAIL_CTA": "Me mande um email"
+    "EMAIL_CTA": "Me mande um email",
+    "NOTE": "Email é o jeito mais rápido de falar comigo.",
+    "ELSEWHERE": "Ou me encontre aqui"
   },
   "PROJECTS": {
     "TITLE": "Projetos",
