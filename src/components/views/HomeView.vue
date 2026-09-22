@@ -196,7 +196,7 @@ const trackProfile = (network) => {
         position: relative;
         z-index: 1;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         margin: 0 auto;
         padding-top: 5.5rem;
@@ -216,32 +216,37 @@ const trackProfile = (network) => {
         &::before { inset: -0.55rem; }
       }
 
+      // everything centres under the portrait, otherwise the round photo sits
+      // alone in the middle with the whole column stacked to its left
       .presentation-container {
         width: 100%;
         max-width: 100%;
-        text-align: left;
+        text-align: center;
 
-        .eyebrow { justify-content: flex-start; }
+        .eyebrow { justify-content: center; }
 
         .name {
           font-size: clamp(2.25rem, 11vw, 3rem);
           margin: 0.6rem 0 0.7rem;
         }
 
-        .roles { justify-content: flex-start; }
+        .roles { justify-content: center; }
 
         .summary {
-          max-width: none;
-          margin: 1rem 0 0;
+          max-width: 34ch;
+          margin: 1rem auto 0;
           font-size: 0.95rem;
           line-height: 1.6;
         }
 
         .actions {
           width: 100%;
+          justify-content: center;
           gap: 1.25rem;
           margin-top: 1.5rem;
         }
+
+        .profiles { justify-content: center; }
 
         .cta-group {
           width: 100%;
