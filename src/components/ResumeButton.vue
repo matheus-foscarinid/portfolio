@@ -1,12 +1,14 @@
 <template>
   <button
     class="resume-button"
-    :class="{ compact: props.compact }"
+    :class="{ compact: props.compact, round: props.round }"
     type="button"
+    :aria-label="props.round ? $t('HOME.VIEW_CV') : undefined"
+    :title="props.round ? $t('HOME.VIEW_CV') : undefined"
     @click="open"
   >
     <font-awesome-icon icon="fas fa-file-lines" aria-hidden="true" />
-    <span>{{ $t('HOME.VIEW_CV') }}</span>
+    <span v-if="!props.round">{{ $t('HOME.VIEW_CV') }}</span>
   </button>
 </template>
 
@@ -19,6 +21,7 @@
   const props = defineProps({
     location: { type: String, required: true },
     compact: { type: Boolean, default: false },
+    round: { type: Boolean, default: false },
   });
 
   const open = () => viewCV(props.location);
@@ -83,6 +86,17 @@
       gap: 0.6rem;
       padding: 0.85rem 1.4rem;
       font-size: 0.95rem;
+    }
+
+    &.round {
+      width: 3.5rem;
+      height: 3.5rem;
+      padding: 0;
+      justify-content: center;
+      font-size: 1.2rem;
+
+      // the sheen reads as a glint across a disc, so it sweeps slower and wider
+      &::before { width: 60%; }
     }
   }
 
