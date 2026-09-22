@@ -115,7 +115,7 @@
     if (!gl || !program) return;
 
     gl.useProgram(program);
-    gl.uniform3fv(uniforms.bg, readColor('--default-background', '#f7f4f3'));
+    gl.uniform3fv(uniforms.bg, readColor('--default-background', '#faf4e4'));
     gl.uniform3fv(uniforms.c1, readColor('--glow-1', '#c9748b'));
     gl.uniform3fv(uniforms.c2, readColor('--glow-2', '#9b3550'));
     gl.uniform3fv(uniforms.c3, readColor('--glow-3', '#7d4a63'));

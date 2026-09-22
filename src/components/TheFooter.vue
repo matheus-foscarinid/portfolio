@@ -41,7 +41,7 @@
 
 <style lang="scss" scoped>
   footer {
-    --footer-fg: #f2ebe9;
+    --footer-fg: #f2ead6;
 
     width: 100%;
     padding: 2.5rem 3rem;
