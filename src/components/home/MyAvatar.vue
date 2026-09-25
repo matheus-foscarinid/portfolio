@@ -10,7 +10,7 @@
       ref="canvas"
       :class="{ ready: isReady }"
       role="img"
-      aria-label="3D avatar of Matheus Foscarini Dias"
+      :aria-label="$t('HOME.AVATAR_LABEL')"
     />
   </div>
 </template>
