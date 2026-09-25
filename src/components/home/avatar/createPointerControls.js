@@ -1,5 +1,7 @@
 const DRAG_SENSITIVITY = 0.01;
 const SPIN_FRICTION = 0.92;
+// while held without moving, the fling fades so releasing doesn't spin from an old move
+const HOLD_FRICTION = 0.6;
 const SPIN_STOP_VELOCITY = 0.002;
 const RETURN_EASING = 0.04;
 const FULL_TURN = Math.PI * 2;
@@ -39,7 +41,10 @@ export const createDragRotation = (canvas) => {
   const dispose = listenToDrag(canvas, state);
 
   const update = () => {
-    if (state.isDragging) return state.angle;
+    if (state.isDragging) {
+      state.velocity *= HOLD_FRICTION;
+      return state.angle;
+    }
 
     state.angle += state.velocity;
     state.velocity *= SPIN_FRICTION;
