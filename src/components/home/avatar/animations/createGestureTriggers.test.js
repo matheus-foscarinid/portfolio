@@ -1,0 +1,131 @@
+// @vitest-environment happy-dom
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { createPointerEvent } from '@/test/factories';
+import { listenToClicks, listenToHover, listenToIdle, listenToScrollAway } from './createGestureTriggers';
+
+const NAVIGATION_DELAY = 450;
+
+const renderPage = () => {
+  document.body.innerHTML = `
+    <a id="about-link" href="#about">about</a>
+    <button id="plain">plain</button>
+    <p id="text">text</p>
+    <section id="about"></section>
+  `;
+  const section = document.getElementById('about');
+  section.scrollIntoView = vi.fn();
+  return { section };
+};
+
+const click = (id) => {
+  const event = new MouseEvent('click', { bubbles: true, cancelable: true });
+  document.getElementById(id).dispatchEvent(event);
+  return event;
+};
+
+const scrollTo = (y) => {
+  vi.spyOn(window, 'scrollY', 'get').mockReturnValue(y);
+  window.dispatchEvent(new Event('scroll'));
+};
+
+describe('listenToClicks', () => {
+  let stop;
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => {
+    stop?.();
+    vi.useRealTimers();
+  });
+
+  it('reports the center of clicked buttons and links', () => {
+    renderPage();
+    const onClick = vi.fn(() => false);
+    stop = listenToClicks(onClick);
+    click('plain');
+    expect(onClick).toHaveBeenCalledWith({ x: expect.any(Number), y: expect.any(Number) });
+  });
+
+  it('ignores clicks on plain content', () => {
+    renderPage();
+    const onClick = vi.fn();
+    stop = listenToClicks(onClick);
+    click('text');
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('holds in-page navigation until the tap has shown', () => {
+    const { section } = renderPage();
+    stop = listenToClicks(() => true);
+    const event = click('about-link');
+    expect(event.defaultPrevented).toBe(true);
+    expect(section.scrollIntoView).not.toHaveBeenCalled();
+    vi.advanceTimersByTime(NAVIGATION_DELAY);
+    expect(section.scrollIntoView).toHaveBeenCalled();
+    expect(window.location.hash).toBe('#about');
+  });
+
+  it('navigates right away when the avatar does not react', () => {
+    const { section } = renderPage();
+    stop = listenToClicks(() => false);
+    expect(click('about-link').defaultPrevented).toBe(false);
+    vi.advanceTimersByTime(NAVIGATION_DELAY);
+    expect(section.scrollIntoView).not.toHaveBeenCalled();
+  });
+});
+
+describe('listenToHover', () => {
+  const hover = (canvas, timeStamp, pointerType = 'mouse') => {
+    const event = createPointerEvent('pointerenter', 0, pointerType);
+    Object.defineProperty(event, 'timeStamp', { value: timeStamp });
+    canvas.dispatchEvent(event);
+  };
+
+  it('nods on mouse hover, at most once per cooldown', () => {
+    const canvas = new EventTarget();
+    const onHover = vi.fn();
+    listenToHover(canvas, onHover);
+    hover(canvas, 0);
+    hover(canvas, 1000);
+    hover(canvas, 7000);
+    expect(onHover).toHaveBeenCalledTimes(2);
+  });
+
+  it('ignores touch, which already reacts to the tap itself', () => {
+    const canvas = new EventTarget();
+    const onHover = vi.fn();
+    listenToHover(canvas, onHover);
+    hover(canvas, 0, 'touch');
+    expect(onHover).not.toHaveBeenCalled();
+  });
+});
+
+describe('listenToScrollAway', () => {
+  it('says bye once when scrolling away and hi once when back', () => {
+    const onLeave = vi.fn();
+    const onReturn = vi.fn();
+    const stop = listenToScrollAway({ onLeave, onReturn });
+    scrollTo(window.innerHeight);
+    scrollTo(window.innerHeight * 2);
+    scrollTo(0);
+    stop();
+    vi.restoreAllMocks();
+    expect(onLeave).toHaveBeenCalledTimes(1);
+    expect(onReturn).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('listenToIdle', () => {
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
+
+  it('fidgets after a quiet stretch and waits again after any activity', () => {
+    const onIdle = vi.fn();
+    const stop = listenToIdle(onIdle);
+    vi.advanceTimersByTime(8000);
+    window.dispatchEvent(new Event('pointermove'));
+    vi.advanceTimersByTime(8000);
+    expect(onIdle).not.toHaveBeenCalled();
+    vi.advanceTimersByTime(8000);
+    expect(onIdle).toHaveBeenCalledTimes(1);
+    stop();
+  });
+});
