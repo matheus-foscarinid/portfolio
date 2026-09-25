@@ -26,3 +26,6 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# playwright mcp screenshots and scripts
+.playwright-mcp/
