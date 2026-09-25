@@ -1,6 +1,8 @@
 <template>
   <section id="home">
     <div class="container">
+      <MyAvatar />
+
       <div class="presentation-container">
         <span class="eyebrow">{{ $t('HOME.PRESENTATION_1') }}</span>
         <h1 class="name">
@@ -19,15 +21,13 @@
           <font-awesome-icon icon="fas fa-arrow-right" aria-hidden="true" />
         </button>
       </div>
-
-      <MyPhoto />
     </div>
   </section>
 </template>
 
 <script setup>
 import i18n from '../../i18n';
-import MyPhoto from '../home/MyPhoto.vue';
+import MyAvatar from '../home/MyAvatar.vue';
 import TypedPresentation from '../home/TypedPresentation.vue';
 
 import { onMounted } from 'vue';
@@ -35,7 +35,7 @@ import { reveal, onReveal, EASE } from '@/composables/useReveal';
 import { trackEvent } from '@/composables/useAnalytics';
 
 const animateElement = () => {
-  const photo = document.querySelector('.my-photo');
+  const avatar = document.querySelector('.my-avatar');
   const texts = document.querySelectorAll('.presentation-container > *');
 
   reveal(
@@ -46,8 +46,8 @@ const animateElement = () => {
   );
 
   reveal(
-    photo,
-    { opacity: 0, x: 90, blur: 2, scale: .9 },
+    avatar,
+    { opacity: 0, x: -90, blur: 2, scale: .9 },
     { opacity: 1, x: 0, blur: 0, scale: 1 },
     { duration: 1500, delay: 500, easing: EASE.outExpo }
   );
@@ -77,6 +77,7 @@ const viewCV = () => {
       justify-content: space-between;
       align-items: center;
       gap: 6rem;
+      margin: 0 auto;
     }
 
     .presentation-container {
@@ -149,7 +150,7 @@ const viewCV = () => {
       min-height: 100svh;
       position: relative;
 
-      // soft accent halo behind the photo, echoing the ambient glow of the ref
+      // soft accent halo behind the avatar, echoing the ambient glow of the ref
       &::before {
         content: '';
         position: absolute;
@@ -179,15 +180,12 @@ const viewCV = () => {
         gap: 1rem;
       }
 
-      .my-photo {
+      .my-avatar {
         order: -1;
         align-self: center;
         flex: none;
-        width: min(58vw, 15rem);
-        height: min(58vw, 15rem);
-        max-width: none;
-        margin-bottom: 1.5rem;
-        &::before { inset: -0.6rem; }
+        width: min(82vw, 22rem);
+        height: auto;
       }
 
       .presentation-container {
