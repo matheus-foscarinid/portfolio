@@ -21,6 +21,7 @@ const findArmBones = (find, side) => ({
   indexBase: find(`${side}HandIndex1`),
   middleBase: find(`${side}HandMiddle1`),
   pinkyBase: find(`${side}HandPinky1`),
+  thumb: [find(`${side}HandThumb2`), find(`${side}HandThumb3`)],
   curledFingers: CURLED_FINGERS.flatMap((finger) => FINGER_JOINTS.map((joint) => find(`${side}Hand${finger}${joint}`))),
 });
 

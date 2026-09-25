@@ -13,10 +13,12 @@ const MIN_GAP = 2.5;
 const MAX_GAP = 6;
 const DOUBLE_BLINK_CHANCE = 0.2;
 const DOUBLE_BLINK_GAP = 0.12;
+const EYES_CLOSED_EASING = 0.12;
 
 const EYELID_SHADER = /* glsl */ `
   varying vec3 vRestPosition;
   uniform float uBlink;
+  uniform float uHappyEyes;
   uniform vec3 uEyeCenters[${EYE_CENTERS.length}];
   uniform vec3 uEyeHalfSize;
   uniform vec3 uLidColor;
@@ -26,8 +28,8 @@ const EYELID_SHADER = /* glsl */ `
     vec3 local = (vRestPosition - center) / uEyeHalfSize;
     float inside = 1.0 - smoothstep(0.85, 1.05, length(local));
     // the lid edge travels from the top of the eye to the bottom as the blink closes
-    float lidEdge = 1.0 - 2.0 * uBlink;
-    float cover = inside * smoothstep(lidEdge - 0.08, lidEdge + 0.08, local.y);
+    float lidEdge = 1.0 - 2.0 * uBlink + uHappyEyes * 0.6 * (1.0 - local.x * local.x);
+    float cover = inside * max(smoothstep(lidEdge - 0.08, lidEdge + 0.08, local.y), uHappyEyes * uBlink);
     float lashes = inside * (1.0 - smoothstep(0.0, 0.18, abs(local.y - lidEdge))) * step(0.01, uBlink);
     vec3 lid = mix(color, uLidColor, cover);
     return mix(lid, uLashColor, lashes * 0.85);
@@ -52,26 +54,38 @@ const patchMaterial = (material, uniforms) => {
   material.needsUpdate = true;
 };
 
+const createUniforms = () => ({
+  uBlink: { value: 0 },
+  uHappyEyes: { value: 0 },
+  uEyeCenters: { value: EYE_CENTERS },
+  uEyeHalfSize: { value: EYE_HALF_SIZE },
+  uLidColor: { value: LID_COLOR },
+  uLashColor: { value: LASH_COLOR },
+});
+
 const randomGap = () => MIN_GAP + Math.random() * (MAX_GAP - MIN_GAP);
 
-export const createBlink = (material) => {
-  const uniforms = {
-    uBlink: { value: 0 },
-    uEyeCenters: { value: EYE_CENTERS },
-    uEyeHalfSize: { value: EYE_HALF_SIZE },
-    uLidColor: { value: LID_COLOR },
-    uLashColor: { value: LASH_COLOR },
-  };
-  patchMaterial(material, uniforms);
-
+const createBlinkTimer = () => {
   let nextBlinkAt = randomGap();
-
   return (seconds) => {
     const progress = (seconds - nextBlinkAt) / BLINK_DURATION;
     if (progress >= 1) {
       const isDouble = Math.random() < DOUBLE_BLINK_CHANCE;
       nextBlinkAt = seconds + (isDouble ? DOUBLE_BLINK_GAP : randomGap());
     }
-    uniforms.uBlink.value = progress > 0 && progress < 1 ? Math.sin(progress * Math.PI) : 0;
+    return progress > 0 && progress < 1 ? Math.sin(progress * Math.PI) : 0;
+  };
+};
+
+export const createFace = (material) => {
+  const uniforms = createUniforms();
+  patchMaterial(material, uniforms);
+  const getBlink = createBlinkTimer();
+  let eased = 0;
+
+  return (seconds, eyesClosed = 0) => {
+    eased += (eyesClosed - eased) * EYES_CLOSED_EASING;
+    uniforms.uHappyEyes.value = eased;
+    uniforms.uBlink.value = Math.max(getBlink(seconds), eased);
   };
 };

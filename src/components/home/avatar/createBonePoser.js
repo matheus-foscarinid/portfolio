@@ -36,10 +36,14 @@ export const createBonePoser = (model, bones) => {
 
   const toModelDirection = (worldDirection) => worldDirection.clone().applyQuaternion(modelRotation.clone().invert());
 
+  const toWorldDirection = (modelDirection) => modelDirection.clone().applyQuaternion(modelRotation);
+
+  const getModelRotation = () => modelRotation.clone();
+
   const getModelAxis = (start, end) => {
     const axis = end.getWorldPosition(new Vector3()).sub(start.getWorldPosition(new Vector3()));
     return toModelDirection(axis).normalize();
   };
 
-  return { resetPose, rotate, aim, toModelDirection, getModelAxis };
+  return { resetPose, rotate, aim, toModelDirection, toWorldDirection, getModelRotation, getModelAxis };
 };

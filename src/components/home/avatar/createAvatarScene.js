@@ -18,11 +18,12 @@ import { applyIdle, applyLook } from './animations/animateBody';
 import { createAvatarActions } from './animations/createAvatarActions';
 import { createGesturePlayer } from './animations/createGesturePlayer';
 import { createGestureTriggers } from './animations/createGestureTriggers';
-import { GESTURES, applyGestures, getGazeStrength } from './animations/gestureLibrary';
-import { createBlink } from './createBlink';
+import { GESTURES, MENU, applyGestures, getEyesClosed, getGazeStrength } from './animations/gestureLibrary';
 import { createBonePoser } from './createBonePoser';
 import { createCrtPass } from './createCrtPass';
+import { createFace } from './createFace';
 import { createCursorTracking, createDragRotation } from './createPointerControls';
+import { createProps } from './createProps';
 import { findAvatarBones } from './findAvatarBones';
 
 // set to false to drop the crt look. createCrtPass.js can then be deleted
@@ -77,8 +78,7 @@ const getQuality = () => {
   return isPhone ? QUALITY.light : QUALITY.full;
 };
 
-const loadModel = async (modelUrl) => {
-  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+const loadModel = async (loader, modelUrl) => {
   const { scene: model } = await loader.loadAsync(modelUrl);
 
   const size = new Box3().setFromObject(model).getSize(new Vector3());
@@ -94,7 +94,7 @@ const loadModel = async (modelUrl) => {
     model,
     bones: findAvatarBones(model),
     poser: createBonePoser(model, mesh.skeleton.bones),
-    updateBlink: createBlink(mesh.material),
+    updateFace: createFace(mesh.material),
   };
 };
 
@@ -138,9 +138,11 @@ const isCanvasUncovered = (canvas, rect) =>
 const createGestureControls = ({ canvas, canvasRect, bones, camera, poser, isReducedMotion }) => {
   const player = createGesturePlayer(GESTURES);
   let isRunning = false;
+  const isActive = () => isRunning && !isReducedMotion;
   const actions = createAvatarActions({
     player,
-    isEnabled: () => isRunning && !isReducedMotion && isCanvasUncovered(canvas, canvasRect.tracked.rect),
+    isActive,
+    isEnabled: () => isActive() && isCanvasUncovered(canvas, canvasRect.tracked.rect),
     getTapTarget: (point) => getTapTarget(point, bones, camera, canvasRect.tracked.rect, poser),
   });
   const triggers = createGestureTriggers({ canvas, actions });
@@ -168,7 +170,11 @@ const disposeScene = (scene) => {
 
 export const createAvatarScene = async (canvas, { isReducedMotion }) => {
   const quality = getQuality();
-  const { model, bones, poser, updateBlink } = await loadModel(quality.modelUrl);
+  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  const [{ model, bones, poser, updateFace }, props] = await Promise.all([
+    loadModel(loader, quality.modelUrl),
+    createProps(loader),
+  ]);
 
   // the crt pass antialiases its own render target, so the canvas doesn't need to
   const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: !IS_CRT_ENABLED });
@@ -177,7 +183,7 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
 
   const scene = new Scene();
   const camera = createCamera();
-  scene.add(model, createGroundShadow());
+  scene.add(model, props.object, createGroundShadow());
   createLights(scene);
 
   const canvasRect = trackCanvasRect(canvas);
@@ -216,7 +222,8 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     const frames = gestures.player.update(seconds);
     applyGestures(poser, bones, frames);
     applyLook(poser, bones, look, getGazeStrength(frames));
-    updateBlink(seconds);
+    updateFace(seconds, getEyesClosed(frames));
+    props.update(frames, poser, bones.chest);
 
     if (crt) crt.render(scene, camera, seconds);
     else renderer.render(scene, camera);
@@ -245,5 +252,5 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     renderer.forceContextLoss();
   };
 
-  return { start, stop, dispose, actions: gestures.actions };
+  return { start, stop, dispose, actions: gestures.actions, gestureMenu: isReducedMotion ? [] : MENU };
 };

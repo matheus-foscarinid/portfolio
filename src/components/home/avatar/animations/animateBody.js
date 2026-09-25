@@ -1,4 +1,4 @@
-import { AXIS } from './poseHelpers';
+import { AXIS } from './pose';
 
 const IDLE = {
   breathSpeed: 1.7,

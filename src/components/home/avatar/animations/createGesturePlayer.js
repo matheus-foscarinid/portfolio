@@ -1,12 +1,12 @@
 import { MathUtils } from 'three';
 
-// a gesture only interrupts one with a lower priority. equal or higher ones are dropped
+// a gesture only interrupts one with a lower priority. equal or higher ones are dropped, unless forced
 export const PRIORITY = { idle: 0, normal: 1, direct: 2 };
 // seconds an interrupted gesture takes to blend out, so the switch doesn't snap
-const FADE_OUT = 0.3;
+const FADE_OUT = 0.4;
 
-export const getEnvelope = (progress, { rise, fall }) =>
-  MathUtils.smoothstep(progress, 0, rise) * (1 - MathUtils.smoothstep(progress, fall, 1));
+export const getEnvelope = (progress, { blendIn, blendOut }) =>
+  MathUtils.smootherstep(progress, 0, blendIn) * (1 - MathUtils.smootherstep(progress, 1 - blendOut, 1));
 
 export const pickRandom = (names, previous) => {
   const options = names.length > 1 ? names.filter((name) => name !== previous) : names;
@@ -18,9 +18,9 @@ export const createGesturePlayer = (library) => {
   let active = null;
   let fading = null;
 
-  const play = (name, { priority = PRIORITY.normal, delay = 0, ...options } = {}) => {
+  const play = (name, { priority = PRIORITY.normal, delay = 0, isForced = false, ...options } = {}) => {
     const current = queued ?? active;
-    if (current && current.priority >= priority) return false;
+    if (!isForced && current && current.priority >= priority) return false;
     queued = { ...options, name, priority, delay };
     return true;
   };
@@ -39,7 +39,7 @@ export const createGesturePlayer = (library) => {
   const getFadingFrame = (seconds) => {
     const remaining = 1 - (seconds - fading.startedAt) / FADE_OUT;
     if (remaining <= 0) fading = null;
-    return fading && { ...fading.frame, weight: fading.frame.weight * remaining };
+    return fading && { ...fading.frame, weight: fading.frame.weight * MathUtils.smootherstep(remaining, 0, 1) };
   };
 
   const update = (seconds) => {

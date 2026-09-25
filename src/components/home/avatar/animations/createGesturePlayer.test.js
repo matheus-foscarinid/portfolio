@@ -6,7 +6,7 @@ const setup = () => createGesturePlayer(createGestureLibrary());
 
 describe('getEnvelope', () => {
   it('eases in, holds and eases out', () => {
-    const timing = { rise: 0.2, fall: 0.8 };
+    const timing = { blendIn: 0.2, blendOut: 0.2 };
     expect(getEnvelope(0, timing)).toBe(0);
     expect(getEnvelope(0.5, timing)).toBe(1);
     expect(getEnvelope(1, timing)).toBe(0);
@@ -49,6 +49,14 @@ describe('createGesturePlayer', () => {
     expect(player.update(0.5)).toMatchObject([{ name: 'short' }]);
   });
 
+  it('lets a forced gesture replace one of the same priority', () => {
+    const player = setup();
+    player.play('long', { priority: PRIORITY.direct });
+    player.update(0);
+    expect(player.play('short', { priority: PRIORITY.direct, isForced: true })).toBe(true);
+    expect(player.update(0.5).map(({ name }) => name)).toEqual(['long', 'short']);
+  });
+
   it('lets a higher priority interrupt and fades the old one out', () => {
     const player = setup();
     player.play('long', { priority: PRIORITY.idle });
@@ -58,7 +66,7 @@ describe('createGesturePlayer', () => {
     const [fading, active] = player.update(1);
     expect(fading).toMatchObject({ name: 'long', weight: 1 });
     expect(active).toMatchObject({ name: 'short', progress: 0 });
-    expect(player.update(1.15)[0].weight).toBeCloseTo(0.5);
+    expect(player.update(1.2)[0].weight).toBeCloseTo(0.5);
     expect(player.update(1.5)).toMatchObject([{ name: 'short' }]);
   });
 

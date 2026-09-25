@@ -2,12 +2,12 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mockNextRandom } from '@/test/factories';
 import { createAvatarActions } from './createAvatarActions';
 import { PRIORITY } from './createGesturePlayer';
-import { FIDGETS, REACTIONS } from './gestureLibrary';
+import { FIDGETS, PASTIMES, REACTIONS } from './gestureLibrary';
 
-const setup = ({ isEnabled = true } = {}) => {
+const setup = ({ isEnabled = true, isActive = true } = {}) => {
   const player = { play: vi.fn(() => true) };
   const getTapTarget = vi.fn(() => ({ arm: 'left', direction: 'up' }));
-  const actions = createAvatarActions({ player, isEnabled: () => isEnabled, getTapTarget });
+  const actions = createAvatarActions({ player, isActive: () => isActive, isEnabled: () => isEnabled, getTapTarget });
   const playedNames = () => player.play.mock.calls.map(([name]) => name);
   return { actions, player, getTapTarget, playedNames };
 };
@@ -37,11 +37,33 @@ describe('createAvatarActions', () => {
     expect(player.play.mock.calls[0][1]).toEqual({ priority: PRIORITY.idle });
   });
 
+  it('passes time with a different prop each time, at idle priority', () => {
+    const { actions, player, playedNames } = setup();
+    mockNextRandom(0);
+    actions.passTime();
+    mockNextRandom(0);
+    actions.passTime();
+    expect(playedNames()).toEqual([PASTIMES[0], PASTIMES[1]]);
+    expect(player.play.mock.calls[0][1]).toEqual({ priority: PRIORITY.idle });
+  });
+
   it('taps toward the target at direct priority', () => {
     const { actions, player, getTapTarget } = setup();
     expect(actions.tapAt({ x: 5, y: 6 })).toBe(true);
     expect(getTapTarget).toHaveBeenCalledWith({ x: 5, y: 6 });
     expect(player.play).toHaveBeenCalledWith('tap', { priority: PRIORITY.direct, arm: 'left', direction: 'up' });
+  });
+
+  it('performs a picked gesture at direct priority even with the avatar covered', () => {
+    const { actions, player } = setup({ isEnabled: false });
+    actions.perform('readBook');
+    expect(player.play).toHaveBeenCalledWith('readBook', { priority: PRIORITY.direct, isForced: true });
+  });
+
+  it('ignores picks while the scene is paused', () => {
+    const { actions, player } = setup({ isEnabled: false, isActive: false });
+    actions.perform('readBook');
+    expect(player.play).not.toHaveBeenCalled();
   });
 
   it('does nothing while disabled', () => {

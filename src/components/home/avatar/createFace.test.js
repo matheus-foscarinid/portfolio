@@ -1,9 +1,9 @@
 import { MeshStandardMaterial } from 'three';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createShaderStub } from '@/test/factories';
-import { createBlink } from './createBlink';
+import { createFace } from './createFace';
 
-// mirrors the timing in createBlink.js
+// mirrors the timing in createFace.js
 const MIN_GAP = 2.5;
 const GAP_RANGE = 3.5;
 const DOUBLE_BLINK_GAP = 0.12;
@@ -14,17 +14,21 @@ const FIRST_BLINK_AT = MIN_GAP;
 const setup = ({ random = 0 } = {}) => {
   vi.spyOn(Math, 'random').mockReturnValue(random);
   const material = new MeshStandardMaterial();
-  const updateBlink = createBlink(material);
+  const updateFace = createFace(material);
   const shader = createShaderStub();
   material.onBeforeCompile(shader);
   const blinkAt = (seconds) => {
-    updateBlink(seconds);
+    updateFace(seconds);
     return shader.uniforms.uBlink.value;
   };
-  return { shader, blinkAt };
+  const holdEyesClosed = (eyesClosed, frames = 60) => {
+    for (let frame = 0; frame < frames; frame++) updateFace(frame / 60, eyesClosed);
+    return shader.uniforms;
+  };
+  return { shader, blinkAt, holdEyesClosed };
 };
 
-describe('createBlink', () => {
+describe('createFace', () => {
   afterEach(() => vi.restoreAllMocks());
 
   it('patches the eyelid shader into the material', () => {
@@ -50,5 +54,23 @@ describe('createBlink', () => {
     const blinkEndsAt = MIN_GAP + 0.1 * GAP_RANGE + BLINK_DURATION;
     blinkAt(blinkEndsAt);
     expect(blinkAt(blinkEndsAt + DOUBLE_BLINK_GAP + BLINK_DURATION / 2)).toBeCloseTo(1);
+  });
+
+  it('eases the eyes shut and holds them closed', () => {
+    const { holdEyesClosed } = setup();
+    const uniforms = holdEyesClosed(1);
+    expect(uniforms.uHappyEyes.value).toBeCloseTo(1, 2);
+    expect(uniforms.uBlink.value).toBeCloseTo(1, 2);
+  });
+
+  it('does not snap the eyes shut in one frame', () => {
+    const { holdEyesClosed } = setup();
+    expect(holdEyesClosed(1, 1).uBlink.value).toBeLessThan(0.5);
+  });
+
+  it('opens the eyes again afterwards', () => {
+    const { holdEyesClosed } = setup();
+    holdEyesClosed(1);
+    expect(holdEyesClosed(0).uHappyEyes.value).toBeCloseTo(0, 2);
   });
 });

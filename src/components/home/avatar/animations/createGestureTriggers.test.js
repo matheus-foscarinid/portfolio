@@ -9,6 +9,7 @@ const renderPage = () => {
   document.body.innerHTML = `
     <a id="about-link" href="#about">about</a>
     <button id="plain">plain</button>
+    <div data-avatar-ignore><button id="menu">menu</button></div>
     <p id="text">text</p>
     <section id="about"></section>
   `;
@@ -49,6 +50,14 @@ describe('listenToClicks', () => {
     const onClick = vi.fn();
     stop = listenToClicks(onClick);
     click('text');
+    expect(onClick).not.toHaveBeenCalled();
+  });
+
+  it('ignores clicks inside opted-out controls', () => {
+    renderPage();
+    const onClick = vi.fn(() => true);
+    stop = listenToClicks(onClick);
+    click('menu');
     expect(onClick).not.toHaveBeenCalled();
   });
 
@@ -126,6 +135,17 @@ describe('listenToIdle', () => {
     expect(onIdle).not.toHaveBeenCalled();
     vi.advanceTimersByTime(8000);
     expect(onIdle).toHaveBeenCalledTimes(1);
+    stop();
+  });
+
+  it('fires once per quiet stretch when it does not repeat', () => {
+    const onIdle = vi.fn();
+    const stop = listenToIdle(onIdle, { delay: { min: 1000, max: 1000 }, isRepeating: false });
+    vi.advanceTimersByTime(5000);
+    expect(onIdle).toHaveBeenCalledTimes(1);
+    window.dispatchEvent(new Event('keydown'));
+    vi.advanceTimersByTime(1000);
+    expect(onIdle).toHaveBeenCalledTimes(2);
     stop();
   });
 });
