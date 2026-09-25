@@ -172,7 +172,7 @@ const viewCV = () => {
         position: relative;
         z-index: 1;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
         margin: 0 auto;
         padding-top: 6.5rem;
@@ -191,16 +191,25 @@ const viewCV = () => {
       .presentation-container {
         width: 100%;
         max-width: 100%;
-        text-align: left;
+        text-align: center;
 
-        .eyebrow { justify-content: flex-start; }
+        .eyebrow {
+          justify-content: center;
+
+          &::after {
+            content: '';
+            width: 2rem;
+            height: 2px;
+            background-color: var(--accent);
+          }
+        }
 
         .name {
           font-size: clamp(2.5rem, 13vw, 3.4rem);
           margin: 0.85rem 0 0.9rem;
         }
 
-        .roles { justify-content: flex-start; }
+        .roles { justify-content: center; }
 
         .summary {
           max-width: none;
