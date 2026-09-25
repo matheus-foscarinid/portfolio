@@ -19,7 +19,8 @@ import {
   faClose,
   faSun,
   faMoon,
-  faCaretDown
+  faCaretDown,
+  faWandMagicSparkles
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -34,7 +35,8 @@ library.add(
   faBars,
   faClose,
   faSun,
-  faMoon
+  faMoon,
+  faWandMagicSparkles
 );
 
 const startApp = () => {

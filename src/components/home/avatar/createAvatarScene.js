@@ -14,10 +14,17 @@ import {
 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
-import { createBlink } from './createBlink';
+import { applyIdle, applyLook } from './animations/animateBody';
+import { createAvatarActions } from './animations/createAvatarActions';
+import { createGesturePlayer } from './animations/createGesturePlayer';
+import { createGestureTriggers } from './animations/createGestureTriggers';
+import { GESTURES, MENU, applyGestures, getEyesClosed, getGazeStrength } from './animations/gestureLibrary';
+import { createBonePoser } from './createBonePoser';
 import { createCrtPass } from './createCrtPass';
+import { createFace } from './createFace';
 import { createCursorTracking, createDragRotation } from './createPointerControls';
-import { rigAvatar } from './rigAvatar';
+import { createProps } from './createProps';
+import { findAvatarBones } from './findAvatarBones';
 
 // set to false to drop the crt look. createCrtPass.js can then be deleted
 const IS_CRT_ENABLED = true;
@@ -35,17 +42,10 @@ const LOOK_DEPTH = 500;
 const MAX_YAW = 0.7;
 const MAX_PITCH = 0.3;
 const LOOK_EASING = 0.08;
-// share of the look the spine takes, so looking down bends the body instead of folding the neck
-const SPINE_LOOK = { yaw: 0.25, pitch: 0.45 };
-const IDLE = {
-  breathSpeed: 1.7,
-  breathScale: new Vector3(0.008, 0.004, 0.012),
-  swaySpeed: 0.5,
-  swayAngle: 0.012,
-  armSwing: 0.035,
-  armSpread: 0.03,
-  armBreath: 0.012,
-};
+// how far in front of the shoulder a clicked element is imagined, in css px
+const TAP_DEPTH = 400;
+// waits for the canvas to fade in before saying hi
+const GREETING_DELAY = 0.8;
 
 // near-neutral light so the skin keeps its tone instead of turning orange
 const createLights = (scene) => {
@@ -78,8 +78,7 @@ const getQuality = () => {
   return isPhone ? QUALITY.light : QUALITY.full;
 };
 
-const loadModel = async (modelUrl) => {
-  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+const loadModel = async (loader, modelUrl) => {
   const { scene: model } = await loader.loadAsync(modelUrl);
 
   const size = new Box3().setFromObject(model).getSize(new Vector3());
@@ -87,9 +86,16 @@ const loadModel = async (modelUrl) => {
 
   let mesh;
   model.traverse((object) => {
-    if (object.isMesh) mesh = object;
+    if (object.isSkinnedMesh) mesh = object;
   });
-  return { model, updateBlink: createBlink(mesh.material), bones: rigAvatar(mesh) };
+  // the rest pose bounds don't cover raised arms
+  mesh.frustumCulled = false;
+  return {
+    model,
+    bones: findAvatarBones(model),
+    poser: createBonePoser(model, mesh.skeleton.bones),
+    updateFace: createFace(mesh.material),
+  };
 };
 
 // reading layout every frame is costly, so the rect only refreshes on scroll and resize
@@ -117,22 +123,41 @@ const getLookTarget = (cursor, head, camera, rect) => {
   };
 };
 
-const applyIdle = ({ spine, leftArm, rightArm }, seconds) => {
-  const breath = Math.sin(seconds * IDLE.breathSpeed);
-  spine.scale.set(1, 1, 1).addScaledVector(IDLE.breathScale, breath);
-  spine.rotation.z = Math.sin(seconds * IDLE.swaySpeed) * IDLE.swayAngle;
-
-  const armSwing = Math.sin(seconds * IDLE.breathSpeed + 0.6) * IDLE.armSwing;
-  const armSpread = IDLE.armSpread + breath * IDLE.armBreath;
-  leftArm.rotation.set(armSwing, 0, armSpread);
-  rightArm.rotation.set(-armSwing, 0, -armSpread);
+const getTapTarget = (point, { arms }, camera, rect, poser) => {
+  const reaches = arms.map((arm) => ({ arm, origin: getScreenPosition(arm.arm, camera, rect) }));
+  const { arm, origin } = reaches.reduce((closest, reach) =>
+    Math.abs(reach.origin.x - point.x) < Math.abs(closest.origin.x - point.x) ? reach : closest);
+  const direction = new Vector3(point.x - origin.x, origin.y - point.y, TAP_DEPTH).normalize();
+  return { arm, direction: poser.toModelDirection(direction) };
 };
 
-const applyLook = ({ spine, head }, look) => {
-  spine.rotation.y = look.yaw * SPINE_LOOK.yaw;
-  spine.rotation.x = look.pitch * SPINE_LOOK.pitch;
-  head.rotation.y = look.yaw * (1 - SPINE_LOOK.yaw);
-  head.rotation.x = look.pitch * (1 - SPINE_LOOK.pitch);
+// a menu drawn over the avatar hides any gesture, so it shouldn't play one
+const isCanvasUncovered = (canvas, rect) =>
+  document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2) === canvas;
+
+const createGestureControls = ({ canvas, canvasRect, bones, camera, poser, isReducedMotion }) => {
+  const player = createGesturePlayer(GESTURES);
+  let isRunning = false;
+  const isActive = () => isRunning && !isReducedMotion;
+  const actions = createAvatarActions({
+    player,
+    isActive,
+    isEnabled: () => isActive() && isCanvasUncovered(canvas, canvasRect.tracked.rect),
+    getTapTarget: (point) => getTapTarget(point, bones, camera, canvasRect.tracked.rect, poser),
+  });
+  const triggers = createGestureTriggers({ canvas, actions });
+  const drag = createDragRotation(canvas, { onTap: actions.react });
+
+  return {
+    player,
+    actions,
+    drag,
+    setRunning: (value) => { isRunning = value; },
+    dispose: () => {
+      triggers.dispose();
+      drag.dispose();
+    },
+  };
 };
 
 const disposeScene = (scene) => {
@@ -145,7 +170,11 @@ const disposeScene = (scene) => {
 
 export const createAvatarScene = async (canvas, { isReducedMotion }) => {
   const quality = getQuality();
-  const { model, bones, updateBlink } = await loadModel(quality.modelUrl);
+  const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+  const [{ model, bones, poser, updateFace }, props] = await Promise.all([
+    loadModel(loader, quality.modelUrl),
+    createProps(loader),
+  ]);
 
   // the crt pass antialiases its own render target, so the canvas doesn't need to
   const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: !IS_CRT_ENABLED });
@@ -154,12 +183,12 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
 
   const scene = new Scene();
   const camera = createCamera();
-  scene.add(model, createGroundShadow());
+  scene.add(model, props.object, createGroundShadow());
   createLights(scene);
 
-  const tracking = createCursorTracking();
-  const drag = createDragRotation(canvas);
   const canvasRect = trackCanvasRect(canvas);
+  const gestures = createGestureControls({ canvas, canvasRect, bones, camera, poser, isReducedMotion });
+  const tracking = createCursorTracking();
   const timer = new Timer();
   const look = { yaw: 0, pitch: 0 };
   const lookEasing = isReducedMotion ? 1 : LOOK_EASING;
@@ -187,22 +216,34 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     look.yaw += (target.yaw - look.yaw) * lookEasing;
     look.pitch += (target.pitch - look.pitch) * lookEasing;
 
-    if (!isReducedMotion) applyIdle(bones, seconds);
-    applyLook(bones, look);
-    updateBlink(seconds);
-    model.rotation.y = drag.update();
+    model.rotation.y = gestures.drag.update();
+    poser.resetPose();
+    if (!isReducedMotion) applyIdle(poser, bones, seconds);
+    const frames = gestures.player.update(seconds);
+    applyGestures(poser, bones, frames);
+    applyLook(poser, bones, look, getGazeStrength(frames));
+    updateFace(seconds, getEyesClosed(frames));
+    props.update(frames, poser, bones.chest);
 
     if (crt) crt.render(scene, camera, seconds);
     else renderer.render(scene, camera);
   };
 
-  const start = () => renderer.setAnimationLoop(animate);
-  const stop = () => renderer.setAnimationLoop(null);
+  // says hi on every return, not just the first load
+  const start = () => {
+    gestures.setRunning(true);
+    gestures.actions.greet(GREETING_DELAY);
+    renderer.setAnimationLoop(animate);
+  };
+  const stop = () => {
+    gestures.setRunning(false);
+    renderer.setAnimationLoop(null);
+  };
 
   const dispose = () => {
     stop();
     tracking.dispose();
-    drag.dispose();
+    gestures.dispose();
     canvasRect.dispose();
     resizeObserver.disconnect();
     crt?.dispose();
@@ -211,5 +252,5 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     renderer.forceContextLoss();
   };
 
-  return { start, stop, dispose };
+  return { start, stop, dispose, actions: gestures.actions, gestureMenu: isReducedMotion ? [] : MENU };
 };

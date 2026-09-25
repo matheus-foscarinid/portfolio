@@ -3,6 +3,11 @@
     ref="container"
     class="my-avatar"
   >
+    <AvatarGestureMenu
+      v-if="isReady && gestureMenu.length"
+      :groups="gestureMenu"
+      @play="playGesture"
+    />
     <MyPhoto v-if="hasFailed" />
     <canvas
       v-else
@@ -17,16 +22,18 @@
 
 <script setup>
 import { ref } from 'vue';
+import AvatarGestureMenu from './AvatarGestureMenu.vue';
 import MyPhoto from './MyPhoto.vue';
 import { useAvatarScene } from './useAvatarScene';
 
 const container = ref(null);
 const canvas = ref(null);
-const { isReady, hasFailed, canvasKey } = useAvatarScene({ container, canvas });
+const { isReady, hasFailed, canvasKey, gestureMenu, playGesture } = useAvatarScene({ container, canvas });
 </script>
 
 <style lang="scss" scoped>
   .my-avatar {
+    position: relative;
     flex: none;
     height: min(44rem, calc(100vh - 11rem));
     aspect-ratio: 3/4;

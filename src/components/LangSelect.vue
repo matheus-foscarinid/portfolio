@@ -2,6 +2,7 @@
   <div 
     class="lang-select" 
     tabindex="0"
+    data-avatar-reach
     @blur="isDropdownOpen = false"
   >
     <div 

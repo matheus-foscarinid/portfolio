@@ -8,6 +8,7 @@ export const useAvatarScene = ({ container, canvas }) => {
   const hasFailed = ref(false);
   // a released webgl context can't be reused, so each rebuild renders into a fresh canvas
   const canvasKey = ref(0);
+  const gestureMenu = ref([]);
 
   let scene = null;
   let pendingScene = null;
@@ -25,6 +26,7 @@ export const useAvatarScene = ({ container, canvas }) => {
       return;
     }
     scene.start();
+    gestureMenu.value = scene.gestureMenu;
     isReady.value = true;
   };
 
@@ -57,6 +59,8 @@ export const useAvatarScene = ({ container, canvas }) => {
     releaseTimer = setTimeout(releaseScene, RELEASE_DELAY);
   };
 
+  const playGesture = (name) => scene?.actions.perform(name);
+
   onMounted(() => {
     visibilityObserver = new IntersectionObserver(onVisibilityChange);
     visibilityObserver.observe(container.value);
@@ -69,5 +73,5 @@ export const useAvatarScene = ({ container, canvas }) => {
     scene?.dispose();
   });
 
-  return { isReady, hasFailed, canvasKey };
+  return { isReady, hasFailed, canvasKey, gestureMenu, playGesture };
 };

@@ -1,5 +1,28 @@
 {
   "HOME": {
+    "GESTURE_MENU": "Animações",
+    "GESTURE_GROUPS": {
+      "greetings": "Cumprimentos",
+      "reactions": "Reações",
+      "props": "Com objetos",
+      "idle": "Parado"
+    },
+    "GESTURES": {
+      "wave": "Acenar",
+      "bye": "Tchau",
+      "nod": "Concordar",
+      "dance": "Dançar",
+      "laugh": "Rir",
+      "shrug": "Sei lá",
+      "fistPump": "Comemorar",
+      "think": "Pensar",
+      "lookAround": "Olhar em volta",
+      "checkWatch": "Ver as horas",
+      "typeOnLaptop": "Programar",
+      "readBook": "Ler um livro",
+      "playGame": "Jogar",
+      "hugCats": "Abraçar os gatos"
+    },
     "AVATAR_LABEL": "Avatar 3D de Matheus Foscarini Dias",
     "PRESENTATION_1": "Olá! Meu nome é",
     "PRESENTATION_2": "Sou um",
