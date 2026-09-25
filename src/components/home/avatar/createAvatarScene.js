@@ -1,7 +1,6 @@
 import {
   Box3,
   CircleGeometry,
-  Clock,
   DirectionalLight,
   HemisphereLight,
   MathUtils,
@@ -9,6 +8,7 @@ import {
   MeshBasicMaterial,
   PerspectiveCamera,
   Scene,
+  Timer,
   Vector3,
   WebGLRenderer,
 } from 'three';
@@ -22,9 +22,14 @@ import { rigAvatar } from './rigAvatar';
 // set to false to drop the crt look. createCrtPass.js can then be deleted
 const IS_CRT_ENABLED = true;
 
-const MODEL_URL = '/models/me.glb';
 const MODEL_HEIGHT = 1.75;
-const MAX_PIXEL_RATIO = 2;
+// rAF timestamps jitter, so a frame due at exactly the interval shouldn't get skipped
+const FRAME_TOLERANCE = 2;
+// phones get a lighter model, fewer pixels and half the frame rate to save gpu memory and battery
+const QUALITY = {
+  full: { modelUrl: '/models/me.glb', maxPixelRatio: 2, frameInterval: 0 },
+  light: { modelUrl: '/models/me-mobile.glb', maxPixelRatio: 1.5, frameInterval: 1000 / 30 },
+};
 // how far in front of the head the cursor is imagined, in css px. lower turns the head harder
 const LOOK_DEPTH = 500;
 const MAX_YAW = 0.7;
@@ -68,9 +73,14 @@ const createCamera = () => {
   return camera;
 };
 
-const loadModel = async () => {
+const getQuality = () => {
+  const isPhone = window.matchMedia('(max-width: 768px), (pointer: coarse)').matches;
+  return isPhone ? QUALITY.light : QUALITY.full;
+};
+
+const loadModel = async (modelUrl) => {
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-  const { scene: model } = await loader.loadAsync(MODEL_URL);
+  const { scene: model } = await loader.loadAsync(modelUrl);
 
   const size = new Box3().setFromObject(model).getSize(new Vector3());
   model.scale.setScalar(MODEL_HEIGHT / size.y);
@@ -82,18 +92,25 @@ const loadModel = async () => {
   return { model, updateBlink: createBlink(mesh.material), bones: rigAvatar(mesh) };
 };
 
-const getScreenPosition = (object, camera, canvas) => {
+// reading layout every frame is costly, so the rect only refreshes on scroll and resize
+const trackCanvasRect = (canvas) => {
+  const tracked = { rect: canvas.getBoundingClientRect() };
+  const refresh = () => { tracked.rect = canvas.getBoundingClientRect(); };
+  window.addEventListener('scroll', refresh, { passive: true });
+  return { tracked, refresh, dispose: () => window.removeEventListener('scroll', refresh) };
+};
+
+const getScreenPosition = (object, camera, rect) => {
   const point = object.getWorldPosition(new Vector3()).project(camera);
-  const rect = canvas.getBoundingClientRect();
   return {
     x: rect.left + ((point.x + 1) / 2) * rect.width,
     y: rect.top + ((1 - point.y) / 2) * rect.height,
   };
 };
 
-const getLookTarget = (cursor, head, camera, canvas) => {
+const getLookTarget = (cursor, head, camera, rect) => {
   if (cursor.x === null) return { yaw: 0, pitch: 0 };
-  const origin = getScreenPosition(head, camera, canvas);
+  const origin = getScreenPosition(head, camera, rect);
   return {
     yaw: MathUtils.clamp(Math.atan2(cursor.x - origin.x, LOOK_DEPTH), -MAX_YAW, MAX_YAW),
     pitch: MathUtils.clamp(Math.atan2(cursor.y - origin.y, LOOK_DEPTH), -MAX_PITCH, MAX_PITCH),
@@ -127,10 +144,12 @@ const disposeScene = (scene) => {
 };
 
 export const createAvatarScene = async (canvas, { isReducedMotion }) => {
-  const { model, bones, updateBlink } = await loadModel();
+  const quality = getQuality();
+  const { model, bones, updateBlink } = await loadModel(quality.modelUrl);
 
-  const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, MAX_PIXEL_RATIO));
+  // the crt pass antialiases its own render target, so the canvas doesn't need to
+  const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: !IS_CRT_ENABLED });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, quality.maxPixelRatio));
   const crt = IS_CRT_ENABLED ? createCrtPass(renderer) : null;
 
   const scene = new Scene();
@@ -140,7 +159,8 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
 
   const tracking = createCursorTracking();
   const drag = createDragRotation(canvas);
-  const clock = new Clock();
+  const canvasRect = trackCanvasRect(canvas);
+  const timer = new Timer();
   const look = { yaw: 0, pitch: 0 };
   const lookEasing = isReducedMotion ? 1 : LOOK_EASING;
 
@@ -149,14 +169,21 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     camera.updateProjectionMatrix();
     renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
     crt?.setSize();
+    canvasRect.refresh();
   };
   const resizeObserver = new ResizeObserver(resize);
   resizeObserver.observe(canvas);
   resize();
 
-  const animate = () => {
-    const seconds = clock.getElapsedTime();
-    const target = getLookTarget(tracking.cursor, bones.head, camera, canvas);
+  let lastFrameAt = -Infinity;
+
+  const animate = (time) => {
+    if (time - lastFrameAt < quality.frameInterval - FRAME_TOLERANCE) return;
+    lastFrameAt = time;
+
+    timer.update(time);
+    const seconds = timer.getElapsed();
+    const target = getLookTarget(tracking.cursor, bones.head, camera, canvasRect.tracked.rect);
     look.yaw += (target.yaw - look.yaw) * lookEasing;
     look.pitch += (target.pitch - look.pitch) * lookEasing;
 
@@ -176,10 +203,12 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     stop();
     tracking.dispose();
     drag.dispose();
+    canvasRect.dispose();
     resizeObserver.disconnect();
     crt?.dispose();
     disposeScene(scene);
     renderer.dispose();
+    renderer.forceContextLoss();
   };
 
   return { start, stop, dispose };

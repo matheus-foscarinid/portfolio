@@ -1,8 +1,12 @@
 <template>
-  <div class="my-avatar">
+  <div
+    ref="container"
+    class="my-avatar"
+  >
     <MyPhoto v-if="hasFailed" />
     <canvas
       v-else
+      :key="canvasKey"
       ref="canvas"
       :class="{ ready: isReady }"
       role="img"
@@ -12,45 +16,13 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
+import { ref } from 'vue';
 import MyPhoto from './MyPhoto.vue';
+import { useAvatarScene } from './useAvatarScene';
 
+const container = ref(null);
 const canvas = ref(null);
-const isReady = ref(false);
-const hasFailed = ref(false);
-
-let avatarScene = null;
-let visibilityObserver = null;
-let isUnmounted = false;
-
-const toggleRendering = ([entry]) => {
-  if (entry.isIntersecting) avatarScene.start();
-  else avatarScene.stop();
-};
-
-onMounted(async () => {
-  try {
-    const { createAvatarScene } = await import('./avatar/createAvatarScene');
-    if (!canvas.value) return;
-
-    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const scene = await createAvatarScene(canvas.value, { isReducedMotion });
-    if (isUnmounted) return scene.dispose();
-
-    avatarScene = scene;
-    visibilityObserver = new IntersectionObserver(toggleRendering);
-    visibilityObserver.observe(canvas.value);
-    isReady.value = true;
-  } catch {
-    hasFailed.value = true;
-  }
-});
-
-onUnmounted(() => {
-  isUnmounted = true;
-  visibilityObserver?.disconnect();
-  avatarScene?.dispose();
-});
+const { isReady, hasFailed, canvasKey } = useAvatarScene({ container, canvas });
 </script>
 
 <style lang="scss" scoped>
