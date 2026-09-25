@@ -29,31 +29,6 @@
         </ul>
       </div>
 
-      <div
-        v-else-if="project.console"
-        class="perf-panel term-panel"
-      >
-        <div class="perf-chrome">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="perf-url">{{ project.consoleTitle }}</span>
-        </div>
-        <div class="term-lines">
-          <span
-            v-for="(line, index) in project.console"
-            :key="index"
-            class="line"
-            :class="{ accent: line.accent }"
-          >
-            <span
-              v-if="line.prompt"
-              class="prompt"
-            >{{ line.prompt }} </span>{{ line.text }}
-          </span>
-        </div>
-      </div>
-
       <video
         v-else-if="project.video"
         class="project-image"
@@ -141,7 +116,7 @@
 
   const hasMedia = computed(() => {
     const p = props.project;
-    return Boolean(p.metrics || p.console || p.video || p.scroll || p.image);
+    return Boolean(p.metrics || p.video || p.scroll || p.image);
   });
 
   const openProjectLink = () => {
@@ -264,30 +239,6 @@
 
         .key { color: rgba(255, 255, 255, 0.7); }
         .value { color: var(--accent-on-dark); font-weight: 700; white-space: nowrap; }
-      }
-
-      .term-lines {
-        margin: 0;
-        padding: 0.75rem 0.85rem;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        overflow: hidden;
-        font-family: 'Fira Code', monospace;
-        font-size: clamp(0.68rem, 1.35vw, 0.82rem);
-        line-height: 1.9;
-        word-break: break-word;
-
-        .line {
-          display: block;
-          color: rgba(255, 255, 255, 0.7);
-        }
-        .line.accent { color: var(--accent-on-dark); font-weight: 700; }
-        .prompt {
-          color: var(--accent-on-dark);
-          margin-right: 0.5rem;
-        }
       }
     }
 

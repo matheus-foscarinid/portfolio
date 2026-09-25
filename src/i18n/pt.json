@@ -60,8 +60,12 @@
     "REPOSITORY": "Repositório",
     "VIEW": "Visualizar",
     "JSON_SEARCHER": "JSON Searcher é uma extensão simples para o VSCode usada para buscar caminhos dentro de arquivos JSON, particularmente útil para usar com arquivos de i18n (internationalization).",
-    "CONSTRUSAUSEN": "Site institucional para a empresa Madereira Construsausen, com algumas informações da empresa, desenvolvido com Vue.js e SCSS.",
     "WW_HIDE_CHATS_TOOLS": "Meu projeto mais recente, atualmente em desenvolvimento (WIP), é uma extensão para o Chrome projetada para ocultar, desfocar e oferecer muitos outros recursos para bate-papos no WhatsApp Web.",
+    "SUPRA_CRM": "Um CRM para pequenas lojas do comércio brasileiro, com produtos, pedidos, clientes e finanças no mesmo sistema. Roda no navegador, funciona offline e sincroniza com a nuvem quando a conexão volta.",
+    "PROFESSIONAL": "Profissional",
+    "HIPEOPLE": "Plataforma de contratação com IA, com triagem por voz e currículo, avaliações e checagem de referências. Trabalho no stack React e Go e liderei uma melhoria de performance que cortou 65% do JS inicial.",
+    "BENCHPREP": "Plataforma de ensino para certificações, preparação para provas e educação continuada. Pela Fullstack Labs, desenvolvi recursos no produto principal e um pipeline de CI conteinerizado para testes end-to-end.",
+    "MINHA_VISITA": "Plataforma de gestão de equipes externas e visitas comerciais, com checklist offline, relatórios em tempo real e geolocalização. Ajudei a reconstruir o produto do zero com Vue e NestJS.",
     "FEATURED": "Projeto em destaque",
     "THIS_SITE": "Sim, é isso mesmo que você está vendo. Este site foi feito para parecer instantâneo. Uma SPA enxuta em Vue 3 empacotada com Vite e Rolldown, com animações nativas, seções com code-splitting e formatos de mídia modernos. Cada byte foi medido.",
     "GB_EMU": "Um emulador de Game Boy em desenvolvimento (WIP) escrito do zero em Go, feito como um estudo de baixo nível de CPU e emulação de hardware. Já consegue ler o header do cartucho e decodificar algumas instruções."

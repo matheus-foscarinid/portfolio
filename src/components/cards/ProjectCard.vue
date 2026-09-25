@@ -8,8 +8,33 @@
       v-if="hasMedia"
       class="media"
     >
+      <div
+        v-if="project.console"
+        class="terminal"
+      >
+        <div class="chrome">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="title">{{ project.consoleTitle }}</span>
+        </div>
+        <div class="lines">
+          <span
+            v-for="(line, index) in project.console"
+            :key="index"
+            class="line"
+            :class="{ accent: line.accent }"
+          >
+            <span
+              v-if="line.prompt"
+              class="prompt"
+            >{{ line.prompt }} </span>{{ line.text }}
+          </span>
+        </div>
+      </div>
+
       <video
-        v-if="project.video"
+        v-else-if="project.video"
         class="thumb"
         :src="project.video"
         autoplay
@@ -26,6 +51,7 @@
         <img
           class="scroll-image"
           :srcset="project.srcset"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
           :src="project.image"
           alt="Project Image"
           loading="lazy"
@@ -42,6 +68,13 @@
     </div>
 
     <div class="body">
+      <span
+        v-if="project.tag"
+        class="tag"
+      >
+        {{ project.tag }}
+      </span>
+
       <div class="header">
         <span class="title">{{ project.name }}</span>
 
@@ -82,7 +115,7 @@
 
   const hasMedia = computed(() => {
     const p = props.project;
-    return Boolean(p.video || p.scroll || p.image);
+    return Boolean(p.console || p.video || p.scroll || p.image);
   });
 
   const openProjectLink = () => {
@@ -124,6 +157,51 @@
         object-fit: cover;
       }
 
+      .terminal {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: var(--dark-background);
+        font-family: 'Fira Code', monospace;
+
+        .chrome {
+          display: flex;
+          align-items: center;
+          gap: 0.4rem;
+          padding: 0.6rem 0.85rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+          .dot {
+            width: 0.6rem;
+            height: 0.6rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+          }
+          .dot:first-child { background: var(--accent-on-dark); }
+
+          .title {
+            margin-left: 0.5rem;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.7);
+          }
+        }
+
+        .lines {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 0.5rem 0.85rem;
+          font-size: 0.75rem;
+          line-height: 1.8;
+          overflow: hidden;
+
+          .line { color: rgba(255, 255, 255, 0.7); }
+          .line.accent { color: var(--accent-on-dark); font-weight: 700; }
+          .prompt { color: var(--accent-on-dark); margin-right: 0.5rem; }
+        }
+      }
+
       .scroll-image-container {
         position: relative;
         width: 100%;
@@ -149,6 +227,25 @@
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--secondary-text);
+
+      &::before {
+        content: '';
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background-color: var(--accent);
+      }
     }
 
     .header {

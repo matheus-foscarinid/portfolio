@@ -60,8 +60,12 @@
     "REPOSITORY": "Repository",
     "VIEW": "View",
     "JSON_SEARCHER": "JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.",
-    "CONSTRUSAUSEN": "Institutional website for the Construsausen timber company, with some company information, developed with Vue.js and SCSS.",
     "WW_HIDE_CHATS_TOOLS": "My newest project, currently a work in progress (WIP), is a Chrome extension designed to hide, blur, and provide many more features for chats on WhatsApp Web.",
+    "SUPRA_CRM": "A CRM for small Brazilian retail stores, bringing products, orders, customers and finances into one system. It runs in the browser, works offline and syncs to the cloud when the connection comes back.",
+    "PROFESSIONAL": "Professional",
+    "HIPEOPLE": "AI hiring platform covering voice and resume screening, assessments and reference checks. I work across the React and Go stack and led a performance overhaul that cut the initial JS payload by 65%.",
+    "BENCHPREP": "Learning platform for certification training, exam prep and continuing education. Through Fullstack Labs, I built features on the main product and a containerized CI pipeline for end-to-end tests.",
+    "MINHA_VISITA": "Platform for managing field teams and commercial visits, with offline checklists, real-time reports and geolocation. I helped rebuild it from the ground up with Vue and NestJS.",
     "FEATURED": "Featured Project",
     "THIS_SITE": "Yep, you're looking at it. This site was engineered to feel instant. A lean Vue 3 SPA bundled with Vite and Rolldown, with native animations, code-split sections, and modern media formats. Every byte was measured.",
     "GB_EMU": "A work in progress Game Boy emulator written from scratch in Go, built as a low level study of CPU and hardware emulation. It already parses the cartridge header and decodes a handful of CPU instructions."

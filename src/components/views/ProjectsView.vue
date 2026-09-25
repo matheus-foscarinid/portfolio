@@ -57,6 +57,33 @@
       ],
     },
     {
+      link: 'https://marketplace.visualstudio.com/items?itemName=matheus-foscarinid.json-searcher',
+      repository: 'https://github.com/matheus-foscarinid/json-searcher-vscode',
+      name: 'JSON Searcher',
+      description: $t('PROJECTS.JSON_SEARCHER'),
+      stack: ['Typescript', 'VSCode API'],
+      video: '/images/json_searcher.mp4'
+    },
+  ]);
+
+  const projects = computed(() => [
+    {
+      link: 'https://supra-crm.com',
+      name: 'Supra CRM',
+      description: $t('PROJECTS.SUPRA_CRM'),
+      stack: ['Vue', 'Offline-first', 'SaaS'],
+      srcset: '/images/supra_crm_w_200.webp 200w, /images/supra_crm_w_667.webp 667w, /images/supra_crm_w_954.webp 954w',
+      image: '/images/supra_crm_w_954.webp',
+      scroll: true,
+    },
+    {
+      repository: 'https://github.com/matheus-foscarinid/whatsapp-web-hide-chats-tools',
+      name: 'Wpp Web Hide Chats Tools',
+      description: $t('PROJECTS.WW_HIDE_CHATS_TOOLS'),
+      stack: ['Javascript', 'Google Chrome API'],
+      video: '/images/ww_hide_chats_tools.mp4',
+    },
+    {
       repository: 'https://github.com/matheus-foscarinid/gb-emu-go',
       name: 'GB Emulator',
       description: $t('PROJECTS.GB_EMU'),
@@ -71,30 +98,28 @@
       ],
     },
     {
-      link: 'https://marketplace.visualstudio.com/items?itemName=matheus-foscarinid.json-searcher',
-      repository: 'https://github.com/matheus-foscarinid/json-searcher-vscode',
-      name: 'JSON Searcher',
-      description: $t('PROJECTS.JSON_SEARCHER'),
-      stack: ['Typescript', 'VSCode API'],
-      video: '/images/json_searcher.mp4'
-    },
-  ]);
-
-  const projects = computed(() => [
-    {
-      name: 'Site Construsausen',
-      description: $t('PROJECTS.CONSTRUSAUSEN'),
-      stack: ['Vue', 'Typescript', 'SCSS'],
-      srcset: '/images/construsausen_w_200.webp 200w, /images/construsausen_w_667.webp 667w, /images/construsausen_w_954.webp 954w',
-      image: '/images/construsausen_w_954.webp',
-      scroll: true,
+      link: 'https://www.hipeople.io/',
+      name: 'HiPeople',
+      description: $t('PROJECTS.HIPEOPLE'),
+      tag: $t('PROJECTS.PROFESSIONAL'),
+      image: '/images/hipeople.webp',
+      stack: ['React', 'Next.js', 'Go', 'OpenAI'],
     },
     {
-      repository: 'https://github.com/matheus-foscarinid/whatsapp-web-hide-chats-tools',
-      name: 'Wpp Web Hide Chats Tools',
-      description: $t('PROJECTS.WW_HIDE_CHATS_TOOLS'),
-      stack: ['Javascript', 'Google Chrome API'],
-      video: '/images/ww_hide_chats_tools.mp4',
+      link: 'https://www.benchprep.com/',
+      name: 'BenchPrep',
+      description: $t('PROJECTS.BENCHPREP'),
+      tag: $t('PROJECTS.PROFESSIONAL'),
+      image: '/images/benchprep.webp',
+      stack: ['Vue', 'Nuxt', 'Ruby on Rails', 'PostgreSQL'],
+    },
+    {
+      link: 'https://www.minhavisita.app/',
+      name: 'Minha Visita',
+      description: $t('PROJECTS.MINHA_VISITA'),
+      tag: $t('PROJECTS.PROFESSIONAL'),
+      image: '/images/minha_visita.webp',
+      stack: ['Vue', 'NestJS', 'TypeScript'],
     },
   ]);
 
@@ -165,7 +190,7 @@
     .project-cards {
       margin-top: 3rem;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
 
@@ -183,6 +208,12 @@
 
       .prompt { color: var(--accent-on-dark); }
       .text { color: rgba(255, 255, 255, 0.82); }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    #projects .project-cards {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
