@@ -12,6 +12,8 @@ import {
 
 // 1 is the full effect, 0 turns it off
 const CRT_STRENGTH = 0.67;
+// the light page makes the scanlines and grain stand out, so it gets half
+const LIGHT_THEME_SHARE = 0.5;
 
 // renders the scene into a texture, then draws it back with scanlines, rgb split and flicker.
 // the canvas only holds the avatar, so the effect never touches the rest of the page
@@ -57,6 +59,10 @@ const CRT_SHADER = {
   `,
 };
 
+// the theme switch sets data-theme on the root, and no attribute means light
+const getStrength = () =>
+  document.documentElement.dataset.theme === 'dark' ? CRT_STRENGTH : CRT_STRENGTH * LIGHT_THEME_SHARE;
+
 const createFullscreenTriangle = () => {
   const geometry = new BufferGeometry();
   geometry.setAttribute('position', new Float32BufferAttribute([-1, -1, 0, 3, -1, 0, -1, 3, 0], 3));
@@ -72,7 +78,7 @@ export const createCrtPass = (renderer) => {
       uResolution: { value: new Vector2() },
       uTime: { value: 0 },
       uPixelRatio: { value: renderer.getPixelRatio() },
-      uStrength: { value: CRT_STRENGTH },
+      uStrength: { value: getStrength() },
     },
     transparent: true,
     // the scene texture is already premultiplied from its transparent clear
@@ -94,6 +100,7 @@ export const createCrtPass = (renderer) => {
 
   const render = (scene, camera, seconds) => {
     material.uniforms.uTime.value = seconds;
+    material.uniforms.uStrength.value = getStrength();
     renderer.setRenderTarget(target);
     renderer.clear();
     renderer.render(scene, camera);
