@@ -1,9 +1,9 @@
 /* Lightmode */
 :root {
   /* Cores de fundo */
-  --default-background: #fbf1c7;
-  --secondary-background: #f2e5bc;
-  --details-background: #ebdbb2;
+  --default-background: #faf6ee;
+  --secondary-background: #f3ede1;
+  --details-background: #ece4d4;
   --dark-background: #3c3836;
 
   /* Cores de texto */
@@ -12,11 +12,11 @@
   --disabled-text: #7c6f64;
 
   /* Cores complementares */
-  --default-border: #d5c4a1;
-  --highlight: #fbf1c7;
+  --default-border: #dcd1bd;
+  --highlight: #faf6ee;
 
   --accent: #a33500;
-  --accent-contrast: #fbf1c7;
+  --accent-contrast: #faf6ee;
   --accent-on-dark: #fe8019;
 }
 
