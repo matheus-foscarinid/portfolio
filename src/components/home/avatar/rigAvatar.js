@@ -14,7 +14,9 @@ const NECK = { start: 0.835, end: 0.875 };
 const SHOULDER = { pivot: 0.78, pivotX: 0.12, fadeStart: 0.74, fadeEnd: 0.8 };
 const ARM = { innerX: 0.095, outerX: 0.115, lowest: 0.37, lowestFade: 0.4 };
 
-const BONE = { ROOT: 0, SPINE: 1, HEAD: 2, LEFT_ARM: 3, RIGHT_ARM: 4 };
+// order matches the skeleton, since skin indices point into it
+const BONE_ORDER = ['root', 'spine', 'head', 'leftArm', 'rightArm'];
+const BONE = Object.fromEntries(BONE_ORDER.map((name, index) => [name, index]));
 
 const measure = (geometry) => {
   geometry.computeBoundingBox();
@@ -42,9 +44,9 @@ const computeSkinWeights = (geometry, frame) => {
     const arm = getArmWeight(share, sideShare);
     const head = MathUtils.smoothstep(share, NECK.start, NECK.end);
     const upperBody = Math.max(MathUtils.smoothstep(share, HIP.start, HIP.end), arm);
-    const armBone = sideShare > 0 ? BONE.LEFT_ARM : BONE.RIGHT_ARM;
+    const armBone = sideShare > 0 ? BONE.leftArm : BONE.rightArm;
 
-    skinIndices.set([BONE.ROOT, BONE.SPINE, BONE.HEAD, armBone], index * 4);
+    skinIndices.set([BONE.root, BONE.spine, BONE.head, armBone], index * 4);
     skinWeights.set([
       1 - upperBody,
       upperBody * (1 - head) * (1 - arm),
@@ -81,7 +83,7 @@ const createBones = (frame) => {
   return { root, spine, head, leftArm, rightArm };
 };
 
-// the model ships without a skeleton, so build one from its proportions and blend weights across the joints
+// the model ships without a skeleton, so build one from its proportions
 export const rigAvatar = (mesh) => {
   const { geometry } = mesh;
   const frame = measure(geometry);
@@ -93,7 +95,7 @@ export const rigAvatar = (mesh) => {
   skinned.quaternion.copy(mesh.quaternion);
   skinned.scale.copy(mesh.scale);
   skinned.add(bones.root);
-  skinned.bind(new Skeleton([bones.root, bones.spine, bones.head, bones.leftArm, bones.rightArm]));
+  skinned.bind(new Skeleton(BONE_ORDER.map((name) => bones[name])));
 
   mesh.parent.add(skinned);
   mesh.removeFromParent();

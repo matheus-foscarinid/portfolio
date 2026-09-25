@@ -24,6 +24,7 @@ const CRT_SHADER = {
     }
   `,
   fragmentShader: /* glsl */ `
+    #include <common>
     uniform sampler2D uScene;
     uniform vec2 uResolution;
     uniform float uTime;
@@ -44,7 +45,7 @@ const CRT_SHADER = {
       float alpha = max(center.a, max(red.a, blue.a));
 
       float line = gl_FragCoord.y / uPixelRatio;
-      float scanline = 1.0 - 0.18 * uStrength * (1.0 - sin(line * 3.14159 * 0.66));
+      float scanline = 1.0 - 0.18 * uStrength * (1.0 - sin(line * PI * 0.66));
       float rollingBand = 1.0 + 0.06 * uStrength * smoothstep(0.0, 0.08, 0.08 - abs(fract(vUv.y * 0.6 - uTime * 0.12) - 0.5));
       float flicker = 1.0 - 0.03 * uStrength * (1.0 - sin(uTime * 55.0));
       float grain = (random(vUv * uResolution + uTime) - 0.5) * 0.05 * uStrength;

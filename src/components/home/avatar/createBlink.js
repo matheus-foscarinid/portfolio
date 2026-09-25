@@ -1,17 +1,18 @@
 import { Color, Vector3 } from 'three';
 
 // the model has no eyelids, so a shader paints skin over each eye for a moment.
-// eyes are placed on the mesh itself because the texture splits them across several patches.
-// positions are in the model's quantized geometry units, measured by picking the pupils
+// eyes are placed on the mesh, in its quantized units, because the texture splits them apart
 const EYE_CENTERS = [new Vector3(-0.0235, 0.834, 0.111), new Vector3(0.0425, 0.8365, 0.113)];
 // half width, half height and half depth. the depth keeps the lid off the glasses frame
 const EYE_HALF_SIZE = new Vector3(0.0195, 0.0085, 0.013);
 // sampled from the texture just under the eye
 const LID_COLOR = new Color('#b3856c');
+const LASH_COLOR = new Color('#291a12');
 const BLINK_DURATION = 0.16;
 const MIN_GAP = 2.5;
 const MAX_GAP = 6;
 const DOUBLE_BLINK_CHANCE = 0.2;
+const DOUBLE_BLINK_GAP = 0.12;
 
 const EYELID_SHADER = /* glsl */ `
   varying vec3 vRestPosition;
@@ -19,6 +20,7 @@ const EYELID_SHADER = /* glsl */ `
   uniform vec3 uEyeCenters[${EYE_CENTERS.length}];
   uniform vec3 uEyeHalfSize;
   uniform vec3 uLidColor;
+  uniform vec3 uLashColor;
 
   vec3 applyEyelid(vec3 color, vec3 center) {
     vec3 local = (vRestPosition - center) / uEyeHalfSize;
@@ -28,7 +30,12 @@ const EYELID_SHADER = /* glsl */ `
     float cover = inside * smoothstep(lidEdge - 0.08, lidEdge + 0.08, local.y);
     float lashes = inside * (1.0 - smoothstep(0.0, 0.18, abs(local.y - lidEdge))) * step(0.01, uBlink);
     vec3 lid = mix(color, uLidColor, cover);
-    return mix(lid, vec3(0.16, 0.1, 0.07), lashes * 0.85);
+    return mix(lid, uLashColor, lashes * 0.85);
+  }
+
+  vec3 applyEyelids(vec3 color) {
+    for (int index = 0; index < ${EYE_CENTERS.length}; index++) color = applyEyelid(color, uEyeCenters[index]);
+    return color;
   }
 `;
 
@@ -40,8 +47,7 @@ const patchMaterial = (material, uniforms) => {
       .replace('#include <begin_vertex>', '#include <begin_vertex>\nvRestPosition = position;');
     shader.fragmentShader = shader.fragmentShader
       .replace('#include <common>', `#include <common>\n${EYELID_SHADER}`)
-      .replace('#include <map_fragment>', `#include <map_fragment>
-        ${EYE_CENTERS.map((_, index) => `diffuseColor.rgb = applyEyelid(diffuseColor.rgb, uEyeCenters[${index}]);`).join('\n')}`);
+      .replace('#include <map_fragment>', '#include <map_fragment>\ndiffuseColor.rgb = applyEyelids(diffuseColor.rgb);');
   };
   material.needsUpdate = true;
 };
@@ -54,6 +60,7 @@ export const createBlink = (material) => {
     uEyeCenters: { value: EYE_CENTERS },
     uEyeHalfSize: { value: EYE_HALF_SIZE },
     uLidColor: { value: LID_COLOR },
+    uLashColor: { value: LASH_COLOR },
   };
   patchMaterial(material, uniforms);
 
@@ -63,7 +70,7 @@ export const createBlink = (material) => {
     const progress = (seconds - nextBlinkAt) / BLINK_DURATION;
     if (progress >= 1) {
       const isDouble = Math.random() < DOUBLE_BLINK_CHANCE;
-      nextBlinkAt = seconds + (isDouble ? 0.12 : randomGap());
+      nextBlinkAt = seconds + (isDouble ? DOUBLE_BLINK_GAP : randomGap());
     }
     uniforms.uBlink.value = progress > 0 && progress < 1 ? Math.sin(progress * Math.PI) : 0;
   };
