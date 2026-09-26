@@ -1,5 +1,13 @@
-import { AXIS, curlFingers, getRightArm, getSoftBeat, mirror, poseArm } from '../pose';
+import { Vector3 } from 'three';
+import { AXIS, curlFingers, getRightArm, getSoftBeat, reachHand } from '../pose';
 import { defineGesture } from '../defineGesture';
+
+const getCheekGrip = (poser, head, side) => ({
+  palmAt: head.getWorldPosition(new Vector3()).add(new Vector3(side * 0.08, -0.05, 0.05).applyQuaternion(poser.getModelRotation())),
+  palm: new Vector3(-side, 0.2, -0.4).normalize(),
+  fingers: new Vector3(side * 0.1, 1, 0.25).normalize(),
+  pole: new Vector3(side * 0.2, -1, 0.3).normalize(),
+});
 
 const poseThink = (poser, { head, neck, arms }, { progress, weight }) => {
   const arm = getRightArm(arms);
@@ -7,8 +15,8 @@ const poseThink = (poser, { head, neck, arms }, { progress, weight }) => {
   poser.rotate(neck, AXIS.x, 0.08 * weight);
   poser.rotate(head, AXIS.z, -arm.side * (0.12 + ponder) * weight);
   poser.rotate(head, AXIS.y, arm.side * 0.2 * weight);
-  poseArm(poser, arm, { elbow: mirror(arm.side, 0.15, -0.9, 0.55), forearm: mirror(arm.side, -0.3, 1, 0.3), weight });
-  curlFingers(poser, arm, weight * 0.8);
+  reachHand(poser, arm, getCheekGrip(poser, head, arm.side), weight);
+  curlFingers(poser, arm, weight * 0.3);
 };
 
 export const gesture = defineGesture({
