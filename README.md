@@ -4,6 +4,8 @@ Try here 👉 [matheusdias.dev](https://matheusdias.dev)</br>
 My personal website and portfolio, built with Vue 3 and Vite!!</br>
 If you think it's good, can you give me a star 🌟?</br>
 
+<p align="center"><img src="docs/avatar.gif" alt="3D avatar rotating" width="260"></p>
+
 ### 🚀 Project Setup & Running
 
 ```sh
