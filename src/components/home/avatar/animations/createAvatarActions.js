@@ -1,5 +1,5 @@
 import { PRIORITY, pickRandom } from './createGesturePlayer';
-import { FIDGETS, PASTIMES, REACTIONS } from './gestureLibrary';
+import { FIDGETS, GESTURES, PASTIMES, REACTIONS } from './gestureLibrary';
 
 // what the avatar can do, named by intent. triggers call these, never the player directly
 // isActive is enough for picks from the menu. isEnabled also needs the avatar in view
@@ -14,14 +14,20 @@ export const createAvatarActions = ({ player, isActive, isEnabled, getTapTarget 
     if (play(name)) lastReaction = name;
   };
 
+  const playIdle = (name) => (play(name, { priority: PRIORITY.idle }) ? GESTURES[name].duration : 0);
+
   const fidget = () => {
     const name = pickRandom(FIDGETS, lastFidget);
-    if (play(name, { priority: PRIORITY.idle })) lastFidget = name;
+    const busySeconds = playIdle(name);
+    if (busySeconds) lastFidget = name;
+    return busySeconds;
   };
 
   const passTime = () => {
     const name = pickRandom(PASTIMES, lastPastime);
-    if (play(name, { priority: PRIORITY.idle })) lastPastime = name;
+    const busySeconds = playIdle(name);
+    if (busySeconds) lastPastime = name;
+    return busySeconds;
   };
 
   return {
@@ -31,6 +37,8 @@ export const createAvatarActions = ({ player, isActive, isEnabled, getTapTarget 
     react,
     fidget,
     passTime,
+    // a quiet stretch opens with a prop, then fidgets
+    idle: (beat) => (beat === 0 ? passTime() : fidget()),
     perform: (name) => isActive() && player.play(name, { priority: PRIORITY.direct, isForced: true }),
   };
 };

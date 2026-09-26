@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mockNextRandom } from '@/test/factories';
 import { createAvatarActions } from './createAvatarActions';
 import { PRIORITY } from './createGesturePlayer';
-import { FIDGETS, PASTIMES, REACTIONS } from './gestureLibrary';
+import { FIDGETS, GESTURES, PASTIMES, REACTIONS } from './gestureLibrary';
 
 const setup = ({ isEnabled = true, isActive = true } = {}) => {
   const player = { play: vi.fn(() => true) };
@@ -45,6 +45,25 @@ describe('createAvatarActions', () => {
     actions.passTime();
     expect(playedNames()).toEqual([PASTIMES[0], PASTIMES[1]]);
     expect(player.play.mock.calls[0][1]).toEqual({ priority: PRIORITY.idle });
+  });
+
+  it('opens a quiet stretch with a prop, then fidgets', () => {
+    const { actions, playedNames } = setup();
+    actions.idle(0);
+    actions.idle(1);
+    const [first, second] = playedNames();
+    expect(PASTIMES).toContain(first);
+    expect(FIDGETS).toContain(second);
+  });
+
+  it('reports how long an idle gesture keeps the avatar busy', () => {
+    const { actions, playedNames } = setup();
+    expect(actions.idle(1)).toBe(GESTURES[playedNames()[0]].duration);
+  });
+
+  it('reports no busy time when the gesture could not play', () => {
+    const { actions } = setup({ isEnabled: false });
+    expect(actions.idle(0)).toBe(0);
   });
 
   it('taps toward the target at direct priority', () => {

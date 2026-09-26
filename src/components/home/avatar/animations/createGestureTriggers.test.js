@@ -99,26 +99,35 @@ describe('listenToIdle', () => {
   beforeEach(() => vi.useFakeTimers());
   afterEach(() => vi.useRealTimers());
 
-  it('fidgets after a quiet stretch and waits again after any activity', () => {
+  it('plays after a quiet stretch and waits again after any activity', () => {
     const onIdle = vi.fn();
     const stop = listenToIdle(onIdle);
-    vi.advanceTimersByTime(8000);
+    vi.advanceTimersByTime(2000);
     window.dispatchEvent(new Event('pointermove'));
-    vi.advanceTimersByTime(8000);
+    vi.advanceTimersByTime(2000);
     expect(onIdle).not.toHaveBeenCalled();
-    vi.advanceTimersByTime(8000);
-    expect(onIdle).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(1000);
+    expect(onIdle).toHaveBeenCalledWith(0);
     stop();
   });
 
-  it('fires once per quiet stretch when it does not repeat', () => {
-    const onIdle = vi.fn();
-    const stop = listenToIdle(onIdle, { delay: { min: 1000, max: 1000 }, isRepeating: false });
-    vi.advanceTimersByTime(5000);
+  it('waits the gap after the last gesture ends before the next', () => {
+    const onIdle = vi.fn(() => 5);
+    const stop = listenToIdle(onIdle);
+    vi.advanceTimersByTime(3000 + 7999);
     expect(onIdle).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(1);
+    expect(onIdle).toHaveBeenLastCalledWith(1);
+    stop();
+  });
+
+  it('counts the beats again after activity', () => {
+    const onIdle = vi.fn();
+    const stop = listenToIdle(onIdle);
+    vi.advanceTimersByTime(6000);
     window.dispatchEvent(new Event('keydown'));
-    vi.advanceTimersByTime(1000);
-    expect(onIdle).toHaveBeenCalledTimes(2);
+    vi.advanceTimersByTime(3000);
+    expect(onIdle.mock.calls.map(([beat]) => beat)).toEqual([0, 1, 0]);
     stop();
   });
 });

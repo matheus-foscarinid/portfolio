@@ -4,8 +4,8 @@ const CLICKABLE = 'a, button, label, [role="button"], [data-avatar-reach]';
 const NAVIGATION_DELAY = 450;
 // share of the viewport scrolled before the avatar waves goodbye
 const SCROLL_AWAY = 0.2;
-const IDLE_DELAY = { min: 9000, max: 15000 };
-const PASTIME_DELAY = { min: 4000, max: 6000 };
+// counted from the end of the last idle gesture
+const IDLE_GAP = 3000;
 const IDLE_RESET_EVENTS = ['pointermove', 'pointerdown', 'keydown', 'scroll'];
 
 const listen = (target, type, listener, options) => {
@@ -44,17 +44,23 @@ export const listenToScrollAway = ({ onLeave, onReturn }) => {
   }, { passive: true });
 };
 
-export const listenToIdle = (onIdle, { delay = IDLE_DELAY, isRepeating = true } = {}) => {
+// onIdle gets how many times it already ran this quiet stretch and returns the seconds it keeps busy
+export const listenToIdle = (onIdle) => {
   let timer = null;
-  const schedule = () => {
+  let beat = 0;
+  const schedule = (delay) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      onIdle();
-      if (isRepeating) schedule();
-    }, delay.min + Math.random() * (delay.max - delay.min));
+      const busySeconds = onIdle(beat++) || 0;
+      schedule(IDLE_GAP + busySeconds * 1000);
+    }, delay);
   };
-  const stopListening = IDLE_RESET_EVENTS.map((type) => listen(window, type, schedule, { passive: true }));
-  schedule();
+  const restart = () => {
+    beat = 0;
+    schedule(IDLE_GAP);
+  };
+  const stopListening = IDLE_RESET_EVENTS.map((type) => listen(window, type, restart, { passive: true }));
+  restart();
   return () => {
     clearTimeout(timer);
     stopListening.forEach((stop) => stop());
@@ -65,8 +71,7 @@ export const createGestureTriggers = ({ actions }) => {
   const stops = [
     listenToClicks(actions.tapAt),
     listenToScrollAway({ onLeave: actions.sayBye, onReturn: () => actions.greet() }),
-    listenToIdle(actions.fidget),
-    listenToIdle(actions.passTime, { delay: PASTIME_DELAY, isRepeating: false }),
+    listenToIdle(actions.idle),
   ];
   return { dispose: () => stops.forEach((stop) => stop()) };
 };
