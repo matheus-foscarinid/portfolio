@@ -1,7 +1,6 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { createPointerEvent } from '@/test/factories';
-import { listenToClicks, listenToHover, listenToIdle, listenToScrollAway } from './createGestureTriggers';
+import { listenToClicks, listenToIdle, listenToScrollAway } from './createGestureTriggers';
 
 const NAVIGATION_DELAY = 450;
 
@@ -81,32 +80,6 @@ describe('listenToClicks', () => {
   });
 });
 
-describe('listenToHover', () => {
-  const hover = (canvas, timeStamp, pointerType = 'mouse') => {
-    const event = createPointerEvent('pointerenter', 0, pointerType);
-    Object.defineProperty(event, 'timeStamp', { value: timeStamp });
-    canvas.dispatchEvent(event);
-  };
-
-  it('nods on mouse hover, at most once per cooldown', () => {
-    const canvas = new EventTarget();
-    const onHover = vi.fn();
-    listenToHover(canvas, onHover);
-    hover(canvas, 0);
-    hover(canvas, 1000);
-    hover(canvas, 7000);
-    expect(onHover).toHaveBeenCalledTimes(2);
-  });
-
-  it('ignores touch, which already reacts to the tap itself', () => {
-    const canvas = new EventTarget();
-    const onHover = vi.fn();
-    listenToHover(canvas, onHover);
-    hover(canvas, 0, 'touch');
-    expect(onHover).not.toHaveBeenCalled();
-  });
-});
-
 describe('listenToScrollAway', () => {
   it('says bye once when scrolling away and hi once when back', () => {
     const onLeave = vi.fn();
@@ -126,26 +99,35 @@ describe('listenToIdle', () => {
   beforeEach(() => vi.useFakeTimers());
   afterEach(() => vi.useRealTimers());
 
-  it('fidgets after a quiet stretch and waits again after any activity', () => {
+  it('plays after a quiet stretch and waits again after any activity', () => {
     const onIdle = vi.fn();
     const stop = listenToIdle(onIdle);
-    vi.advanceTimersByTime(8000);
+    vi.advanceTimersByTime(2000);
     window.dispatchEvent(new Event('pointermove'));
-    vi.advanceTimersByTime(8000);
+    vi.advanceTimersByTime(2000);
     expect(onIdle).not.toHaveBeenCalled();
-    vi.advanceTimersByTime(8000);
-    expect(onIdle).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(1000);
+    expect(onIdle).toHaveBeenCalledWith(0);
     stop();
   });
 
-  it('fires once per quiet stretch when it does not repeat', () => {
-    const onIdle = vi.fn();
-    const stop = listenToIdle(onIdle, { delay: { min: 1000, max: 1000 }, isRepeating: false });
-    vi.advanceTimersByTime(5000);
+  it('waits the gap after the last gesture ends before the next', () => {
+    const onIdle = vi.fn(() => 5);
+    const stop = listenToIdle(onIdle);
+    vi.advanceTimersByTime(3000 + 7999);
     expect(onIdle).toHaveBeenCalledTimes(1);
+    vi.advanceTimersByTime(1);
+    expect(onIdle).toHaveBeenLastCalledWith(1);
+    stop();
+  });
+
+  it('counts the beats again after activity', () => {
+    const onIdle = vi.fn();
+    const stop = listenToIdle(onIdle);
+    vi.advanceTimersByTime(6000);
     window.dispatchEvent(new Event('keydown'));
-    vi.advanceTimersByTime(1000);
-    expect(onIdle).toHaveBeenCalledTimes(2);
+    vi.advanceTimersByTime(3000);
+    expect(onIdle.mock.calls.map(([beat]) => beat)).toEqual([0, 1, 0]);
     stop();
   });
 });
