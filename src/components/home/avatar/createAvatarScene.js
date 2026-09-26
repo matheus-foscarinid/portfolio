@@ -223,7 +223,7 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     applyGestures(poser, bones, frames);
     applyLook(poser, bones, look, getGazeStrength(frames));
     updateFace(seconds, getEyesClosed(frames));
-    props.update(frames, poser, bones.chest);
+    props.update(frames, poser, bones.chest, seconds);
 
     if (crt) crt.render(scene, camera, seconds);
     else renderer.render(scene, camera);

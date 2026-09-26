@@ -1,4 +1,4 @@
-import { Bone, Group, Object3D, Quaternion, Vector3 } from 'three';
+import { BoxGeometry, Bone, Group, Mesh, MeshStandardMaterial, Object3D, Quaternion, Vector3 } from 'three';
 import { vi } from 'vitest';
 import { createBonePoser } from '@/components/home/avatar/createBonePoser';
 
@@ -108,8 +108,9 @@ export const createObjectAt = (x, y, z) => {
   return object;
 };
 
-export const createPropStub = (url, { scale = 1 } = {}) => ({
+export const createPropStub = (url, { scale = 1, eyes = null } = {}) => ({
   url,
+  eyes,
   offsetFromChest: new Vector3(0, 0, 0.3),
   turn: 0,
   tilt: 0,
@@ -120,6 +121,8 @@ export const createPropStub = (url, { scale = 1 } = {}) => ({
 export const createFakeLoader = ({ failingUrls = [] } = {}) => ({
   loadAsync: vi.fn(async (url) => {
     if (failingUrls.includes(url)) throw new Error(`${url} not found`);
-    return { scene: new Group() };
+    const scene = new Group();
+    scene.add(new Mesh(new BoxGeometry(), new MeshStandardMaterial()));
+    return { scene };
   }),
 });

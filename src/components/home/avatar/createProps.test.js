@@ -1,11 +1,12 @@
-import { Object3D } from 'three';
+import { Color, MeshStandardMaterial, Object3D, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { createFakeLoader, createPropStub, createStubPoser } from '@/test/factories';
 import { createProps, getPopScale } from './createProps';
 
 const BOOK = createPropStub('/book.glb');
 const LAPTOP = createPropStub('/laptop.glb');
-const SUSHI = createPropStub('/sushi.glb', { scale: 0.5 });
+const EYES = { centers: [new Vector3(0, 0.4, 0.2)], halfSize: new Vector3(0.01, 0.01, 0.01), lidColors: [new Color('#998367')] };
+const SUSHI = createPropStub('/sushi.glb', { scale: 0.5, eyes: EYES });
 const CROQUETE = createPropStub('/croquete.glb', { scale: 0.5 });
 const GESTURES = [
   { name: 'readBook', props: [BOOK] },
@@ -18,7 +19,7 @@ const setup = async ({ failingUrls } = {}) => {
   const loader = createFakeLoader({ failingUrls });
   const props = await createProps(loader, GESTURES);
   const [book, laptop, sushi, croquete] = props.object.children;
-  const update = (frames) => props.update(frames, createStubPoser(), new Object3D());
+  const update = (frames) => props.update(frames, createStubPoser(), new Object3D(), 0);
   return { loader, props, update, book, laptop, sushi, croquete };
 };
 
@@ -49,6 +50,14 @@ describe('createProps', () => {
       expect(cat.visible).toBe(true);
       expect(cat.scale.x).toBe(0.5);
     });
+  });
+
+  it('gives eyelids only to the props that have eyes', async () => {
+    const { book, sushi } = await setup();
+    const getMaterial = (prop) => prop.children[0].material;
+    const { onBeforeCompile: untouched } = MeshStandardMaterial.prototype;
+    expect(getMaterial(sushi).onBeforeCompile).not.toBe(untouched);
+    expect(getMaterial(book).onBeforeCompile).toBe(untouched);
   });
 
   it('skips a prop that fails to load instead of failing', async () => {
