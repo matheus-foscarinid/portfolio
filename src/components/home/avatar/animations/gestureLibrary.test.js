@@ -25,7 +25,7 @@ const createFrame = (name, bones, weight = 1) => ({
 
 describe('gestureLibrary', () => {
   it('knows every gesture the triggers can ask for', () => {
-    [...REACTIONS, ...FIDGETS, ...PASTIMES, 'wave', 'bye', 'tap', 'nod'].forEach((name) => expect(GESTURES[name]).toBeDefined());
+    [...REACTIONS, ...FIDGETS, ...PASTIMES, 'wave', 'bye', 'tap'].forEach((name) => expect(GESTURES[name]).toBeDefined());
   });
 
   it('poses every gesture without touching the rest pose', () => {

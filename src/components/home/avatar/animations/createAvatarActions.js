@@ -27,7 +27,6 @@ export const createAvatarActions = ({ player, isActive, isEnabled, getTapTarget 
   return {
     greet: (delay = 0) => play('wave', { delay }),
     sayBye: () => play('bye'),
-    nod: () => play('nod', { priority: PRIORITY.idle }),
     tapAt: (point) => isEnabled() && player.play('tap', { priority: PRIORITY.direct, ...getTapTarget(point) }),
     react,
     fidget,

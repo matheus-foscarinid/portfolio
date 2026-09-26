@@ -145,7 +145,7 @@ const createGestureControls = ({ canvas, canvasRect, bones, camera, poser, isRed
     isEnabled: () => isActive() && isCanvasUncovered(canvas, canvasRect.tracked.rect),
     getTapTarget: (point) => getTapTarget(point, bones, camera, canvasRect.tracked.rect, poser),
   });
-  const triggers = createGestureTriggers({ canvas, actions });
+  const triggers = createGestureTriggers({ actions });
   const drag = createDragRotation(canvas, { onTap: actions.react });
 
   return {

@@ -2,7 +2,6 @@
 const CLICKABLE = 'a, button, label, [role="button"], [data-avatar-reach]';
 // long enough for the tap to land before the page scrolls away
 const NAVIGATION_DELAY = 450;
-const HOVER_COOLDOWN = 6000;
 // share of the viewport scrolled before the avatar waves goodbye
 const SCROLL_AWAY = 0.2;
 const IDLE_DELAY = { min: 9000, max: 15000 };
@@ -34,15 +33,6 @@ export const listenToClicks = (onClick) => listen(document, 'click', (event) => 
   if (hasReacted && link) navigateAfterDelay(event, link);
 }, true);
 
-export const listenToHover = (canvas, onHover) => {
-  let lastHoverAt = -Infinity;
-  return listen(canvas, 'pointerenter', (event) => {
-    if (event.pointerType !== 'mouse' || event.timeStamp - lastHoverAt < HOVER_COOLDOWN) return;
-    lastHoverAt = event.timeStamp;
-    onHover();
-  });
-};
-
 export const listenToScrollAway = ({ onLeave, onReturn }) => {
   let hasLeft = false;
   return listen(window, 'scroll', () => {
@@ -71,10 +61,9 @@ export const listenToIdle = (onIdle, { delay = IDLE_DELAY, isRepeating = true } 
   };
 };
 
-export const createGestureTriggers = ({ canvas, actions }) => {
+export const createGestureTriggers = ({ actions }) => {
   const stops = [
     listenToClicks(actions.tapAt),
-    listenToHover(canvas, actions.nod),
     listenToScrollAway({ onLeave: actions.sayBye, onReturn: () => actions.greet() }),
     listenToIdle(actions.fidget),
     listenToIdle(actions.passTime, { delay: PASTIME_DELAY, isRepeating: false }),

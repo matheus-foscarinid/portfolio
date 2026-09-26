@@ -1,7 +1,6 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { createPointerEvent } from '@/test/factories';
-import { listenToClicks, listenToHover, listenToIdle, listenToScrollAway } from './createGestureTriggers';
+import { listenToClicks, listenToIdle, listenToScrollAway } from './createGestureTriggers';
 
 const NAVIGATION_DELAY = 450;
 
@@ -78,32 +77,6 @@ describe('listenToClicks', () => {
     expect(click('about-link').defaultPrevented).toBe(false);
     vi.advanceTimersByTime(NAVIGATION_DELAY);
     expect(section.scrollIntoView).not.toHaveBeenCalled();
-  });
-});
-
-describe('listenToHover', () => {
-  const hover = (canvas, timeStamp, pointerType = 'mouse') => {
-    const event = createPointerEvent('pointerenter', 0, pointerType);
-    Object.defineProperty(event, 'timeStamp', { value: timeStamp });
-    canvas.dispatchEvent(event);
-  };
-
-  it('nods on mouse hover, at most once per cooldown', () => {
-    const canvas = new EventTarget();
-    const onHover = vi.fn();
-    listenToHover(canvas, onHover);
-    hover(canvas, 0);
-    hover(canvas, 1000);
-    hover(canvas, 7000);
-    expect(onHover).toHaveBeenCalledTimes(2);
-  });
-
-  it('ignores touch, which already reacts to the tap itself', () => {
-    const canvas = new EventTarget();
-    const onHover = vi.fn();
-    listenToHover(canvas, onHover);
-    hover(canvas, 0, 'touch');
-    expect(onHover).not.toHaveBeenCalled();
   });
 });
 
