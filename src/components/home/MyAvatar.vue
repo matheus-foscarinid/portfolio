@@ -34,6 +34,7 @@ const { isReady, hasFailed, canvasKey, gestureMenu, playGesture } = useAvatarSce
 <style lang="scss" scoped>
   .my-avatar {
     position: relative;
+    z-index: 2;
     flex: none;
     height: min(44rem, calc(100vh - 11rem));
     aspect-ratio: 3/4;
