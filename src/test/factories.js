@@ -1,4 +1,5 @@
 import { BoxGeometry, Bone, Group, Mesh, MeshStandardMaterial, Object3D, Quaternion, Vector3 } from 'three';
+import { createApp, nextTick } from 'vue';
 import { vi } from 'vitest';
 import { createBonePoser } from '@/components/home/avatar/createBonePoser';
 
@@ -126,3 +127,52 @@ export const createFakeLoader = ({ failingUrls = [] } = {}) => ({
     return { scene };
   }),
 });
+
+export const createChatRequest = ({ messages = [{ role: 'user', content: 'Hi!' }], locale = 'en', ip = '1.1.1.1', body } = {}) =>
+  new Request('http://localhost/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-real-ip': ip },
+    body: body ?? JSON.stringify({ messages, locale }),
+  });
+
+export const createGroqResponse = ({ reply = 'Hey there!', gesture = 'wave', content, status = 200 } = {}) => {
+  if (status !== 200) return new Response('groq error', { status });
+  const message = { content: content ?? JSON.stringify({ reply, gesture }) };
+  return Response.json({ choices: [{ message }] });
+};
+
+export const createChatResponse = ({ status = 200, ...body } = {}) => Response.json(body, { status });
+
+export const getFetchBody = (fetchMock, call = -1) => JSON.parse(fetchMock.mock.calls.at(call)[1].body);
+
+export const runTimes = (count, run) => Promise.all(Array.from({ length: count }, run));
+
+export const flushPromises = () => new Promise((resolve) => setTimeout(resolve));
+
+// font awesome is stubbed since tests never assert on icons
+export const mountComponent = (component, { props = {}, plugins = [] } = {}) => {
+  const root = document.createElement('div');
+  document.body.append(root);
+  const app = createApp(component, props).component('font-awesome-icon', { render: () => null });
+  plugins.forEach((plugin) => app.use(plugin));
+  app.mount(root);
+
+  return {
+    root,
+    unmount: () => {
+      app.unmount();
+      root.remove();
+    },
+  };
+};
+
+export const sendChatMessage = async (root, text) => {
+  const input = root.querySelector('#avatar-chat-panel input');
+  input.value = text;
+  input.dispatchEvent(new Event('input'));
+  root.querySelector('#avatar-chat-panel form').dispatchEvent(new Event('submit', { cancelable: true }));
+  await flushPromises();
+  await nextTick();
+};
+
+export const getChatBubbles = (root) => [...root.querySelectorAll('.message')].map((bubble) => bubble.textContent.trim());

@@ -3,11 +3,17 @@
     ref="container"
     class="my-avatar"
   >
-    <AvatarGestureMenu
-      v-if="isReady && gestureMenu.length"
-      :groups="gestureMenu"
-      @play="playGesture"
-    />
+    <div class="avatar-controls">
+      <AvatarGestureMenu
+        v-if="isReady && gestureMenu.length"
+        :groups="gestureMenu"
+        @play="playGesture"
+      />
+      <AvatarChat
+        v-show="isReady"
+        @gesture="playGesture"
+      />
+    </div>
     <MyPhoto v-if="hasFailed" />
     <canvas
       v-else
@@ -23,6 +29,7 @@
 <script setup>
 import { ref } from 'vue';
 import AvatarGestureMenu from './AvatarGestureMenu.vue';
+import AvatarChat from './chat/AvatarChat.vue';
 import MyPhoto from './MyPhoto.vue';
 import { useAvatarScene } from './useAvatarScene';
 
@@ -40,6 +47,21 @@ const { isReady, hasFailed, canvasKey, gestureMenu, playGesture } = useAvatarSce
     aspect-ratio: 3/4;
     display: flex;
     align-items: center;
+
+    // covers the avatar so the chat bubble can place itself against the whole avatar box
+    .avatar-controls {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+      padding: 0.5rem;
+      pointer-events: none;
+
+      > * { pointer-events: auto; }
+    }
 
     canvas {
       width: 100%;

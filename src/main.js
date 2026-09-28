@@ -20,7 +20,9 @@ import {
   faSun,
   faMoon,
   faCaretDown,
-  faWandMagicSparkles
+  faWandMagicSparkles,
+  faComments,
+  faPaperPlane
 } from '@fortawesome/free-solid-svg-icons'
 
 library.add(
@@ -36,7 +38,9 @@ library.add(
   faClose,
   faSun,
   faMoon,
-  faWandMagicSparkles
+  faWandMagicSparkles,
+  faComments,
+  faPaperPlane
 );
 
 const startApp = () => {
