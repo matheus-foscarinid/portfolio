@@ -11,6 +11,14 @@ npm install
 npm run dev
 ```
 
+The avatar chat runs on Groq's free tier. Get a key at [console.groq.com](https://console.groq.com/keys) and put it in `.env.local` (and in the Vercel project env vars):
+
+```sh
+GROQ_API_KEY=gsk_...
+# optional, defaults to openai/gpt-oss-20b
+GROQ_MODEL=
+```
+
 ### TODOs and Ideas
 
 - [x] Add my main projects

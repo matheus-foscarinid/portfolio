@@ -21,6 +21,23 @@
       "playGame": "Play games",
       "hugCats": "Hug the cats"
     },
+    "CHAT": {
+      "TOGGLE": "Ask me",
+      "TITLE": "Chat with Matheus's avatar",
+      "INTRO": "Hey! Ask me anything about my work, projects or stack.",
+      "PLACEHOLDER": "Ask me something...",
+      "SEND": "Send",
+      "TYPING": "Typing",
+      "SUGGESTIONS": {
+        "WORK": "What do you do at HiPeople?",
+        "STACK": "What tech do you work with?",
+        "CATS": "Tell me about your cats"
+      },
+      "ERRORS": {
+        "rate_limited": "I've talked a lot today, give me a minute and try again.",
+        "unavailable": "I couldn't answer right now. Try again, or email me."
+      }
+    },
     "AVATAR_LABEL": "3D avatar of Matheus Foscarini Dias",
     "PRESENTATION_1": "Hi! My name is",
     "PRESENTATION_2": "I'm a",

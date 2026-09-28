@@ -4,16 +4,14 @@
     class="gesture-menu"
     data-avatar-ignore
   >
-    <button
+    <AvatarToggle
       class="toggle"
       :class="{ 'is-calling': !hasOpened }"
-      :aria-label="$t('HOME.GESTURE_MENU')"
+      icon="fas fa-wand-magic-sparkles"
+      :label="$t('HOME.GESTURE_MENU')"
       :aria-expanded="isOpen"
       @click="toggle"
-    >
-      <font-awesome-icon icon="fas fa-wand-magic-sparkles" aria-hidden="true" />
-      <span class="label" aria-hidden="true">{{ $t('HOME.GESTURE_MENU') }}</span>
-    </button>
+    />
 
     <div v-if="isOpen" class="panel">
       <section
@@ -38,6 +36,7 @@
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useDismiss } from '@/composables/useDismiss';
+import AvatarToggle from './AvatarToggle.vue';
 
 defineProps({ groups: { type: Array, required: true } });
 const emit = defineEmits(['play']);
@@ -64,37 +63,13 @@ const pick = (name) => {
 </script>
 
 <style lang="scss" scoped>
+  // stays above the chat button stacked under it, so the open menu isn't covered
   .gesture-menu {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    z-index: 2;
+    z-index: 1;
   }
 
   .toggle {
     position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.4rem 0.8rem;
-    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-    border-radius: 999px;
-    background-color: color-mix(in srgb, var(--accent) 10%, var(--secondary-background));
-    color: var(--accent);
-    font-family: 'Fira Code', monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-
-    &:hover,
-    &:focus-visible,
-    &[aria-expanded="true"] {
-      background-color: var(--accent);
-      color: var(--accent-contrast);
-    }
-
-    &:active { transform: scale(0.96); }
 
     &.is-calling::after {
       content: '';
@@ -106,22 +81,13 @@ const pick = (name) => {
       pointer-events: none;
     }
 
-    &.is-calling svg {
+    &.is-calling :deep(svg) {
       animation: wiggle 4s ease-in-out infinite;
     }
 
     @media (prefers-reduced-motion: reduce) {
       &.is-calling::after,
-      &.is-calling svg { animation: none; }
-    }
-
-    @media (max-width: 768px) {
-      width: 2.25rem;
-      height: 2.25rem;
-      justify-content: center;
-      padding: 0;
-
-      .label { display: none; }
+      &.is-calling :deep(svg) { animation: none; }
     }
   }
 
@@ -139,7 +105,7 @@ const pick = (name) => {
 
   .panel {
     position: absolute;
-    top: 2.6rem;
+    top: calc(100% + 0.35rem);
     left: 0;
     width: 12rem;
     max-height: min(32rem, 70vh);
