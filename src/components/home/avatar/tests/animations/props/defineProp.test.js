@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { defineProp } from './defineProp';
-import { createGrip } from './grips';
+import { defineProp } from '../../../animations/props/defineProp';
+import { createGrip } from '../../../animations/props/grips';
 
 const GRIP = createGrip({ palmAt: [0, 0, 0], palm: [0, 1, 0], fingers: [0, 0, 1], pole: [0, -1, 0] });
 

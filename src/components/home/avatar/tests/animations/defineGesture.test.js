@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { defineGesture } from './defineGesture';
+import { defineGesture } from '../../animations/defineGesture';
 
 const pose = () => {};
 

@@ -1,7 +1,7 @@
 import { Color, MeshStandardMaterial, Object3D, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { createFakeLoader, createPropStub, createStubPoser } from '@/test/factories';
-import { createProps, getPopScale } from './createProps';
+import { createProps, getPopScale } from '../createProps';
 
 const BOOK = createPropStub('/book.glb');
 const LAPTOP = createPropStub('/laptop.glb');

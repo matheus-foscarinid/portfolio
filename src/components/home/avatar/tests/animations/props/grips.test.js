@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createMirroredGrips } from './grips';
+import { createMirroredGrips } from '../../../animations/props/grips';
 
 describe('createMirroredGrips', () => {
   it('copies the left grip across the body for the right hand', () => {

@@ -1,6 +1,6 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { listenToClicks, listenToIdle, listenToScrollAway } from './createGestureTriggers';
+import { listenToClicks, listenToIdle, listenToScrollAway } from '../../animations/createGestureTriggers';
 
 const NAVIGATION_DELAY = 450;
 

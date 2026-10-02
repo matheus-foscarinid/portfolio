@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mockNextRandom } from '@/test/factories';
-import { createAvatarActions } from './createAvatarActions';
-import { PRIORITY } from './createGesturePlayer';
-import { FIDGETS, GESTURES, PASTIMES, REACTIONS } from './gestureLibrary';
+import { createAvatarActions } from '../../animations/createAvatarActions';
+import { PRIORITY } from '../../animations/createGesturePlayer';
+import { FIDGETS, GESTURES, PASTIMES, REACTIONS } from '../../animations/gestureLibrary';
 
 const setup = ({ isEnabled = true, isActive = true } = {}) => {
   const player = { play: vi.fn(() => true) };

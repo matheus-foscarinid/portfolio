@@ -1,7 +1,7 @@
 import { Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { createPosedArmRig, getFingerDirection, getPalmCenter, getPalmNormal } from '@/test/factories';
-import { reachHand } from './reach';
+import { reachHand } from '../../../animations/pose/reach';
 
 const PALM_UP_GRIP = {
   palmAt: new Vector3(0.1, 1.15, 0.35),

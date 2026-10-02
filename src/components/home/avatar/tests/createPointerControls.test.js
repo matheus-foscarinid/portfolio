@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { createFakeCanvas, createPointerEvent } from '@/test/factories';
-import { createDragRotation } from './createPointerControls';
+import { createDragRotation } from '../createPointerControls';
 
 const FRAMES_TO_SETTLE = 400;
 
