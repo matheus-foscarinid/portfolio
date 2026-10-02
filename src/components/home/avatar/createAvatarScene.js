@@ -100,6 +100,20 @@ const loadModel = async (loader, modelUrl) => {
   };
 };
 
+const uploadTextures = (renderer, object) => {
+  object.traverse(({ material }) => {
+    Object.values(material ?? {}).forEach((value) => {
+      if (value?.isTexture) renderer.initTexture(value);
+    });
+  });
+};
+
+// otherwise the first frame showing something new stalls while its shaders and textures reach the gpu
+const warmUpGpu = ({ renderer, crt, scene, camera }) => {
+  uploadTextures(renderer, scene);
+  return crt ? crt.compileAsync(scene, camera) : renderer.compileAsync(scene, camera);
+};
+
 // reading layout every frame is costly, so the rect only refreshes on scroll and resize
 const trackCanvasRect = (canvas) => {
   const tracked = { rect: canvas.getBoundingClientRect() };
@@ -173,10 +187,7 @@ const disposeScene = (scene) => {
 export const createAvatarScene = async (canvas, { isReducedMotion }) => {
   const quality = getQuality();
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-  const [{ model, bones, poser, updateFace }, props] = await Promise.all([
-    loadModel(loader, quality.modelUrl),
-    createProps(loader),
-  ]);
+  const { model, bones, poser, updateFace } = await loadModel(loader, quality.modelUrl);
 
   // the crt pass antialiases its own render target, so the canvas doesn't need to
   const renderer = new WebGLRenderer({ canvas, alpha: true, antialias: !IS_CRT_ENABLED });
@@ -185,8 +196,20 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
 
   const scene = new Scene();
   const camera = createCamera();
-  scene.add(model, props.object, createGroundShadow());
+  scene.add(model, createGroundShadow());
   createLights(scene);
+  const gpu = { renderer, crt, scene, camera };
+  await warmUpGpu(gpu);
+
+  let props = null;
+  let isDisposed = false;
+  // props load after the avatar so it shows sooner. a gesture played before they land goes empty-handed
+  createProps(loader).then(async (loaded) => {
+    if (isDisposed) return;
+    scene.add(loaded.object);
+    await loaded.compileWith(() => warmUpGpu(gpu));
+    props = loaded;
+  });
 
   const canvasRect = trackCanvasRect(canvas);
   const gestures = createGestureControls({ canvas, canvasRect, bones, camera, poser, isReducedMotion });
@@ -225,7 +248,7 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     applyGestures(poser, bones, frames);
     applyLook(poser, bones, look, getGazeStrength(frames));
     updateFace(seconds, getEyesClosed(frames));
-    props.update(frames, poser, bones.chest, seconds);
+    props?.update(frames, poser, bones.chest, seconds);
 
     if (crt) crt.render(scene, camera, seconds);
     else renderer.render(scene, camera);
@@ -243,6 +266,7 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
   };
 
   const dispose = () => {
+    isDisposed = true;
     stop();
     tracking.dispose();
     gestures.dispose();

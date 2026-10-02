@@ -71,5 +71,13 @@ export const createProps = async (loader, gestures = Object.values(GESTURES)) =>
     });
   };
 
-  return { object, update };
+  // compile skips hidden objects, so every prop shows just long enough to be compiled
+  const compileWith = (compile) => {
+    props.forEach((prop) => { prop.object.visible = true; });
+    const compiled = compile();
+    props.forEach((prop) => { prop.object.visible = false; });
+    return compiled;
+  };
+
+  return { object, update, compileWith };
 };

@@ -124,11 +124,19 @@ export const createCrtPass = (renderer) => {
     renderer.render(quadScene, quadCamera);
   };
 
+  // programs differ by output target, so the scene compiles against the one it renders into
+  const compileAsync = (scene, camera) => {
+    renderer.setRenderTarget(target);
+    const compiled = renderer.compileAsync(scene, camera);
+    renderer.setRenderTarget(null);
+    return compiled;
+  };
+
   const dispose = () => {
     target.dispose();
     material.dispose();
     quad.geometry.dispose();
   };
 
-  return { setSize, render, dispose };
+  return { setSize, render, compileAsync, dispose };
 };

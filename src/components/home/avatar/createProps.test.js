@@ -60,6 +60,16 @@ describe('createProps', () => {
     expect(getMaterial(book).onBeforeCompile).toBe(untouched);
   });
 
+  it('shows every prop only while compiling, so hidden ones still reach the gpu early', async () => {
+    const { props } = await setup();
+    const isEveryPropVisible = () => props.object.children.every((prop) => prop.visible);
+
+    const wasVisibleWhileCompiling = props.compileWith(isEveryPropVisible);
+
+    expect(wasVisibleWhileCompiling).toBe(true);
+    expect(props.object.children.some((prop) => prop.visible)).toBe(false);
+  });
+
   it('skips a prop that fails to load instead of failing', async () => {
     const { props } = await setup({ failingUrls: [BOOK.url] });
     expect(props.object.children).toHaveLength(3);
