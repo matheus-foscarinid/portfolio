@@ -1,7 +1,7 @@
 import { MeshStandardMaterial } from 'three';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createShaderStub } from '@/test/factories';
-import { createFace } from './createFace';
+import { createFace } from '../createFace';
 
 // mirrors the timing in createFace.js
 const MIN_GAP = 2.5;

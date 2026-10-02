@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createGestureLibrary, mockNextRandom } from '@/test/factories';
-import { PRIORITY, createGesturePlayer, getEnvelope, pickRandom } from './createGesturePlayer';
+import { PRIORITY, createGesturePlayer, getEnvelope, pickRandom } from '../../animations/createGesturePlayer';
 
 const setup = () => createGesturePlayer(createGestureLibrary());
 

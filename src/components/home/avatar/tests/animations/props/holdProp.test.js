@@ -1,9 +1,9 @@
 import { Quaternion, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { createObjectAt, createPosedArmRig, createStubPoser, getPalmCenter } from '@/test/factories';
-import { defineProp } from './defineProp';
-import { createMirroredGrips } from './grips';
-import { getGripTarget, getPropPose, holdProp } from './holdProp';
+import { defineProp } from '../../../animations/props/defineProp';
+import { createMirroredGrips } from '../../../animations/props/grips';
+import { getGripTarget, getPropPose, holdProp } from '../../../animations/props/holdProp';
 
 const TRAY = defineProp({
   url: '/tray.glb',

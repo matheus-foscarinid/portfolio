@@ -11,7 +11,7 @@ import {
   getGazeStrength,
   getGestureWeight,
   MENU,
-} from './gestureLibrary';
+} from '../../animations/gestureLibrary';
 
 const setup = () => ({ poser: createStubPoser(), bones: createStubBones() });
 

@@ -1,7 +1,7 @@
 import { Color, MeshStandardMaterial, Object3D, Vector3 } from 'three';
 import { describe, expect, it } from 'vitest';
 import { createFakeLoader, createPropStub, createStubPoser } from '@/test/factories';
-import { createProps, getPopScale } from './createProps';
+import { createProps, getPopScale } from '../createProps';
 
 const BOOK = createPropStub('/book.glb');
 const LAPTOP = createPropStub('/laptop.glb');
@@ -58,6 +58,16 @@ describe('createProps', () => {
     const { onBeforeCompile: untouched } = MeshStandardMaterial.prototype;
     expect(getMaterial(sushi).onBeforeCompile).not.toBe(untouched);
     expect(getMaterial(book).onBeforeCompile).toBe(untouched);
+  });
+
+  it('shows every prop only while compiling, so hidden ones still reach the gpu early', async () => {
+    const { props } = await setup();
+    const isEveryPropVisible = () => props.object.children.every((prop) => prop.visible);
+
+    const wasVisibleWhileCompiling = props.compileWith(isEveryPropVisible);
+
+    expect(wasVisibleWhileCompiling).toBe(true);
+    expect(props.object.children.some((prop) => prop.visible)).toBe(false);
   });
 
   it('skips a prop that fails to load instead of failing', async () => {

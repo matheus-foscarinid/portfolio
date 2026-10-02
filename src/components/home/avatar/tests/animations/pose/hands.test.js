@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { createStubBones, createStubPoser, getRotatedBones } from '@/test/factories';
-import { curlFingers, pressThumb, tapFingers } from './hands';
+import { curlFingers, pressThumb, tapFingers } from '../../../animations/pose/hands';
 
 const setup = () => ({ poser: createStubPoser(), arm: createStubBones().arms[0] });
 
