@@ -51,6 +51,37 @@ describe('createDragRotation', () => {
     expect(angle / (Math.PI * 2)).toBeCloseTo(Math.round(angle / (Math.PI * 2)), 2);
   });
 
+  describe('isSpinning', () => {
+    it('is not spinning before any drag', () => {
+      const { drag, runFrames } = setup();
+      runFrames(1);
+      expect(drag.isSpinning()).toBe(false);
+    });
+
+    it('is spinning while held, even without moving', () => {
+      const { drag, dragBy, runFrames } = setup();
+      dragBy(100);
+      runFrames(30);
+      expect(drag.isSpinning()).toBe(true);
+    });
+
+    it('is spinning while it slowly turns back to front', () => {
+      const { drag, dragBy, release, runFrames } = setup();
+      dragBy(600);
+      release(600);
+      runFrames(100);
+      expect(drag.isSpinning()).toBe(true);
+    });
+
+    it('stops spinning once it faces front again', () => {
+      const { drag, dragBy, release, runFrames } = setup();
+      dragBy(600);
+      release(600);
+      runFrames(FRAMES_TO_SETTLE);
+      expect(drag.isSpinning()).toBe(false);
+    });
+  });
+
   it('stops listening once disposed', () => {
     const { drag, dragBy } = setup();
     drag.dispose();

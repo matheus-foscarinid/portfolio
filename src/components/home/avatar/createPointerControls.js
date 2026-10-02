@@ -5,6 +5,8 @@ const HOLD_FRICTION = 0.6;
 const SPIN_STOP_VELOCITY = 0.002;
 const RETURN_EASING = 0.04;
 const FULL_TURN = Math.PI * 2;
+// radians per frame. tiny because the turn back to front ends very slowly
+const SPIN_TURN = 0.0005;
 // a press that moves less than this, in css px, is a click rather than a drag
 const TAP_DISTANCE = 5;
 
@@ -44,23 +46,27 @@ const listenToDrag = (canvas, state, onTap) => {
 
 // spins with momentum, then settles back to facing front on the nearest full turn
 export const createDragRotation = (canvas, { onTap = () => {} } = {}) => {
-  const state = { angle: 0, velocity: 0, isDragging: false, lastX: 0, pressX: 0 };
+  const state = { angle: 0, velocity: 0, isDragging: false, lastX: 0, pressX: 0, lastTurn: 0 };
   const dispose = listenToDrag(canvas, state, onTap);
 
-  const update = () => {
-    if (state.isDragging) {
-      state.velocity *= HOLD_FRICTION;
-      return state.angle;
-    }
-
+  const spin = () => {
     state.angle += state.velocity;
     state.velocity *= SPIN_FRICTION;
     if (Math.abs(state.velocity) < SPIN_STOP_VELOCITY) {
       const front = Math.round(state.angle / FULL_TURN) * FULL_TURN;
       state.angle += (front - state.angle) * RETURN_EASING;
     }
+  };
+
+  const update = () => {
+    const previousAngle = state.angle;
+    if (state.isDragging) state.velocity *= HOLD_FRICTION;
+    else spin();
+    state.lastTurn = Math.abs(state.angle - previousAngle);
     return state.angle;
   };
 
-  return { update, dispose };
+  const isSpinning = () => state.isDragging || state.lastTurn >= SPIN_TURN;
+
+  return { update, isSpinning, dispose };
 };

@@ -1,4 +1,4 @@
-import { BoxGeometry, Bone, Group, Mesh, MeshStandardMaterial, Object3D, Quaternion, Vector3 } from 'three';
+import { BoxGeometry, Bone, Group, Mesh, MeshStandardMaterial, Object3D, PerspectiveCamera, Quaternion, Vector3 } from 'three';
 import { createApp, nextTick } from 'vue';
 import { vi } from 'vitest';
 import { createBonePoser } from '@/components/home/avatar/createBonePoser';
@@ -119,14 +119,16 @@ export const createPropStub = (url, { scale = 1, eyes = null } = {}) => ({
   grips: {},
 });
 
-export const createAvatarFrame = (overrides = {}) => ({
-  frames: [],
-  look: { yaw: 0.2, pitch: 0.1 },
-  target: { yaw: 0.2, pitch: 0.1 },
-  angle: 0,
-  previousAngle: 0,
-  ...overrides,
-});
+// a head at the center of a 400px canvas, so a cursor there looks straight ahead
+export const createLookRig = () => {
+  const camera = new PerspectiveCamera(28, 1, 0.1, 20);
+  camera.position.set(0, 0, 4);
+  camera.updateMatrixWorld();
+  return { head: new Object3D(), camera, getCanvasRect: () => ({ left: 0, top: 0, width: 400, height: 400 }) };
+};
+
+export const moveCursorTo = (clientX, clientY) =>
+  window.dispatchEvent(Object.assign(new Event('pointermove'), { clientX, clientY }));
 
 export const createFakeLoader = ({ failingUrls = [] } = {}) => ({
   loadAsync: vi.fn(async (url) => {
