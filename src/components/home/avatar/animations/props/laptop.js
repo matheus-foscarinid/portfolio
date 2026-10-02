@@ -1,8 +1,9 @@
+import laptopUrl from '@/assets/models/laptop.glb?url';
 import { defineProp } from './defineProp';
 import { createGrip } from './grips';
 
 export const laptop = defineProp({
-  url: '/models/laptop.glb',
+  url: laptopUrl,
   offsetFromChest: [0, -0.2, 0.3],
   tilt: -0.1,
   grips: {

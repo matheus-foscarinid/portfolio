@@ -1,3 +1,5 @@
+import croqueteUrl from '@/assets/models/croquete.glb?url';
+import sushiUrl from '@/assets/models/sushi.glb?url';
 import { defineProp } from './defineProp';
 import { createGrip } from './grips';
 
@@ -22,12 +24,12 @@ const createCatInArm = (side, url, eyes) => defineProp({
   },
 });
 
-export const sushi = createCatInArm(RIGHT_ARM, '/models/sushi.glb', {
+export const sushi = createCatInArm(RIGHT_ARM, sushiUrl, {
   centers: [[0.077, 0.405, 0.172], [0.133, 0.405, 0.174]],
   lidColors: ['#998367', '#ae947a'],
 });
 
-export const croquete = createCatInArm(LEFT_ARM, '/models/croquete.glb', {
+export const croquete = createCatInArm(LEFT_ARM, croqueteUrl, {
   centers: [[-0.206, 0.445, 0.15], [-0.146, 0.445, 0.171]],
   lidColors: ['#8a5f2f', '#77674f'],
 });

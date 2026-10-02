@@ -14,6 +14,8 @@ import {
 } from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import mobileModelUrl from '@/assets/models/me-mobile.glb?url';
+import modelUrl from '@/assets/models/me.glb?url';
 import { applyIdle, applyLook } from './animations/animateBody';
 import { createAvatarActions } from './animations/createAvatarActions';
 import { createGesturePlayer } from './animations/createGesturePlayer';
@@ -34,8 +36,8 @@ const MODEL_HEIGHT = 1.75;
 const FRAME_TOLERANCE = 2;
 // phones get a lighter model, fewer pixels and half the frame rate to save gpu memory and battery
 const QUALITY = {
-  full: { modelUrl: '/models/me.glb', maxPixelRatio: 2, frameInterval: 0 },
-  light: { modelUrl: '/models/me-mobile.glb', maxPixelRatio: 1.5, frameInterval: 1000 / 30 },
+  full: { modelUrl, maxPixelRatio: 2, frameInterval: 0 },
+  light: { modelUrl: mobileModelUrl, maxPixelRatio: 1.5, frameInterval: 1000 / 30 },
 };
 // how far in front of the head the cursor is imagined, in css px. lower turns the head harder
 const LOOK_DEPTH = 500;
