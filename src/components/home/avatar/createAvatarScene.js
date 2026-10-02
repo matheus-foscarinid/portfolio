@@ -34,6 +34,12 @@ const IS_CRT_ENABLED = true;
 const MODEL_HEIGHT = 1.75;
 // rAF timestamps jitter, so a frame due at exactly the interval shouldn't get skipped
 const FRAME_TOLERANCE = 2;
+// with only the breathing moving, half the frames look the same and save the gpu
+const STILL_FRAME_INTERVAL = 1000 / 30;
+// in radians. the breathing alone keeps the look this far behind its target
+const STILL_LOOK_LAG = 0.01;
+// in radians per frame. the spin back to front gets slower than the look threshold near the end
+const STILL_TURN = 0.0005;
 // phones get a lighter model, fewer pixels and half the frame rate to save gpu memory and battery
 const QUALITY = {
   full: { modelUrl, maxPixelRatio: 2, frameInterval: 0 },
@@ -113,6 +119,12 @@ const warmUpGpu = ({ renderer, crt, scene, camera }) => {
   uploadTextures(renderer, scene);
   return crt ? crt.compileAsync(scene, camera) : renderer.compileAsync(scene, camera);
 };
+
+export const isStill = ({ frames, look, target, angle, previousAngle }) =>
+  frames.length === 0
+  && Math.abs(angle - previousAngle) < STILL_TURN
+  && Math.abs(target.yaw - look.yaw) < STILL_LOOK_LAG
+  && Math.abs(target.pitch - look.pitch) < STILL_LOOK_LAG;
 
 // reading layout every frame is costly, so the rect only refreshes on scroll and resize
 const trackCanvasRect = (canvas) => {
@@ -230,9 +242,11 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
   resize();
 
   let lastFrameAt = -Infinity;
+  let frameInterval = quality.frameInterval;
+  let previousAngle = 0;
 
   const animate = (time) => {
-    if (time - lastFrameAt < quality.frameInterval - FRAME_TOLERANCE) return;
+    if (time - lastFrameAt < frameInterval - FRAME_TOLERANCE) return;
     lastFrameAt = time;
 
     timer.update(time);
@@ -241,7 +255,8 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     look.yaw += (target.yaw - look.yaw) * lookEasing;
     look.pitch += (target.pitch - look.pitch) * lookEasing;
 
-    model.rotation.y = gestures.drag.update();
+    const angle = gestures.drag.update();
+    model.rotation.y = angle;
     poser.resetPose();
     if (!isReducedMotion) applyIdle(poser, bones, seconds);
     const frames = gestures.player.update(seconds);
@@ -249,6 +264,10 @@ export const createAvatarScene = async (canvas, { isReducedMotion }) => {
     applyLook(poser, bones, look, getGazeStrength(frames));
     updateFace(seconds, getEyesClosed(frames));
     props?.update(frames, poser, bones.chest, seconds);
+    frameInterval = isStill({ frames, look, target, angle, previousAngle })
+      ? Math.max(quality.frameInterval, STILL_FRAME_INTERVAL)
+      : quality.frameInterval;
+    previousAngle = angle;
 
     if (crt) crt.render(scene, camera, seconds);
     else renderer.render(scene, camera);

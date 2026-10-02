@@ -119,6 +119,15 @@ export const createPropStub = (url, { scale = 1, eyes = null } = {}) => ({
   grips: {},
 });
 
+export const createAvatarFrame = (overrides = {}) => ({
+  frames: [],
+  look: { yaw: 0.2, pitch: 0.1 },
+  target: { yaw: 0.2, pitch: 0.1 },
+  angle: 0,
+  previousAngle: 0,
+  ...overrides,
+});
+
 export const createFakeLoader = ({ failingUrls = [] } = {}) => ({
   loadAsync: vi.fn(async (url) => {
     if (failingUrls.includes(url)) throw new Error(`${url} not found`);
