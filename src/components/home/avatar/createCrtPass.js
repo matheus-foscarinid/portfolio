@@ -1,11 +1,12 @@
 import {
   BufferGeometry,
   Float32BufferAttribute,
-  HalfFloatType,
   Mesh,
   OrthographicCamera,
   Scene,
+  SRGBColorSpace,
   ShaderMaterial,
+  UnsignedByteType,
   Vector2,
   WebGLRenderTarget,
 } from 'three';
@@ -14,6 +15,10 @@ import {
 const CRT_STRENGTH = 0.67;
 // the light page makes the scanlines and grain stand out, so it gets half
 const LIGHT_THEME_SHARE = 0.5;
+// the rolling band loops seamlessly at this period, so time can wrap before floats lose precision
+const TIME_LOOP = 100;
+// css px between scanlines
+const SCANLINE_GAP = 3;
 
 // renders the scene into a texture, then draws it back with scanlines, rgb split and flicker.
 // the canvas only holds the avatar, so the effect never touches the rest of the page
@@ -32,10 +37,14 @@ const CRT_SHADER = {
     uniform float uTime;
     uniform float uPixelRatio;
     uniform float uStrength;
+    uniform vec2 uGrainOffset;
     varying vec2 vUv;
 
+    // the classic sin() hash breaks into stripes on gpus with weak sin precision
     float random(vec2 point) {
-      return fract(sin(dot(point, vec2(12.9898, 78.233))) * 43758.5453);
+      vec3 p = fract(vec3(point.xyx) * 0.1031);
+      p += dot(p, p.yzx + 33.33);
+      return fract((p.x + p.y) * p.z);
     }
 
     void main() {
@@ -46,11 +55,12 @@ const CRT_SHADER = {
       vec3 color = vec3(red.r, center.g, blue.b);
       float alpha = max(center.a, max(red.a, blue.a));
 
-      float line = gl_FragCoord.y / uPixelRatio;
-      float scanline = 1.0 - 0.18 * uStrength * (1.0 - sin(line * PI * 0.66));
+      // a whole number of device pixels per line, or fractional pixel ratios shimmer into moire
+      float gap = max(2.0, floor(${SCANLINE_GAP}.0 * uPixelRatio + 0.5));
+      float scanline = 1.0 - 0.18 * uStrength * (1.0 - sin(gl_FragCoord.y * PI2 / gap));
       float rollingBand = 1.0 + 0.06 * uStrength * smoothstep(0.0, 0.08, 0.08 - abs(fract(vUv.y * 0.6 - uTime * 0.12) - 0.5));
       float flicker = 1.0 - 0.03 * uStrength * (1.0 - sin(uTime * 55.0));
-      float grain = (random(vUv * uResolution + uTime) - 0.5) * 0.05 * uStrength;
+      float grain = (random(gl_FragCoord.xy + uGrainOffset) - 0.5) * 0.05 * uStrength;
 
       color = color * scanline * rollingBand * flicker + grain * alpha;
       gl_FragColor = vec4(color, alpha);
@@ -69,8 +79,12 @@ const createFullscreenTriangle = () => {
   return geometry;
 };
 
+// half float targets need an extension some phones lack or get wrong, 8-bit srgb works everywhere
+const createSceneTarget = () =>
+  new WebGLRenderTarget(1, 1, { type: UnsignedByteType, colorSpace: SRGBColorSpace, samples: 4 });
+
 export const createCrtPass = (renderer) => {
-  const target = new WebGLRenderTarget(1, 1, { type: HalfFloatType, samples: 4 });
+  const target = createSceneTarget();
   const material = new ShaderMaterial({
     ...CRT_SHADER,
     uniforms: {
@@ -79,6 +93,7 @@ export const createCrtPass = (renderer) => {
       uTime: { value: 0 },
       uPixelRatio: { value: renderer.getPixelRatio() },
       uStrength: { value: getStrength() },
+      uGrainOffset: { value: new Vector2() },
     },
     transparent: true,
     // the scene texture is already premultiplied from its transparent clear
@@ -99,8 +114,9 @@ export const createCrtPass = (renderer) => {
   };
 
   const render = (scene, camera, seconds) => {
-    material.uniforms.uTime.value = seconds;
+    material.uniforms.uTime.value = seconds % TIME_LOOP;
     material.uniforms.uStrength.value = getStrength();
+    material.uniforms.uGrainOffset.value.set(Math.random(), Math.random()).multiplyScalar(256);
     renderer.setRenderTarget(target);
     renderer.clear();
     renderer.render(scene, camera);
