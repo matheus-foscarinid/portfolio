@@ -17,11 +17,8 @@ const CRT_STRENGTH = 0.67;
 const LIGHT_THEME_SHARE = 0.5;
 // the rolling band loops seamlessly at this period, so time can wrap before floats lose precision
 const TIME_LOOP = 100;
-// css px between scanlines
-const SCANLINE_GAP = 3;
+const SCANLINE_GAP_PX = 3;
 
-// renders the scene into a texture, then draws it back with scanlines, rgb split and flicker.
-// the canvas only holds the avatar, so the effect never touches the rest of the page
 const CRT_SHADER = {
   vertexShader: /* glsl */ `
     varying vec2 vUv;
@@ -56,7 +53,7 @@ const CRT_SHADER = {
       float alpha = max(center.a, max(red.a, blue.a));
 
       // a whole number of device pixels per line, or fractional pixel ratios shimmer into moire
-      float gap = max(2.0, floor(${SCANLINE_GAP}.0 * uPixelRatio + 0.5));
+      float gap = max(2.0, floor(${SCANLINE_GAP_PX}.0 * uPixelRatio + 0.5));
       float scanline = 1.0 - 0.18 * uStrength * (1.0 - sin(gl_FragCoord.y * PI2 / gap));
       float rollingBand = 1.0 + 0.06 * uStrength * smoothstep(0.0, 0.08, 0.08 - abs(fract(vUv.y * 0.6 - uTime * 0.12) - 0.5));
       float flicker = 1.0 - 0.03 * uStrength * (1.0 - sin(uTime * 55.0));
