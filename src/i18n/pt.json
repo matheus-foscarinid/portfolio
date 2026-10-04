@@ -100,7 +100,7 @@
     "VIEW": "Visualizar",
     "JSON_SEARCHER": "JSON Searcher é uma extensão simples para o VSCode usada para buscar caminhos dentro de arquivos JSON, particularmente útil para usar com arquivos de i18n (internationalization).",
     "WW_HIDE_CHATS_TOOLS": "Meu projeto mais recente, atualmente em desenvolvimento (WIP), é uma extensão para o Chrome projetada para ocultar, desfocar e oferecer muitos outros recursos para bate-papos no WhatsApp Web.",
-    "SUPRA_CRM": "Um CRM para pequenas lojas do comércio brasileiro, com produtos, pedidos, clientes e finanças no mesmo sistema. Roda no navegador, funciona offline e sincroniza com a nuvem quando a conexão volta.",
+    "SUPRA_CRM": "Um CRM para pequenas lojas do comércio brasileiro, com produtos, pedidos, clientes e finanças no mesmo sistema. Roda no navegador, funciona offline e sincroniza com a nuvem quando a conexão volta. Já é usado por 3 empresas, e eu desenvolvo e mantenho tudo sozinho.",
     "PROFESSIONAL": "Profissional",
     "HIPEOPLE": "Plataforma de contratação com IA, com triagem por voz e currículo, avaliações e checagem de referências. Trabalho no stack React e Go e liderei uma melhoria de performance que cortou 65% do JS inicial.",
     "BENCHPREP": "Plataforma de ensino para certificações, preparação para provas e educação continuada. Pela Fullstack Labs, desenvolvi recursos no produto principal e um pipeline de CI conteinerizado para testes end-to-end.",

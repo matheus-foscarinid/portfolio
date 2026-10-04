@@ -100,7 +100,7 @@
     "VIEW": "View",
     "JSON_SEARCHER": "JSON Searcher is a simple VSCode extension for searching within JSON files, particularly useful for locating data in i18n (internationalization) files.",
     "WW_HIDE_CHATS_TOOLS": "My newest project, currently a work in progress (WIP), is a Chrome extension designed to hide, blur, and provide many more features for chats on WhatsApp Web.",
-    "SUPRA_CRM": "A CRM for small Brazilian retail stores, bringing products, orders, customers and finances into one system. It runs in the browser, works offline and syncs to the cloud when the connection comes back.",
+    "SUPRA_CRM": "A CRM for small Brazilian retail stores, bringing products, orders, customers and finances into one system. It runs in the browser, works offline and syncs to the cloud when the connection comes back. Already used by 3 businesses, and I build and maintain all of it myself.",
     "PROFESSIONAL": "Professional",
     "HIPEOPLE": "AI hiring platform covering voice and resume screening, assessments and reference checks. I work across the React and Go stack and led a performance overhaul that cut the initial JS payload by 65%.",
     "BENCHPREP": "Learning platform for certification training, exam prep and continuing education. Through Fullstack Labs, I built features on the main product and a containerized CI pipeline for end-to-end tests.",
