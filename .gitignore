@@ -29,3 +29,6 @@ coverage
 
 # playwright mcp screenshots and scripts
 .playwright-mcp/
+.claude/
+.copilot/
+.openai/
