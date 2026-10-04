@@ -65,8 +65,8 @@
       "RESUME_3": "By the time I finished, I felt ready to start working. The hands-on projects made the jump into my first job a lot smoother than I expected."
     },
     "UNISINOS": {
-      "RESUME_1": "The Internet Systems degree digs into how internet technologies and systems actually work, not just the code but how the whole ecosystem fits together. It's a solid grounding for web development.",
-      "RESUME_2": "It leaned heavily on practical work, and I graduated in 2025 knowing how to build things that actually ship."
+      "RESUME_1": "My degree in Systems Analysis and Development focused on building web software, with coursework in networking, information security and software project management.",
+      "RESUME_2": "It leaned heavily on practical work. I graduated in 2025 with an average above 90%."
     },
     "SCOPI": {
       "RESUME_1": "Scopi makes software for strategic planning, project management, and performance tracking. As a trainee, I built new features and maintained existing ones on their main product.",
@@ -74,9 +74,9 @@
       "RESUME_3": "Scopi was a good place to start, and a lot of how I work today comes from that time."
     },
     "MINHA_VISITA": {
-      "RESUME_1": "Minha Visita is a startup that helps teams manage commercial visits to customers. As a fullstack developer, I work on new features and keep the existing product running.",
-      "RESUME_2": "Right now we're rebuilding the product from the ground up with Vue and NestJS. I dig into problems in our services and the app, then propose and build fixes that scale.",
-      "RESUME_3": "I work closely with the team to keep the experience consistent across the web app and the mobile apps."
+      "RESUME_1": "Minha Visita helps sales teams plan and track visits to their customers. I worked across the web and mobile apps as a full stack engineer and helped rebuild the product with Vue and NestJS.",
+      "RESUME_2": "Led the migration of a large codebase from Vue 2 to Vue 3 and built the notification system from scratch. I also cut CI build time by 75%.",
+      "RESUME_3": "Owned the Mercado Pago payments integration, which handled around R$50K a day, and ran the meetings with partners in Portuguese and Spanish."
     },
     "FULLSTACK_LABS": {
       "RESUME_1": "At Fullstack Labs I was placed with a US-based client, working on their main product. I worked alongside a senior team to keep the experience consistent across web and mobile.",
@@ -85,7 +85,7 @@
     },
     "HIPEOPLE": {
       "RESUME_1": "Collaborating with an international team to build AI-driven Hiring Intelligence solutions including Voice/Resume Screening, Assessments, and Reference Check using OpenAI APIs, NLP, and LLM-based pipelines.",
-      "RESUME_2": "Architected scalable systems with React, Next.js, and Go (Echo). Implemented CI/CD, Vitest automation, and Dockerized environments for efficient development and deployment processes.",
+      "RESUME_2": "Architected scalable systems with React, Next.js and Go (Echo), and cut p99 latency by 35%. Set up CI/CD, Vitest automation and Dockerized environments for development and deploys.",
       "RESUME_3": "Built realtime AI integrations with OpenAI Realtime Conversations, working in an Agile/Linear workflow and using Claude daily to ship faster.",
       "RESUME_4": "Led a front-end performance overhaul that cut the initial JS payload by 65% (over 1 MB), lifted Lighthouse scores from 18 to 60+, and reduced weekly production errors by 85%."
     }

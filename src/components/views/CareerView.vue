@@ -73,15 +73,15 @@ const placesTimeline = [
     key: 'SCOPI',
     paragraphsQtt: 3,
     role: 'Trainee',
-    period: 'from January 2021 to October 2021',
+    period: 'from January 2021 to September 2021',
     link: 'https://www.scopi.com.br/'
   },
   {
-    name: 'Minha visita',
+    name: 'Minha Visita',
     key: 'MINHA_VISITA',
     paragraphsQtt: 3,
-    role: 'Full-stack Software Engineer',
-    period: 'from October 2021 to November 2024',
+    role: 'Full Stack Software Engineer',
+    period: 'from September 2021 to November 2024',
     link: 'https://www.minhavisita.app/'
   },
   {
