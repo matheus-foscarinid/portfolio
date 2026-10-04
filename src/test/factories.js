@@ -187,3 +187,19 @@ export const sendChatMessage = async (root, text) => {
 };
 
 export const getChatBubbles = (root) => [...root.querySelectorAll('.message')].map((bubble) => bubble.textContent.trim());
+
+export const mockReducedMotion = (isReduced) =>
+  vi.spyOn(window, 'matchMedia').mockImplementation((query) => ({ matches: isReduced, media: query }));
+
+export const mockElementTop = (top) => vi.spyOn(Element.prototype, 'getBoundingClientRect').mockReturnValue({ top });
+
+export const stubIntersectionObserver = () => {
+  const reveals = [];
+  vi.stubGlobal('IntersectionObserver', function (callback) {
+    this.observe = (target) => reveals.push(() => callback([{ isIntersecting: true, target }], this));
+    this.unobserve = () => { };
+  });
+  return () => reveals.forEach((reveal) => reveal());
+};
+
+export const getScoreNumbers = (root) => [...root.querySelectorAll('.score .number')].map((number) => number.textContent.trim());

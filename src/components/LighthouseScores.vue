@@ -8,7 +8,7 @@
 
       <p class="subtitle">{{ $t('LIGHTHOUSE.SUBTITLE') }}</p>
 
-      <div class="scores">
+      <div ref="scoresRef" class="scores">
         <div
           v-for="metric in metrics"
           :key="metric.label"
@@ -73,18 +73,20 @@
   const RADIUS = 54;
   const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-  const progress = ref(0);
+  const scoresRef = ref(null);
+  const progress = ref(1);
 
   const offsetFor = (value) =>
     CIRCUMFERENCE * (1 - (value / 100) * progress.value);
 
+  const isBelowFold = (element) => element.getBoundingClientRect().top >= window.innerHeight;
+
   const animateIn = () => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      progress.value = 1;
-      return;
-    }
+    // rings already on screen would flash back to 0 before counting up
+    if (reduced || !isBelowFold(scoresRef.value)) return;
 
+    progress.value = 0;
     const DURATION = 1200;
     let startTime = null;
 
