@@ -57,6 +57,14 @@
       ],
     },
     {
+      link: 'https://stamped-taupe.vercel.app',
+      repository: 'https://github.com/matheus-foscarinid/stamped',
+      name: 'Stamped',
+      description: $t('PROJECTS.STAMPED'),
+      stack: ['Vue Vapor', 'TypeScript', 'Canvas'],
+      image: '/images/stamped.webp',
+    },
+    {
       link: 'https://marketplace.visualstudio.com/items?itemName=matheus-foscarinid.json-searcher',
       repository: 'https://github.com/matheus-foscarinid/json-searcher-vscode',
       name: 'JSON Searcher',

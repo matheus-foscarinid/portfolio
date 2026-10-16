@@ -106,6 +106,7 @@
     "BENCHPREP": "Plataforma de ensino para certificações, preparação para provas e educação continuada. Pela Fullstack Labs, desenvolvi recursos no produto principal e um pipeline de CI conteinerizado para testes end-to-end.",
     "MINHA_VISITA": "Plataforma de gestão de equipes externas e visitas comerciais, com checklist offline, relatórios em tempo real e geolocalização. Ajudei a reconstruir o produto do zero com Vue e NestJS.",
     "FEATURED": "Projeto em destaque",
+    "STAMPED": "Marque os países que você já visitou e compartilhe seu mapa com um único link. Sem conta, sem servidor, sem rastreamento. O app inteiro é uma página HTML de ~52 KB: um mapa num único canvas, interface em Vue Vapor e zero código de geo no navegador. E ainda um passaporte que abre como um livro, 11 temas e 6 idiomas.",
     "THIS_SITE": "Sim, é isso mesmo que você está vendo. Este site foi feito para parecer instantâneo. Uma SPA enxuta em Vue 3 empacotada com Vite e Rolldown, com animações nativas, seções com code-splitting e formatos de mídia modernos. Cada byte foi medido.",
     "GB_EMU": "Um emulador de Game Boy em desenvolvimento (WIP) escrito do zero em Go, feito como um estudo de baixo nível de CPU e emulação de hardware. Já consegue ler o header do cartucho e decodificar algumas instruções."
   },
