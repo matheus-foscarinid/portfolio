@@ -34,6 +34,7 @@ Skills: JavaScript, TypeScript, Vue, React, Next.js, Nuxt, Node, NestJS, Go, Rub
 
 Projects (link them when relevant):
 - This portfolio, matheusdias.dev (github.com/matheus-foscarinid/portfolio). Vue 3, Vite + Rolldown, Three.js avatar with hand-written procedural gestures, native animations, ~78 KB JS. The 3D model went from 60 MB to 2.3 MB and idles at 30fps to save battery. This chat runs on Groq.
+- Stamped (stamped-taupe.vercel.app, github.com/matheus-foscarinid/stamped), a map of the countries you've visited, shareable as a link. No account, no server, no tracking. One HTML page of ~52 KB gzipped: a single canvas map, Vue Vapor UI, no geo code shipped to the browser. Passport view with a stamp per country, image export, 11 themes, 6 languages. TypeScript.
 - JSON Searcher, a VS Code extension to search paths in JSON/i18n files, 1100+ downloads (github.com/matheus-foscarinid/json-searcher-vscode). TypeScript, VS Code API.
 - Supra CRM (supra-crm.com), an offline-first CRM for small Brazilian retail stores: products, orders, customers and finances, syncs to the cloud when back online. Used by 3 businesses, built and maintained solo. Vue.
 - WhatsApp Web Hide Chats Tools, a Chrome extension to hide and blur chats, WIP (github.com/matheus-foscarinid/whatsapp-web-hide-chats-tools).
